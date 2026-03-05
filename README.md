@@ -83,6 +83,9 @@ SESSION_SECRET=<LANGER_ZUFAELLIGER_SECRET>
 CMS_DATA_DIR=/app/storage/data
 CMS_UPLOADS_DIR=/app/storage/uploads
 CMS_UPLOADS_PUBLIC_BASE=/uploads
+RESEND_API_KEY=re_xxx
+RESEND_FROM=Fotobox Tirol <noreply@deinedomain.tld>
+RESEND_TO=info@fotobox.tirol
 ```
 
 Damit bleiben CMS-Daten und Uploads persistent (Volume) und Uploads sind unter `/uploads/...` erreichbar.
