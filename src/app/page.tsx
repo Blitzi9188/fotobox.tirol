@@ -3,6 +3,7 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
 import AccessoriesCarousel from "@/components/site/AccessoriesCarousel";
+import { formatReviewDateWithCurrentYear, getSortedLatestReviews } from "@/lib/reviews";
 
 export const dynamic = "force-dynamic";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
@@ -79,6 +80,7 @@ export default async function HomePage() {
   const stars = (value: number) => Array.from({ length: Math.max(0, Math.min(5, value)) }, (_, i) => (
     <span className="star" key={i}>★</span>
   ));
+  const latestReviews = getSortedLatestReviews(reviews.items);
 
   return (
     <>
@@ -298,13 +300,13 @@ export default async function HomePage() {
                       <div className="review-count">{reviews.reviewCountLabel}</div>
                     </div>
                     <div className="reviews-grid">
-                      {reviews.items.map((review, index) => (
+                      {latestReviews.map((review, index) => (
                         <article className="review-card" key={`${review.name}-${index}`}>
                           <div className="review-top">
                             <div className="reviewer-avatar" style={{ background: review.avatarColor || "#ea2c2c" }}>{review.initials}</div>
                             <div>
                               <div className="reviewer-name">{review.name}</div>
-                              <div className="review-date">{review.date}</div>
+                              <div className="review-date">{formatReviewDateWithCurrentYear(review.date)}</div>
                             </div>
                           </div>
                           <div className="review-stars">{stars(review.rating)}</div>

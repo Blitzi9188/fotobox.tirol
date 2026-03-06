@@ -1,6 +1,7 @@
 import BookingInquiryForm from "@/components/site/BookingInquiryForm";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { readCmsContent } from "@/lib/cms";
+import { formatReviewDateWithCurrentYear, getSortedLatestReviews } from "@/lib/reviews";
 
 export const dynamic = "force-dynamic";
 
@@ -72,6 +73,7 @@ export default async function KontaktPage({
         ? content.reviews.items
         : reviewsDefaults.items
   };
+  const latestReviews = getSortedLatestReviews(reviews.items);
 
   return (
     <>
@@ -122,13 +124,13 @@ export default async function KontaktPage({
               <div className="review-count">{reviews.reviewCountLabel}</div>
             </div>
             <div className="reviews-grid">
-              {reviews.items.map((review, index) => (
+              {latestReviews.map((review, index) => (
                 <article className="review-card" key={`${review.name}-${index}`}>
                   <div className="review-top">
                     <div className="reviewer-avatar" style={{ background: review.avatarColor || "#ea2c2c" }}>{review.initials}</div>
                     <div>
                       <div className="reviewer-name">{review.name}</div>
-                      <div className="review-date">{review.date}</div>
+                      <div className="review-date">{formatReviewDateWithCurrentYear(review.date)}</div>
                     </div>
                   </div>
                   <div className="review-stars">{stars(review.rating)}</div>
