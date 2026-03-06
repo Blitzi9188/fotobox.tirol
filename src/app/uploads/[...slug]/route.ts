@@ -1,10 +1,9 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { NextResponse } from "next/server";
+import { getCmsUploadsDir } from "@/lib/storagePaths";
 
-const uploadsDir = process.env.CMS_UPLOADS_DIR
-  ? path.resolve(process.env.CMS_UPLOADS_DIR)
-  : path.join(process.cwd(), "public", "uploads");
+const uploadsDir = getCmsUploadsDir();
 
 const MIME_TYPES: Record<string, string> = {
   ".jpg": "image/jpeg",

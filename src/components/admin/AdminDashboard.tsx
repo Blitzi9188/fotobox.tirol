@@ -327,55 +327,66 @@ export default function AdminDashboard() {
   async function saveContent() {
     if (!content) return;
 
-    setStatus("Speichere...");
-    const response = await fetch("/api/admin/content", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(content)
-    });
+    try {
+      setStatus("Speichere...");
+      const response = await fetch("/api/admin/content", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(content)
+      });
 
-    if (response.status === 401) {
-      setAuthorized(false);
-      setStatus("Session abgelaufen. Bitte neu einloggen.");
-      return;
+      if (response.status === 401) {
+        setAuthorized(false);
+        setStatus("Session abgelaufen. Bitte neu einloggen.");
+        return;
+      }
+
+      if (!response.ok) {
+        const json = (await response.json().catch(() => null)) as { error?: string } | null;
+        setStatus(json?.error || "Fehler beim Speichern.");
+        return;
+      }
+
+      setDirty(false);
+      setHistory([]);
+      setStatus("Gespeichert.");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Netzwerkfehler beim Speichern.";
+      setStatus(`Speichern fehlgeschlagen: ${message}`);
     }
-
-    if (!response.ok) {
-      const json = (await response.json().catch(() => null)) as { error?: string } | null;
-      setStatus(json?.error || "Fehler beim Speichern.");
-      return;
-    }
-
-    setDirty(false);
-    setHistory([]);
-    setStatus("Gespeichert.");
   }
 
   async function uploadImage(file: File): Promise<string | null> {
     const formData = new FormData();
     formData.append("file", file);
 
-    const response = await fetch("/api/admin/upload", {
-      method: "POST",
-      body: formData
-    });
+    try {
+      const response = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData
+      });
 
-    if (response.status === 401) {
-      setAuthorized(false);
-      setStatus("Session abgelaufen. Bitte neu einloggen.");
+      if (response.status === 401) {
+        setAuthorized(false);
+        setStatus("Session abgelaufen. Bitte neu einloggen.");
+        return null;
+      }
+
+      if (!response.ok) {
+        const json = (await response.json().catch(() => null)) as { error?: string } | null;
+        setStatus(json?.error || "Upload fehlgeschlagen.");
+        return null;
+      }
+
+      const json = (await response.json()) as { url: string };
+      setStatus("Bild hochgeladen. Bitte speichern.");
+      setDirty(true);
+      return json.url;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Netzwerkfehler beim Upload.";
+      setStatus(`Upload fehlgeschlagen: ${message}`);
       return null;
     }
-
-    if (!response.ok) {
-      const json = (await response.json().catch(() => null)) as { error?: string } | null;
-      setStatus(json?.error || "Upload fehlgeschlagen.");
-      return null;
-    }
-
-    const json = (await response.json()) as { url: string };
-    setStatus("Bild hochgeladen. Bitte speichern.");
-    setDirty(true);
-    return json.url;
   }
 
   async function handleImageUpload(

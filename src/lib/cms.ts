@@ -1,10 +1,9 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { CMSContent, ContactLead } from "@/lib/types";
+import { getCmsDataDir } from "@/lib/storagePaths";
 
-const dataDirectory = process.env.CMS_DATA_DIR
-  ? path.resolve(process.env.CMS_DATA_DIR)
-  : path.join(process.cwd(), "data");
+const dataDirectory = getCmsDataDir();
 const seedCmsFilePath = path.join(process.cwd(), "data", "cms-content.json");
 const cmsFilePath = path.join(dataDirectory, "cms-content.json");
 const contactFilePath = path.join(dataDirectory, "contact-leads.json");

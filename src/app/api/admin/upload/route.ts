@@ -1,9 +1,9 @@
 import { promises as fs } from "fs";
-import path from "path";
 import crypto from "crypto";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { verifySessionToken } from "@/lib/auth";
+import { getCmsUploadsDir, getCmsUploadsPublicBase } from "@/lib/storagePaths";
 
 function isAuthorized() {
   const token = cookies().get("cms_admin_session")?.value;
@@ -25,10 +25,8 @@ const ALLOWED_IMAGE_MIME_TYPES: Record<string, string> = {
   "image/heif": "heif"
 };
 const MAX_UPLOAD_SIZE_MB = Number(process.env.CMS_UPLOAD_MAX_MB || "30");
-const uploadsDir = process.env.CMS_UPLOADS_DIR
-  ? path.resolve(process.env.CMS_UPLOADS_DIR)
-  : path.join(process.cwd(), "public", "uploads");
-const uploadsPublicBase = (process.env.CMS_UPLOADS_PUBLIC_BASE || "/uploads").replace(/\/$/, "");
+const uploadsDir = getCmsUploadsDir();
+const uploadsPublicBase = getCmsUploadsPublicBase();
 
 function isRetryableFsError(error: unknown) {
   if (!(error instanceof Error)) return false;
