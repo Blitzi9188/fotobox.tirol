@@ -76,7 +76,7 @@ export default async function HomePage() {
   const homepageOrder: HomepageBlockId[] = [
     ...uniqueCmsOrder.filter((id): id is HomepageBlockId => DEFAULT_HOMEPAGE_ORDER.includes(id as HomepageBlockId)),
     ...DEFAULT_HOMEPAGE_ORDER.filter((id) => !uniqueCmsOrder.includes(id))
-  ];
+  ].filter((id) => id !== "reviews");
   const stars = (value: number) => Array.from({ length: Math.max(0, Math.min(5, value)) }, (_, i) => (
     <span className="star" key={i}>★</span>
   ));
