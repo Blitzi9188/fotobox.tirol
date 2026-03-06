@@ -100,6 +100,13 @@ function footerLinksToText(links: Array<{ label: string; href: string }>) {
   return links.map((item) => `${item.label} | ${item.href}`).join("\n");
 }
 
+function normalizeImageUrl(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+  if (trimmed.startsWith("www.")) return `https://${trimmed}`;
+  return trimmed;
+}
+
 export default function AdminDashboard() {
   const [content, setContent] = useState<CMSContent | null>(null);
   const [history, setHistory] = useState<CMSContent[]>([]);
@@ -606,7 +613,7 @@ export default function AdminDashboard() {
                   onChange={(event) => {
                     handleImageUpload(
                       event,
-                      (url) => updateContent((prev) => ({ ...prev, hero: { ...prev.hero, imageUrl: url } })),
+                      (url) => updateContent((prev) => ({ ...prev, hero: { ...prev.hero, imageUrl: normalizeImageUrl(url) } })),
                       "Lade Hero-Bild hoch..."
                     );
                   }}
@@ -616,10 +623,22 @@ export default function AdminDashboard() {
                 <span>Hero Bild URL</span>
                 <input
                   value={content.hero.imageUrl || ""}
-                  onChange={(e) => updateContent((prev) => ({ ...prev, hero: { ...prev.hero, imageUrl: e.target.value } }))}
+                  onChange={(e) =>
+                    updateContent((prev) => ({
+                      ...prev,
+                      hero: { ...prev.hero, imageUrl: normalizeImageUrl(e.target.value) }
+                    }))
+                  }
                 />
               </label>
-              {content.hero.imageUrl ? <img src={content.hero.imageUrl} alt="Hero Vorschau" className="admin-preview" /> : null}
+              {content.hero.imageUrl ? (
+                <img
+                  src={content.hero.imageUrl}
+                  alt="Hero Vorschau"
+                  className="admin-preview"
+                  onError={() => setStatus("Hero Bild URL ungültig oder Bild nicht erreichbar.")}
+                />
+              ) : null}
             </div>
           </div>
         </section>
