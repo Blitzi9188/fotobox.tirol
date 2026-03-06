@@ -19,21 +19,45 @@ function Brand({ content }: { content: CMSContent }) {
 }
 
 export function SiteHeader({ content }: { content: CMSContent }) {
+  const navItems = [
+    { href: "/#space", label: "Platz" },
+    { href: "/#accessories", label: "Requisitten" },
+    { href: "/#layout", label: "Layout" },
+    { href: "/#ai", label: "KI" },
+    { href: "/#faq", label: "Fragen" },
+    { href: "/kontakt", label: "Anfragen", className: "accent-link" }
+  ];
+
   return (
     <header>
       <div className="container nav-wrap">
         <Link href="/">
           <Brand content={content} />
         </Link>
-        <nav>
-          <ul>
-            <li><Link href="/#space">Platz</Link></li>
-            <li><Link href="/#accessories">Requisitten</Link></li>
-            <li><Link href="/#layout">Layout</Link></li>
-            <li><Link href="/#ai">KI</Link></li>
-            <li><Link href="/#faq">Fragen</Link></li>
-            <li><Link href="/kontakt" className="accent-link">Anfragen</Link></li>
+        <nav className="site-nav">
+          <ul className="nav-list-desktop">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className={item.className}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
+          <details className="mobile-nav-menu">
+            <summary aria-label="Menü öffnen" title="Menü öffnen">
+              <span>•••</span>
+            </summary>
+            <ul className="mobile-nav-list">
+              {navItems.map((item) => (
+                <li key={`mobile-${item.href}`}>
+                  <Link href={item.href} className={item.className}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </details>
         </nav>
       </div>
     </header>
