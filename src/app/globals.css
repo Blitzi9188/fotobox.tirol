@@ -870,6 +870,15 @@ p {
   margin: 0.4rem 0;
 }
 
+.reviews-fixed-stars {
+  text-align: center;
+  color: #fbbc04;
+  font-size: 1.45rem;
+  letter-spacing: 0.16rem;
+  line-height: 1;
+  margin: 0.25rem 0 0;
+}
+
 .star {
   color: #fbbc04;
   font-size: 1.05rem;
