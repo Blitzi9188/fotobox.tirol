@@ -1123,6 +1123,10 @@ p {
   background: #fff;
   text-align: center;
   padding: 1rem;
+  color: #1f2937;
+  font: inherit;
+  -webkit-appearance: none;
+  appearance: none;
   cursor: pointer;
   transition: border-color 0.25s var(--ani-ease), transform 0.25s var(--ani-ease), background 0.25s var(--ani-ease);
 }
@@ -2182,6 +2186,41 @@ footer {
     font-size: 0.62rem;
     padding: 0.23rem 0.48rem;
     background: rgba(9, 13, 22, 0.62);
+  }
+
+  .inquiry-options-grid {
+    gap: 0.65rem;
+  }
+
+  .inquiry-option {
+    text-align: left;
+    border-radius: 12px;
+    padding: 0.95rem 0.95rem;
+    background: #fafbfc;
+    border-color: #d8dee8;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    color: #111827;
+  }
+
+  .inquiry-option:hover {
+    transform: none;
+    border-color: #cdd6e3;
+    background: #f7f9fc;
+  }
+
+  .inquiry-option.selected {
+    background: #fff3f3;
+    border-color: #ef4444;
+    box-shadow: 0 6px 16px rgba(234, 44, 44, 0.14);
+  }
+
+  .inquiry-option-title {
+    color: #111827;
+    margin-bottom: 0.15rem;
+  }
+
+  .inquiry-option-desc {
+    color: #5b6472;
   }
 
   .accessories-carousel-shell {
