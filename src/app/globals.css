@@ -2111,6 +2111,35 @@ footer {
     position: static;
   }
 
+  .inquiry-layout {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 0.9rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    padding-bottom: 2.2rem;
+    box-sizing: border-box;
+  }
+
+  .inquiry-form-card,
+  .inquiry-sidecard {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .inquiry-form-section {
+    margin-bottom: 1.55rem;
+  }
+
+  .inquiry-input-group {
+    gap: 0.62rem;
+  }
+
   .nav-wrap {
     flex-direction: row;
     align-items: center;
