@@ -20,6 +20,25 @@ cp .env.example .env.local
 npm run dev
 ```
 
+## Offline Portal (lokal testen)
+
+Wenn du Änderungen ohne Railway testen willst:
+
+```bash
+npm run offline
+```
+
+Optional anderer Port:
+
+```bash
+npm run offline -- --port=4020
+```
+
+Danach zeigt dir das Skript direkt:
+- `http://localhost:PORT`
+- `http://DEINE-LAN-IP:PORT` (für Handy/Tablet im gleichen WLAN)
+- `.../admin` für das CMS
+
 ## Seiten
 
 - `/` Startseite mit CMS-Inhalten
