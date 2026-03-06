@@ -66,8 +66,17 @@ export function SiteHeader({ content }: { content: CMSContent }) {
 
 export function SiteFooter({ content }: { content: CMSContent }) {
   const isInternalHref = (href: string) => href.startsWith("/");
+  const normalizeLabel = (value: string) =>
+    (value || "")
+      .toLowerCase()
+      .replace(/ä/g, "ae")
+      .replace(/ö/g, "oe")
+      .replace(/ü/g, "ue")
+      .replace(/ß/g, "ss")
+      .trim();
+
   const resolveFooterHref = (label: string, href: string) => {
-    const normalizedLabel = (label || "").toLowerCase();
+    const normalizedLabel = normalizeLabel(label);
     if (normalizedLabel.includes("datenschutz")) return "/datenschutzerklaerung";
     if (normalizedLabel.includes("agb") && normalizedLabel.includes("b2b")) return "/agb-b2b";
     if (normalizedLabel === "agb" || normalizedLabel.startsWith("agb ")) return "/agb";
@@ -75,6 +84,22 @@ export function SiteFooter({ content }: { content: CMSContent }) {
 
     const trimmed = (href || "").trim();
     if (trimmed && trimmed !== "#") return trimmed;
+    return "#";
+  };
+
+  const resolveLegalHref = (label: string, href: string, index: number) => {
+    const normalizedLabel = normalizeLabel(label);
+    if (normalizedLabel.includes("datenschutz")) return "/datenschutzerklaerung";
+    if (normalizedLabel.includes("agb") && normalizedLabel.includes("b2b")) return "/agb-b2b";
+    if (normalizedLabel === "agb" || normalizedLabel.startsWith("agb ")) return "/agb";
+
+    const trimmed = (href || "").trim();
+    if (trimmed && trimmed !== "#") return trimmed;
+
+    // Harte Reihenfolge-Fallbacks fuer Rechtliches, falls CMS-Label/URL fehlerhaft sind.
+    if (index === 0) return "/datenschutzerklaerung";
+    if (index === 1) return "/agb";
+    if (index === 2) return "/agb-b2b";
     return "#";
   };
   const phoneHref = `tel:${content.contact.phone.replace(/\s+/g, "")}`;
@@ -125,8 +150,8 @@ export function SiteFooter({ content }: { content: CMSContent }) {
         </div>
         <div>
           <h4>{content.footer.legalTitle}</h4>
-          {content.footer.legalLinks.map((link) => {
-            const resolvedHref = resolveFooterHref(link.label, link.href);
+          {content.footer.legalLinks.map((link, index) => {
+            const resolvedHref = resolveLegalHref(link.label, link.href, index);
             return isInternalHref(resolvedHref) ? (
               <Link key={`${link.label}-${resolvedHref}`} href={resolvedHref}>{link.label}</Link>
             ) : (
