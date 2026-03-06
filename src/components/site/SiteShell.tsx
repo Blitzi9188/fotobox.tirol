@@ -102,6 +102,24 @@ export function SiteFooter({ content }: { content: CMSContent }) {
     if (index === 2) return "/agb-b2b";
     return "#";
   };
+  const legalLinks = content.footer.legalLinks || [];
+  const legalDatenschutzLabel =
+    legalLinks.find((link) => normalizeLabel(link.label).includes("datenschutz"))?.label || "Datenschutzerklaerung";
+  const legalAgbB2bLabel =
+    legalLinks.find((link) => {
+      const label = normalizeLabel(link.label);
+      return label.includes("agb") && label.includes("b2b");
+    })?.label || "AGB (B2B)";
+  const legalAgbLabel =
+    legalLinks.find((link) => {
+      const label = normalizeLabel(link.label);
+      return label === "agb" || label.startsWith("agb ");
+    })?.label || "AGB";
+  const forcedLegalLinks = [
+    { label: legalDatenschutzLabel, href: "/datenschutzerklaerung" },
+    { label: legalAgbLabel, href: "/agb" },
+    { label: legalAgbB2bLabel, href: "/agb-b2b" }
+  ];
   const phoneHref = `tel:${content.contact.phone.replace(/\s+/g, "")}`;
   const emailHref = `mailto:${content.contact.email}`;
 
@@ -150,8 +168,8 @@ export function SiteFooter({ content }: { content: CMSContent }) {
         </div>
         <div>
           <h4>{content.footer.legalTitle}</h4>
-          {content.footer.legalLinks.map((link, index) => {
-            const resolvedHref = resolveLegalHref(link.label, link.href, index);
+          {forcedLegalLinks.map((link) => {
+            const resolvedHref = resolveLegalHref(link.label, link.href, 0);
             return isInternalHref(resolvedHref) ? (
               <Link key={`${link.label}-${resolvedHref}`} href={resolvedHref}>{link.label}</Link>
             ) : (
