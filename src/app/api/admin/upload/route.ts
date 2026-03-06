@@ -24,7 +24,7 @@ const ALLOWED_IMAGE_MIME_TYPES: Record<string, string> = {
   "image/heic": "heic",
   "image/heif": "heif"
 };
-const MAX_UPLOAD_SIZE_MB = Number(process.env.CMS_UPLOAD_MAX_MB || "20");
+const MAX_UPLOAD_SIZE_MB = Number(process.env.CMS_UPLOAD_MAX_MB || "30");
 const uploadsDir = process.env.CMS_UPLOADS_DIR
   ? path.resolve(process.env.CMS_UPLOADS_DIR)
   : path.join(process.cwd(), "public", "uploads");

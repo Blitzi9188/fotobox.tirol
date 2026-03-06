@@ -602,7 +602,7 @@ export default function AdminDashboard() {
                 <span>Hero Bild hochladen</span>
                 <input
                   type="file"
-                  accept=".jpg,.jpeg,.png,.webp"
+                  accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                   onChange={(event) => {
                     handleImageUpload(
                       event,
@@ -722,7 +722,7 @@ export default function AdminDashboard() {
                 <span>Links Vorher hochladen</span>
                 <input
                   type="file"
-                  accept=".jpg,.jpeg,.png,.webp"
+                  accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                   onChange={(event) => {
                     handleImageUpload(
                       event,
@@ -743,7 +743,7 @@ export default function AdminDashboard() {
                 <span>Links Nachher hochladen</span>
                 <input
                   type="file"
-                  accept=".jpg,.jpeg,.png,.webp"
+                  accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                   onChange={(event) => {
                     handleImageUpload(
                       event,
@@ -768,7 +768,7 @@ export default function AdminDashboard() {
                 <span>Rechts Vorher hochladen</span>
                 <input
                   type="file"
-                  accept=".jpg,.jpeg,.png,.webp"
+                  accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                   onChange={(event) => {
                     handleImageUpload(
                       event,
@@ -789,7 +789,7 @@ export default function AdminDashboard() {
                 <span>Rechts Nachher hochladen</span>
                 <input
                   type="file"
-                  accept=".jpg,.jpeg,.png,.webp"
+                  accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                   onChange={(event) => {
                     handleImageUpload(
                       event,
@@ -976,7 +976,7 @@ export default function AdminDashboard() {
                     <span>Bild hochladen</span>
                     <input
                       type="file"
-                      accept=".jpg,.jpeg,.png,.webp"
+                      accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                       onChange={(event) => {
                         handleImageUpload(
                           event,
@@ -1042,7 +1042,7 @@ export default function AdminDashboard() {
                     <span>Bild hochladen</span>
                     <input
                       type="file"
-                      accept=".jpg,.jpeg,.png,.webp"
+                      accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                       onChange={(event) => {
                         handleImageUpload(
                           event,
@@ -1129,7 +1129,7 @@ export default function AdminDashboard() {
               <span>Platzbedarf Bild hochladen</span>
               <input
                 type="file"
-                accept=".jpg,.jpeg,.png,.webp"
+                accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                 onChange={(event) => {
                   handleImageUpload(
                     event,
@@ -1180,7 +1180,7 @@ export default function AdminDashboard() {
               <span>Bild hochladen</span>
               <input
                 type="file"
-                accept=".jpg,.jpeg,.png,.webp"
+                accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                 onChange={(event) => {
                   handleImageUpload(
                     event,
@@ -1228,7 +1228,7 @@ export default function AdminDashboard() {
               <span>Bild hochladen</span>
               <input
                 type="file"
-                accept=".jpg,.jpeg,.png,.webp"
+                accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                 onChange={(event) => {
                   handleImageUpload(
                     event,
@@ -1963,7 +1963,7 @@ export default function AdminDashboard() {
               <span>Logo hochladen</span>
               <input
                 type="file"
-                accept=".jpg,.jpeg,.png,.webp"
+                accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
                 onChange={(event) => {
                   handleImageUpload(
                     event,
