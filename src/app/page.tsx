@@ -3,7 +3,6 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
 import AccessoriesCarousel from "@/components/site/AccessoriesCarousel";
-import { formatReviewDateWithCurrentYear, getSortedLatestReviews } from "@/lib/reviews";
 
 export const dynamic = "force-dynamic";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
@@ -23,48 +22,6 @@ function subtitleHtmlToText(html: string): string {
 
 export default async function HomePage() {
   const content = await readCmsContent();
-  const reviewsDefaults = {
-    heading: "kunden/bewertungen",
-    sourceLabel: "Google Bewertungen",
-    score: "4.9",
-    reviewCountLabel: "Basierend auf 47 Bewertungen",
-    ctaLabel: "Alle Bewertungen auf Google ansehen",
-    ctaHref: "https://g.page/fotoboxtirol/review",
-    items: [
-      {
-        name: "Sarah M.",
-        date: "Oktober 2024",
-        text: "Absolut begeistert! Die Fotobox war der Highlight unserer Hochzeit.",
-        initials: "SM",
-        avatarColor: "#ea2c2c",
-        rating: 5
-      },
-      {
-        name: "Thomas K.",
-        date: "September 2024",
-        text: "Für unsere Firmenfeier genau das Richtige. Klare Empfehlung.",
-        initials: "TK",
-        avatarColor: "#1a1a1a",
-        rating: 5
-      },
-      {
-        name: "Laura B.",
-        date: "August 2024",
-        text: "Top Bildqualität und reibungsloser Ablauf.",
-        initials: "LB",
-        avatarColor: "#616161",
-        rating: 5
-      }
-    ]
-  };
-  const reviews = {
-    ...reviewsDefaults,
-    ...(content.reviews || {}),
-    items:
-      Array.isArray(content.reviews?.items) && content.reviews.items.length > 0
-        ? content.reviews.items
-        : reviewsDefaults.items
-  };
   const heroSubtitleText = (content.hero.subtitleText || subtitleHtmlToText(content.hero.subtitleHtml || "")).trim();
   const aiDescriptionText = (content.ai.descriptionText || subtitleHtmlToText(content.ai.descriptionHtml || "")).trim();
   const aiParagraphs = aiDescriptionText
@@ -77,10 +34,6 @@ export default async function HomePage() {
     ...uniqueCmsOrder.filter((id): id is HomepageBlockId => DEFAULT_HOMEPAGE_ORDER.includes(id as HomepageBlockId)),
     ...DEFAULT_HOMEPAGE_ORDER.filter((id) => !uniqueCmsOrder.includes(id))
   ].filter((id) => id !== "reviews");
-  const stars = (value: number) => Array.from({ length: Math.max(0, Math.min(5, value)) }, (_, i) => (
-    <span className="star" key={i}>★</span>
-  ));
-  const latestReviews = getSortedLatestReviews(reviews.items);
 
   return (
     <>
@@ -280,40 +233,6 @@ export default async function HomePage() {
                         <p>{item.answer}</p>
                       </details>
                     ))}
-                  </div>
-                </section>
-              );
-            }
-
-            if (section === "reviews") {
-              return (
-                <section id="reviews" className="reviews" key="reviews">
-                  <div className="container">
-                    <div className="overall-rating">
-                      <div className="reviews-header">
-                        <h2 style={{ marginBottom: 0.35 + "rem" }}><SlashHeading value={reviews.heading} /></h2>
-                      </div>
-                    </div>
-                    <div className="reviews-grid">
-                      {latestReviews.map((review, index) => (
-                        <article className="review-card" key={`${review.name}-${index}`}>
-                          <div className="review-top">
-                            <div className="reviewer-avatar" style={{ background: review.avatarColor || "#ea2c2c" }}>{review.initials}</div>
-                            <div>
-                              <div className="reviewer-name">{review.name}</div>
-                              <div className="review-date">{formatReviewDateWithCurrentYear(review.date)}</div>
-                            </div>
-                          </div>
-                          <div className="review-stars">{stars(review.rating)}</div>
-                          <p className="review-text">{review.text}</p>
-                        </article>
-                      ))}
-                    </div>
-                    <div className="reviews-cta">
-                      <a href={reviews.ctaHref} target="_blank" rel="noopener noreferrer">
-                        {reviews.ctaLabel}
-                      </a>
-                    </div>
                   </div>
                 </section>
               );
