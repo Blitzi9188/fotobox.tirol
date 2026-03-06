@@ -113,7 +113,7 @@ export default async function KontaktPage({
             </div>
           </aside>
         </section>
-        <section id="reviews" className="reviews">
+        <section id="reviews" className="reviews reviews-contact">
           <div className="container">
             <div className="overall-rating">
               <div className="reviews-header">

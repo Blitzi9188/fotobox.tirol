@@ -825,6 +825,10 @@ p {
   background: var(--c-bg);
 }
 
+.reviews-contact {
+  padding-top: 2rem;
+}
+
 .reviews-header {
   display: flex;
   flex-direction: column;
