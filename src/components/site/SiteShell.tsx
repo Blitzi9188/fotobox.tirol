@@ -67,14 +67,14 @@ export function SiteHeader({ content }: { content: CMSContent }) {
 export function SiteFooter({ content }: { content: CMSContent }) {
   const isInternalHref = (href: string) => href.startsWith("/");
   const resolveFooterHref = (label: string, href: string) => {
-    const trimmed = (href || "").trim();
-    if (trimmed && trimmed !== "#") return trimmed;
-
     const normalizedLabel = (label || "").toLowerCase();
     if (normalizedLabel.includes("datenschutz")) return "/datenschutzerklaerung";
     if (normalizedLabel.includes("agb") && normalizedLabel.includes("b2b")) return "/agb-b2b";
     if (normalizedLabel === "agb" || normalizedLabel.startsWith("agb ")) return "/agb";
     if (normalizedLabel.includes("impressum")) return "/impressum";
+
+    const trimmed = (href || "").trim();
+    if (trimmed && trimmed !== "#") return trimmed;
     return "#";
   };
   const phoneHref = `tel:${content.contact.phone.replace(/\s+/g, "")}`;
