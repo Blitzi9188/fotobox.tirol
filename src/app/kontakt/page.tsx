@@ -119,6 +119,7 @@ export default async function KontaktPage({
               <div className="reviews-header">
                 <h2 style={{ marginBottom: "0.35rem" }}>{reviews.heading.split("/")[0]}<span className="accent-slash">/</span>{reviews.heading.split("/")[1] || ""}</h2>
               </div>
+              <div className="stars-row">{stars(5)}</div>
             </div>
             <div className="reviews-grid">
               {latestReviews.map((review, index) => (
