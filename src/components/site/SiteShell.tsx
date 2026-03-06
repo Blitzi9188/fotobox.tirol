@@ -87,21 +87,6 @@ export function SiteFooter({ content }: { content: CMSContent }) {
     return "#";
   };
 
-  const resolveLegalHref = (label: string, href: string, index: number) => {
-    const normalizedLabel = normalizeLabel(label);
-    if (normalizedLabel.includes("datenschutz")) return "/datenschutzerklaerung";
-    if (normalizedLabel.includes("agb") && normalizedLabel.includes("b2b")) return "/agb-b2b";
-    if (normalizedLabel === "agb" || normalizedLabel.startsWith("agb ")) return "/agb";
-
-    const trimmed = (href || "").trim();
-    if (trimmed && trimmed !== "#") return trimmed;
-
-    // Harte Reihenfolge-Fallbacks fuer Rechtliches, falls CMS-Label/URL fehlerhaft sind.
-    if (index === 0) return "/datenschutzerklaerung";
-    if (index === 1) return "/agb";
-    if (index === 2) return "/agb-b2b";
-    return "#";
-  };
   const legalLinks = content.footer.legalLinks || [];
   const legalDatenschutzLabel =
     legalLinks.find((link) => normalizeLabel(link.label).includes("datenschutz"))?.label || "Datenschutzerklaerung";
@@ -115,11 +100,6 @@ export function SiteFooter({ content }: { content: CMSContent }) {
       const label = normalizeLabel(link.label);
       return label === "agb" || label.startsWith("agb ");
     })?.label || "AGB";
-  const forcedLegalLinks = [
-    { label: legalDatenschutzLabel, href: "/datenschutzerklaerung" },
-    { label: legalAgbLabel, href: "/agb" },
-    { label: legalAgbB2bLabel, href: "/agb-b2b" }
-  ];
   const phoneHref = `tel:${content.contact.phone.replace(/\s+/g, "")}`;
   const emailHref = `mailto:${content.contact.email}`;
 
@@ -168,14 +148,9 @@ export function SiteFooter({ content }: { content: CMSContent }) {
         </div>
         <div>
           <h4>{content.footer.legalTitle}</h4>
-          {forcedLegalLinks.map((link) => {
-            const resolvedHref = resolveLegalHref(link.label, link.href, 0);
-            return isInternalHref(resolvedHref) ? (
-              <Link key={`${link.label}-${resolvedHref}`} href={resolvedHref}>{link.label}</Link>
-            ) : (
-              <a key={`${link.label}-${resolvedHref}`} href={resolvedHref}>{link.label}</a>
-            );
-          })}
+          <Link href="/datenschutzerklaerung">{legalDatenschutzLabel}</Link>
+          <Link href="/agb">{legalAgbLabel}</Link>
+          <Link href="/agb-b2b">{legalAgbB2bLabel}</Link>
         </div>
       </div>
 
