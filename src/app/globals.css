@@ -2154,6 +2154,12 @@ footer {
     display: none;
   }
 
+  header nav,
+  .mobile-nav-menu,
+  .nav-list-desktop {
+    display: none !important;
+  }
+
   .brand-wrap {
     flex-wrap: wrap;
   }
