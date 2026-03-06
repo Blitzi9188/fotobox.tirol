@@ -128,7 +128,6 @@ export default async function KontaktPage({
                   {reviews.sourceLabel}
                 </div>
               </div>
-              <div className="overall-score">{reviews.score}</div>
               <div className="stars-row">{stars(5)}</div>
               <div className="review-count">{reviews.reviewCountLabel}</div>
             </div>
