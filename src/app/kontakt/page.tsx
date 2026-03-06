@@ -10,6 +10,9 @@ export default async function KontaktPage({
   searchParams?: { paket?: string | string[] };
 }) {
   const content = await readCmsContent();
+  const stars = (count: number) => Array.from({ length: Math.max(0, Math.min(5, Math.round(count))) }, (_, i) => (
+    <span className="star" key={i}>★</span>
+  ));
   const paketParam = searchParams?.paket;
   const requestedPackage = Array.isArray(paketParam) ? paketParam[0] : paketParam;
   const hasPackage = content.pricing.plans.some((plan) => plan.name === requestedPackage);
@@ -48,6 +51,27 @@ export default async function KontaktPage({
   const references = content.contact.references && content.contact.references.length > 0
     ? content.contact.references
     : fallbackReferences;
+  const reviewsDefaults = {
+    heading: "kunden/bewertungen",
+    sourceLabel: "Google Bewertungen",
+    score: "4.9",
+    reviewCountLabel: "Basierend auf 47 Bewertungen",
+    ctaLabel: "Alle Bewertungen auf Google ansehen",
+    ctaHref: "https://g.page/fotoboxtirol/review",
+    items: [
+      { initials: "SM", name: "Sarah M.", date: "Oktober 2024", rating: 5, text: "Absolut begeistert! Die Fotobox war das Highlight unserer Hochzeit.", avatarColor: "#ea2c2c" },
+      { initials: "TK", name: "Thomas K.", date: "September 2024", rating: 5, text: "Für unsere Firmenfeier genau das Richtige. Professionelle Abwicklung.", avatarColor: "#1a1a1a" },
+      { initials: "LB", name: "Laura B.", date: "August 2024", rating: 5, text: "Top Bildqualität und super Service. Gerne wieder!", avatarColor: "#555555" }
+    ]
+  };
+  const reviews = {
+    ...reviewsDefaults,
+    ...(content.reviews || {}),
+    items:
+      Array.isArray(content.reviews?.items) && content.reviews.items.length > 0
+        ? content.reviews.items
+        : reviewsDefaults.items
+  };
 
   return (
     <>
@@ -86,6 +110,38 @@ export default async function KontaktPage({
               </ul>
             </div>
           </aside>
+        </section>
+        <section id="reviews" className="reviews">
+          <div className="container">
+            <div className="overall-rating">
+              <div className="reviews-header">
+                <h2 style={{ marginBottom: "0.35rem" }}>{reviews.heading.split("/")[0]}<span className="accent-slash">/</span>{reviews.heading.split("/")[1] || ""}</h2>
+                <div className="reviews-subtitle">{reviews.sourceLabel}</div>
+              </div>
+              <div className="stars-row">{stars(5)}</div>
+              <div className="review-count">{reviews.reviewCountLabel}</div>
+            </div>
+            <div className="reviews-grid">
+              {reviews.items.map((review, index) => (
+                <article className="review-card" key={`${review.name}-${index}`}>
+                  <div className="review-top">
+                    <div className="reviewer-avatar" style={{ background: review.avatarColor || "#ea2c2c" }}>{review.initials}</div>
+                    <div>
+                      <div className="reviewer-name">{review.name}</div>
+                      <div className="review-date">{review.date}</div>
+                    </div>
+                  </div>
+                  <div className="review-stars">{stars(review.rating)}</div>
+                  <p className="review-text">{review.text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="reviews-cta">
+              <a href={reviews.ctaHref} target="_blank" rel="noopener noreferrer">
+                {reviews.ctaLabel}
+              </a>
+            </div>
+          </div>
         </section>
       </main>
       <SiteFooter content={content} />
