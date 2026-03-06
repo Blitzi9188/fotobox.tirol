@@ -2125,6 +2125,11 @@ footer {
     flex-wrap: wrap;
   }
 
+  .hero-bg-image {
+    object-position: center center;
+    transform: scale(1.06);
+  }
+
   .gallery-item,
   .gallery-item-1,
   .gallery-item-2,
