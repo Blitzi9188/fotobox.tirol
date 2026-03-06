@@ -2263,6 +2263,11 @@ footer {
     gap: 0.4rem;
   }
 
+  .accessories-head,
+  .accessories-head h2 {
+    text-align: center;
+  }
+
   .accessories-arrow {
     width: 32px;
     height: 32px;
