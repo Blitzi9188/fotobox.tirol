@@ -15,6 +15,7 @@ function safeName(fileName: string): string {
 }
 
 const ALLOWED_IMAGE_MIME_TYPES: Record<string, string> = {
+  "image/jpg": "jpg",
   "image/jpeg": "jpg",
   "image/png": "png",
   "image/webp": "webp",
@@ -23,6 +24,7 @@ const ALLOWED_IMAGE_MIME_TYPES: Record<string, string> = {
   "image/heic": "heic",
   "image/heif": "heif"
 };
+const MAX_UPLOAD_SIZE_MB = Number(process.env.CMS_UPLOAD_MAX_MB || "20");
 const uploadsDir = process.env.CMS_UPLOADS_DIR
   ? path.resolve(process.env.CMS_UPLOADS_DIR)
   : path.join(process.cwd(), "public", "uploads");
@@ -76,8 +78,11 @@ export async function POST(request: Request) {
       );
     }
 
-    if (file.size > 8 * 1024 * 1024) {
-      return NextResponse.json({ error: "Max file size is 8MB" }, { status: 400 });
+    if (file.size > MAX_UPLOAD_SIZE_MB * 1024 * 1024) {
+      return NextResponse.json(
+        { error: `Datei zu groß. Maximal ${MAX_UPLOAD_SIZE_MB}MB erlaubt.` },
+        { status: 413 }
+      );
     }
 
     const bytes = await file.arrayBuffer();
