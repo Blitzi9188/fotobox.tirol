@@ -22,6 +22,40 @@ function subtitleHtmlToText(html: string): string {
 
 export default async function HomePage() {
   const content = await readCmsContent();
+  const reviews = content.reviews || {
+    heading: "kunden/bewertungen",
+    sourceLabel: "Google Bewertungen",
+    score: "4.9",
+    reviewCountLabel: "Basierend auf 47 Bewertungen",
+    ctaLabel: "Alle Bewertungen auf Google ansehen",
+    ctaHref: "https://g.page/fotoboxtirol/review",
+    items: [
+      {
+        name: "Sarah M.",
+        date: "Oktober 2024",
+        text: "Absolut begeistert! Die Fotobox war der Highlight unserer Hochzeit.",
+        initials: "SM",
+        avatarColor: "#ea2c2c",
+        rating: 5
+      },
+      {
+        name: "Thomas K.",
+        date: "September 2024",
+        text: "Für unsere Firmenfeier genau das Richtige. Klare Empfehlung.",
+        initials: "TK",
+        avatarColor: "#1a1a1a",
+        rating: 5
+      },
+      {
+        name: "Laura B.",
+        date: "August 2024",
+        text: "Top Bildqualität und reibungsloser Ablauf.",
+        initials: "LB",
+        avatarColor: "#616161",
+        rating: 5
+      }
+    ]
+  };
   const heroSubtitleText = (content.hero.subtitleText || subtitleHtmlToText(content.hero.subtitleHtml || "")).trim();
   const aiDescriptionText = (content.ai.descriptionText || subtitleHtmlToText(content.ai.descriptionHtml || "")).trim();
   const aiParagraphs = aiDescriptionText
@@ -247,7 +281,7 @@ export default async function HomePage() {
                   <div className="container">
                     <div className="overall-rating">
                       <div className="reviews-header">
-                        <h2 style={{ marginBottom: 0 }}><SlashHeading value={content.reviews.heading} /></h2>
+                        <h2 style={{ marginBottom: 0 }}><SlashHeading value={reviews.heading} /></h2>
                         <div className="google-badge">
                           <svg className="google-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -255,15 +289,15 @@ export default async function HomePage() {
                             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
                             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
                           </svg>
-                          {content.reviews.sourceLabel}
+                          {reviews.sourceLabel}
                         </div>
                       </div>
-                      <div className="overall-score">{content.reviews.score}</div>
+                      <div className="overall-score">{reviews.score}</div>
                       <div className="stars-row">{stars(5)}</div>
-                      <div className="review-count">{content.reviews.reviewCountLabel}</div>
+                      <div className="review-count">{reviews.reviewCountLabel}</div>
                     </div>
                     <div className="reviews-grid">
-                      {content.reviews.items.map((review, index) => (
+                      {reviews.items.map((review, index) => (
                         <article className="review-card" key={`${review.name}-${index}`}>
                           <div className="review-top">
                             <div className="reviewer-avatar" style={{ background: review.avatarColor || "#ea2c2c" }}>{review.initials}</div>
@@ -278,8 +312,8 @@ export default async function HomePage() {
                       ))}
                     </div>
                     <div className="reviews-cta">
-                      <a href={content.reviews.ctaHref} target="_blank" rel="noopener noreferrer">
-                        {content.reviews.ctaLabel}
+                      <a href={reviews.ctaHref} target="_blank" rel="noopener noreferrer">
+                        {reviews.ctaLabel}
                       </a>
                     </div>
                   </div>
