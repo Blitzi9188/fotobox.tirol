@@ -81,6 +81,7 @@ nav ul {
 
 nav a {
   transition: color 0.2s var(--ani-ease);
+  text-transform: lowercase;
 }
 
 nav a:hover {
