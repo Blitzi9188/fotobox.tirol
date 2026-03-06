@@ -33,6 +33,15 @@ export type FaqItem = {
   answer: string;
 };
 
+export type ReviewItem = {
+  name: string;
+  date: string;
+  text: string;
+  initials: string;
+  avatarColor?: string;
+  rating: number;
+};
+
 export type FooterLink = {
   label: string;
   href: string;
@@ -41,8 +50,8 @@ export type FooterLink = {
 
 export type CMSContent = {
   layout?: {
-    sectionOrder?: Array<"overview" | "hero" | "features" | "space" | "pricing" | "media" | "faq" | "inquiry" | "thanks" | "contact" | "footer" | "legal" | "seo">;
-    homepageOrder?: Array<"hero" | "features" | "space" | "media" | "pricing" | "faq">;
+    sectionOrder?: Array<"overview" | "hero" | "features" | "space" | "pricing" | "media" | "reviews" | "faq" | "inquiry" | "thanks" | "contact" | "footer" | "legal" | "seo">;
+    homepageOrder?: Array<"hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq">;
   };
   seo: {
     title: string;
@@ -109,6 +118,15 @@ export type CMSContent = {
   faq: {
     heading: string;
     items: FaqItem[];
+  };
+  reviews: {
+    heading: string;
+    sourceLabel: string;
+    score: string;
+    reviewCountLabel: string;
+    ctaLabel: string;
+    ctaHref: string;
+    items: ReviewItem[];
   };
   inquiry: {
     heading: string;

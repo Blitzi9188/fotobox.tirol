@@ -15,6 +15,7 @@ type SectionId =
   | "spaceLayout"
   | "pricing"
   | "media"
+  | "reviews"
   | "faq"
   | "inquiry"
   | "thanks"
@@ -22,7 +23,7 @@ type SectionId =
   | "footer"
   | "legal"
   | "seo";
-type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "faq";
+type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
 
 const SECTION_TABS: Array<{ id: SectionId; label: string }> = [
   { id: "overview", label: "Übersicht" },
@@ -32,6 +33,7 @@ const SECTION_TABS: Array<{ id: SectionId; label: string }> = [
   { id: "spaceLayout", label: "Layout/Gestaltung" },
   { id: "pricing", label: "Preise" },
   { id: "media", label: "Bilder" },
+  { id: "reviews", label: "Rezensionen" },
   { id: "faq", label: "FAQ" },
   { id: "inquiry", label: "Anfrage" },
   { id: "thanks", label: "Danke" },
@@ -47,6 +49,7 @@ const HOMEPAGE_BLOCKS: Array<{ id: HomepageBlockId; label: string; note: string 
   { id: "space", label: "Platzbedarf", note: "Block für benötigte Fläche und Grafik." },
   { id: "media", label: "Media", note: "KI-Vergleich und Galerie." },
   { id: "pricing", label: "Preise", note: "Paketübersicht und CTA Buttons." },
+  { id: "reviews", label: "Rezensionen", note: "Kundenbewertungen und Score-Bereich." },
   { id: "faq", label: "FAQ", note: "Häufige Fragen und Antworten." }
 ];
 const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = HOMEPAGE_BLOCKS.map((block) => block.id);
@@ -209,6 +212,42 @@ export default function AdminDashboard() {
       layoutTwoImageUrl: json.space?.layoutTwoImageUrl || json.space?.imageUrl || "",
       layoutTwoImageAlt: json.space?.layoutTwoImageAlt || "Layout Gestaltung Bild 2"
     };
+    const normalizedReviews = {
+      heading: json.reviews?.heading || "kunden/bewertungen",
+      sourceLabel: json.reviews?.sourceLabel || "Google Bewertungen",
+      score: json.reviews?.score || "4.9",
+      reviewCountLabel: json.reviews?.reviewCountLabel || "Basierend auf 47 Bewertungen",
+      ctaLabel: json.reviews?.ctaLabel || "Alle Bewertungen auf Google ansehen",
+      ctaHref: json.reviews?.ctaHref || "https://g.page/fotoboxtirol/review",
+      items: (json.reviews?.items && json.reviews.items.length > 0)
+        ? json.reviews.items
+        : [
+            {
+              name: "Sarah M.",
+              date: "Oktober 2024",
+              text: "Absolut begeistert! Die Fotobox war der Highlight unserer Hochzeit.",
+              initials: "SM",
+              avatarColor: "#ea2c2c",
+              rating: 5
+            },
+            {
+              name: "Thomas K.",
+              date: "September 2024",
+              text: "Für unsere Firmenfeier genau das Richtige. Klare Empfehlung!",
+              initials: "TK",
+              avatarColor: "#1a1a1a",
+              rating: 5
+            },
+            {
+              name: "Laura B.",
+              date: "August 2024",
+              text: "Top Bildqualität und reibungsloser Ablauf.",
+              initials: "LB",
+              avatarColor: "#666666",
+              rating: 5
+            }
+          ]
+    };
 
     setContent({
       ...json,
@@ -223,6 +262,7 @@ export default function AdminDashboard() {
       thanks: normalizedThanks,
       contact: normalizedContact,
       space: normalizedSpace,
+      reviews: normalizedReviews,
       layout: {
         ...json.layout,
         homepageOrder: normalizedHomepageOrder
@@ -906,6 +946,144 @@ export default function AdminDashboard() {
               </label>
             </div>
           ))}
+        </section>
+      );
+    }
+
+    if (section === "reviews") {
+      return (
+        <section className="admin-section">
+          <div className="admin-section-head">
+            <h2>Rezensionen</h2>
+            <p>Kundenbewertungen im Stil von Google-Rezensionen.</p>
+          </div>
+          <div className="admin-grid-2">
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Überschrift (mit /)</span>
+                <input
+                  value={content.reviews.heading}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, heading: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Quelle Label</span>
+                <input
+                  value={content.reviews.sourceLabel}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, sourceLabel: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Score</span>
+                <input
+                  value={content.reviews.score}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, score: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Anzahl Label</span>
+                <input
+                  value={content.reviews.reviewCountLabel}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, reviewCountLabel: e.target.value } }))}
+                />
+              </label>
+            </div>
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>CTA Text</span>
+                <input
+                  value={content.reviews.ctaLabel}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, ctaLabel: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>CTA URL</span>
+                <input
+                  value={content.reviews.ctaHref}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, ctaHref: e.target.value } }))}
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="admin-grid-3">
+            {content.reviews.items.map((review, index) => (
+              <div className="admin-panel" key={`${review.name}-${index}`}>
+                <h3>Bewertung {index + 1}</h3>
+                <label className="admin-field">
+                  <span>Name</span>
+                  <input
+                    value={review.name}
+                    onChange={(e) => {
+                      const items = [...content.reviews.items];
+                      items[index] = { ...review, name: e.target.value };
+                      updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, items } }));
+                    }}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Datum</span>
+                  <input
+                    value={review.date}
+                    onChange={(e) => {
+                      const items = [...content.reviews.items];
+                      items[index] = { ...review, date: e.target.value };
+                      updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, items } }));
+                    }}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Initialen</span>
+                  <input
+                    value={review.initials}
+                    onChange={(e) => {
+                      const items = [...content.reviews.items];
+                      items[index] = { ...review, initials: e.target.value };
+                      updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, items } }));
+                    }}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Avatar Farbe</span>
+                  <input
+                    value={review.avatarColor || ""}
+                    onChange={(e) => {
+                      const items = [...content.reviews.items];
+                      items[index] = { ...review, avatarColor: e.target.value };
+                      updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, items } }));
+                    }}
+                    placeholder="#ea2c2c"
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Sterne (1-5)</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={5}
+                    value={review.rating}
+                    onChange={(e) => {
+                      const items = [...content.reviews.items];
+                      items[index] = { ...review, rating: Math.max(1, Math.min(5, Number(e.target.value) || 5)) };
+                      updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, items } }));
+                    }}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Text</span>
+                  <textarea
+                    rows={5}
+                    value={review.text}
+                    onChange={(e) => {
+                      const items = [...content.reviews.items];
+                      items[index] = { ...review, text: e.target.value };
+                      updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, items } }));
+                    }}
+                  />
+                </label>
+              </div>
+            ))}
+          </div>
         </section>
       );
     }

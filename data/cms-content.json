@@ -6,6 +6,7 @@
       "space",
       "media",
       "pricing",
+      "reviews",
       "faq"
     ],
     "sectionOrder": [
@@ -15,6 +16,7 @@
       "features",
       "space",
       "media",
+      "reviews",
       "faq",
       "contact",
       "seo"
@@ -191,6 +193,64 @@
       {
         "question": "Wie früh sollten wir buchen?",
         "answer": "Beliebte Termine sind früh ausgebucht. Wir empfehlen eine Reservierung mindestens 4 bis 8 Wochen im Voraus."
+      }
+    ]
+  },
+  "reviews": {
+    "heading": "kunden/bewertungen",
+    "sourceLabel": "Google Bewertungen",
+    "score": "4.9",
+    "reviewCountLabel": "Basierend auf 47 Bewertungen",
+    "ctaLabel": "Alle Bewertungen auf Google ansehen",
+    "ctaHref": "https://g.page/fotoboxtirol/review",
+    "items": [
+      {
+        "name": "Sarah M.",
+        "date": "Oktober 2024",
+        "text": "Absolut begeistert! Die Fotobox war der Highlight unserer Hochzeit. Super einfache Bedienung, starke Bildqualität und top Service.",
+        "initials": "SM",
+        "avatarColor": "#ea2c2c",
+        "rating": 5
+      },
+      {
+        "name": "Thomas K.",
+        "date": "September 2024",
+        "text": "Für unsere Firmenfeier genau das Richtige. Die KI-Funktionen waren ein echter Hingucker. Klare Empfehlung.",
+        "initials": "TK",
+        "avatarColor": "#1a1a1a",
+        "rating": 5
+      },
+      {
+        "name": "Laura B.",
+        "date": "August 2024",
+        "text": "Die Sofortdrucke waren hochwertig und der Ablauf reibungslos. Danke für den unvergesslichen Abend.",
+        "initials": "LB",
+        "avatarColor": "#616161",
+        "rating": 5
+      },
+      {
+        "name": "Markus H.",
+        "date": "Juli 2024",
+        "text": "Perfekte Ergänzung für unsere Geburtstagsparty. Die Online-Galerie danach war super praktisch.",
+        "initials": "MH",
+        "avatarColor": "#c0392b",
+        "rating": 5
+      },
+      {
+        "name": "Anna W.",
+        "date": "Juni 2024",
+        "text": "Schnelle Kommunikation, faire Preise und tolles Ergebnis. Das Branding auf den Prints war perfekt.",
+        "initials": "AW",
+        "avatarColor": "#2c3e50",
+        "rating": 5
+      },
+      {
+        "name": "Felix N.",
+        "date": "Mai 2024",
+        "text": "Schon zum zweiten Mal gebucht und wieder top. Gäste waren begeistert, wir buchen wieder.",
+        "initials": "FN",
+        "avatarColor": "#7f8c8d",
+        "rating": 5
       }
     ]
   },

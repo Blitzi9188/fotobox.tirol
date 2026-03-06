@@ -821,6 +821,141 @@ p {
   display: block;
 }
 
+.reviews {
+  background: var(--c-bg);
+}
+
+.reviews-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.google-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--c-text-light);
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.overall-rating {
+  text-align: center;
+  margin-bottom: 2.7rem;
+}
+
+.overall-score {
+  font-size: 3.4rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.stars-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.2rem;
+  margin: 0.4rem 0;
+}
+
+.star {
+  color: #fbbc04;
+  font-size: 1.05rem;
+}
+
+.review-count {
+  color: var(--c-text-light);
+  font-size: 0.84rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.review-card {
+  border: 1px solid var(--c-line);
+  padding: 1.35rem;
+  background: var(--c-surface);
+}
+
+.review-top {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.reviewer-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.reviewer-name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 0.08rem;
+}
+
+.review-date {
+  font-size: 0.79rem;
+  color: var(--c-text-light);
+}
+
+.review-stars {
+  display: flex;
+  gap: 0.16rem;
+  margin-bottom: 0.55rem;
+}
+
+.review-stars .star {
+  font-size: 0.95rem;
+}
+
+.review-text {
+  font-size: 0.9rem;
+  color: var(--c-text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.reviews-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.reviews-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--c-text-light);
+  border-bottom: 1px solid var(--c-line);
+  padding-bottom: 0.2rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.reviews-cta a:hover {
+  color: var(--c-text);
+  border-color: var(--c-text);
+}
+
 
 .price-card {
   position: relative;
@@ -2093,6 +2228,7 @@ footer {
 @media (max-width: 900px) {
   .grid-3,
   .gallery-grid,
+  .reviews-grid,
   .ai-grid,
   .ai-showcase,
   .faq-wrap,
