@@ -38,7 +38,7 @@ export default function AccessoriesCarousel({
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 900px)");
-    const applyVisibleCount = (isMobile: boolean) => setVisibleCount(isMobile ? 3 : 4);
+    const applyVisibleCount = (isMobile: boolean) => setVisibleCount(isMobile ? 2 : 4);
     applyVisibleCount(mediaQuery.matches);
 
     const handleChange = (event: MediaQueryListEvent) => applyVisibleCount(event.matches);

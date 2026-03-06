@@ -726,6 +726,7 @@ p {
 
 .accessories-head {
   margin-bottom: 0.9rem;
+  text-align: center;
 }
 
 .accessories-overtitle {
@@ -2167,7 +2168,7 @@ footer {
 
   .accessories-slide img,
   .accessories-fallback {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 4 / 3;
   }
 
   .accessories-section {
