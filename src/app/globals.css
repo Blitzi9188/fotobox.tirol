@@ -2140,6 +2140,10 @@ footer {
     gap: 0.62rem;
   }
 
+  .inquiry-references {
+    display: none;
+  }
+
   .nav-wrap {
     flex-direction: row;
     align-items: center;
