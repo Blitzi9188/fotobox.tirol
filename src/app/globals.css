@@ -2150,12 +2150,8 @@ footer {
     justify-content: space-between;
   }
 
-  .nav-list-desktop {
+  .site-nav {
     display: none;
-  }
-
-  .mobile-nav-menu {
-    display: block;
   }
 
   .brand-wrap {
