@@ -66,6 +66,17 @@ export function SiteHeader({ content }: { content: CMSContent }) {
 
 export function SiteFooter({ content }: { content: CMSContent }) {
   const isInternalHref = (href: string) => href.startsWith("/");
+  const resolveFooterHref = (label: string, href: string) => {
+    const trimmed = (href || "").trim();
+    if (trimmed && trimmed !== "#") return trimmed;
+
+    const normalizedLabel = (label || "").toLowerCase();
+    if (normalizedLabel.includes("datenschutz")) return "/datenschutzerklaerung";
+    if (normalizedLabel.includes("agb") && normalizedLabel.includes("b2b")) return "/agb-b2b";
+    if (normalizedLabel === "agb" || normalizedLabel.startsWith("agb ")) return "/agb";
+    if (normalizedLabel.includes("impressum")) return "/impressum";
+    return "#";
+  };
   const phoneHref = `tel:${content.contact.phone.replace(/\s+/g, "")}`;
   const emailHref = `mailto:${content.contact.email}`;
 
@@ -103,23 +114,25 @@ export function SiteFooter({ content }: { content: CMSContent }) {
           </div>
           <div>
           <h4>{content.footer.infoTitle}</h4>
-          {content.footer.infoLinks.map((link) =>
-            isInternalHref(link.href) ? (
-              <Link key={`${link.label}-${link.href}`} href={link.href}>{link.label}</Link>
+          {content.footer.infoLinks.map((link) => {
+            const resolvedHref = resolveFooterHref(link.label, link.href);
+            return isInternalHref(resolvedHref) ? (
+              <Link key={`${link.label}-${resolvedHref}`} href={resolvedHref}>{link.label}</Link>
             ) : (
-              <a key={`${link.label}-${link.href}`} href={link.href}>{link.label}</a>
-            )
-          )}
+              <a key={`${link.label}-${resolvedHref}`} href={resolvedHref}>{link.label}</a>
+            );
+          })}
         </div>
         <div>
           <h4>{content.footer.legalTitle}</h4>
-          {content.footer.legalLinks.map((link) =>
-            isInternalHref(link.href) ? (
-              <Link key={`${link.label}-${link.href}`} href={link.href}>{link.label}</Link>
+          {content.footer.legalLinks.map((link) => {
+            const resolvedHref = resolveFooterHref(link.label, link.href);
+            return isInternalHref(resolvedHref) ? (
+              <Link key={`${link.label}-${resolvedHref}`} href={resolvedHref}>{link.label}</Link>
             ) : (
-              <a key={`${link.label}-${link.href}`} href={link.href}>{link.label}</a>
-            )
-          )}
+              <a key={`${link.label}-${resolvedHref}`} href={resolvedHref}>{link.label}</a>
+            );
+          })}
         </div>
       </div>
 
