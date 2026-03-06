@@ -22,7 +22,7 @@ function subtitleHtmlToText(html: string): string {
 
 export default async function HomePage() {
   const content = await readCmsContent();
-  const reviews = content.reviews || {
+  const reviewsDefaults = {
     heading: "kunden/bewertungen",
     sourceLabel: "Google Bewertungen",
     score: "4.9",
@@ -55,6 +55,14 @@ export default async function HomePage() {
         rating: 5
       }
     ]
+  };
+  const reviews = {
+    ...reviewsDefaults,
+    ...(content.reviews || {}),
+    items:
+      Array.isArray(content.reviews?.items) && content.reviews.items.length > 0
+        ? content.reviews.items
+        : reviewsDefaults.items
   };
   const heroSubtitleText = (content.hero.subtitleText || subtitleHtmlToText(content.hero.subtitleHtml || "")).trim();
   const aiDescriptionText = (content.ai.descriptionText || subtitleHtmlToText(content.ai.descriptionHtml || "")).trim();
