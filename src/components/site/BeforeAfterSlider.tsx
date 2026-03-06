@@ -100,7 +100,9 @@ export default function BeforeAfterSlider({
       <div className="compare-gradient-overlay" />
       <div className="compare-center-line" aria-hidden />
       <div className="compare-handle" aria-hidden>
-        <span>◀ ▶</span>
+        <span className="compare-handle-arrow compare-handle-arrow-left">‹</span>
+        <span className="compare-handle-grip" />
+        <span className="compare-handle-arrow compare-handle-arrow-right">›</span>
       </div>
       <div className="compare-labels">
         <span>Vorher</span>
