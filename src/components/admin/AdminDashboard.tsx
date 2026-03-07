@@ -357,6 +357,38 @@ export default function AdminDashboard() {
     }
   }
 
+  async function resetContentFromGit() {
+    const confirmed = window.confirm(
+      "Möchtest du wirklich alle aktuellen CMS-Inhalte auf den Git-Stand zurücksetzen?\n\nDie aktuellen Inhalte werden vorher als Backup gespeichert."
+    );
+    if (!confirmed) return;
+
+    try {
+      setStatus("Setze Inhalte auf Git-Stand zurück...");
+      const response = await fetch("/api/admin/reset-content", {
+        method: "POST"
+      });
+
+      if (response.status === 401) {
+        setAuthorized(false);
+        setStatus("Session abgelaufen. Bitte neu einloggen.");
+        return;
+      }
+
+      const json = (await response.json().catch(() => null)) as { error?: string; backupPath?: string } | null;
+      if (!response.ok) {
+        setStatus(json?.error || "Reset fehlgeschlagen.");
+        return;
+      }
+
+      await loadContent();
+      setStatus(`Reset erfolgreich.${json?.backupPath ? ` Backup: ${json.backupPath}` : ""}`);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Netzwerkfehler beim Reset.";
+      setStatus(`Reset fehlgeschlagen: ${message}`);
+    }
+  }
+
   async function uploadImage(file: File): Promise<string | null> {
     const formData = new FormData();
     formData.append("file", file);
@@ -2285,6 +2317,13 @@ export default function AdminDashboard() {
               Geänderte Seite öffnen
             </button>
             <button className="btn btn-outline" type="button" onClick={loadContent}>Neu laden</button>
+            <button
+              className="btn btn-outline"
+              type="button"
+              onClick={resetContentFromGit}
+            >
+              Reset aus Git
+            </button>
             <p className="admin-status">{dirty ? "Ungespeicherte Änderungen" : "Alles gespeichert"}</p>
             <p className="admin-note">{status}</p>
           </div>

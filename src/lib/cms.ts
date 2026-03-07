@@ -81,3 +81,18 @@ export async function createLead(lead: ContactLead): Promise<void> {
   leads.unshift(lead);
   await withFsRetry(() => fs.writeFile(contactFilePath, JSON.stringify(leads, null, 2), "utf-8"));
 }
+
+export async function resetCmsContentFromSeed(): Promise<{ backupPath?: string }> {
+  await ensureCmsStorage();
+
+  const currentRaw = await fs.readFile(cmsFilePath, "utf-8");
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const backupPath = path.join(dataDirectory, `cms-content.backup.${timestamp}.json`);
+  await withFsRetry(() => fs.writeFile(backupPath, currentRaw, "utf-8"));
+
+  const seedPayload = await fs.readFile(seedCmsFilePath, "utf-8");
+  const parsed = JSON.parse(seedPayload) as CMSContent;
+  await writeCmsContent(parsed);
+
+  return { backupPath };
+}
