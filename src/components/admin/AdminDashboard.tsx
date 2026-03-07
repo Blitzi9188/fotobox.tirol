@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import AdminLoginForm from "@/components/admin/AdminLoginForm";
 import { AccessoryItem, CMSContent, GalleryItem } from "@/lib/types";
@@ -120,6 +120,7 @@ export default function AdminDashboard() {
   const [homepageOrder, setHomepageOrder] = useState<HomepageBlockId[]>(DEFAULT_HOMEPAGE_ORDER);
   const [pendingHeroImageUrl, setPendingHeroImageUrl] = useState<string | null>(null);
   const [pendingHeroAbsoluteUrl, setPendingHeroAbsoluteUrl] = useState<string>("");
+  const heroFileInputRef = useRef<HTMLInputElement | null>(null);
 
   async function loadContent() {
     const response = await fetch("/api/admin/content", { cache: "no-store" });
@@ -737,9 +738,20 @@ export default function AdminDashboard() {
             <div className="admin-panel">
               <label className="admin-field">
                 <span>Hero Bild hochladen</span>
+                <div className="admin-actions">
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={() => heroFileInputRef.current?.click()}
+                  >
+                    Hero Bild auswählen
+                  </button>
+                </div>
                 <input
+                  ref={heroFileInputRef}
                   type="file"
                   accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
+                  style={{ display: "none" }}
                   onChange={handleHeroImageUpload}
                 />
               </label>
