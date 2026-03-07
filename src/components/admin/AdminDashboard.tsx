@@ -120,6 +120,7 @@ export default function AdminDashboard() {
   const [homepageOrder, setHomepageOrder] = useState<HomepageBlockId[]>(DEFAULT_HOMEPAGE_ORDER);
   const [pendingHeroImageUrl, setPendingHeroImageUrl] = useState<string | null>(null);
   const [pendingHeroAbsoluteUrl, setPendingHeroAbsoluteUrl] = useState<string>("");
+  const [mediaLibraryUrls, setMediaLibraryUrls] = useState<string[]>([]);
   const heroFileInputRef = useRef<HTMLInputElement | null>(null);
 
   async function loadContent() {
@@ -483,6 +484,28 @@ export default function AdminDashboard() {
     setContent(nextContent);
     event.target.value = "";
     await persistContent(nextContent, "Hero Bild hochgeladen und gespeichert.");
+  }
+
+  async function handleMediaLibraryUpload(event: ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(event.target.files || []);
+    if (files.length === 0) return;
+
+    setStatus(`Lade ${files.length} Bild(er) hoch...`);
+    const createdUrls: string[] = [];
+
+    for (const file of files) {
+      const url = await uploadImage(file);
+      if (url) {
+        const normalized = normalizeImageUrl(url);
+        createdUrls.push(normalized);
+      }
+    }
+
+    if (createdUrls.length > 0) {
+      setMediaLibraryUrls((prev) => [...createdUrls, ...prev]);
+      setStatus(`${createdUrls.length} Bild(er) hochgeladen. URLs unten kopieren.`);
+    }
+    event.target.value = "";
   }
 
   function updateGalleryItem(index: number, nextItem: GalleryItem) {
@@ -1260,6 +1283,36 @@ export default function AdminDashboard() {
           <div className="admin-section-head">
             <h2>Bilder Galerie</h2>
             <p>Beliebig viele Bilder einfügen, ersetzen oder entfernen.</p>
+          </div>
+
+          <div className="admin-subcard">
+            <div className="admin-section-head">
+              <h2>Mediathek Upload</h2>
+              <p>Hier kannst du beliebige Bilder hochladen und die erzeugten URLs direkt kopieren.</p>
+            </div>
+            <label className="admin-field">
+              <span>Bilder auswählen (mehrere möglich)</span>
+              <input
+                type="file"
+                multiple
+                accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
+                onChange={handleMediaLibraryUpload}
+              />
+            </label>
+            {mediaLibraryUrls.length > 0 ? (
+              <div className="admin-grid-2">
+                {mediaLibraryUrls.map((url, index) => (
+                  <label className="admin-field" key={`${url}-${index}`}>
+                    <span>Upload URL {index + 1}</span>
+                    <input
+                      value={url.startsWith("http") ? url : `${window.location.origin}${url}`}
+                      readOnly
+                      onFocus={(event) => event.currentTarget.select()}
+                    />
+                  </label>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <div className="admin-subcard">
