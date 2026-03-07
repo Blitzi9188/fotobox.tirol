@@ -443,6 +443,29 @@ export default function AdminDashboard() {
     event.target.value = "";
   }
 
+  async function handleHeroImageUpload(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file || !content) return;
+
+    setStatus("Lade Hero-Bild hoch...");
+    const url = await uploadImage(file);
+    if (!url) return;
+
+    const nextHeroImageUrl = normalizeImageUrl(url);
+    const nextContent: CMSContent = {
+      ...content,
+      hero: {
+        ...content.hero,
+        imageUrl: nextHeroImageUrl
+      }
+    };
+
+    setPendingHeroImageUrl(nextHeroImageUrl);
+    setContent(nextContent);
+    event.target.value = "";
+    await persistContent(nextContent, "Hero Bild hochgeladen und gespeichert.");
+  }
+
   function updateGalleryItem(index: number, nextItem: GalleryItem) {
     updateContent((prev) => {
       const items = [...prev.gallery.items];
@@ -699,13 +722,7 @@ export default function AdminDashboard() {
                 <input
                   type="file"
                   accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
-                  onChange={(event) => {
-                    handleImageUpload(
-                      event,
-                      (url) => setPendingHeroImageUrl(normalizeImageUrl(url)),
-                      "Lade Hero-Bild hoch..."
-                    );
-                  }}
+                  onChange={handleHeroImageUpload}
                 />
               </label>
               {pendingHeroImageUrl ? (
