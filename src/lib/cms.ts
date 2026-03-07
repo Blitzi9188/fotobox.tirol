@@ -7,6 +7,8 @@ const dataDirectory = getCmsDataDir();
 const seedCmsFilePath = path.join(process.cwd(), "data", "cms-content.json");
 const cmsFilePath = path.join(dataDirectory, "cms-content.json");
 const contactFilePath = path.join(dataDirectory, "contact-leads.json");
+const BROKEN_HERO_URL = "https://fotoboxtirol-production.up.railway.app/uploads/1772911775-hero-fotobox-final.png";
+const WORKING_HERO_URL = "/uploads/1772911380-hero-neu-fotobox.png";
 
 function isRetryableFsError(error: unknown) {
   if (!(error instanceof Error)) return false;
@@ -87,7 +89,19 @@ export async function readCmsContent(): Promise<CMSContent> {
   try {
     const trimmed = raw.trim();
     if (!trimmed) throw new Error("Empty CMS payload.");
-    return JSON.parse(trimmed) as CMSContent;
+    const parsed = JSON.parse(trimmed) as CMSContent;
+    if (parsed?.hero?.imageUrl === BROKEN_HERO_URL) {
+      const patched: CMSContent = {
+        ...parsed,
+        hero: {
+          ...parsed.hero,
+          imageUrl: WORKING_HERO_URL
+        }
+      };
+      await writeCmsContent(patched);
+      return patched;
+    }
+    return parsed;
   } catch {
     const seedPayload = await fs.readFile(seedCmsFilePath, "utf-8").catch(() => "{}");
     await withFsRetry(() => fs.writeFile(cmsFilePath, seedPayload, "utf-8"));
