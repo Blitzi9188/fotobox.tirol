@@ -2,8 +2,6 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { DEFAULT_IMPRESSUM_TEXT } from "@/lib/legalDefaults";
 
-export const dynamic = "force-dynamic";
-
 export default async function ImpressumPage() {
   const content = await readCmsContent();
   const impressumText = (content.legal?.impressumText || DEFAULT_IMPRESSUM_TEXT).trim();

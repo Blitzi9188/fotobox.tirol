@@ -47,12 +47,13 @@ export default function BookingInquiryForm({
 
   const [status, setStatus] = useState("");
   const router = useRouter();
+  const defaultPackage = initialPackage || safePlans[0]?.name || "";
   const [selectedEvent, setSelectedEvent] = useState(eventOptions[0]?.label || EVENT_TYPES[0].label);
-  const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
+  const [selectedPackage, setSelectedPackage] = useState(defaultPackage);
   const [selectedPrintFormat, setSelectedPrintFormat] = useState(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
   const [selectedBoxType, setSelectedBoxType] = useState(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
@@ -78,21 +79,26 @@ export default function BookingInquiryForm({
       message: `${detailsPrefix.join(" | ")}\n${normalizedMessage}`
     };
 
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
-    setStatus(response.ok ? (inquiry.successText || "Anfrage erfolgreich gesendet.") : (inquiry.errorText || "Senden fehlgeschlagen."));
-    if (response.ok) {
-      event.currentTarget.reset();
-      setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);
-      setSelectedPackage(initialPackage || safePlans[0]?.name || "");
-      setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
-      setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
-      router.push("/danke");
-    }
+    const subject = `Unverbindliche Anfrage: ${payload.packageName || "Fotobox"}`;
+    const bodyLines = [
+      `Name: ${payload.name}`,
+      `E-Mail: ${payload.email}`,
+      `Telefon: ${payload.phone || "-"}`,
+      `Event-Datum: ${payload.eventDate || "-"}`,
+      `Paket: ${payload.packageName || "-"}`,
+      "",
+      "Details:",
+      payload.message
+    ];
+    const mailto = `mailto:info@fotobox.tirol?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+    window.location.href = mailto;
+    setStatus(inquiry.successText || "E-Mail wird vorbereitet.");
+    event.currentTarget.reset();
+    setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);
+    setSelectedPackage(defaultPackage);
+    setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
+    setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
+    router.push("/danke");
   }
 
   return (

@@ -2,8 +2,6 @@ import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
 
-export const dynamic = "force-dynamic";
-
 export default async function PreisePage() {
   const content = await readCmsContent();
 

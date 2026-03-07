@@ -1,23 +1,14 @@
 import BookingInquiryForm from "@/components/site/BookingInquiryForm";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { readCmsContent } from "@/lib/cms";
+import { normalizePhoneForTel } from "@/lib/phone";
 import { formatReviewDateWithCurrentYear, getSortedLatestReviews } from "@/lib/reviews";
 
-export const dynamic = "force-dynamic";
-
-export default async function KontaktPage({
-  searchParams
-}: {
-  searchParams?: { paket?: string | string[] };
-}) {
+export default async function KontaktPage() {
   const content = await readCmsContent();
   const stars = (count: number) => Array.from({ length: Math.max(0, Math.min(5, Math.round(count))) }, (_, i) => (
     <span className="star" key={i}>★</span>
   ));
-  const paketParam = searchParams?.paket;
-  const requestedPackage = Array.isArray(paketParam) ? paketParam[0] : paketParam;
-  const hasPackage = content.pricing.plans.some((plan) => plan.name === requestedPackage);
-  const initialPackage = hasPackage ? requestedPackage : content.pricing.plans[0]?.name;
   const fallbackReferences = [
     { label: "Fiegl+Spielberger", href: "https://www.fiegl.co.at" },
     { label: "Congress Messe Innsbruck", href: "https://www.cmi.at" },
@@ -87,12 +78,12 @@ export default async function KontaktPage({
         </section>
 
         <section className="container inquiry-layout">
-          <BookingInquiryForm plans={content.pricing.plans} initialPackage={initialPackage} inquiry={content.inquiry} />
+          <BookingInquiryForm plans={content.pricing.plans} inquiry={content.inquiry} />
           <aside className="inquiry-sidecard">
             <h2>Direktkontakt</h2>
             <p>
               <strong>Telefon:</strong>{" "}
-              <a href={`tel:${content.contact.phone.replace(/\s+/g, "")}`}>{content.contact.phone}</a>
+              <a href={`tel:${normalizePhoneForTel(content.contact.phone)}`}>{content.contact.phone}</a>
             </p>
             <p>
               <strong>E-Mail:</strong>{" "}

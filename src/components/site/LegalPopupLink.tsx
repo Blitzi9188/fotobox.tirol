@@ -53,7 +53,7 @@ export default function LegalPopupLink({
                 <p><strong>Angaben gemaess § 5 ECG</strong></p>
                 <p>Fotobox Tirol</p>
                 <p>Rohracker 6 | 6092 Birgitz | Oesterreich</p>
-                <p>Telefon: +43 (0)664 3918 228</p>
+                <p>Telefon: +43 664 3918 228</p>
                 <p>E-Mail: info@fotobox.tirol</p>
                 <p>UID: auf Anfrage</p>
               </div>

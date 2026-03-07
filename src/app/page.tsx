@@ -4,7 +4,6 @@ import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShel
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
 import AccessoriesCarousel from "@/components/site/AccessoriesCarousel";
 
-export const dynamic = "force-dynamic";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
 const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = ["hero", "features", "space", "media", "pricing", "reviews", "faq"];
 

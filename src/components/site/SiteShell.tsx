@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CMSContent } from "@/lib/types";
 import BackToTopButton from "@/components/site/BackToTopButton";
 import CookieConsentBanner from "@/components/site/CookieConsentBanner";
+import { normalizePhoneForTel } from "@/lib/phone";
 
 function Brand({ content }: { content: CMSContent }) {
   return (
@@ -100,7 +101,7 @@ export function SiteFooter({ content }: { content: CMSContent }) {
       const label = normalizeLabel(link.label);
       return label === "agb" || label.startsWith("agb ");
     })?.label || "AGB";
-  const phoneHref = `tel:${content.contact.phone.replace(/\s+/g, "")}`;
+  const phoneHref = `tel:${normalizePhoneForTel(content.contact.phone)}`;
   const emailHref = `mailto:${content.contact.email}`;
 
   return (
