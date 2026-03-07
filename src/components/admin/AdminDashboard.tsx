@@ -119,6 +119,7 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<SectionId>("overview");
   const [homepageOrder, setHomepageOrder] = useState<HomepageBlockId[]>(DEFAULT_HOMEPAGE_ORDER);
   const [pendingHeroImageUrl, setPendingHeroImageUrl] = useState<string | null>(null);
+  const [pendingHeroAbsoluteUrl, setPendingHeroAbsoluteUrl] = useState<string>("");
 
   async function loadContent() {
     const response = await fetch("/api/admin/content", { cache: "no-store" });
@@ -411,12 +412,25 @@ export default function AdminDashboard() {
       }
 
       if (!response.ok) {
-        const json = (await response.json().catch(() => null)) as { error?: string } | null;
-        setStatus(json?.error || "Upload fehlgeschlagen.");
+        const rawBody = await response.text().catch(() => "");
+        let detail = "Upload fehlgeschlagen.";
+        if (rawBody) {
+          try {
+            const parsed = JSON.parse(rawBody) as { error?: string };
+            detail = parsed.error || rawBody;
+          } catch {
+            detail = rawBody;
+          }
+        }
+        setStatus(`Upload fehlgeschlagen (${response.status}): ${detail}`);
         return null;
       }
 
       const json = (await response.json()) as { url: string };
+      if (!json?.url) {
+        setStatus("Upload fehlgeschlagen: Keine URL vom Server erhalten.");
+        return null;
+      }
       setStatus("Bild hochgeladen. Bitte speichern.");
       setDirty(true);
       return json.url;
@@ -452,6 +466,9 @@ export default function AdminDashboard() {
     if (!url) return;
 
     const nextHeroImageUrl = normalizeImageUrl(url);
+    const absoluteUrl = nextHeroImageUrl.startsWith("http")
+      ? nextHeroImageUrl
+      : `${window.location.origin}${nextHeroImageUrl.startsWith("/") ? "" : "/"}${nextHeroImageUrl}`;
     const nextContent: CMSContent = {
       ...content,
       hero: {
@@ -461,6 +478,7 @@ export default function AdminDashboard() {
     };
 
     setPendingHeroImageUrl(nextHeroImageUrl);
+    setPendingHeroAbsoluteUrl(absoluteUrl);
     setContent(nextContent);
     event.target.value = "";
     await persistContent(nextContent, "Hero Bild hochgeladen und gespeichert.");
@@ -735,6 +753,16 @@ export default function AdminDashboard() {
                   />
                 </label>
               ) : null}
+              {pendingHeroAbsoluteUrl ? (
+                <label className="admin-field">
+                  <span>Neue Upload-URL (vollständig)</span>
+                  <input
+                    value={pendingHeroAbsoluteUrl}
+                    readOnly
+                    onFocus={(event) => event.currentTarget.select()}
+                  />
+                </label>
+              ) : null}
               {pendingHeroImageUrl ? (
                 <div className="admin-actions">
                   <button
@@ -743,6 +771,7 @@ export default function AdminDashboard() {
                     onClick={() => {
                       updateContent((prev) => ({ ...prev, hero: { ...prev.hero, imageUrl: pendingHeroImageUrl } }));
                       setPendingHeroImageUrl(null);
+                      setPendingHeroAbsoluteUrl("");
                       setStatus("Hero Bild übernommen. Bitte speichern.");
                     }}
                   >
@@ -759,6 +788,7 @@ export default function AdminDashboard() {
                       };
                       setContent(nextContent);
                       setPendingHeroImageUrl(null);
+                      setPendingHeroAbsoluteUrl("");
                       await persistContent(nextContent, "Hero Bild übernommen und gespeichert.");
                     }}
                   >
@@ -767,7 +797,10 @@ export default function AdminDashboard() {
                   <button
                     className="btn btn-outline"
                     type="button"
-                    onClick={() => setPendingHeroImageUrl(null)}
+                    onClick={() => {
+                      setPendingHeroImageUrl(null);
+                      setPendingHeroAbsoluteUrl("");
+                    }}
                   >
                     Verwerfen
                   </button>
