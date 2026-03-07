@@ -25,6 +25,10 @@ export function getCmsUploadsDir() {
     return path.resolve(process.env.CMS_UPLOADS_DIR);
   }
 
+  if (isRailwayRuntime()) {
+    return "/tmp/fotobox-cms/uploads";
+  }
+
   return path.join(process.cwd(), "public", "uploads");
 }
 
