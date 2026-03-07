@@ -2,6 +2,8 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { DEFAULT_AGB_TEXT } from "@/lib/legalDefaults";
 
+export const dynamic = "force-dynamic";
+
 export default async function AgbPage() {
   const content = await readCmsContent();
   const agbText = (content.legal?.agbText || DEFAULT_AGB_TEXT).trim();

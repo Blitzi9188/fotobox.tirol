@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:static": "next build",
     "start": "next start",
-    "preview:static": "npx serve out -l 4173",
     "lint": "next lint",
     "offline": "node scripts/offline-portal.mjs"
   },

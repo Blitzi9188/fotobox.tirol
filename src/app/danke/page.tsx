@@ -2,6 +2,8 @@ import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { readCmsContent } from "@/lib/cms";
 
+export const dynamic = "force-dynamic";
+
 export default async function DankePage() {
   const content = await readCmsContent();
   const thanks = content.thanks || {

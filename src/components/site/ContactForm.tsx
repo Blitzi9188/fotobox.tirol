@@ -16,7 +16,7 @@ export default function ContactForm({
   const [status, setStatus] = useState("");
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
@@ -29,21 +29,17 @@ export default function ContactForm({
       message: String(formData.get("message") || "")
     };
 
-    const subject = `Kontaktanfrage: ${payload.packageName || "Fotobox"}`;
-    const body = [
-      `Name: ${payload.name}`,
-      `E-Mail: ${payload.email}`,
-      `Telefon: ${payload.phone || "-"}`,
-      `Event Datum: ${payload.eventDate || "-"}`,
-      `Paket: ${payload.packageName || "-"}`,
-      "",
-      `Nachricht: ${payload.message || "-"}`
-    ].join("\n");
-    window.location.href = `mailto:info@fotobox.tirol?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
 
-    setStatus("E-Mail wird vorbereitet.");
-    event.currentTarget.reset();
-    setSelectedPackage(initialPackage || safePlans[0]?.name || "");
+    setStatus(response.ok ? "Anfrage gesendet." : "Senden fehlgeschlagen.");
+    if (response.ok) {
+      event.currentTarget.reset();
+      setSelectedPackage(initialPackage || safePlans[0]?.name || "");
+    }
   }
 
   return (
