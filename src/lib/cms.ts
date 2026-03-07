@@ -34,6 +34,17 @@ async function withFsRetry<T>(operation: () => Promise<T>, attempts = 4): Promis
 async function ensureCmsStorage(): Promise<void> {
   await withFsRetry(() => fs.mkdir(dataDirectory, { recursive: true }));
 
+  async function readJsonOrNull<T>(filePath: string): Promise<T | null> {
+    try {
+      const raw = await fs.readFile(filePath, "utf-8");
+      const trimmed = raw.trim();
+      if (!trimmed) return null;
+      return JSON.parse(trimmed) as T;
+    } catch {
+      return null;
+    }
+  }
+
   try {
     await fs.access(cmsFilePath);
   } catch {
@@ -46,9 +57,26 @@ async function ensureCmsStorage(): Promise<void> {
     await withFsRetry(() => fs.writeFile(cmsFilePath, seedPayload, "utf-8"));
   }
 
+  const cmsPayload = await readJsonOrNull<CMSContent>(cmsFilePath);
+  if (!cmsPayload) {
+    let seedPayload = "{}";
+    try {
+      seedPayload = await fs.readFile(seedCmsFilePath, "utf-8");
+      JSON.parse(seedPayload);
+    } catch {
+      seedPayload = "{}";
+    }
+    await withFsRetry(() => fs.writeFile(cmsFilePath, seedPayload, "utf-8"));
+  }
+
   try {
     await fs.access(contactFilePath);
   } catch {
+    await withFsRetry(() => fs.writeFile(contactFilePath, "[]", "utf-8"));
+  }
+
+  const contactPayload = await readJsonOrNull<ContactLead[]>(contactFilePath);
+  if (!contactPayload) {
     await withFsRetry(() => fs.writeFile(contactFilePath, "[]", "utf-8"));
   }
 }
@@ -56,7 +84,15 @@ async function ensureCmsStorage(): Promise<void> {
 export async function readCmsContent(): Promise<CMSContent> {
   await ensureCmsStorage();
   const raw = await fs.readFile(cmsFilePath, "utf-8");
-  return JSON.parse(raw) as CMSContent;
+  try {
+    const trimmed = raw.trim();
+    if (!trimmed) throw new Error("Empty CMS payload.");
+    return JSON.parse(trimmed) as CMSContent;
+  } catch {
+    const seedPayload = await fs.readFile(seedCmsFilePath, "utf-8").catch(() => "{}");
+    await withFsRetry(() => fs.writeFile(cmsFilePath, seedPayload, "utf-8"));
+    return JSON.parse(seedPayload) as CMSContent;
+  }
 }
 
 export async function writeCmsContent(content: CMSContent): Promise<void> {
