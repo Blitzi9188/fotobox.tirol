@@ -672,6 +672,16 @@ export default function AdminDashboard() {
                 />
               </label>
               {pendingHeroImageUrl ? (
+                <label className="admin-field">
+                  <span>Neue Upload-URL</span>
+                  <input
+                    value={pendingHeroImageUrl}
+                    readOnly
+                    onFocus={(event) => event.currentTarget.select()}
+                  />
+                </label>
+              ) : null}
+              {pendingHeroImageUrl ? (
                 <div className="admin-actions">
                   <button
                     className="btn"
