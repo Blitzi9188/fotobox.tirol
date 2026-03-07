@@ -118,6 +118,7 @@ export default function AdminDashboard() {
   const [dirty, setDirty] = useState(false);
   const [activeTab, setActiveTab] = useState<SectionId>("overview");
   const [homepageOrder, setHomepageOrder] = useState<HomepageBlockId[]>(DEFAULT_HOMEPAGE_ORDER);
+  const [pendingHeroImageUrl, setPendingHeroImageUrl] = useState<string | null>(null);
 
   async function loadContent() {
     const response = await fetch("/api/admin/content", { cache: "no-store" });
@@ -664,12 +665,34 @@ export default function AdminDashboard() {
                   onChange={(event) => {
                     handleImageUpload(
                       event,
-                      (url) => updateContent((prev) => ({ ...prev, hero: { ...prev.hero, imageUrl: normalizeImageUrl(url) } })),
+                      (url) => setPendingHeroImageUrl(normalizeImageUrl(url)),
                       "Lade Hero-Bild hoch..."
                     );
                   }}
                 />
               </label>
+              {pendingHeroImageUrl ? (
+                <div className="admin-actions">
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={() => {
+                      updateContent((prev) => ({ ...prev, hero: { ...prev.hero, imageUrl: pendingHeroImageUrl } }));
+                      setPendingHeroImageUrl(null);
+                      setStatus("Hero Bild übernommen. Bitte speichern.");
+                    }}
+                  >
+                    Hero Bild übernehmen
+                  </button>
+                  <button
+                    className="btn btn-outline"
+                    type="button"
+                    onClick={() => setPendingHeroImageUrl(null)}
+                  >
+                    Verwerfen
+                  </button>
+                </div>
+              ) : null}
               <label className="admin-field">
                 <span>Hero Bild URL</span>
                 <input
@@ -682,6 +705,13 @@ export default function AdminDashboard() {
                   }
                 />
               </label>
+              {pendingHeroImageUrl ? (
+                <img
+                  src={pendingHeroImageUrl}
+                  alt="Hero Upload Vorschau"
+                  className="admin-preview"
+                />
+              ) : null}
               {content.hero.imageUrl ? (
                 <img
                   src={content.hero.imageUrl}
