@@ -325,36 +325,41 @@ export default function AdminDashboard() {
     });
   }
 
-  async function saveContent() {
-    if (!content) return;
-
+  async function persistContent(nextContent: CMSContent, successMessage = "Gespeichert.") {
     try {
       setStatus("Speichere...");
       const response = await fetch("/api/admin/content", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(content)
+        body: JSON.stringify(nextContent)
       });
 
       if (response.status === 401) {
         setAuthorized(false);
         setStatus("Session abgelaufen. Bitte neu einloggen.");
-        return;
+        return false;
       }
 
       if (!response.ok) {
         const json = (await response.json().catch(() => null)) as { error?: string } | null;
         setStatus(json?.error || "Fehler beim Speichern.");
-        return;
+        return false;
       }
 
       setDirty(false);
       setHistory([]);
-      setStatus("Gespeichert.");
+      setStatus(successMessage);
+      return true;
     } catch (error) {
       const message = error instanceof Error ? error.message : "Netzwerkfehler beim Speichern.";
       setStatus(`Speichern fehlgeschlagen: ${message}`);
+      return false;
     }
+  }
+
+  async function saveContent() {
+    if (!content) return;
+    await persistContent(content);
   }
 
   async function resetContentFromGit() {
@@ -725,6 +730,22 @@ export default function AdminDashboard() {
                     }}
                   >
                     Hero Bild übernehmen
+                  </button>
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={async () => {
+                      if (!content) return;
+                      const nextContent: CMSContent = {
+                        ...content,
+                        hero: { ...content.hero, imageUrl: pendingHeroImageUrl }
+                      };
+                      setContent(nextContent);
+                      setPendingHeroImageUrl(null);
+                      await persistContent(nextContent, "Hero Bild übernommen und gespeichert.");
+                    }}
+                  >
+                    Übernehmen & speichern
                   </button>
                   <button
                     className="btn btn-outline"
