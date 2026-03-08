@@ -2323,7 +2323,12 @@ footer {
   }
 
   .inquiry-input-group {
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.62rem;
+  }
+
+  .inquiry-input-group > * {
+    min-width: 0;
   }
 
   .inquiry-field input[type="date"] {
@@ -2337,6 +2342,11 @@ footer {
     -webkit-appearance: none;
     appearance: none;
     display: block;
+    overflow: hidden;
+  }
+
+  .inquiry-form-card {
+    overflow: hidden;
   }
 
   .inquiry-references {

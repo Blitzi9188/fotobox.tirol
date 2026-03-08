@@ -448,8 +448,9 @@ export default function AdminDashboard() {
 
   async function handleImageUpload(
     event: ChangeEvent<HTMLInputElement>,
-    applyUrl: (url: string) => void,
-    loadingText: string
+    applyUpdate: (prev: CMSContent, url: string) => CMSContent,
+    loadingText: string,
+    successText = "Bild hochgeladen und gespeichert."
   ) {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -458,8 +459,21 @@ export default function AdminDashboard() {
     const url = await uploadImage(file);
     if (!url) return;
 
-    applyUrl(url);
+    const normalizedUrl = normalizeImageUrl(url);
+    let nextContent: CMSContent | null = null;
+    setContent((prev) => {
+      if (!prev) return prev;
+      const next = applyUpdate(prev, normalizedUrl);
+      nextContent = next;
+      setHistory((current) => [...current.slice(-39), prev]);
+      return next;
+    });
+    setDirty(true);
     event.target.value = "";
+
+    if (nextContent) {
+      await persistContent(nextContent, successText);
+    }
   }
 
   async function handleHeroImageUpload(event: ChangeEvent<HTMLInputElement>) {
@@ -992,8 +1006,9 @@ export default function AdminDashboard() {
                   onChange={(event) => {
                     handleImageUpload(
                       event,
-                      (url) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, compareLeftBeforeUrl: url } })),
-                      "Lade KI links vorher hoch..."
+                      (prev, url) => ({ ...prev, ai: { ...prev.ai, compareLeftBeforeUrl: url } }),
+                      "Lade KI links vorher hoch...",
+                      "KI links vorher Bild gespeichert."
                     );
                   }}
                 />
@@ -1013,8 +1028,9 @@ export default function AdminDashboard() {
                   onChange={(event) => {
                     handleImageUpload(
                       event,
-                      (url) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, compareLeftAfterUrl: url } })),
-                      "Lade KI links nachher hoch..."
+                      (prev, url) => ({ ...prev, ai: { ...prev.ai, compareLeftAfterUrl: url } }),
+                      "Lade KI links nachher hoch...",
+                      "KI links nachher Bild gespeichert."
                     );
                   }}
                 />
@@ -1038,8 +1054,9 @@ export default function AdminDashboard() {
                   onChange={(event) => {
                     handleImageUpload(
                       event,
-                      (url) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, compareRightBeforeUrl: url } })),
-                      "Lade KI rechts vorher hoch..."
+                      (prev, url) => ({ ...prev, ai: { ...prev.ai, compareRightBeforeUrl: url } }),
+                      "Lade KI rechts vorher hoch...",
+                      "KI rechts vorher Bild gespeichert."
                     );
                   }}
                 />
@@ -1059,8 +1076,9 @@ export default function AdminDashboard() {
                   onChange={(event) => {
                     handleImageUpload(
                       event,
-                      (url) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, compareRightAfterUrl: url } })),
-                      "Lade KI rechts nachher hoch..."
+                      (prev, url) => ({ ...prev, ai: { ...prev.ai, compareRightAfterUrl: url } }),
+                      "Lade KI rechts nachher hoch...",
+                      "KI rechts nachher Bild gespeichert."
                     );
                   }}
                 />
@@ -1434,8 +1452,15 @@ export default function AdminDashboard() {
                       onChange={(event) => {
                         handleImageUpload(
                           event,
-                          (url) => updateAccessoryItem(index, { ...item, imageUrl: url }),
-                          `Lade Accessoire-Bild ${index + 1} hoch...`
+                          (prev, url) => {
+                            const items = [...prev.accessories.items];
+                            const current = items[index];
+                            if (!current) return prev;
+                            items[index] = { ...current, imageUrl: url };
+                            return { ...prev, accessories: { ...prev.accessories, items } };
+                          },
+                          `Lade Accessoire-Bild ${index + 1} hoch...`,
+                          `Accessoire-Bild ${index + 1} gespeichert.`
                         );
                       }}
                     />
@@ -1500,8 +1525,15 @@ export default function AdminDashboard() {
                       onChange={(event) => {
                         handleImageUpload(
                           event,
-                          (url) => updateGalleryItem(index, { ...item, imageUrl: url }),
-                          `Lade Galerie-Bild ${index + 1} hoch...`
+                          (prev, url) => {
+                            const items = [...prev.gallery.items];
+                            const current = items[index];
+                            if (!current) return prev;
+                            items[index] = { ...current, imageUrl: url };
+                            return { ...prev, gallery: { ...prev.gallery, items } };
+                          },
+                          `Lade Galerie-Bild ${index + 1} hoch...`,
+                          `Galerie-Bild ${index + 1} gespeichert.`
                         );
                       }}
                     />
@@ -1587,8 +1619,9 @@ export default function AdminDashboard() {
                 onChange={(event) => {
                   handleImageUpload(
                     event,
-                    (url) => updateContent((prev) => ({ ...prev, space: { ...prev.space, imageUrl: url } })),
-                    "Lade Platzbedarf-Bild hoch..."
+                    (prev, url) => ({ ...prev, space: { ...prev.space, imageUrl: url } }),
+                    "Lade Platzbedarf-Bild hoch...",
+                    "Platzbedarf-Bild gespeichert."
                   );
                 }}
               />
@@ -1638,8 +1671,9 @@ export default function AdminDashboard() {
                 onChange={(event) => {
                   handleImageUpload(
                     event,
-                    (url) => updateContent((prev) => ({ ...prev, space: { ...prev.space, layoutOneImageUrl: url } })),
-                    "Lade Layout/Gestaltung 1 Bild hoch..."
+                    (prev, url) => ({ ...prev, space: { ...prev.space, layoutOneImageUrl: url } }),
+                    "Lade Layout/Gestaltung 1 Bild hoch...",
+                    "Layout/Gestaltung 1 Bild gespeichert."
                   );
                 }}
               />
@@ -1686,8 +1720,9 @@ export default function AdminDashboard() {
                 onChange={(event) => {
                   handleImageUpload(
                     event,
-                    (url) => updateContent((prev) => ({ ...prev, space: { ...prev.space, layoutTwoImageUrl: url } })),
-                    "Lade Layout/Gestaltung 2 Bild hoch..."
+                    (prev, url) => ({ ...prev, space: { ...prev.space, layoutTwoImageUrl: url } }),
+                    "Lade Layout/Gestaltung 2 Bild hoch...",
+                    "Layout/Gestaltung 2 Bild gespeichert."
                   );
                 }}
               />
@@ -2421,11 +2456,12 @@ export default function AdminDashboard() {
                 onChange={(event) => {
                   handleImageUpload(
                     event,
-                    (url) => updateContent((prev) => ({
+                    (prev, url) => ({
                       ...prev,
                       navigation: { ...prev.navigation, logoUrl: url }
-                    })),
-                    "Lade Logo hoch..."
+                    }),
+                    "Lade Logo hoch...",
+                    "Logo gespeichert."
                   );
                 }}
               />
