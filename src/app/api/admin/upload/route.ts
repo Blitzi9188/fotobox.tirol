@@ -29,6 +29,16 @@ const MAX_UPLOAD_SIZE_MB = Number(process.env.CMS_UPLOAD_MAX_MB || "30");
 const uploadsDir = getCmsUploadsDir();
 const uploadsPublicBase = getCmsUploadsPublicBase();
 
+function isUploadFile(value: FormDataEntryValue | null): value is File {
+  if (!value || typeof value === "string") return false;
+  return (
+    typeof (value as { name?: unknown }).name === "string" &&
+    typeof (value as { type?: unknown }).type === "string" &&
+    typeof (value as { size?: unknown }).size === "number" &&
+    typeof (value as { arrayBuffer?: unknown }).arrayBuffer === "function"
+  );
+}
+
 function isRetryableFsError(error: unknown) {
   if (!(error instanceof Error)) return false;
   const code = (error as NodeJS.ErrnoException).code;
@@ -61,7 +71,7 @@ export async function POST(request: Request) {
     const formData = await request.formData();
     const file = formData.get("file");
 
-    if (!(file instanceof File)) {
+    if (!isUploadFile(file)) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
