@@ -1343,6 +1343,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
+  min-width: 0;
 }
 
 .inquiry-field span {
@@ -1356,11 +1357,20 @@ p {
 .inquiry-field input,
 .inquiry-field textarea {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   border: 1px solid #d9e0ea;
   border-radius: 0;
   background: #fff;
   padding: 0.82rem 0.9rem;
   font: inherit;
+  box-sizing: border-box;
+}
+
+.inquiry-field input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
 }
 
 .inquiry-field input:focus,
@@ -2321,9 +2331,12 @@ footer {
     min-width: 0;
     max-width: 100%;
     padding: 0.72rem 0.78rem;
-    font-size: 0.92rem;
+    font-size: 16px;
     line-height: 1.2;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
   }
 
   .inquiry-references {
