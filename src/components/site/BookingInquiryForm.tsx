@@ -62,12 +62,6 @@ export default function BookingInquiryForm({
     const boxType = String(formData.get("boxType") || "").trim();
     const printFormat = String(formData.get("printFormat") || "").trim();
     const printText = String(formData.get("printText") || "").trim();
-    const normalizedMessage = messageRaw || "Keine Zusatznachricht.";
-    const detailsPrefix = [`Eventart: ${eventType}`];
-    if (location) detailsPrefix.push(`Ort: ${location}`);
-    if (boxType) detailsPrefix.push(`Fotobox: ${boxType}`);
-    if (printFormat) detailsPrefix.push(`Format: ${printFormat}`);
-    if (printText) detailsPrefix.push(`Aufdruck-Wunsch: ${printText}`);
 
     const payload = {
       name: String(formData.get("name") || "").trim(),
@@ -75,7 +69,12 @@ export default function BookingInquiryForm({
       phone: String(formData.get("phone") || "").trim(),
       eventDate: String(formData.get("eventDate") || "").trim(),
       packageName: String(formData.get("packageName") || "").trim(),
-      message: `${detailsPrefix.join(" | ")}\n${normalizedMessage}`
+      eventType,
+      location,
+      boxType,
+      printFormat,
+      printText,
+      message: messageRaw
     };
 
     const response = await fetch("/api/contact", {
