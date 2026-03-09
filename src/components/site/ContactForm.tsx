@@ -35,7 +35,8 @@ export default function ContactForm({
       body: JSON.stringify(payload)
     });
 
-    setStatus(response.ok ? "Anfrage gesendet." : "Senden fehlgeschlagen.");
+    const json = (await response.json().catch(() => null)) as { error?: string } | null;
+    setStatus(response.ok ? "Anfrage gesendet." : (json?.error || "Senden fehlgeschlagen."));
     if (response.ok) {
       event.currentTarget.reset();
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");

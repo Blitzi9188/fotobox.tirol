@@ -83,7 +83,12 @@ export default function BookingInquiryForm({
       body: JSON.stringify(payload)
     });
 
-    setStatus(response.ok ? (inquiry.successText || "Anfrage erfolgreich gesendet.") : (inquiry.errorText || "Senden fehlgeschlagen."));
+    const json = (await response.json().catch(() => null)) as { error?: string } | null;
+    setStatus(
+      response.ok
+        ? (inquiry.successText || "Anfrage erfolgreich gesendet.")
+        : (json?.error || inquiry.errorText || "Senden fehlgeschlagen.")
+    );
     if (response.ok) {
       event.currentTarget.reset();
       setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);

@@ -27,10 +27,18 @@ async function sendLeadMail(params: {
   const from = process.env.RESEND_FROM;
   const to = process.env.RESEND_TO || "info@fotobox.tirol";
 
-  if (!apiKey || !from || !to) return;
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY fehlt.");
+  }
+  if (!from) {
+    throw new Error("RESEND_FROM fehlt.");
+  }
+  if (!to) {
+    throw new Error("RESEND_TO fehlt.");
+  }
 
   const resend = new Resend(apiKey);
-  await resend.emails.send({
+  const result = await resend.emails.send({
     from,
     to: to.split(",").map((item) => item.trim()).filter(Boolean),
     subject: `Buchungsanfrage ${params.requestDate}`,
@@ -66,6 +74,10 @@ async function sendLeadMail(params: {
       <p><strong>Zusatznachricht:</strong><br/>${escapeHtml(params.message || "-").replace(/\n/g, "<br/>")}</p>
     `
   });
+
+  if (result.error) {
+    throw new Error(result.error.message || "Resend Versand fehlgeschlagen.");
+  }
 }
 
 export async function POST(request: Request) {
@@ -124,7 +136,14 @@ export async function POST(request: Request) {
       message
     });
   } catch (error) {
+    const message = error instanceof Error ? error.message : "E-Mail Versand fehlgeschlagen.";
     console.error("Resend mail failed:", error);
+    return NextResponse.json(
+      {
+        error: `${message} Bitte RESEND_API_KEY, RESEND_FROM und RESEND_TO in Railway prüfen.`
+      },
+      { status: 502 }
+    );
   }
 
   return NextResponse.json({ ok: true });
