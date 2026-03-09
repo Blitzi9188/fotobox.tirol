@@ -11,6 +11,10 @@
   --ani-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -2547,6 +2551,7 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #c3c3c3;
+  text-decoration: none;
 }
 
 .templates-test-step.active {
@@ -2803,6 +2808,7 @@ footer {
 
 .templates-test-select {
   margin-top: 0.25rem;
+  display: inline-block;
   border: 1px solid #dddddd;
   border-radius: 2px;
   background: transparent;
@@ -3108,6 +3114,9 @@ footer {
 
 .templates-logo-btn {
   flex: 1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   padding: 1rem;
   border-radius: 2px;
   font-size: 0.8rem;
@@ -3116,6 +3125,7 @@ footer {
   letter-spacing: 0.1em;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .templates-logo-btn-secondary {
@@ -3364,6 +3374,7 @@ footer {
 }
 
 .templates-colors-btn-back {
+  display: inline-block;
   background: transparent;
   border: none;
   color: #999999;
@@ -3372,9 +3383,11 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .templates-colors-btn-next {
+  display: inline-block;
   background: #111111;
   color: #ffffff;
   padding: 1.1rem 2.5rem;
@@ -3386,6 +3399,7 @@ footer {
   letter-spacing: 0.15em;
   cursor: pointer;
   transition: background 0.2s ease;
+  text-decoration: none;
 }
 
 .templates-colors-btn-next:hover {
@@ -3542,6 +3556,7 @@ footer {
 }
 
 .templates-confirm-btn-back {
+  display: inline-block;
   background: transparent;
   color: var(--c-text-light);
   border: 1px solid #dddddd;
@@ -3552,6 +3567,7 @@ footer {
   letter-spacing: 0.1em;
   cursor: pointer;
   text-align: center;
+  text-decoration: none;
 }
 
 .templates-confirm-btn-back:hover {

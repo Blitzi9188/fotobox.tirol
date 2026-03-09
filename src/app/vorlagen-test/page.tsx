@@ -39,27 +39,27 @@ export default async function VorlagenTestPage() {
           <p>Wählen Sie eine professionelle Design-Grundlage für Ihre Fotos.</p>
         </section>
 
-        <section className="container">
+        <section className="container" id="step-template">
           <div className="templates-test-steps">
-            <div className="templates-test-step active">
+            <a href="#step-template" className="templates-test-step active">
               <div className="templates-test-step-num">1</div>
               <span>Template</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step">
+            <a href="#step-logo" className="templates-test-step">
               <div className="templates-test-step-num">2</div>
               <span>Logo</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step">
+            <a href="#step-colors" className="templates-test-step">
               <div className="templates-test-step-num">3</div>
               <span>Farben</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step">
+            <a href="#step-confirm" className="templates-test-step">
               <div className="templates-test-step-num">4</div>
               <span>Bestätigen</span>
-            </div>
+            </a>
           </div>
 
           <div className="templates-test-format-tabs">
@@ -111,7 +111,7 @@ export default async function VorlagenTestPage() {
                 <div className="templates-test-info">
                   <span className="templates-test-badge">{card.badge}</span>
                   <h3>{card.name}</h3>
-                  <button type="button" className="templates-test-select">Auswählen</button>
+                  <a href="#step-logo" className="templates-test-select">Auswählen</a>
                 </div>
               </article>
             ))}
@@ -130,7 +130,7 @@ export default async function VorlagenTestPage() {
           </div>
         </section>
 
-        <section className="container templates-logo-test-section">
+        <section className="container templates-logo-test-section" id="step-logo">
           <div className="templates-logo-test-header">
             <h2>
               logo<span className="accent-slash">/</span>
@@ -140,25 +140,25 @@ export default async function VorlagenTestPage() {
           </div>
 
           <div className="templates-test-steps">
-            <div className="templates-test-step completed">
+            <a href="#step-template" className="templates-test-step completed">
               <div className="templates-test-step-num">✓</div>
               <span>Template</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step active">
+            <a href="#step-logo" className="templates-test-step active">
               <div className="templates-test-step-num">2</div>
               <span>Logo</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step">
+            <a href="#step-colors" className="templates-test-step">
               <div className="templates-test-step-num">3</div>
               <span>Farben</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step">
+            <a href="#step-confirm" className="templates-test-step">
               <div className="templates-test-step-num">4</div>
               <span>Bestätigen</span>
-            </div>
+            </a>
           </div>
 
           <div className="templates-logo-editor-grid">
@@ -218,14 +218,14 @@ export default async function VorlagenTestPage() {
               </div>
 
               <div className="templates-logo-actions-footer">
-                <button type="button" className="templates-logo-btn templates-logo-btn-secondary">Zurück</button>
-                <button type="button" className="templates-logo-btn templates-logo-btn-primary">Weiter zu Farben</button>
+                <a href="#step-template" className="templates-logo-btn templates-logo-btn-secondary">Zurück</a>
+                <a href="#step-colors" className="templates-logo-btn templates-logo-btn-primary">Weiter zu Farben</a>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="container templates-colors-test-section">
+        <section className="container templates-colors-test-section" id="step-colors">
           <div className="templates-colors-test-header">
             <h2>
               farben<span className="accent-slash">/</span>
@@ -235,25 +235,25 @@ export default async function VorlagenTestPage() {
           </div>
 
           <div className="templates-test-steps">
-            <div className="templates-test-step completed">
+            <a href="#step-template" className="templates-test-step completed">
               <div className="templates-test-step-num">1</div>
               <span>Template</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step completed">
+            <a href="#step-logo" className="templates-test-step completed">
               <div className="templates-test-step-num">2</div>
               <span>Logo</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step active">
+            <a href="#step-colors" className="templates-test-step active">
               <div className="templates-test-step-num">3</div>
               <span>Farben</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step">
+            <a href="#step-confirm" className="templates-test-step">
               <div className="templates-test-step-num">4</div>
               <span>Bestätigen</span>
-            </div>
+            </a>
           </div>
 
           <div className="templates-colors-configurator-grid">
@@ -321,14 +321,14 @@ export default async function VorlagenTestPage() {
               </div>
 
               <div className="templates-colors-navigation-btns">
-                <button type="button" className="templates-colors-btn-back">← Zurück</button>
-                <button type="button" className="templates-colors-btn-next">Vorschau Bestätigen</button>
+                <a href="#step-logo" className="templates-colors-btn-back">← Zurück</a>
+                <a href="#step-confirm" className="templates-colors-btn-next">Vorschau Bestätigen</a>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="container templates-confirm-test-section">
+        <section className="container templates-confirm-test-section" id="step-confirm">
           <div className="templates-confirm-test-header">
             <h2>
               fast<span className="accent-slash">/</span>
@@ -338,25 +338,25 @@ export default async function VorlagenTestPage() {
           </div>
 
           <div className="templates-test-steps">
-            <div className="templates-test-step">
+            <a href="#step-template" className="templates-test-step">
               <div className="templates-test-step-num">1</div>
               <span>Template</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step">
+            <a href="#step-logo" className="templates-test-step">
               <div className="templates-test-step-num">2</div>
               <span>Logo</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step">
+            <a href="#step-colors" className="templates-test-step">
               <div className="templates-test-step-num">3</div>
               <span>Farben</span>
-            </div>
+            </a>
             <div className="templates-test-line" />
-            <div className="templates-test-step active">
+            <a href="#step-confirm" className="templates-test-step active">
               <div className="templates-test-step-num">4</div>
               <span>Bestätigen</span>
-            </div>
+            </a>
           </div>
 
           <div className="templates-confirm-view">
@@ -393,7 +393,7 @@ export default async function VorlagenTestPage() {
 
               <div className="templates-confirm-cta-section">
                 <button type="button" className="templates-confirm-btn-primary">Jetzt anfragen</button>
-                <button type="button" className="templates-confirm-btn-back">Zurück zur Bearbeitung</button>
+                <a href="#step-colors" className="templates-confirm-btn-back">Zurück zur Bearbeitung</a>
               </div>
 
               <p className="templates-confirm-note">
