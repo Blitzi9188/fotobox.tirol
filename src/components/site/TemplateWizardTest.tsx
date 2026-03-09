@@ -108,14 +108,47 @@ export default function TemplateWizardTest() {
     [selectedAccent]
   );
 
+  const heroCopy = useMemo(() => {
+    if (currentStep === 2) {
+      return {
+        titleLeft: "logo",
+        titleRight: "branding",
+        text: "Laden Sie Ihr Logo hoch und platzieren Sie es auf Ihrem Design."
+      };
+    }
+
+    if (currentStep === 3) {
+      return {
+        titleLeft: "farben",
+        titleRight: "anpassung",
+        text: "Personalisieren Sie Ihr Layout passend zu Ihrem Event-Design."
+      };
+    }
+
+    if (currentStep === 4) {
+      return {
+        titleLeft: "fast",
+        titleRight: "fertig",
+        text: "Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage."
+      };
+    }
+
+    return {
+      titleLeft: "layout",
+      titleRight: "vorlagen",
+      text: "Wählen Sie eine professionelle Design-Grundlage für Ihre Fotos."
+    };
+  }, [currentStep]);
+
   return (
     <main className="templates-test-page">
       <section className="templates-test-header container">
         <h1>
-          layout<span className="accent-slash">/</span>
-          <span>vorlagen</span>
+          {heroCopy.titleLeft}
+          <span className="accent-slash">/</span>
+          <span>{heroCopy.titleRight}</span>
         </h1>
-        <p>Wählen Sie eine professionelle Design-Grundlage für Ihre Fotos.</p>
+        <p>{heroCopy.text}</p>
       </section>
 
       {currentStep === 1 ? (
@@ -208,14 +241,6 @@ export default function TemplateWizardTest() {
 
       {currentStep === 2 ? (
         <section className="container templates-logo-test-section">
-          <div className="templates-logo-test-header">
-            <h2>
-              logo<span className="accent-slash">/</span>
-              <span>branding</span>
-            </h2>
-            <p>Laden Sie Ihr Logo hoch und platzieren Sie es auf Ihrem Design.</p>
-          </div>
-
           <WizardSteps currentStep={2} maxUnlockedStep={maxUnlockedStep} onStepChange={openStep} />
 
           <div className="templates-logo-editor-grid">
@@ -283,14 +308,6 @@ export default function TemplateWizardTest() {
 
       {currentStep === 3 ? (
         <section className="container templates-colors-test-section">
-          <div className="templates-colors-test-header">
-            <h2>
-              farben<span className="accent-slash">/</span>
-              <span>anpassung</span>
-            </h2>
-            <p>Personalisieren Sie Ihr Layout passend zu Ihrem Event-Design.</p>
-          </div>
-
           <WizardSteps currentStep={3} maxUnlockedStep={maxUnlockedStep} onStepChange={openStep} />
 
           <div className="templates-colors-configurator-grid">
@@ -377,14 +394,6 @@ export default function TemplateWizardTest() {
 
       {currentStep === 4 ? (
         <section className="container templates-confirm-test-section">
-          <div className="templates-confirm-test-header">
-            <h2>
-              fast<span className="accent-slash">/</span>
-              <span>fertig</span>
-            </h2>
-            <p>Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage.</p>
-          </div>
-
           <WizardSteps currentStep={4} maxUnlockedStep={maxUnlockedStep} onStepChange={openStep} />
 
           <div className="templates-confirm-view">
