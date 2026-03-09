@@ -327,6 +327,81 @@ export default async function VorlagenTestPage() {
             </div>
           </div>
         </section>
+
+        <section className="container templates-confirm-test-section">
+          <div className="templates-confirm-test-header">
+            <h2>
+              fast<span className="accent-slash">/</span>
+              <span>fertig</span>
+            </h2>
+            <p>Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage.</p>
+          </div>
+
+          <div className="templates-test-steps">
+            <div className="templates-test-step">
+              <div className="templates-test-step-num">1</div>
+              <span>Template</span>
+            </div>
+            <div className="templates-test-line" />
+            <div className="templates-test-step">
+              <div className="templates-test-step-num">2</div>
+              <span>Logo</span>
+            </div>
+            <div className="templates-test-line" />
+            <div className="templates-test-step">
+              <div className="templates-test-step-num">3</div>
+              <span>Farben</span>
+            </div>
+            <div className="templates-test-line" />
+            <div className="templates-test-step active">
+              <div className="templates-test-step-num">4</div>
+              <span>Bestätigen</span>
+            </div>
+          </div>
+
+          <div className="templates-confirm-view">
+            <div className="templates-confirm-preview-panel">
+              <div className="templates-confirm-print-mockup">
+                <div className="templates-confirm-mock-photo" />
+                <div className="templates-confirm-mock-photo" />
+                <div className="templates-confirm-mock-photo" />
+                <div className="templates-confirm-logo-area">
+                  <div className="templates-confirm-logo-svg">+</div>
+                  <span className="templates-confirm-event-text">Sommerfest 2025</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="templates-confirm-summary-panel">
+              <div className="templates-confirm-summary-card">
+                <span className="templates-confirm-summary-label">Gewähltes Layout</span>
+                <div className="templates-confirm-summary-value">Classic Strip (3er Streifen)</div>
+              </div>
+
+              <div className="templates-confirm-summary-card">
+                <span className="templates-confirm-summary-label">Logo &amp; Branding</span>
+                <div className="templates-confirm-summary-value">Firmenlogo_2025_v2.png</div>
+              </div>
+
+              <div className="templates-confirm-summary-card">
+                <span className="templates-confirm-summary-label">Akzentfarbe</span>
+                <div className="templates-confirm-summary-value">
+                  <div className="templates-confirm-color-dot" />
+                  <span>#EA2C2C (Tirol Rot)</span>
+                </div>
+              </div>
+
+              <div className="templates-confirm-cta-section">
+                <button type="button" className="templates-confirm-btn-primary">Jetzt anfragen</button>
+                <button type="button" className="templates-confirm-btn-back">Zurück zur Bearbeitung</button>
+              </div>
+
+              <p className="templates-confirm-note">
+                Nach Ihrer Anfrage senden wir Ihnen ein detailliertes Angebot sowie einen Korrekturabzug Ihres Designs zu.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter content={content} />
     </>
