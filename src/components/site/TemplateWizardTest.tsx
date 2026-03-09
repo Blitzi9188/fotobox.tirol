@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const formatTabs = [
   "3er Streifen",
@@ -89,6 +89,7 @@ export default function TemplateWizardTest() {
   const [selectedAccent, setSelectedAccent] = useState(accentColors[0]);
   const [selectedBackground, setSelectedBackground] = useState(backgroundColors[0]);
   const [selectedFont, setSelectedFont] = useState(fontOptions[0]);
+  const headingRef = useRef<HTMLElement | null>(null);
 
   const openStep = (step: number) => {
     if (step <= maxUnlockedStep) {
@@ -107,6 +108,10 @@ export default function TemplateWizardTest() {
     () => `${selectedAccent.value.toUpperCase()} (${selectedAccent.name})`,
     [selectedAccent]
   );
+
+  useEffect(() => {
+    headingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [currentStep]);
 
   const heroCopy = useMemo(() => {
     if (currentStep === 2) {
@@ -142,7 +147,7 @@ export default function TemplateWizardTest() {
 
   return (
     <main className="templates-test-page">
-      <section className="templates-test-header container">
+      <section className="templates-test-header container" ref={headingRef}>
         <h1>
           {heroCopy.titleLeft}
           <span className="accent-slash">/</span>
