@@ -124,7 +124,6 @@ export default function BookingInquiryForm({
         <div className="inquiry-input-group">
           <label className="inquiry-field">
             <span>{inquiry.dateLabel || "Datum"}</span>
-            <small className="inquiry-field-hint">z. B. 20.06.2026</small>
             <input name="eventDate" type="date" required />
           </label>
           <label className="inquiry-field">

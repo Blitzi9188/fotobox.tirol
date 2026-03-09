@@ -1355,12 +1355,6 @@ p {
   color: var(--c-text-light);
 }
 
-.inquiry-field-hint {
-  margin-top: -0.15rem;
-  font-size: 0.78rem;
-  color: #7b8794;
-}
-
 .inquiry-field input,
 .inquiry-field textarea {
   width: 100%;
