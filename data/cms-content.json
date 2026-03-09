@@ -39,7 +39,7 @@
     "ctaText": "Jetzt Termin sichern",
     "secondaryCtaText": "Mehr erfahren",
     "secondaryCtaHref": "/#features",
-    "imageUrl": "/uploads/1772911380-hero-neu-fotobox.png"
+    "imageUrl": "/uploads/hero-optimized.jpg"
   },
   "features": {
     "heading": "einfach/individuell",
@@ -66,10 +66,10 @@
     "bullets": [],
     "buttonText": "Beispiele ansehen",
     "previewImageUrl": "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
-    "compareLeftBeforeUrl": "/uploads/1772564691508-2bac84cc-eb54-4f7a-9ad7-715647f48a69-carli-5.jpg",
-    "compareLeftAfterUrl": "/uploads/1772743461453-a8191212-f6ae-4cbd-98a5-89b804d5130c-carlo-3.jpg",
-    "compareRightBeforeUrl": "/uploads/1772564707137-c10ad7fa-0939-40b4-b3ac-35bac7e26dea-andi-rennen.1.jpg",
-    "compareRightAfterUrl": "/uploads/1772564736081-74ae825a-4cc0-4a77-926d-f371e2968a25-andi-normal-1-1.jpg"
+    "compareLeftBeforeUrl": "/uploads/ai-left-before-optimized.jpg",
+    "compareLeftAfterUrl": "/uploads/ai-left-after-optimized.jpg",
+    "compareRightBeforeUrl": "/uploads/ai-right-before-optimized.jpg",
+    "compareRightAfterUrl": "/uploads/ai-right-after-optimized.jpg"
   },
   "gallery": {
     "heading": "event/gestaltung",
@@ -77,13 +77,13 @@
       {
         "title": "Hochzeit Klassik",
         "color": "#efefef",
-        "imageUrl": "/uploads/1772638258647-0920fcba-0960-4e2d-93ee-6b1d8324c7f4-fotobox--10-x-15-cm-.png",
+        "imageUrl": "/uploads/gallery-print-10x15-optimized.jpg",
         "height": 400
       },
       {
         "title": "Firmenfeier Modern",
         "color": "#e4e4e4",
-        "imageUrl": "/uploads/1772638267710-83271b71-4a08-460e-a9f9-ea44e149e8e6-purple-neon-photocentric-disco-night-flyer--5-x-15-cm-.png",
+        "imageUrl": "/uploads/gallery-print-5x15-optimized.jpg",
         "height": 1200
       },
       {
@@ -152,11 +152,11 @@
     "imageUrl": "/uploads/1772571257775-078ffaef-7825-4281-92cd-a3f94ff1a2b7-selfie-ma-e-2.png.webp",
     "layoutOneHeading": "layout/gestaltung",
     "layoutOneDescription": "Wir gestalten gerne individuelle Layouts für eure Veranstaltung im beliebten Streifen-Format 5x15. Ob für Hochzeiten, Firmenfeiern, Geburtstage oder Events – wir personalisieren eure Streifen mit Namen des Brautpaares, Datum der Hochzeit, Logo der Firma oder Veranstaltungsort.\nDas 5x15 Streifenformat eignet sich perfekt für Fotobox-Streifen, Erinnerungsfotos und Event-Souvenirs. Durch ein individuell gestaltetes Design wird jeder Fotostreifen zu einer einzigartigen Erinnerung an euren besonderen Tag.",
-    "layoutOneImageUrl": "/uploads/1772738383356-ec390508-b394-445f-aca0-403731e3e7b4-landscape.png",
+    "layoutOneImageUrl": "/uploads/layout-one-optimized.jpg",
     "layoutOneImageAlt": "Fotobox Eventfoto im klassischen 5x15 Format mit personalisiertem Design für Hochzeit oder Firmenfeier",
     "layoutTwoHeading": "layout/gestaltung",
     "layoutTwoDescription": "Das Format 10x15 ist ideal für Fotobox-Bilder und Eventfotos, da es dem klassischen Fotoformat entspricht und dadurch besonders vielseitig einsetzbar ist. Die Bilder lassen sich problemlos in Standard-Fotoalben, Bilderrahmen oder Fotobox-Gästebücher integrieren und behalten dabei eine hochwertige, professionelle Optik.\nGerade bei Hochzeiten, Firmenfeiern, Geburtstagen oder anderen Events ist das Format 10x15 besonders beliebt, weil eure Gäste die Fotos direkt als persönliche Erinnerung mit nach Hause nehmen können. Durch das größere Bildformat kommen Details, Emotionen und lustige Momente aus der Fotobox noch besser zur Geltung.\nZusätzlich bietet das 10x15 Layout genügend Platz für individuelle Gestaltungselemente, wie zum Beispiel Namen, Datum, Logos oder kleine Designelemente, die perfekt auf eure Veranstaltung abgestimmt sind. So entsteht ein persönliches Eventfoto, das eure Feier auch lange nach dem Event in Erinnerung bleiben lässt.",
-    "layoutTwoImageUrl": "/uploads/1772738371910-181a7bf8-ecbd-4773-ab27-f813ccf052c0-lanscape-2.png",
+    "layoutTwoImageUrl": "/uploads/layout-two-optimized.jpg",
     "layoutTwoImageAlt": "Fotobox Bild im Format 10x15 mit individuellem Layout für Hochzeit mit Namen und Datum des Brautpaares"
   },
   "faq": {
@@ -520,126 +520,126 @@
     "items": [
       {
         "title": "Hochzeit Klassik",
-        "imageUrl": "/uploads/1772725458356-dcdb983d-1a6d-4d1b-bfcd-de04366260ca-fotobox-tirol-selfie-bilder-7.jpg",
+        "imageUrl": "/uploads/1772725458356-dcdb983d-1a6d-4d1b-bfcd-de04366260ca-fotobox-tirol-selfie-bilder-7-optimized.jpg",
         "altText": "Zwei Personen mit großen Sonnenbrillen und falschen Schnurrbärten posieren lachend vor der Fotobox.",
         "color": "#efefef",
         "linkUrl": ""
       },
       {
         "title": "Firmenfeier Modern",
-        "imageUrl": "/uploads/1772725463503-9531a497-3f53-4804-a81e-57723a0032bd-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-12.jpg",
+        "imageUrl": "/uploads/1772725463503-9531a497-3f53-4804-a81e-57723a0032bd-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-12-optimized.jpg",
         "altText": "Eine Person mit Federboa und glitzernder Partybrille macht eine lustige Pose vor der Fotobox.",
         "color": "#e4e4e4",
         "linkUrl": ""
       },
       {
         "title": "Geburtstag Party",
-        "imageUrl": "/uploads/1772725478581-54d27e32-698f-4990-a108-0f6d80b08ae4-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-3.jpg",
+        "imageUrl": "/uploads/1772725478581-54d27e32-698f-4990-a108-0f6d80b08ae4-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-3-optimized.jpg",
         "altText": "Zwei Freunde mit Cowboyhüten und aufgeklebten Schnurrbärten stehen vor der Fotobox.",
         "color": "#d8d8d8",
         "linkUrl": ""
       },
       {
         "title": "Accessoire 4",
-        "imageUrl": "/uploads/1772725610112-4a8de693-62e8-4a36-9324-9322533ba2bf-fotobox-tirol-selfie-bilder-12.jpg",
+        "imageUrl": "/uploads/1772725610112-4a8de693-62e8-4a36-9324-9322533ba2bf-fotobox-tirol-selfie-bilder-12-optimized.jpg",
         "altText": "Eine Person mit bunter Perücke und Sternbrille schaut lachend in die Fotobox-Kamera.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Accessoire 5",
-        "imageUrl": "/uploads/1772725616835-a3643f1b-9ec6-4d07-b20d-6227a314c187-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-18.jpg",
+        "imageUrl": "/uploads/1772725616835-a3643f1b-9ec6-4d07-b20d-6227a314c187-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-18-optimized.jpg",
         "altText": "Zwei Gäste mit Tiermasken und Partyhüten machen eine lustige Pose vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Accessoire 6",
-        "imageUrl": "/uploads/1772725622941-3f912663-26c2-4f19-84de-8c1e693a5382-fotobox-tirol-selfie-bilder-3.jpg",
+        "imageUrl": "/uploads/1772725622941-3f912663-26c2-4f19-84de-8c1e693a5382-fotobox-tirol-selfie-bilder-3-optimized.jpg",
         "altText": "Eine Person mit übergroßer Sonnenbrille und Hut hält ein Spaßschild vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Accessoire 7",
-        "imageUrl": "/uploads/1772725489659-13ed1c66-88b4-480a-9571-7977537c2fa7-fotobox-tirol-selfie-bilder-1.jpg",
+        "imageUrl": "/uploads/1772725489659-13ed1c66-88b4-480a-9571-7977537c2fa7-fotobox-tirol-selfie-bilder-1-optimized.jpg",
         "altText": "Zwei Personen mit bunten Perücken und Herzbrillen lachen gemeinsam vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Accessoire 8",
-        "imageUrl": "/uploads/1772725494493-46ba177e-2411-4843-9112-5f417a6cc0c6-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-16.jpg",
+        "imageUrl": "/uploads/1772725494493-46ba177e-2411-4843-9112-5f417a6cc0c6-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-16-optimized.jpg",
         "altText": "Eine Person mit Piratenhut und Augenklappe posiert vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Accessoire 9",
-        "imageUrl": "/uploads/1772725501160-13d145d0-6556-4337-bd12-d4b79f774a86-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-14.jpg",
+        "imageUrl": "/uploads/1772725501160-13d145d0-6556-4337-bd12-d4b79f774a86-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-14-optimized.jpg",
         "altText": "Zwei Freunde mit aufblasbaren Gitarren und Rock-Perücken posieren vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Accessoire 10",
-        "imageUrl": "/uploads/1772725509535-bb5640af-1283-46c4-b0d7-e39caf38d113-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-17.jpg",
+        "imageUrl": "/uploads/1772725509535-bb5640af-1283-46c4-b0d7-e39caf38d113-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-17-optimized.jpg",
         "altText": "Eine Person mit Clownsnase und großer Partybrille macht eine Grimasse vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Accessoire 11",
-        "imageUrl": "/uploads/1772725941717-e7010f0c-328c-46f4-bcb0-3904ef41b4c5-fotobox-tirol-selfie-bilder-10.jpg",
+        "imageUrl": "/uploads/1772725941717-e7010f0c-328c-46f4-bcb0-3904ef41b4c5-fotobox-tirol-selfie-bilder-10-optimized.jpg",
         "altText": "Zwei Personen mit lustigen Schnurrbärten und Zylinderhüten stehen vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Accessoire 12",
-        "imageUrl": "/uploads/1772725950536-3431985c-126b-49f4-b759-6a2da8975cd3-fotobox-tirol-selfie-bilder-5.jpg",
+        "imageUrl": "/uploads/1772725950536-3431985c-126b-49f4-b759-6a2da8975cd3-fotobox-tirol-selfie-bilder-5-optimized.jpg",
         "altText": "Eine Person mit Flamingo-Brille und Federboa posiert fröhlich vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Fotobox Moment mit Verkleidung",
-        "imageUrl": "/uploads/1772725964077-8b612462-d405-4f1f-bf70-af8f52d79481-fotobox-tirol-selfie-bilder-11.jpg",
+        "imageUrl": "/uploads/1772725964077-8b612462-d405-4f1f-bf70-af8f52d79481-fotobox-tirol-selfie-bilder-11-optimized.jpg",
         "altText": "Zwei Gäste mit Superheldenmasken und Umhängen posieren vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Fotobox Partyfoto",
-        "imageUrl": "/uploads/1772725930333-164b2fd1-9fa4-448e-a77a-db74313a36e5-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-25.jpg",
+        "imageUrl": "/uploads/1772725930333-164b2fd1-9fa4-448e-a77a-db74313a36e5-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-25-optimized.jpg",
         "altText": "Eine Person mit Hippie-Perücke und runder Sonnenbrille lächelt vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Lustige Erinnerungen aus der Fotobox",
-        "imageUrl": "/uploads/1772725975631-7d1f41ea-c3eb-4ccd-8e03-dbd714cb6b4b-fotobox-tirol-selfie-bilder-8.jpg",
+        "imageUrl": "/uploads/1772725975631-7d1f41ea-c3eb-4ccd-8e03-dbd714cb6b4b-fotobox-tirol-selfie-bilder-8-optimized.jpg",
         "altText": "Zwei Personen mit Weihnachtsmützen und Rentiergeweih-Requisiten vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Lustige Fotobox mit Verkleidungen",
-        "imageUrl": "/uploads/1772725985150-a280761c-b0cf-4490-8e7d-46136b25b3ea-fotobox-tirol-selfie-bilder-2.jpg",
+        "imageUrl": "/uploads/1772725985150-a280761c-b0cf-4490-8e7d-46136b25b3ea-fotobox-tirol-selfie-bilder-2-optimized.jpg",
         "altText": "Zwei Personen mit bunten Perücken und großen Sonnenbrillen lachen vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Fotobox Spaß mit Accessoires",
-        "imageUrl": "/uploads/1772725994854-c1721d4f-d3f8-4e1c-bdff-a40ab02d9315-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-19.jpg",
+        "imageUrl": "/uploads/1772725994854-c1721d4f-d3f8-4e1c-bdff-a40ab02d9315-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-19-optimized.jpg",
         "altText": "Eine Person mit Federboa und Herzbrille posiert vor der Fotobox-Kamera. Titel: Partyfotobox mit lustigen Requisiten",
         "color": "#e5e7eb",
         "linkUrl": ""
       },
       {
         "title": "Partyfotobox mit lustigen Requisiten",
-        "imageUrl": "/uploads/1772726001232-9db6432f-2bb2-41d2-985a-c749f522c620-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-11.jpg",
+        "imageUrl": "/uploads/1772726001232-9db6432f-2bb2-41d2-985a-c749f522c620-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-11-optimized.jpg",
         "altText": "Zwei Freunde mit falschen Schnurrbärten und Zylinderhüten stehen vor der Fotobox.",
         "color": "#e5e7eb",
         "linkUrl": ""

@@ -8,7 +8,7 @@ const seedCmsFilePath = path.join(process.cwd(), "data", "cms-content.json");
 const cmsFilePath = path.join(dataDirectory, "cms-content.json");
 const contactFilePath = path.join(dataDirectory, "contact-leads.json");
 const BROKEN_HERO_URL = "https://fotoboxtirol-production.up.railway.app/uploads/1772911775-hero-fotobox-final.png";
-const WORKING_HERO_URL = "/uploads/1772911380-hero-neu-fotobox.png";
+const WORKING_HERO_URL = "/uploads/hero-optimized.jpg";
 
 function isRetryableFsError(error: unknown) {
   if (!(error instanceof Error)) return false;
