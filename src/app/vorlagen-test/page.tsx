@@ -224,6 +224,109 @@ export default async function VorlagenTestPage() {
             </div>
           </div>
         </section>
+
+        <section className="container templates-colors-test-section">
+          <div className="templates-colors-test-header">
+            <h2>
+              farben<span className="accent-slash">/</span>
+              <span>anpassung</span>
+            </h2>
+            <p>Personalisieren Sie Ihr Layout passend zu Ihrem Event-Design.</p>
+          </div>
+
+          <div className="templates-test-steps">
+            <div className="templates-test-step completed">
+              <div className="templates-test-step-num">1</div>
+              <span>Template</span>
+            </div>
+            <div className="templates-test-line" />
+            <div className="templates-test-step completed">
+              <div className="templates-test-step-num">2</div>
+              <span>Logo</span>
+            </div>
+            <div className="templates-test-line" />
+            <div className="templates-test-step active">
+              <div className="templates-test-step-num">3</div>
+              <span>Farben</span>
+            </div>
+            <div className="templates-test-line" />
+            <div className="templates-test-step">
+              <div className="templates-test-step-num">4</div>
+              <span>Bestätigen</span>
+            </div>
+          </div>
+
+          <div className="templates-colors-configurator-grid">
+            <div className="templates-colors-preview-panel">
+              <span className="templates-colors-preview-label">Vorschau: Red Line (3er Streifen)</span>
+
+              <div className="templates-colors-live-preview-template">
+                <div className="templates-colors-live-photo" />
+                <div className="templates-colors-live-photo" />
+                <div className="templates-colors-live-photo" />
+                <div className="templates-colors-live-footer">
+                  <div className="templates-colors-live-logo-placeholder" />
+                  <div className="templates-colors-live-text">LUCAS &amp; SOPHIE · 2025</div>
+                </div>
+              </div>
+
+              <div className="templates-colors-preview-note">
+                * Die Vorschau zeigt eine ungefähre Darstellung. Farben können im Druck leicht abweichen.
+              </div>
+            </div>
+
+            <div className="templates-colors-controls-panel">
+              <div className="templates-colors-control-group">
+                <label className="templates-colors-control-label">Akzentfarbe (Linien &amp; Details)</label>
+                <div className="templates-colors-color-options">
+                  <div className="templates-colors-color-swatch active" style={{ background: "#ea2c2c" }} />
+                  <div className="templates-colors-color-swatch" style={{ background: "#2c58ea" }} />
+                  <div className="templates-colors-color-swatch" style={{ background: "#2cea82" }} />
+                  <div className="templates-colors-color-swatch" style={{ background: "#ea2ca6" }} />
+                  <div className="templates-colors-color-swatch" style={{ background: "#111111" }} />
+                </div>
+                <div className="templates-colors-custom-input-wrap">
+                  <input type="text" className="templates-colors-hex-input" value="#ea2c2c" readOnly />
+                  <div className="templates-colors-color-swatch templates-colors-custom-preview" style={{ background: "#ea2c2c" }} />
+                </div>
+              </div>
+
+              <div className="templates-colors-control-group">
+                <label className="templates-colors-control-label">Hintergrund</label>
+                <div className="templates-colors-color-options">
+                  <div className="templates-colors-color-swatch active templates-colors-light-border" style={{ background: "#ffffff" }} />
+                  <div className="templates-colors-color-swatch" style={{ background: "#f5f5f5" }} />
+                  <div className="templates-colors-color-swatch" style={{ background: "#faf8f5" }} />
+                  <div className="templates-colors-color-swatch" style={{ background: "#111111" }} />
+                  <div className="templates-colors-color-swatch" style={{ background: "#222222" }} />
+                </div>
+              </div>
+
+              <div className="templates-colors-control-group">
+                <label className="templates-colors-control-label">Schriftart</label>
+                <div className="templates-colors-font-options">
+                  <div className="templates-colors-font-item active">
+                    <span>Modern Sans</span>
+                    <span className="templates-colors-font-aa">Aa</span>
+                  </div>
+                  <div className="templates-colors-font-item templates-colors-font-serif">
+                    <span>Elegant Serif</span>
+                    <span className="templates-colors-font-aa">Aa</span>
+                  </div>
+                  <div className="templates-colors-font-item templates-colors-font-mono">
+                    <span>Minimalist Mono</span>
+                    <span className="templates-colors-font-aa">Aa</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="templates-colors-navigation-btns">
+                <button type="button" className="templates-colors-btn-back">← Zurück</button>
+                <button type="button" className="templates-colors-btn-next">Vorschau Bestätigen</button>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter content={content} />
     </>
