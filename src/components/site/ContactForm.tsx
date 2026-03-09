@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import { PricePlan } from "@/lib/types";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
@@ -15,6 +16,7 @@ export default function ContactForm({
   const safePlans: PackageOption[] = plans.length > 0 ? plans : [{ name: "Allgemeine Anfrage", price: 0 }];
   const [status, setStatus] = useState("");
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
+  const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -40,6 +42,7 @@ export default function ContactForm({
     if (response.ok) {
       event.currentTarget.reset();
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
+      router.replace("/danke");
     }
   }
 

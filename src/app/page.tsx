@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
@@ -7,6 +8,7 @@ import AccessoriesCarousel from "@/components/site/AccessoriesCarousel";
 export const dynamic = "force-dynamic";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
 const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = ["hero", "features", "space", "media", "pricing", "reviews", "faq"];
+const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
 
 function subtitleHtmlToText(html: string): string {
   return html
@@ -18,6 +20,40 @@ function subtitleHtmlToText(html: string): string {
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .trim();
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await readCmsContent();
+  const title = content.seo.title?.trim() || "Fotobox Tirol das Original";
+  const description =
+    content.seo.description?.trim() ||
+    "Fotobox Tirol das Original fuer Hochzeiten, Firmenfeiern und Events in Tirol.";
+  const ogImage = content.hero.imageUrl
+    ? new URL(content.hero.imageUrl, SITE_URL).toString()
+    : undefined;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: "/"
+    },
+    openGraph: {
+      title,
+      description,
+      url: SITE_URL,
+      siteName: "Fotobox Tirol das Original",
+      type: "website",
+      locale: "de_AT",
+      images: ogImage ? [{ url: ogImage, alt: "Fotobox Tirol das Original" }] : undefined
+    },
+    twitter: {
+      card: ogImage ? "summary_large_image" : "summary",
+      title,
+      description,
+      images: ogImage ? [ogImage] : undefined
+    }
+  };
 }
 
 export default async function HomePage() {
@@ -40,7 +76,19 @@ export default async function HomePage() {
       <SiteHeader content={content} />
       <main>
         {homepageOrder.includes("hero") ? (
-          <section className="hero">
+          <section
+            className="hero"
+            style={
+              content.hero.imageUrl
+                ? {
+                    backgroundImage: `url("${content.hero.imageUrl}")`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                    backgroundRepeat: "no-repeat"
+                  }
+                : undefined
+            }
+          >
             {content.hero.imageUrl ? (
               <img
                 src={content.hero.imageUrl}
@@ -240,6 +288,13 @@ export default async function HomePage() {
 
             return null;
           })}
+        <section className="home-bottom-cta">
+          <div className="container home-bottom-cta-inner">
+            <Link href="/kontakt" className="btn home-bottom-cta-btn">
+              jetzt anfragen
+            </Link>
+          </div>
+        </section>
       </main>
       <SiteFooter content={content} />
     </>

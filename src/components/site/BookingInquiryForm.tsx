@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import { PricePlan, CMSContent } from "@/lib/types";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
@@ -46,7 +45,6 @@ export default function BookingInquiryForm({
   });
 
   const [status, setStatus] = useState("");
-  const router = useRouter();
   const [selectedEvent, setSelectedEvent] = useState(eventOptions[0]?.label || EVENT_TYPES[0].label);
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
   const [selectedPrintFormat, setSelectedPrintFormat] = useState(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
@@ -95,7 +93,7 @@ export default function BookingInquiryForm({
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
-      router.push("/danke");
+      window.location.assign("/danke");
     }
   }
 
@@ -135,6 +133,21 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.printSectionTitle}</span>
+        <label className="inquiry-field">
+          <span>Paket Wunsch</span>
+          <select
+            name="packageName"
+            value={selectedPackage}
+            onChange={(event) => setSelectedPackage(event.target.value)}
+            required
+          >
+            {safePlans.map((plan) => (
+              <option key={plan.name} value={plan.name}>
+                {plan.price > 0 ? `${plan.name} - ${plan.price}€` : plan.name}
+              </option>
+            ))}
+          </select>
+        </label>
         <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
           <span>{inquiry.printFormatLabel || "Druckformat"}</span>
           <div className="inquiry-checkbox-group">
@@ -191,7 +204,6 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.contactSectionTitle}</span>
-        <input type="hidden" name="packageName" value={selectedPackage} />
         <div className="inquiry-input-group">
           <label className="inquiry-field">
             <span>{inquiry.nameLabel || "Vor- & Nachname"}</span>

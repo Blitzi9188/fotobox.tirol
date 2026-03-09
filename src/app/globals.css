@@ -1360,6 +1360,7 @@ p {
 }
 
 .inquiry-field input,
+.inquiry-field select,
 .inquiry-field textarea {
   width: 100%;
   max-width: 100%;
@@ -1381,6 +1382,7 @@ p {
 }
 
 .inquiry-field input:focus,
+.inquiry-field select:focus,
 .inquiry-field textarea:focus {
   border-color: #95a3b7;
   outline: none;
@@ -1453,6 +1455,20 @@ p {
 
 .inquiry-references a:hover {
   color: var(--c-accent);
+}
+
+.home-bottom-cta {
+  padding: 1rem 0 4rem;
+}
+
+.home-bottom-cta-inner {
+  display: flex;
+  justify-content: center;
+}
+
+.home-bottom-cta-btn {
+  min-width: 220px;
+  text-align: center;
 }
 
 .cookie-consent-wrap {

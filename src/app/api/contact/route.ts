@@ -9,6 +9,24 @@ function escapeHtml(value: string) {
     .replace(/>/g, "&gt;");
 }
 
+function formatDateEu(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return "-";
+
+  const isoMatch = trimmed.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (isoMatch) {
+    const [, year, month, day] = isoMatch;
+    return `${day}.${month}.${year}`;
+  }
+
+  const parsed = new Date(trimmed);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toLocaleDateString("de-AT");
+  }
+
+  return trimmed;
+}
+
 async function sendLeadMail(params: {
   requestDate: string;
   name: string;
@@ -83,12 +101,12 @@ async function sendLeadMail(params: {
 export async function POST(request: Request) {
   const body = await request.json();
   const now = new Date();
-  const requestDate = now.toISOString().slice(0, 10);
+  const requestDate = formatDateEu(now.toISOString().slice(0, 10));
 
   const name = String(body.name || "").trim();
   const email = String(body.email || "").trim();
   const phone = String(body.phone || "").trim();
-  const eventDate = String(body.eventDate || "").trim();
+  const eventDate = formatDateEu(String(body.eventDate || "").trim());
   const packageName = String(body.packageName || "").trim();
   const eventType = String(body.eventType || "").trim();
   const location = String(body.location || "").trim();
