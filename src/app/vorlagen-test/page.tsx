@@ -129,6 +129,101 @@ export default async function VorlagenTestPage() {
             </article>
           </div>
         </section>
+
+        <section className="container templates-logo-test-section">
+          <div className="templates-logo-test-header">
+            <h2>
+              logo<span className="accent-slash">/</span>
+              <span>branding</span>
+            </h2>
+            <p>Laden Sie Ihr Logo hoch und platzieren Sie es auf Ihrem Design.</p>
+          </div>
+
+          <div className="templates-test-steps">
+            <div className="templates-test-step completed">
+              <div className="templates-test-step-num">✓</div>
+              <span>Template</span>
+            </div>
+            <div className="templates-test-line" />
+            <div className="templates-test-step active">
+              <div className="templates-test-step-num">2</div>
+              <span>Logo</span>
+            </div>
+            <div className="templates-test-line" />
+            <div className="templates-test-step">
+              <div className="templates-test-step-num">3</div>
+              <span>Farben</span>
+            </div>
+            <div className="templates-test-line" />
+            <div className="templates-test-step">
+              <div className="templates-test-step-num">4</div>
+              <span>Bestätigen</span>
+            </div>
+          </div>
+
+          <div className="templates-logo-editor-grid">
+            <div className="templates-logo-preview-area">
+              <span className="templates-logo-preview-label">Vorschau: Classic Strip</span>
+              <div className="templates-logo-strip-preview">
+                <div className="templates-logo-photo-placeholder">
+                  <div className="templates-logo-photo-icon" />
+                </div>
+                <div className="templates-logo-photo-placeholder">
+                  <div className="templates-logo-photo-icon" />
+                </div>
+                <div className="templates-logo-photo-placeholder">
+                  <div className="templates-logo-photo-icon" />
+                </div>
+                <div className="templates-logo-display-zone">
+                  <div className="templates-logo-placeholder-text">IHR LOGO</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="templates-logo-controls-panel">
+              <div className="templates-logo-control-group">
+                <span className="templates-logo-control-label">Logo Upload</span>
+                <div className="templates-logo-upload-box">
+                  <div className="templates-logo-upload-icon">↑</div>
+                  <p><span>Datei auswählen</span> oder per Drag &amp; Drop hierher ziehen</p>
+                  <p className="templates-logo-upload-hint">PNG, JPG oder SVG (max. 5MB)</p>
+                </div>
+              </div>
+
+              <div className="templates-logo-control-group">
+                <span className="templates-logo-control-label">Größe anpassen</span>
+                <div className="templates-logo-setting-row">
+                  <div className="templates-logo-setting-head">
+                    <span>Skalierung</span>
+                    <span>80%</span>
+                  </div>
+                  <input type="range" className="templates-logo-range-slider" min="10" max="100" value="80" readOnly />
+                </div>
+              </div>
+
+              <div className="templates-logo-control-group">
+                <span className="templates-logo-control-label">Ausrichtung</span>
+                <div className="templates-logo-position-grid">
+                  {Array.from({ length: 9 }).map((_, index) => (
+                    <button
+                      type="button"
+                      key={index}
+                      className={`templates-logo-pos-btn ${index === 4 ? "active" : ""}`}
+                      aria-label={`Position ${index + 1}`}
+                    >
+                      <span />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="templates-logo-actions-footer">
+                <button type="button" className="templates-logo-btn templates-logo-btn-secondary">Zurück</button>
+                <button type="button" className="templates-logo-btn templates-logo-btn-primary">Weiter zu Farben</button>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter content={content} />
     </>
