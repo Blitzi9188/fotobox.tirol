@@ -82,6 +82,29 @@ function WizardSteps({
   );
 }
 
+function WizardHeader({
+  titleLeft,
+  titleRight,
+  text,
+  headingRef
+}: {
+  titleLeft: string;
+  titleRight: string;
+  text: string;
+  headingRef: React.RefObject<HTMLElement>;
+}) {
+  return (
+    <section className="templates-test-header container" ref={headingRef}>
+      <h1>
+        {titleLeft}
+        <span className="accent-slash">/</span>
+        <span>{titleRight}</span>
+      </h1>
+      <p>{text}</p>
+    </section>
+  );
+}
+
 export default function TemplateWizardTest() {
   const [currentStep, setCurrentStep] = useState(1);
   const [maxUnlockedStep, setMaxUnlockedStep] = useState(1);
@@ -113,50 +136,16 @@ export default function TemplateWizardTest() {
     headingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [currentStep]);
 
-  const heroCopy = useMemo(() => {
-    if (currentStep === 2) {
-      return {
-        titleLeft: "logo",
-        titleRight: "branding",
-        text: "Laden Sie Ihr Logo hoch und platzieren Sie es auf Ihrem Design."
-      };
-    }
-
-    if (currentStep === 3) {
-      return {
-        titleLeft: "farben",
-        titleRight: "anpassung",
-        text: "Personalisieren Sie Ihr Layout passend zu Ihrem Event-Design."
-      };
-    }
-
-    if (currentStep === 4) {
-      return {
-        titleLeft: "fast",
-        titleRight: "fertig",
-        text: "Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage."
-      };
-    }
-
-    return {
-      titleLeft: "layout",
-      titleRight: "vorlagen",
-      text: "Wählen Sie eine professionelle Design-Grundlage für Ihre Fotos."
-    };
-  }, [currentStep]);
-
   return (
     <main className="templates-test-page">
-      <section className="templates-test-header container" ref={headingRef}>
-        <h1>
-          {heroCopy.titleLeft}
-          <span className="accent-slash">/</span>
-          <span>{heroCopy.titleRight}</span>
-        </h1>
-        <p>{heroCopy.text}</p>
-      </section>
-
       {currentStep === 1 ? (
+        <>
+        <WizardHeader
+          titleLeft="layout"
+          titleRight="vorlagen"
+          text="Wählen Sie eine professionelle Design-Grundlage für Ihre Fotos."
+          headingRef={headingRef}
+        />
         <section className="container">
           <WizardSteps currentStep={1} maxUnlockedStep={maxUnlockedStep} onStepChange={openStep} />
 
@@ -242,9 +231,17 @@ export default function TemplateWizardTest() {
             </article>
           </div>
         </section>
+        </>
       ) : null}
 
       {currentStep === 2 ? (
+        <>
+        <WizardHeader
+          titleLeft="logo"
+          titleRight="branding"
+          text="Laden Sie Ihr Logo hoch und platzieren Sie es auf Ihrem Design."
+          headingRef={headingRef}
+        />
         <section className="container templates-logo-test-section">
           <WizardSteps currentStep={2} maxUnlockedStep={maxUnlockedStep} onStepChange={openStep} />
 
@@ -309,9 +306,17 @@ export default function TemplateWizardTest() {
             </div>
           </div>
         </section>
+        </>
       ) : null}
 
       {currentStep === 3 ? (
+        <>
+        <WizardHeader
+          titleLeft="farben"
+          titleRight="anpassung"
+          text="Personalisieren Sie Ihr Layout passend zu Ihrem Event-Design."
+          headingRef={headingRef}
+        />
         <section className="container templates-colors-test-section">
           <WizardSteps currentStep={3} maxUnlockedStep={maxUnlockedStep} onStepChange={openStep} />
 
@@ -395,9 +400,17 @@ export default function TemplateWizardTest() {
             </div>
           </div>
         </section>
+        </>
       ) : null}
 
       {currentStep === 4 ? (
+        <>
+        <WizardHeader
+          titleLeft="fast"
+          titleRight="fertig"
+          text="Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage."
+          headingRef={headingRef}
+        />
         <section className="container templates-confirm-test-section">
           <WizardSteps currentStep={4} maxUnlockedStep={maxUnlockedStep} onStepChange={openStep} />
 
@@ -444,6 +457,7 @@ export default function TemplateWizardTest() {
             </div>
           </div>
         </section>
+        </>
       ) : null}
     </main>
   );
