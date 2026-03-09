@@ -178,9 +178,7 @@ main section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 32%;
-  transform: scale(1.08);
-  transform-origin: center center;
+  object-position: center center;
   z-index: 0;
 }
 
@@ -2377,8 +2375,7 @@ footer {
   }
 
   .hero-bg-image {
-    object-position: center 24%;
-    transform: scale(1.14);
+    object-position: center center;
   }
 
   .gallery-item,
