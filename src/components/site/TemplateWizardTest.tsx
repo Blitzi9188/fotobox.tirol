@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { CMSContent } from "@/lib/types";
 
 const formatTabs = [
   "3er Streifen",
@@ -105,7 +106,7 @@ function WizardHeader({
   );
 }
 
-export default function TemplateWizardTest() {
+export default function TemplateWizardTest({ wizardContent }: { wizardContent?: CMSContent["templateWizard"] }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [maxUnlockedStep, setMaxUnlockedStep] = useState(1);
   const [selectedTemplate, setSelectedTemplate] = useState(templateCards[0]);
@@ -141,9 +142,9 @@ export default function TemplateWizardTest() {
       {currentStep === 1 ? (
         <>
         <WizardHeader
-          titleLeft="layout"
-          titleRight="vorlagen"
-          text="Wählen Sie eine professionelle Design-Grundlage für Ihre Fotos."
+          titleLeft={(wizardContent?.step1?.title || "layout/vorlagen").split("/")[0] || "layout"}
+          titleRight={(wizardContent?.step1?.title || "layout/vorlagen").split("/")[1] || "vorlagen"}
+          text={wizardContent?.step1?.subtitle || "Wählen Sie eine professionelle Design-Grundlage für Ihre Fotos."}
           headingRef={headingRef}
         />
         <section className="container">
@@ -237,9 +238,9 @@ export default function TemplateWizardTest() {
       {currentStep === 2 ? (
         <>
         <WizardHeader
-          titleLeft="logo"
-          titleRight="branding"
-          text="Laden Sie Ihr Logo hoch und platzieren Sie es auf Ihrem Design."
+          titleLeft={(wizardContent?.step2?.title || "logo/branding").split("/")[0] || "logo"}
+          titleRight={(wizardContent?.step2?.title || "logo/branding").split("/")[1] || "branding"}
+          text={wizardContent?.step2?.subtitle || "Laden Sie Ihr Logo hoch und platzieren Sie es auf Ihrem Design."}
           headingRef={headingRef}
         />
         <section className="container templates-logo-test-section">
@@ -312,9 +313,9 @@ export default function TemplateWizardTest() {
       {currentStep === 3 ? (
         <>
         <WizardHeader
-          titleLeft="farben"
-          titleRight="anpassung"
-          text="Personalisieren Sie Ihr Layout passend zu Ihrem Event-Design."
+          titleLeft={(wizardContent?.step3?.title || "farben/anpassung").split("/")[0] || "farben"}
+          titleRight={(wizardContent?.step3?.title || "farben/anpassung").split("/")[1] || "anpassung"}
+          text={wizardContent?.step3?.subtitle || "Personalisieren Sie Ihr Layout passend zu Ihrem Event-Design."}
           headingRef={headingRef}
         />
         <section className="container templates-colors-test-section">
@@ -406,9 +407,9 @@ export default function TemplateWizardTest() {
       {currentStep === 4 ? (
         <>
         <WizardHeader
-          titleLeft="fast"
-          titleRight="fertig"
-          text="Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage."
+          titleLeft={(wizardContent?.step4?.title || "fast/fertig").split("/")[0] || "fast"}
+          titleRight={(wizardContent?.step4?.title || "fast/fertig").split("/")[1] || "fertig"}
+          text={wizardContent?.step4?.subtitle || "Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage."}
           headingRef={headingRef}
         />
         <section className="container templates-confirm-test-section">

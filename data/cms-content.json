@@ -254,6 +254,24 @@
       }
     ]
   },
+  "templateWizard": {
+    "step1": {
+      "title": "layout/vorlagen",
+      "subtitle": "Wählen Sie eine professionelle Design-Grundlage für Ihre Fotos."
+    },
+    "step2": {
+      "title": "logo/branding",
+      "subtitle": "Laden Sie Ihr Logo hoch und platzieren Sie es auf Ihrem Design."
+    },
+    "step3": {
+      "title": "farben/anpassung",
+      "subtitle": "Personalisieren Sie Ihr Layout passend zu Ihrem Event-Design."
+    },
+    "step4": {
+      "title": "fast/fertig",
+      "subtitle": "Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage."
+    }
+  },
   "inquiry": {
     "heading": "jetzt/anfragen",
     "introText": "Nach Erhalt deiner Anfrage melden wir uns so schnell wie möglich mit einem individuellen und unverbindlichen Angebot, das perfekt zu deiner Veranstaltung passt. Bei Fragen oder speziellen Ideen stehen wir dir selbstverständlich jederzeit gerne zur Verfügung.",

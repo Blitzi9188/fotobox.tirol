@@ -16,6 +16,7 @@ type SectionId =
   | "pricing"
   | "media"
   | "reviews"
+  | "wizard"
   | "faq"
   | "inquiry"
   | "thanks"
@@ -33,6 +34,7 @@ const SECTION_TABS: Array<{ id: SectionId; label: string }> = [
   { id: "spaceLayout", label: "Layout/Gestaltung" },
   { id: "pricing", label: "Preise" },
   { id: "reviews", label: "Rezensionen" },
+  { id: "wizard", label: "Layout Wizard" },
   { id: "media", label: "Bilder" },
   { id: "faq", label: "FAQ" },
   { id: "inquiry", label: "Anfrage" },
@@ -254,6 +256,24 @@ export default function AdminDashboard() {
             }
           ]
     };
+    const normalizedTemplateWizard = {
+      step1: {
+        title: json.templateWizard?.step1?.title || "layout/vorlagen",
+        subtitle: json.templateWizard?.step1?.subtitle || "Wählen Sie eine professionelle Design-Grundlage für Ihre Fotos."
+      },
+      step2: {
+        title: json.templateWizard?.step2?.title || "logo/branding",
+        subtitle: json.templateWizard?.step2?.subtitle || "Laden Sie Ihr Logo hoch und platzieren Sie es auf Ihrem Design."
+      },
+      step3: {
+        title: json.templateWizard?.step3?.title || "farben/anpassung",
+        subtitle: json.templateWizard?.step3?.subtitle || "Personalisieren Sie Ihr Layout passend zu Ihrem Event-Design."
+      },
+      step4: {
+        title: json.templateWizard?.step4?.title || "fast/fertig",
+        subtitle: json.templateWizard?.step4?.subtitle || "Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage."
+      }
+    };
 
     setContent({
       ...json,
@@ -269,6 +289,7 @@ export default function AdminDashboard() {
       contact: normalizedContact,
       space: normalizedSpace,
       reviews: normalizedReviews,
+      templateWizard: normalizedTemplateWizard,
       layout: {
         ...json.layout,
         homepageOrder: normalizedHomepageOrder
@@ -1304,6 +1325,65 @@ export default function AdminDashboard() {
                       items[index] = { ...review, text: e.target.value };
                       updateContent((prev) => ({ ...prev, reviews: { ...prev.reviews, items } }));
                     }}
+                  />
+                </label>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    if (section === "wizard") {
+      return (
+        <section className="admin-section">
+          <div className="admin-section-head">
+            <h2>Layout Wizard</h2>
+            <p>Überschriften und Untertitel für die Testseite unter <code>/vorlagen-test</code>.</p>
+          </div>
+          <div className="admin-grid-2">
+            {([
+              { key: "step1", label: "Schritt 1" },
+              { key: "step2", label: "Schritt 2" },
+              { key: "step3", label: "Schritt 3" },
+              { key: "step4", label: "Schritt 4" }
+            ] as const).map((step) => (
+              <div className="admin-panel" key={step.key}>
+                <label className="admin-field">
+                  <span>{step.label} Titel</span>
+                  <input
+                    value={content.templateWizard?.[step.key].title || ""}
+                    onChange={(e) =>
+                      updateContent((prev) => ({
+                        ...prev,
+                        templateWizard: {
+                          ...prev.templateWizard!,
+                          [step.key]: {
+                            ...prev.templateWizard?.[step.key],
+                            title: e.target.value
+                          }
+                        }
+                      }))
+                    }
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>{step.label} Untertitel</span>
+                  <textarea
+                    rows={3}
+                    value={content.templateWizard?.[step.key].subtitle || ""}
+                    onChange={(e) =>
+                      updateContent((prev) => ({
+                        ...prev,
+                        templateWizard: {
+                          ...prev.templateWizard!,
+                          [step.key]: {
+                            ...prev.templateWizard?.[step.key],
+                            subtitle: e.target.value
+                          }
+                        }
+                      }))
+                    }
                   />
                 </label>
               </div>

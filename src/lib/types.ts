@@ -48,6 +48,11 @@ export type FooterLink = {
   newTab?: boolean;
 };
 
+export type WizardStepContent = {
+  title: string;
+  subtitle: string;
+};
+
 export type CMSContent = {
   layout?: {
     sectionOrder?: Array<"overview" | "hero" | "features" | "space" | "pricing" | "media" | "reviews" | "faq" | "inquiry" | "thanks" | "contact" | "footer" | "legal" | "seo">;
@@ -127,6 +132,12 @@ export type CMSContent = {
     ctaLabel: string;
     ctaHref: string;
     items: ReviewItem[];
+  };
+  templateWizard?: {
+    step1: WizardStepContent;
+    step2: WizardStepContent;
+    step3: WizardStepContent;
+    step4: WizardStepContent;
   };
   inquiry: {
     heading: string;

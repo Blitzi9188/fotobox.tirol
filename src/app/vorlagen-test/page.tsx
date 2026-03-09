@@ -10,7 +10,7 @@ export default async function VorlagenTestPage() {
   return (
     <>
       <SiteHeader content={content} />
-      <TemplateWizardTest />
+      <TemplateWizardTest wizardContent={content.templateWizard} />
       <SiteFooter content={content} />
     </>
   );
