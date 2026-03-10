@@ -149,6 +149,7 @@ export type CMSContent = {
     dateSectionTitle: string;
     printSectionTitle: string;
     contactSectionTitle: string;
+    packageSectionTitle: string;
     submitText: string;
     eventOptions?: Array<{ label: string; desc: string }>;
     printOptions?: Array<{ label: string; desc: string }>;

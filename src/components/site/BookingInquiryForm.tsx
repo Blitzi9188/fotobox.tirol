@@ -124,23 +124,6 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.printSectionTitle}</span>
-        <span className="inquiry-field-label">Paket Wunsch</span>
-        <input type="hidden" name="packageName" value={selectedPackage} />
-        <div className={`inquiry-options-grid ${safePlans.length === 2 ? "inquiry-options-grid-2" : ""}`}>
-          {safePlans.map((plan) => (
-            <button
-              key={plan.name}
-              type="button"
-              className={`inquiry-option ${selectedPackage === plan.name ? "selected" : ""}`}
-              onClick={() => setSelectedPackage(plan.name)}
-            >
-              <span className="inquiry-option-title">{plan.name}</span>
-              <span className="inquiry-option-desc">
-                {plan.price > 0 ? `${plan.price}€` : "Allgemeine Anfrage"}
-              </span>
-            </button>
-          ))}
-        </div>
         <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
           <span>{inquiry.boxTypeLabel || "Fotobox Variante"}</span>
           <div className="inquiry-checkbox-group">
@@ -193,6 +176,27 @@ export default function BookingInquiryForm({
           <span>{inquiry.messageLabel || "Nachricht (optional)"}</span>
           <textarea name="message" rows={4} placeholder={inquiry.messagePlaceholder || "Besondere Wuensche oder Details..."} />
         </label>
+      </div>
+
+      <div className="inquiry-form-section">
+        <span className="inquiry-section-title">{inquiry.packageSectionTitle || "05. Paket Wunsch"}</span>
+        <span className="inquiry-field-label">Paket Wunsch</span>
+        <input type="hidden" name="packageName" value={selectedPackage} />
+        <div className={`inquiry-options-grid ${safePlans.length === 2 ? "inquiry-options-grid-2" : ""}`}>
+          {safePlans.map((plan) => (
+            <button
+              key={plan.name}
+              type="button"
+              className={`inquiry-option ${selectedPackage === plan.name ? "selected" : ""}`}
+              onClick={() => setSelectedPackage(plan.name)}
+            >
+              <span className="inquiry-option-title">{plan.name}</span>
+              <span className="inquiry-option-desc">
+                {plan.price > 0 ? `${plan.price}€` : "Allgemeine Anfrage"}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
       <button className="inquiry-submit-btn" type="submit">{inquiry.submitText}</button>

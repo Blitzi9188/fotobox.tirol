@@ -2173,7 +2173,7 @@ export default function AdminDashboard() {
               </label>
             </div>
             <div className="admin-panel">
-              <h3>Abschnitte Aufdruck & Kontakt</h3>
+              <h3>Abschnitte Aufdruck, Kontakt & Paket</h3>
               <label className="admin-field">
                 <span>Abschnitt 3 Titel (Aufdruck)</span>
                 <input
@@ -2186,6 +2186,13 @@ export default function AdminDashboard() {
                 <input
                   value={content.inquiry.contactSectionTitle}
                   onChange={(e) => updateContent((prev) => ({ ...prev, inquiry: { ...prev.inquiry, contactSectionTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Abschnitt 5 Titel (Paket)</span>
+                <input
+                  value={content.inquiry.packageSectionTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, inquiry: { ...prev.inquiry, packageSectionTitle: e.target.value } }))}
                 />
               </label>
               <label className="admin-field">

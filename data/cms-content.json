@@ -282,6 +282,7 @@
     "dateSectionTitle": "02. Wann findet es statt?",
     "printSectionTitle": "03. Was soll auf euren Ausdrucken stehen?",
     "contactSectionTitle": "04. Ihre Kontaktdaten",
+    "packageSectionTitle": "05. Paket Wunsch",
     "submitText": "Unverbindliche Anfrage Senden",
     "eventOptions": [
       {
