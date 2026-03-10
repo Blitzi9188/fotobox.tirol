@@ -16,6 +16,11 @@ const BOX_TYPE_OPTIONS = [
   { id: "ki", label: "KI-Fotobox", desc: "" }
 ];
 
+const PRINT_FORMAT_OPTIONS = [
+  { label: "10x15", desc: "Klassisches Fotopapier" },
+  { label: "5x15", desc: "Streifenformat" }
+];
+
 export default function BookingInquiryForm({
   plans = [],
   initialPackage,
@@ -30,6 +35,10 @@ export default function BookingInquiryForm({
     [plans]
   );
   const eventOptions = inquiry.eventOptions && inquiry.eventOptions.length > 0 ? inquiry.eventOptions : EVENT_TYPES;
+  const printFormatOptions =
+    inquiry.printFormatOptions && inquiry.printFormatOptions.length > 0
+      ? inquiry.printFormatOptions
+      : PRINT_FORMAT_OPTIONS;
   const boxTypeOptionsRaw = inquiry.boxTypeOptions && inquiry.boxTypeOptions.length > 0 ? inquiry.boxTypeOptions : BOX_TYPE_OPTIONS;
   const boxTypeOptions = boxTypeOptionsRaw.map((option) => {
     if ((option.label || "").toLowerCase().includes("ki")) {
@@ -40,6 +49,7 @@ export default function BookingInquiryForm({
 
   const [status, setStatus] = useState("");
   const [selectedEvent, setSelectedEvent] = useState(eventOptions[0]?.label || EVENT_TYPES[0].label);
+  const [selectedPrintFormat, setSelectedPrintFormat] = useState(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
   const [selectedBoxType, setSelectedBoxType] = useState(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
 
@@ -62,7 +72,7 @@ export default function BookingInquiryForm({
       eventType,
       location,
       boxType,
-      printFormat: "",
+      printFormat: String(formData.get("printFormat") || "").trim(),
       printText,
       message: messageRaw
     };
@@ -82,6 +92,7 @@ export default function BookingInquiryForm({
     if (response.ok) {
       event.currentTarget.reset();
       setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);
+      setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
       window.location.assign("/danke");
@@ -124,6 +135,21 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.printSectionTitle}</span>
+        <span className="inquiry-field-label">{inquiry.printFormatLabel || "Druckformat"}</span>
+        <input type="hidden" name="printFormat" value={selectedPrintFormat} />
+        <div className={`inquiry-options-grid ${printFormatOptions.length === 2 ? "inquiry-options-grid-2" : ""}`}>
+          {printFormatOptions.map((option, index) => (
+            <button
+              key={`${option.label}-${index}`}
+              type="button"
+              className={`inquiry-option ${selectedPrintFormat === option.label ? "selected" : ""}`}
+              onClick={() => setSelectedPrintFormat(option.label)}
+            >
+              <span className="inquiry-option-title">{option.label}</span>
+              <span className="inquiry-option-desc">{option.desc}</span>
+            </button>
+          ))}
+        </div>
         <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
           <span>{inquiry.boxTypeLabel || "Fotobox Variante"}</span>
           <div className="inquiry-checkbox-group">
