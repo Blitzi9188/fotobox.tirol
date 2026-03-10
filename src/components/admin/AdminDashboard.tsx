@@ -114,7 +114,6 @@ function normalizeImageUrl(value: string) {
 
 export default function AdminDashboard() {
   const [content, setContent] = useState<CMSContent | null>(null);
-  const [history, setHistory] = useState<CMSContent[]>([]);
   const [authorized, setAuthorized] = useState<boolean | null>(null);
   const [status, setStatus] = useState("");
   const [dirty, setDirty] = useState(false);
@@ -299,7 +298,6 @@ export default function AdminDashboard() {
     setActiveTab((prev) => (SECTION_TABS.some((tab) => tab.id === prev) ? prev : "overview"));
     setAuthorized(true);
     setDirty(false);
-    setHistory([]);
     setStatus("Inhalte geladen.");
   }
 
@@ -310,45 +308,9 @@ export default function AdminDashboard() {
   function updateContent(update: CmsUpdater) {
     setContent((prev) => {
       if (!prev) return prev;
-      const next = update(prev);
-      setHistory((current) => [...current.slice(-39), prev]);
-      return next;
+      return update(prev);
     });
     setDirty(true);
-  }
-
-  function undoLastChange() {
-    setHistory((prevHistory) => {
-      if (prevHistory.length === 0) {
-        setStatus("Keine Änderung zum Rückgängig machen.");
-        return prevHistory;
-      }
-
-      const nextHistory = [...prevHistory];
-      const previousContent = nextHistory.pop();
-      if (!previousContent) return prevHistory;
-
-      const restoredOrderRaw = [...new Set(previousContent.layout?.homepageOrder || [])];
-      const restoredOrder: HomepageBlockId[] = [
-        ...restoredOrderRaw.filter((id): id is HomepageBlockId =>
-          DEFAULT_HOMEPAGE_ORDER.includes(id as HomepageBlockId)
-        ),
-        ...DEFAULT_HOMEPAGE_ORDER.filter((id) => !restoredOrderRaw.includes(id))
-      ];
-
-      setContent({
-        ...previousContent,
-        layout: {
-          ...previousContent.layout,
-          homepageOrder: restoredOrder
-        }
-      });
-      setHomepageOrder(restoredOrder);
-      setDirty(nextHistory.length > 0);
-      setStatus("Letzte Änderung rückgängig gemacht.");
-
-      return nextHistory;
-    });
   }
 
   async function persistContent(nextContent: CMSContent, successMessage = "Gespeichert.") {
@@ -373,7 +335,6 @@ export default function AdminDashboard() {
       }
 
       setDirty(false);
-      setHistory([]);
       setStatus(successMessage);
       return true;
     } catch (error) {
@@ -386,38 +347,6 @@ export default function AdminDashboard() {
   async function saveContent() {
     if (!content) return;
     await persistContent(content);
-  }
-
-  async function resetContentFromGit() {
-    const confirmed = window.confirm(
-      "Möchtest du wirklich alle aktuellen CMS-Inhalte auf den Git-Stand zurücksetzen?\n\nDie aktuellen Inhalte werden vorher als Backup gespeichert."
-    );
-    if (!confirmed) return;
-
-    try {
-      setStatus("Setze Inhalte auf Git-Stand zurück...");
-      const response = await fetch("/api/admin/reset-content", {
-        method: "POST"
-      });
-
-      if (response.status === 401) {
-        setAuthorized(false);
-        setStatus("Session abgelaufen. Bitte neu einloggen.");
-        return;
-      }
-
-      const json = (await response.json().catch(() => null)) as { error?: string; backupPath?: string } | null;
-      if (!response.ok) {
-        setStatus(json?.error || "Reset fehlgeschlagen.");
-        return;
-      }
-
-      await loadContent();
-      setStatus(`Reset erfolgreich.${json?.backupPath ? ` Backup: ${json.backupPath}` : ""}`);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Netzwerkfehler beim Reset.";
-      setStatus(`Reset fehlgeschlagen: ${message}`);
-    }
   }
 
   async function uploadImage(file: File): Promise<string | null> {
@@ -486,7 +415,6 @@ export default function AdminDashboard() {
       if (!prev) return prev;
       const next = applyUpdate(prev, normalizedUrl);
       nextContent = next;
-      setHistory((current) => [...current.slice(-39), prev]);
       return next;
     });
     setDirty(true);
@@ -2594,25 +2522,9 @@ export default function AdminDashboard() {
             <button
               className="btn btn-outline"
               type="button"
-              onClick={undoLastChange}
-              disabled={history.length === 0}
-            >
-              Rückgängig
-            </button>
-            <button
-              className="btn btn-outline"
-              type="button"
               onClick={() => window.open(`/?v=${Date.now()}`, "_blank")}
             >
               Geänderte Seite öffnen
-            </button>
-            <button className="btn btn-outline" type="button" onClick={loadContent}>Neu laden</button>
-            <button
-              className="btn btn-outline"
-              type="button"
-              onClick={resetContentFromGit}
-            >
-              Reset aus Git
             </button>
             <p className="admin-status">{dirty ? "Ungespeicherte Änderungen" : "Alles gespeichert"}</p>
             <p className="admin-note">{status}</p>

@@ -749,6 +749,7 @@ p {
 .accessories-section {
   margin-top: 4.5rem;
   padding-top: 2.2rem;
+  background: #fff;
 }
 
 .accessories-head {
@@ -818,7 +819,7 @@ p {
   position: relative;
   overflow: hidden;
   border-radius: 16px;
-  background: #eef2f6;
+  background: #fff;
 }
 
 .accessories-slide img,
@@ -1607,7 +1608,7 @@ p {
 }
 
 .space-block {
-  background: #f4f6f9;
+  background: #fff;
   padding-top: 2.4rem;
 }
 
