@@ -70,11 +70,71 @@ export default async function HomePage() {
     ...uniqueCmsOrder.filter((id): id is HomepageBlockId => DEFAULT_HOMEPAGE_ORDER.includes(id as HomepageBlockId)),
     ...DEFAULT_HOMEPAGE_ORDER.filter((id) => !uniqueCmsOrder.includes(id))
   ].filter((id) => id !== "reviews");
+  const faqEntities = content.faq.items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer
+    }
+  }));
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "ProfessionalService"],
+        "@id": `${SITE_URL}/#business`,
+        name: "Fotobox Tirol",
+        url: SITE_URL,
+        image: content.hero.imageUrl ? new URL(content.hero.imageUrl, SITE_URL).toString() : undefined,
+        description: content.seo.description,
+        telephone: content.contact.phone,
+        email: content.contact.email,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: content.contact.address
+        },
+        areaServed: "Tirol",
+        sameAs: (content.footer.socialLinks || []).map((link) => link.href).filter(Boolean)
+      },
+      {
+        "@type": "Service",
+        "@id": `${SITE_URL}/#service`,
+        serviceType: "Fotobox Vermietung",
+        provider: {
+          "@id": `${SITE_URL}/#business`
+        },
+        areaServed: "Tirol",
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Fotobox Pakete",
+          itemListElement: content.pricing.plans.map((plan) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: plan.name
+            },
+            price: String(plan.price),
+            priceCurrency: "EUR"
+          }))
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${SITE_URL}/#faq`,
+        mainEntity: faqEntities
+      }
+    ]
+  };
 
   return (
     <>
       <SiteHeader content={content} />
       <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {homepageOrder.includes("hero") ? (
           <section
             className="hero"
