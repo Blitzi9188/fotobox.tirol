@@ -1202,6 +1202,14 @@ p {
   padding-bottom: 0.35rem;
 }
 
+.inquiry-field-label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
 .inquiry-options-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

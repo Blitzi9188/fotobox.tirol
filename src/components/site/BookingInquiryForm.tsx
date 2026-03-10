@@ -124,21 +124,23 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.printSectionTitle}</span>
-        <label className="inquiry-field">
-          <span>Paket Wunsch</span>
-          <select
-            name="packageName"
-            value={selectedPackage}
-            onChange={(event) => setSelectedPackage(event.target.value)}
-            required
-          >
-            {safePlans.map((plan) => (
-              <option key={plan.name} value={plan.name}>
-                {plan.price > 0 ? `${plan.name} - ${plan.price}€` : plan.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <span className="inquiry-field-label">Paket Wunsch</span>
+        <input type="hidden" name="packageName" value={selectedPackage} />
+        <div className={`inquiry-options-grid ${safePlans.length === 2 ? "inquiry-options-grid-2" : ""}`}>
+          {safePlans.map((plan) => (
+            <button
+              key={plan.name}
+              type="button"
+              className={`inquiry-option ${selectedPackage === plan.name ? "selected" : ""}`}
+              onClick={() => setSelectedPackage(plan.name)}
+            >
+              <span className="inquiry-option-title">{plan.name}</span>
+              <span className="inquiry-option-desc">
+                {plan.price > 0 ? `${plan.price}€` : "Allgemeine Anfrage"}
+              </span>
+            </button>
+          ))}
+        </div>
         <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
           <span>{inquiry.boxTypeLabel || "Fotobox Variante"}</span>
           <div className="inquiry-checkbox-group">
