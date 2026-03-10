@@ -11,11 +11,6 @@ const EVENT_TYPES = [
   { id: "geburtstag", label: "Geburtstag", desc: "Party & Private" }
 ];
 
-const PRINT_FORMAT_OPTIONS = [
-  { id: "10x15", label: "10x15", desc: "Klassisches Fotopapier" },
-  { id: "5x15", label: "5x15", desc: "Streifenformat" }
-];
-
 const BOX_TYPE_OPTIONS = [
   { id: "normal", label: "Normale Fotobox", desc: "" },
   { id: "ki", label: "KI-Fotobox", desc: "" }
@@ -35,7 +30,6 @@ export default function BookingInquiryForm({
     [plans]
   );
   const eventOptions = inquiry.eventOptions && inquiry.eventOptions.length > 0 ? inquiry.eventOptions : EVENT_TYPES;
-  const printFormatOptions = inquiry.printFormatOptions && inquiry.printFormatOptions.length > 0 ? inquiry.printFormatOptions : PRINT_FORMAT_OPTIONS;
   const boxTypeOptionsRaw = inquiry.boxTypeOptions && inquiry.boxTypeOptions.length > 0 ? inquiry.boxTypeOptions : BOX_TYPE_OPTIONS;
   const boxTypeOptions = boxTypeOptionsRaw.map((option) => {
     if ((option.label || "").toLowerCase().includes("ki")) {
@@ -47,7 +41,6 @@ export default function BookingInquiryForm({
   const [status, setStatus] = useState("");
   const [selectedEvent, setSelectedEvent] = useState(eventOptions[0]?.label || EVENT_TYPES[0].label);
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
-  const [selectedPrintFormat, setSelectedPrintFormat] = useState(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
   const [selectedBoxType, setSelectedBoxType] = useState(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -58,7 +51,6 @@ export default function BookingInquiryForm({
     const location = String(formData.get("location") || "").trim();
     const eventType = String(formData.get("eventType") || "").trim();
     const boxType = String(formData.get("boxType") || "").trim();
-    const printFormat = String(formData.get("printFormat") || "").trim();
     const printText = String(formData.get("printText") || "").trim();
 
     const payload = {
@@ -70,7 +62,7 @@ export default function BookingInquiryForm({
       eventType,
       location,
       boxType,
-      printFormat,
+      printFormat: "",
       printText,
       message: messageRaw
     };
@@ -91,7 +83,6 @@ export default function BookingInquiryForm({
       event.currentTarget.reset();
       setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
-      setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
       window.location.assign("/danke");
     }
@@ -147,30 +138,6 @@ export default function BookingInquiryForm({
               </option>
             ))}
           </select>
-        </label>
-        <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
-          <span>{inquiry.printFormatLabel || "Druckformat"}</span>
-          <div className="inquiry-checkbox-group">
-            {printFormatOptions.map((option, index) => (
-              <label
-                key={`${option.label}-${index}`}
-                className={`inquiry-checkbox-item ${selectedPrintFormat === option.label ? "selected" : ""}`}
-              >
-                <input
-                  type="radio"
-                  name="printFormat"
-                  value={option.label}
-                  checked={selectedPrintFormat === option.label}
-                  onChange={() => setSelectedPrintFormat(option.label)}
-                />
-                <span className="inquiry-checkmark" aria-hidden="true" />
-                <span className="inquiry-choice-line">
-                  <span className="inquiry-choice-title">{option.label}</span>
-                  <span className="inquiry-choice-desc">{option.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
         </label>
         <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
           <span>{inquiry.boxTypeLabel || "Fotobox Variante"}</span>

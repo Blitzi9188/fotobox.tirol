@@ -2282,6 +2282,24 @@ footer {
 }
 
 @media (max-width: 900px) {
+  .hero {
+    background: #ffffff !important;
+  }
+
+  .hero::before {
+    background: rgba(255, 255, 255, 0.62);
+  }
+
+  .hero::after {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.34) 0%, rgba(255, 255, 255, 0.02) 55%, transparent 100%);
+  }
+
+  .hero-glow,
+  .hero-glow-left,
+  .hero-glow-right {
+    display: none !important;
+  }
+
   .grid-3,
   .gallery-grid,
   .reviews-grid,
