@@ -1106,6 +1106,68 @@ p {
   padding: clamp(2rem, 4vw, 3.2rem);
 }
 
+.seo-landing-hero {
+  background: #fff;
+}
+
+.seo-landing-hero .container {
+  max-width: 920px;
+}
+
+.seo-landing-hero h1,
+.seo-landing-hero p {
+  text-align: center;
+}
+
+.seo-landing-hero p {
+  max-width: 760px;
+  margin: 1rem auto 0;
+}
+
+.seo-landing-section {
+  padding: 2.5rem 0;
+}
+
+.seo-landing-alt {
+  background: #fafafa;
+}
+
+.seo-landing-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.seo-landing-grid .admin-card {
+  width: 100%;
+  border-color: var(--c-line);
+}
+
+.seo-landing-grid h2,
+.seo-landing-faq h2 {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.seo-landing-list {
+  margin: 0 0 1.4rem 1.1rem;
+  color: #444;
+}
+
+.seo-landing-list li + li {
+  margin-top: 0.5rem;
+}
+
+.seo-landing-cta,
+.seo-landing-bottom-cta .btn {
+  margin-top: 1rem;
+}
+
+.seo-landing-bottom-cta {
+  margin-top: 1.5rem;
+}
+
 .thanks-card h1 {
   font-size: clamp(2.4rem, 6vw, 4.3rem);
   margin-bottom: 1rem;
