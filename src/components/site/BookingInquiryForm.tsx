@@ -180,7 +180,6 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.packageSectionTitle || "05. Paket Wunsch"}</span>
-        <span className="inquiry-field-label">Paket Wunsch</span>
         <input type="hidden" name="packageName" value={selectedPackage} />
         <div className={`inquiry-options-grid ${safePlans.length === 2 ? "inquiry-options-grid-2" : ""}`}>
           {safePlans.map((plan) => (
