@@ -135,21 +135,30 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.printSectionTitle}</span>
-        <span className="inquiry-field-label">{inquiry.printFormatLabel || "Druckformat"}</span>
-        <input type="hidden" name="printFormat" value={selectedPrintFormat} />
-        <div className={`inquiry-options-grid ${printFormatOptions.length === 2 ? "inquiry-options-grid-2" : ""}`}>
-          {printFormatOptions.map((option, index) => (
-            <button
-              key={`${option.label}-${index}`}
-              type="button"
-              className={`inquiry-option ${selectedPrintFormat === option.label ? "selected" : ""}`}
-              onClick={() => setSelectedPrintFormat(option.label)}
-            >
-              <span className="inquiry-option-title">{option.label}</span>
-              <span className="inquiry-option-desc">{option.desc}</span>
-            </button>
-          ))}
-        </div>
+        <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
+          <span>{inquiry.printFormatLabel || "Druckformat"}</span>
+          <div className="inquiry-checkbox-group">
+            {printFormatOptions.map((option, index) => (
+              <label
+                key={`${option.label}-${index}`}
+                className={`inquiry-checkbox-item ${selectedPrintFormat === option.label ? "selected" : ""}`}
+              >
+                <input
+                  type="radio"
+                  name="printFormat"
+                  value={option.label}
+                  checked={selectedPrintFormat === option.label}
+                  onChange={() => setSelectedPrintFormat(option.label)}
+                />
+                <span className="inquiry-checkmark" aria-hidden="true" />
+                <span className="inquiry-choice-line">
+                  <span className="inquiry-choice-title">{option.label}</span>
+                  <span className="inquiry-choice-desc">{option.desc}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </label>
         <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
           <span>{inquiry.boxTypeLabel || "Fotobox Variante"}</span>
           <div className="inquiry-checkbox-group">
