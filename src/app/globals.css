@@ -186,6 +186,18 @@ main section {
   z-index: 0;
 }
 
+@media (min-width: 901px) {
+  .hero {
+    background-size: contain !important;
+    background-position: center center !important;
+  }
+
+  .hero-bg-image {
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
 .hero-content {
   max-width: 760px;
   position: relative;
