@@ -164,7 +164,7 @@ main section {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.4);
+  background: transparent;
   z-index: 1;
 }
 
@@ -172,7 +172,7 @@ main section {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.06) 55%, transparent 100%);
+  background: transparent;
   z-index: 1;
 }
 
@@ -188,12 +188,13 @@ main section {
 
 @media (min-width: 901px) {
   .hero {
-    background-size: contain !important;
+    background-size: cover !important;
     background-position: center center !important;
+    padding-bottom: 1rem;
   }
 
   .hero-bg-image {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
   }
 }
@@ -2367,20 +2368,28 @@ footer {
 @media (max-width: 900px) {
   .hero {
     background: #ffffff !important;
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
   }
 
   .hero::before {
-    background: rgba(255, 255, 255, 0.62);
+    background: transparent;
   }
 
   .hero::after {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.34) 0%, rgba(255, 255, 255, 0.02) 55%, transparent 100%);
+    background: transparent;
   }
 
   .hero-glow,
   .hero-glow-left,
   .hero-glow-right {
     display: none !important;
+  }
+
+  .hero-bg-image {
+    object-fit: contain;
+    object-position: center center;
   }
 
   .grid-3,
