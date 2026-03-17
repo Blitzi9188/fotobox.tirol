@@ -1,13 +1,13 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { CMSContent, ContactLead } from "@/lib/types";
-import { getCmsDataDir } from "@/lib/storagePaths";
+import { getCmsDataDir, getCmsUploadsDir } from "@/lib/storagePaths";
 
 const dataDirectory = getCmsDataDir();
+const uploadsDirectory = getCmsUploadsDir();
 const seedCmsFilePath = path.join(process.cwd(), "data", "cms-content.json");
 const cmsFilePath = path.join(dataDirectory, "cms-content.json");
 const contactFilePath = path.join(dataDirectory, "contact-leads.json");
-const BROKEN_HERO_URL = "https://fotoboxtirol-production.up.railway.app/uploads/1772911775-hero-fotobox-final.png";
 const WORKING_HERO_URL = "/uploads/hero-optimized.jpg";
 
 function isRetryableFsError(error: unknown) {
@@ -83,6 +83,37 @@ async function ensureCmsStorage(): Promise<void> {
   }
 }
 
+function resolveUploadsPathFromUrl(url: string) {
+  try {
+    const parsedUrl = url.startsWith("http://") || url.startsWith("https://")
+      ? new URL(url).pathname
+      : url;
+
+    if (!parsedUrl.startsWith("/uploads/")) return null;
+
+    const fileName = path.basename(parsedUrl);
+    if (!fileName) return null;
+    return path.join(uploadsDirectory, fileName);
+  } catch {
+    return null;
+  }
+}
+
+async function shouldFallbackHeroImage(imageUrl?: string) {
+  if (!imageUrl) return false;
+  if (imageUrl === WORKING_HERO_URL) return false;
+
+  const uploadPath = resolveUploadsPathFromUrl(imageUrl);
+  if (!uploadPath) return false;
+
+  try {
+    await fs.access(uploadPath);
+    return false;
+  } catch {
+    return true;
+  }
+}
+
 export async function readCmsContent(): Promise<CMSContent> {
   await ensureCmsStorage();
   const raw = await fs.readFile(cmsFilePath, "utf-8");
@@ -90,7 +121,7 @@ export async function readCmsContent(): Promise<CMSContent> {
     const trimmed = raw.trim();
     if (!trimmed) throw new Error("Empty CMS payload.");
     const parsed = JSON.parse(trimmed) as CMSContent;
-    if (parsed?.hero?.imageUrl === BROKEN_HERO_URL) {
+    if (await shouldFallbackHeroImage(parsed?.hero?.imageUrl)) {
       const patched: CMSContent = {
         ...parsed,
         hero: {
