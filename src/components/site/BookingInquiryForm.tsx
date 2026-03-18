@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { PricePlan, CMSContent } from "@/lib/types";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
@@ -52,6 +52,21 @@ export default function BookingInquiryForm({
   const [selectedPrintFormat, setSelectedPrintFormat] = useState(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
   const [selectedBoxType, setSelectedBoxType] = useState(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
+  const [captchaQuestion, setCaptchaQuestion] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
+
+  async function loadCaptcha() {
+    const response = await fetch("/api/captcha", { cache: "no-store" });
+    const json = (await response.json()) as { question: string; token: string };
+    setCaptchaQuestion(json.question);
+    setCaptchaToken(json.token);
+    setCaptchaAnswer("");
+  }
+
+  useEffect(() => {
+    void loadCaptcha();
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -74,7 +89,9 @@ export default function BookingInquiryForm({
       boxType,
       printFormat: String(formData.get("printFormat") || "").trim(),
       printText,
-      message: messageRaw
+      message: messageRaw,
+      captchaToken,
+      captchaAnswer
     };
 
     const response = await fetch("/api/contact", {
@@ -95,8 +112,12 @@ export default function BookingInquiryForm({
       setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
+      setCaptchaAnswer("");
       window.location.assign("/danke");
+      return;
     }
+
+    void loadCaptcha();
   }
 
   return (
@@ -231,6 +252,27 @@ export default function BookingInquiryForm({
             </button>
           ))}
         </div>
+      </div>
+
+      <div className="inquiry-form-section">
+        <span className="inquiry-section-title">06. Sicherheitsabfrage</span>
+        <label className="inquiry-field">
+          <span>{captchaQuestion || "Lade Sicherheitsfrage..."}</span>
+          <div className="inquiry-captcha-row">
+            <input
+              name="captchaAnswer"
+              type="text"
+              inputMode="numeric"
+              value={captchaAnswer}
+              onChange={(event) => setCaptchaAnswer(event.target.value)}
+              placeholder="Antwort eingeben"
+              required
+            />
+            <button className="btn btn-outline inquiry-captcha-refresh" type="button" onClick={() => void loadCaptcha()}>
+              Neu
+            </button>
+          </div>
+        </label>
       </div>
 
       <button className="inquiry-submit-btn" type="submit">{inquiry.submitText}</button>

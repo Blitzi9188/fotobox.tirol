@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createLead } from "@/lib/cms";
+import { verifyCaptchaChallenge } from "@/lib/captcha";
 
 function escapeHtml(value: string) {
   return value
@@ -114,6 +115,8 @@ export async function POST(request: Request) {
   const printFormat = String(body.printFormat || "").trim();
   const printText = String(body.printText || "").trim();
   const message = String(body.message || "").trim();
+  const captchaToken = String(body.captchaToken || "").trim();
+  const captchaAnswer = String(body.captchaAnswer || "").trim();
   const mergedSummary = [
     `Anfrage-Datum: ${requestDate}`,
     `Eventart: ${eventType || "-"}`,
@@ -126,6 +129,10 @@ export async function POST(request: Request) {
 
   if (!name || !email || !packageName) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  }
+
+  if (!verifyCaptchaChallenge(captchaToken, captchaAnswer)) {
+    return NextResponse.json({ error: "Captcha ungueltig. Bitte erneut versuchen." }, { status: 400 });
   }
 
   await createLead({

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PricePlan } from "@/lib/types";
 
@@ -16,7 +16,22 @@ export default function ContactForm({
   const safePlans: PackageOption[] = plans.length > 0 ? plans : [{ name: "Allgemeine Anfrage", price: 0 }];
   const [status, setStatus] = useState("");
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
+  const [captchaQuestion, setCaptchaQuestion] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
   const router = useRouter();
+
+  async function loadCaptcha() {
+    const response = await fetch("/api/captcha", { cache: "no-store" });
+    const json = (await response.json()) as { question: string; token: string };
+    setCaptchaQuestion(json.question);
+    setCaptchaToken(json.token);
+    setCaptchaAnswer("");
+  }
+
+  useEffect(() => {
+    void loadCaptcha();
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,7 +43,9 @@ export default function ContactForm({
       phone: String(formData.get("phone") || ""),
       eventDate: String(formData.get("eventDate") || ""),
       packageName: String(formData.get("packageName") || ""),
-      message: String(formData.get("message") || "")
+      message: String(formData.get("message") || ""),
+      captchaToken,
+      captchaAnswer
     };
 
     const response = await fetch("/api/contact", {
@@ -42,8 +59,12 @@ export default function ContactForm({
     if (response.ok) {
       event.currentTarget.reset();
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
+      setCaptchaAnswer("");
       router.replace("/danke");
+      return;
     }
+
+    void loadCaptcha();
   }
 
   return (
@@ -83,6 +104,21 @@ export default function ContactForm({
       <label className="admin-field">
         <span>Nachricht</span>
         <textarea name="message" rows={5} required />
+      </label>
+      <label className="admin-field">
+        <span>{captchaQuestion || "Lade Sicherheitsfrage..."}</span>
+        <div className="inquiry-captcha-row">
+          <input
+            name="captchaAnswer"
+            inputMode="numeric"
+            value={captchaAnswer}
+            onChange={(event) => setCaptchaAnswer(event.target.value)}
+            required
+          />
+          <button className="btn btn-outline inquiry-captcha-refresh" type="button" onClick={() => void loadCaptcha()}>
+            Neu
+          </button>
+        </div>
       </label>
       <button className="btn" type="submit">Absenden</button>
       {status && <p className="admin-status">{status}</p>}
