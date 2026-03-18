@@ -1410,6 +1410,28 @@ p {
   align-items: center;
 }
 
+.inquiry-captcha-card {
+  margin: 0.4rem 0 1rem;
+  padding: 1rem 1rem 1.1rem;
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  background: #fbfbfb;
+}
+
+.inquiry-captcha-copy {
+  margin-bottom: 0.4rem;
+}
+
+.inquiry-captcha-copy .inquiry-section-title {
+  margin-bottom: 0.45rem;
+}
+
+.inquiry-captcha-help {
+  margin: 0 0 0.8rem;
+  font-size: 0.88rem;
+  color: #6b7280;
+}
+
 .inquiry-captcha-refresh {
   padding-inline: 1rem;
   white-space: nowrap;

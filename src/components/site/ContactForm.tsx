@@ -105,21 +105,28 @@ export default function ContactForm({
         <span>Nachricht</span>
         <textarea name="message" rows={5} required />
       </label>
-      <label className="admin-field">
-        <span>{captchaQuestion || "Lade Sicherheitsfrage..."}</span>
-        <div className="inquiry-captcha-row">
-          <input
-            name="captchaAnswer"
-            inputMode="numeric"
-            value={captchaAnswer}
-            onChange={(event) => setCaptchaAnswer(event.target.value)}
-            required
-          />
-          <button className="btn btn-outline inquiry-captcha-refresh" type="button" onClick={() => void loadCaptcha()}>
-            Neu
-          </button>
+      <div className="inquiry-captcha-card">
+        <div className="inquiry-captcha-copy">
+          <span className="inquiry-section-title">Sicherheitsabfrage</span>
+          <p className="inquiry-captcha-help">Ein kurzer Schutz gegen Spam.</p>
         </div>
-      </label>
+        <label className="admin-field" style={{ marginBottom: 0 }}>
+          <span>{captchaQuestion || "Lade Sicherheitsfrage..."}</span>
+          <div className="inquiry-captcha-row">
+            <input
+              name="captchaAnswer"
+              inputMode="numeric"
+              value={captchaAnswer}
+              onChange={(event) => setCaptchaAnswer(event.target.value)}
+              placeholder="Antwort"
+              required
+            />
+            <button className="btn btn-outline inquiry-captcha-refresh" type="button" onClick={() => void loadCaptcha()}>
+              Neu
+            </button>
+          </div>
+        </label>
+      </div>
       <button className="btn" type="submit">Absenden</button>
       {status && <p className="admin-status">{status}</p>}
     </form>

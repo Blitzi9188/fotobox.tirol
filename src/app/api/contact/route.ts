@@ -132,7 +132,7 @@ export async function POST(request: Request) {
   }
 
   if (!verifyCaptchaChallenge(captchaToken, captchaAnswer)) {
-    return NextResponse.json({ error: "Captcha ungueltig. Bitte erneut versuchen." }, { status: 400 });
+    return NextResponse.json({ error: "Die Sicherheitsabfrage war leider nicht korrekt. Bitte kurz neu versuchen." }, { status: 400 });
   }
 
   await createLead({

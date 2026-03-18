@@ -254,8 +254,11 @@ export default function BookingInquiryForm({
         </div>
       </div>
 
-      <div className="inquiry-form-section">
-        <span className="inquiry-section-title">06. Sicherheitsabfrage</span>
+      <div className="inquiry-captcha-card">
+        <div className="inquiry-captcha-copy">
+          <span className="inquiry-section-title">06. Sicherheitsabfrage</span>
+          <p className="inquiry-captcha-help">Bitte kurz die Rechenfrage beantworten, dann kann die Anfrage gesendet werden.</p>
+        </div>
         <label className="inquiry-field">
           <span>{captchaQuestion || "Lade Sicherheitsfrage..."}</span>
           <div className="inquiry-captcha-row">
@@ -265,7 +268,7 @@ export default function BookingInquiryForm({
               inputMode="numeric"
               value={captchaAnswer}
               onChange={(event) => setCaptchaAnswer(event.target.value)}
-              placeholder="Antwort eingeben"
+              placeholder="Antwort"
               required
             />
             <button className="btn btn-outline inquiry-captcha-refresh" type="button" onClick={() => void loadCaptcha()}>
