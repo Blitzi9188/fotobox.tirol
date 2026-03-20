@@ -28,6 +28,15 @@ export type PricePlan = {
   cta: string;
 };
 
+export type PricingPagePlan = {
+  name: string;
+  price: number;
+  meta?: string;
+  featured: boolean;
+  cta: string;
+  items: string[];
+};
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -46,6 +55,14 @@ export type FooterLink = {
   label: string;
   href: string;
   newTab?: boolean;
+};
+
+export type ReferenceItem = {
+  name: string;
+  href: string;
+  logoDomain: string;
+  logoSrc?: string;
+  initials?: string;
 };
 
 export type WizardStepContent = {
@@ -88,6 +105,24 @@ export type CMSContent = {
     descriptionText?: string;
     bullets: string[];
     buttonText: string;
+    heroBadge?: string;
+    heroTitleTop?: string;
+    heroTitleAccent?: string;
+    heroLead?: string;
+    featureTitle?: string;
+    featureLead?: string;
+    featureCards?: Feature[];
+    demoBadge?: string;
+    demoTitle?: string;
+    demoLead?: string;
+    demoItems?: Feature[];
+    useCasesTitle?: string;
+    useCasesLead?: string;
+    useCases?: string[];
+    standardTitle?: string;
+    standardLead?: string;
+    finalTitle?: string;
+    finalLead?: string;
     previewImageUrl?: string;
     compareLeftBeforeUrl?: string;
     compareLeftAfterUrl?: string;
@@ -106,6 +141,16 @@ export type CMSContent = {
   pricing: {
     heading: string;
     plans: PricePlan[];
+    pageTitle?: string;
+    pageIntro?: string;
+    pageHeading?: string;
+    pagePlans?: PricingPagePlan[];
+    technologyHeading?: string;
+    technologyItems?: Feature[];
+    faqHeading?: string;
+    referencesHeading?: string;
+    references?: ReferenceItem[];
+    contactTitle?: string;
   };
   space: {
     heading: string;

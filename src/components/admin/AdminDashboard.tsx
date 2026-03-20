@@ -144,6 +144,66 @@ export default function AdminDashboard() {
     ];
 
     const normalizedAiDescriptionText = (json.ai.descriptionText || htmlToPlainText(json.ai.descriptionHtml || "")).trim();
+    const normalizedAi = {
+      ...json.ai,
+      descriptionText: normalizedAiDescriptionText,
+      descriptionHtml: textToParagraphHtml(normalizedAiDescriptionText),
+      heroBadge: json.ai.heroBadge || "New: Artificial Intelligence",
+      heroTitleTop: json.ai.heroTitleTop || "Perfekte Bilder.",
+      heroTitleAccent: json.ai.heroTitleAccent || "Magisch",
+      heroLead: json.ai.heroLead || "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttoene und Overlays fuer einen sichtbar hochwertigeren Event-Look.",
+      featureTitle: json.ai.featureTitle || "Autofokus auf /Ihre Schokoladenseite.",
+      featureLead: json.ai.featureLead || normalizedAiDescriptionText.split(/\n\s*\n/)[0] || "",
+      featureCards: (json.ai.featureCards && json.ai.featureCards.length > 0)
+        ? json.ai.featureCards
+        : [
+            {
+              title: "Smart Lighting",
+              description: "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhaeltnissen fuer deutlich bessere Ergebnisse."
+            },
+            {
+              title: "Natuerliche Hauttoene",
+              description: "Ruhigere Haut, klarere Farben und ein hochwertiger Gesamteindruck, ohne dass die Bilder kuenstlich oder ueberzeichnet wirken."
+            },
+            {
+              title: "Eventgerechte Looks",
+              description: "Hochzeit, Firmenfeier oder Gala: Layouts, Farben und Bildwirkung koennen passend zum Anlass inszeniert werden."
+            },
+            {
+              title: "Sofort einsetzbar",
+              description: "Die KI ist nicht nur Demo, sondern Teil eines echten Event-Workflows mit Fotobox, Bedienung, Galerie und auf Wunsch Druck."
+            }
+          ],
+      demoBadge: json.ai.demoBadge || "Live Preview",
+      demoTitle: json.ai.demoTitle || "Intelligente /Design-Overlays.",
+      demoLead: json.ai.demoLead || "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fuers Motiv bleibt.",
+      demoItems: (json.ai.demoItems && json.ai.demoItems.length > 0)
+        ? json.ai.demoItems
+        : [
+            {
+              title: "Dynamic Text Engine",
+              description: "Namen, Daten oder Claim werden so gesetzt, dass Lesbarkeit und Motiv harmonisch zusammenpassen."
+            },
+            {
+              title: "Contextual Branding",
+              description: "Firmenlogos und Event-Branding koennen sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
+            }
+          ],
+      useCasesTitle: json.ai.useCasesTitle || "Fuer welche Events ist die KI Fotobox stark?",
+      useCasesLead: json.ai.useCasesLead || normalizedAiDescriptionText.split(/\n\s*\n/)[1] || "Mit wenigen Klicks entstehen einzigartige Bilder fuer Events mit Erlebnis, Aufmerksamkeit und modernem Branding.",
+      useCases: (json.ai.useCases && json.ai.useCases.length > 0)
+        ? json.ai.useCases
+        : [
+            "Hochzeiten mit individuellem Storytelling und Wow-Effekt",
+            "Firmenfeiern, Messen und Markenauftritte mit Social Sharing",
+            "Gala-Abende, Weihnachtsfeiern und Sommerfeste",
+            "Produktpraesentationen, Roadshows und Promotion-Aktionen"
+          ],
+      standardTitle: json.ai.standardTitle || "Standard in allen Fotoboxen.",
+      standardLead: json.ai.standardLead || "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und laesst sich je nach Eventcharakter intensiver inszenieren.",
+      finalTitle: json.ai.finalTitle || "Direkt zur KI-Fotobox beraten lassen",
+      finalLead: json.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenstaendige Attraktion oder als Upgrade zur klassischen Fotobox fuer dein Event passt."
+    };
     const normalizedFooter = {
       questionsTitle: json.footer?.questionsTitle || "Du hast Fragen?",
       questionsText: json.footer?.questionsText || "",
@@ -288,14 +348,123 @@ export default function AdminDashboard() {
         subtitle: json.templateWizard?.step4?.subtitle || "Prüfen Sie Ihre Auswahl und senden Sie uns Ihre unverbindliche Anfrage."
       }
     };
+    const normalizedPricing = {
+      ...json.pricing,
+      pageTitle: json.pricing?.pageTitle || "Preisgestaltung",
+      pageIntro: json.pricing?.pageIntro || "Eigene Uebersichtsseite fuer Pakete, Druckformate und Leistungen.",
+      pageHeading: json.pricing?.pageHeading || "all/inclusive",
+      pagePlans: (json.pricing?.pagePlans && json.pricing.pagePlans.length > 0)
+        ? json.pricing.pagePlans
+        : [
+            {
+              name: "Essential",
+              price: 490,
+              meta: "/ Event",
+              featured: false,
+              cta: "Anfragen",
+              items: [
+                "4 Stunden Laufzeit",
+                "Digitale Flatrate (Online Galerie)",
+                "Standard KI-Retusche",
+                "Auf- & Abbau inklusive"
+              ]
+            },
+            {
+              name: "Premium",
+              price: 790,
+              meta: "/ Event",
+              featured: true,
+              cta: "Jetzt buchen",
+              items: [
+                "Open-End Laufzeit (max. 12h)",
+                "Sofort-Druck Flatrate (400 Prints)",
+                "Premium Hochzeits-Filter & Overlay",
+                "QR-Code Sofort-Download",
+                "Requisiten Box (Hochzeit-Edition)"
+              ]
+            },
+            {
+              name: "Black Label",
+              price: 1290,
+              meta: "/ Event",
+              featured: false,
+              cta: "Anfragen",
+              items: [
+                "Alles aus dem Premium-Paket",
+                "Live-Slideshow auf TV/Beamer",
+                "Persoenlicher Operator vor Ort",
+                "High-End Gaestebuch & Klebe-Service"
+              ]
+            }
+          ],
+      technologyHeading: json.pricing?.technologyHeading || "technik/bedienung",
+      technologyItems: (json.pricing?.technologyItems && json.pricing.technologyItems.length > 0)
+        ? json.pricing.technologyItems
+        : [
+            {
+              title: "Studioqualitaet",
+              description: "Integrierte DSLR-Kamera und professioneller Studioblitz sorgen fuer sauber ausgeleuchtete Bilder in jeder Event-Umgebung."
+            },
+            {
+              title: "Touch Bedienung",
+              description: "Intuitive Benutzerfuehrung ueber den grossen Touchscreen, damit sich auch Gaeste ohne Einweisung sofort zurechtfinden."
+            },
+            {
+              title: "Sofortdruck",
+              description: "High-Speed Fotodruck in Sekunden mit klaren Ausdrucken in Laborqualitaet, abgestimmt auf euer Event oder Branding."
+            }
+          ],
+      faqHeading: json.pricing?.faqHeading || json.faq?.heading || "haeufige/fragen",
+      referencesHeading: json.pricing?.referencesHeading || "referenzen/partner",
+      references: (json.pricing?.references && json.pricing.references.length > 0)
+        ? json.pricing.references
+        : [
+            { name: "Fiegl+Spielberger", href: "https://www.fiegl.co.at", logoDomain: "fiegl.co.at" },
+            { name: "Congress Messe Innsbruck", href: "https://www.cmi.at", logoDomain: "cmi.at" },
+            { name: "Kloster Bräu Seefeld", href: "https://klosterbraeu.com", logoDomain: "klosterbraeu.com" },
+            { name: "Tiroler Versicherung", href: "https://www.tiroler-versicherung.at", logoDomain: "tiroler-versicherung.at" },
+            { name: "Völkl Ski", href: "https://www.voelkl.com", logoDomain: "voelkl.com" },
+            { name: "Recycling Ahrental", href: "https://www.rz-ahrental.at", logoDomain: "rz-ahrental.at" },
+            { name: "Sandoz", href: "https://www.sandoz.com", logoDomain: "sandoz.com" },
+            { name: "Interalpen Hotel", href: "https://www.interalpen.com", logoDomain: "interalpen.com" },
+            { name: "Wetscher", href: "https://www.wetscher.com", logoDomain: "wetscher.com" },
+            { name: "Burton", href: "https://www.burton.com", logoDomain: "burton.com" },
+            { name: "Tiroler Wasserkraft", href: "https://www.tiwag.at", logoDomain: "tiwag.at" },
+            { name: "Woods Seefeld", href: "https://www.woods-seefeld.com", logoDomain: "woods-seefeld.com" },
+            { name: "OFA", href: "https://www.ofa.at", logoDomain: "ofa.at" },
+            { name: "Bayrischer Hof", href: "https://www.bayerischerhof.de/de/", logoDomain: "bayerischerhof.de", initials: "BH" },
+            { name: "VOGUE Germany", href: "https://www.vogue.de", logoDomain: "vogue.de" },
+            { name: "Adlers Hotel", href: "https://www.adlers-innsbruck.com", logoDomain: "adlers-innsbruck.com" },
+            { name: "Hypo Tirol Bank", href: "https://www.hypotirol.com", logoDomain: "hypotirol.com" },
+            { name: "Aqua Dome", href: "https://www.aqua-dome.at", logoDomain: "aqua-dome.at" },
+            { name: "Aufschnaiter", href: "https://www.aufschnaiter.com", logoDomain: "aufschnaiter.com" },
+            { name: "Salt Schweiz", href: "https://www.salt.ch", logoDomain: "salt.ch" },
+            { name: "Büro im Laden", href: "https://www.xn--dasbroimladen-zob.at/im-laden", logoDomain: "xn--dasbroimladen-zob.at" },
+            { name: "Donau Versicherung", href: "https://www.donauversicherung.at", logoDomain: "donauversicherung.at" },
+            {
+              name: "Tirol Werbung",
+              href: "https://www.tirolwerbung.at",
+              logoDomain: "tirolwerbung.at",
+              logoSrc: "https://www.tirolwerbung.at/_Resources/Static/Packages/imx.bestpractice/images/PageHeader/tirol.svg?bust=20775f4e"
+            },
+            {
+              name: "Innsbruck Tourismus",
+              href: "https://www.innsbruck.info",
+              logoDomain: "innsbruck.info",
+              logoSrc: "https://www.innsbruckphoto.at/logos/INNSBRUCK/RGB/Logo_INNSBRUCK_rgb.jpg"
+            },
+            { name: "Thöni Telfs", href: "https://www.thoeni.com", logoDomain: "thoeni.com" },
+            { name: "Kaufhaus Tyrol", href: "https://kaufhaus-tyrol.at", logoDomain: "kaufhaus-tyrol.at" },
+            { name: "DEZ Einkaufszentrum", href: "https://www.dez.at", logoDomain: "dez.at" },
+            { name: "Löffler", href: "https://www.loeffler.at", logoDomain: "loeffler.at" },
+            { name: "Innio / Jenbach", href: "https://www.innio.com", logoDomain: "innio.com" }
+          ],
+      contactTitle: json.pricing?.contactTitle || "Direkt anfragen"
+    };
 
     setContent({
       ...json,
-      ai: {
-        ...json.ai,
-        descriptionText: normalizedAiDescriptionText,
-        descriptionHtml: textToParagraphHtml(normalizedAiDescriptionText)
-      },
+      ai: normalizedAi,
       footer: normalizedFooter,
       legal: normalizedLegal,
       accessories: normalizedAccessories,
@@ -304,6 +473,7 @@ export default function AdminDashboard() {
       space: normalizedSpace,
       reviews: normalizedReviews,
       templateWizard: normalizedTemplateWizard,
+      pricing: normalizedPricing,
       layout: {
         ...json.layout,
         homepageOrder: normalizedHomepageOrder
@@ -963,6 +1133,122 @@ export default function AdminDashboard() {
 
             <div className="admin-panel">
               <label className="admin-field">
+                <span>KI Seite Badge</span>
+                <input
+                  value={content.ai.heroBadge || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, heroBadge: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>KI Seite Titel Zeile 1</span>
+                <input
+                  value={content.ai.heroTitleTop || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, heroTitleTop: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>KI Seite Akzentwort</span>
+                <input
+                  value={content.ai.heroTitleAccent || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, heroTitleAccent: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>KI Hero Einleitung</span>
+                <textarea
+                  rows={5}
+                  value={content.ai.heroLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, heroLead: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Feature Titel (mit / fuer Zeilenbruch)</span>
+                <input
+                  value={content.ai.featureTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, featureTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Feature Einleitung</span>
+                <textarea
+                  rows={5}
+                  value={content.ai.featureLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, featureLead: e.target.value } }))}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Feature Karten (Titel | Text, eine Zeile pro Karte)</span>
+                <textarea
+                  rows={8}
+                  value={(content.ai.featureCards || []).map((item) => `${item.title} | ${item.description}`).join("\n")}
+                  onChange={(e) => {
+                    const featureCards = e.target.value
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((line) => {
+                        const [title, ...rest] = line.split("|");
+                        return {
+                          title: (title || "").trim(),
+                          description: rest.join("|").trim()
+                        };
+                      })
+                      .filter((item) => item.title && item.description);
+                    updateContent((prev) => ({ ...prev, ai: { ...prev.ai, featureCards } }));
+                  }}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Demo Badge</span>
+                <input
+                  value={content.ai.demoBadge || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, demoBadge: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Demo Titel (mit / fuer Zeilenbruch)</span>
+                <input
+                  value={content.ai.demoTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, demoTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Demo Einleitung</span>
+                <textarea
+                  rows={4}
+                  value={content.ai.demoLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, demoLead: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Demo Punkte (Titel | Text, eine Zeile pro Punkt)</span>
+                <textarea
+                  rows={6}
+                  value={(content.ai.demoItems || []).map((item) => `${item.title} | ${item.description}`).join("\n")}
+                  onChange={(e) => {
+                    const demoItems = e.target.value
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((line) => {
+                        const [title, ...rest] = line.split("|");
+                        return {
+                          title: (title || "").trim(),
+                          description: rest.join("|").trim()
+                        };
+                      })
+                      .filter((item) => item.title && item.description);
+                    updateContent((prev) => ({ ...prev, ai: { ...prev.ai, demoItems } }));
+                  }}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
                 <span>Links Vorher hochladen</span>
                 <input
                   type="file"
@@ -1057,6 +1343,73 @@ export default function AdminDashboard() {
               {content.ai.compareRightAfterUrl ? <img src={content.ai.compareRightAfterUrl} alt="KI Rechts Nachher" className="admin-preview" /> : null}
             </div>
           </div>
+
+          <div className="admin-grid-3">
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Use Cases Titel</span>
+                <input
+                  value={content.ai.useCasesTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, useCasesTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Use Cases Einleitung</span>
+                <textarea
+                  rows={5}
+                  value={content.ai.useCasesLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, useCasesLead: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Use Cases Liste (eine Zeile pro Punkt)</span>
+                <textarea
+                  rows={6}
+                  value={(content.ai.useCases || []).join("\n")}
+                  onChange={(e) => {
+                    const useCases = e.target.value.split("\n").map((line) => line.trim()).filter(Boolean);
+                    updateContent((prev) => ({ ...prev, ai: { ...prev.ai, useCases } }));
+                  }}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Standard Block Titel</span>
+                <input
+                  value={content.ai.standardTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, standardTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Standard Block Text</span>
+                <textarea
+                  rows={5}
+                  value={content.ai.standardLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, standardLead: e.target.value } }))}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Abschluss Titel</span>
+                <input
+                  value={content.ai.finalTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, finalTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Abschluss Text</span>
+                <textarea
+                  rows={5}
+                  value={content.ai.finalLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, finalLead: e.target.value } }))}
+                />
+              </label>
+            </div>
+          </div>
         </section>
       );
     }
@@ -1066,7 +1419,195 @@ export default function AdminDashboard() {
         <section className="admin-section">
           <div className="admin-section-head">
             <h2>Preise</h2>
-            <p>Preis-Pakete inkl. Inhalte, Highlight und CTA.</p>
+            <p>Homepage-Preise und eigene Inhalte fuer die Preisgestaltungs-Seite.</p>
+          </div>
+          <div className="admin-grid-2">
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Preis-Seite Titel</span>
+                <input
+                  value={content.pricing.pageTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, pageTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Preis-Seite Einleitung</span>
+                <textarea
+                  rows={4}
+                  value={content.pricing.pageIntro || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, pageIntro: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Preispakete Überschrift (mit /)</span>
+                <input
+                  value={content.pricing.pageHeading || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, pageHeading: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Technik/Bedienung Überschrift</span>
+                <input
+                  value={content.pricing.technologyHeading || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, technologyHeading: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>FAQ Überschrift</span>
+                <input
+                  value={content.pricing.faqHeading || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, faqHeading: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Referenzen Überschrift</span>
+                <input
+                  value={content.pricing.referencesHeading || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, referencesHeading: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Kontaktblock Titel</span>
+                <input
+                  value={content.pricing.contactTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, contactTitle: e.target.value } }))}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Technik/Bedienung Karten (Titel | Text, eine Zeile pro Karte)</span>
+                <textarea
+                  rows={7}
+                  value={(content.pricing.technologyItems || []).map((item) => `${item.title} | ${item.description}`).join("\n")}
+                  onChange={(e) => {
+                    const technologyItems = e.target.value
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((line) => {
+                        const [title, ...rest] = line.split("|");
+                        return {
+                          title: (title || "").trim(),
+                          description: rest.join("|").trim()
+                        };
+                      })
+                      .filter((item) => item.title && item.description);
+                    updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, technologyItems } }));
+                  }}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Referenzen (Name | URL | Domain | Logo URL optional | Initialen optional)</span>
+                <textarea
+                  rows={10}
+                  value={(content.pricing.references || [])
+                    .map((item) => [item.name, item.href, item.logoDomain, item.logoSrc || "", item.initials || ""].join(" | "))
+                    .join("\n")}
+                  onChange={(e) => {
+                    const references = e.target.value
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((line) => {
+                        const [name, href, logoDomain, logoSrc, initials] = line.split("|").map((part) => part.trim());
+                        return { name, href, logoDomain, logoSrc: logoSrc || undefined, initials: initials || undefined };
+                      })
+                      .filter((item) => item.name && item.href && item.logoDomain);
+                    updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, references } }));
+                  }}
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="admin-section-head" style={{ marginTop: "1.5rem" }}>
+            <h3>Preis-Seite Pakete</h3>
+            <p>Pakete fuer die Unterseite `preisgestaltung`.</p>
+          </div>
+          {(content.pricing.pagePlans || []).map((plan, index) => (
+            <div className="admin-subcard" key={`page-${plan.name}-${index}`}>
+              <div className="admin-grid-3">
+                <label className="admin-field">
+                  <span>Name</span>
+                  <input
+                    value={plan.name}
+                    onChange={(e) => {
+                      const pagePlans = [...(content.pricing.pagePlans || [])];
+                      pagePlans[index] = { ...plan, name: e.target.value };
+                      updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, pagePlans } }));
+                    }}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Preis in Euro</span>
+                  <input
+                    type="number"
+                    value={plan.price}
+                    onChange={(e) => {
+                      const pagePlans = [...(content.pricing.pagePlans || [])];
+                      pagePlans[index] = { ...plan, price: Number(e.target.value) };
+                      updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, pagePlans } }));
+                    }}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Preis Meta</span>
+                  <input
+                    value={plan.meta || ""}
+                    onChange={(e) => {
+                      const pagePlans = [...(content.pricing.pagePlans || [])];
+                      pagePlans[index] = { ...plan, meta: e.target.value };
+                      updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, pagePlans } }));
+                    }}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Button Text</span>
+                  <input
+                    value={plan.cta}
+                    onChange={(e) => {
+                      const pagePlans = [...(content.pricing.pagePlans || [])];
+                      pagePlans[index] = { ...plan, cta: e.target.value };
+                      updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, pagePlans } }));
+                    }}
+                  />
+                </label>
+              </div>
+              <label className="admin-field inline">
+                <input
+                  type="checkbox"
+                  checked={plan.featured}
+                  onChange={(e) => {
+                    const pagePlans = [...(content.pricing.pagePlans || [])];
+                    pagePlans[index] = { ...plan, featured: e.target.checked };
+                    updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, pagePlans } }));
+                  }}
+                />
+                <span>Als hervorgehoben markieren</span>
+              </label>
+              <label className="admin-field">
+                <span>Leistungen (eine pro Zeile)</span>
+                <textarea
+                  rows={5}
+                  value={plan.items.join("\n")}
+                  onChange={(e) => {
+                    const pagePlans = [...(content.pricing.pagePlans || [])];
+                    pagePlans[index] = {
+                      ...plan,
+                      items: e.target.value.split("\n").map((line) => line.trim()).filter(Boolean)
+                    };
+                    updateContent((prev) => ({ ...prev, pricing: { ...prev.pricing, pagePlans } }));
+                  }}
+                />
+              </label>
+            </div>
+          ))}
+
+          <div className="admin-section-head" style={{ marginTop: "1.5rem" }}>
+            <h3>Homepage Preise</h3>
+            <p>Preis-Pakete fuer die Startseite.</p>
           </div>
           {content.pricing.plans.map((plan, index) => (
             <div className="admin-subcard" key={`${plan.name}-${index}`}>

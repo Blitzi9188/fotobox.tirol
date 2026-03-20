@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { PricePlan, CMSContent } from "@/lib/types";
-import RecaptchaField from "@/components/site/RecaptchaField";
+import CaptchaField from "@/components/site/CaptchaField";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
 
@@ -177,6 +177,10 @@ function getBoxTypeIcon(label: string) {
   return label.toLowerCase().includes("ki") ? <SparklesIcon /> : <CameraIcon />;
 }
 
+function getDefaultPrintFormatLabel(options: Array<{ label: string; desc: string }>) {
+  return options.find((option) => option.label.includes("5x15"))?.label || options[0]?.label || PRINT_FORMAT_OPTIONS[1].label;
+}
+
 export default function BookingInquiryForm({
   plans = [],
   initialPackage,
@@ -202,13 +206,16 @@ export default function BookingInquiryForm({
     }
     return option;
   });
+  const defaultPrintFormatLabel = getDefaultPrintFormatLabel(printFormatOptions);
 
   const [status, setStatus] = useState("");
   const [selectedEvent, setSelectedEvent] = useState(eventOptions[0]?.label || EVENT_TYPES[0].label);
-  const [selectedPrintFormat, setSelectedPrintFormat] = useState(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
+  const [selectedPrintFormat, setSelectedPrintFormat] = useState(defaultPrintFormatLabel);
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
   const [selectedBoxType, setSelectedBoxType] = useState(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
-  const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
+  const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0);
 
   function requiredLabel(label: string) {
     return `${label} *`;
@@ -236,7 +243,8 @@ export default function BookingInquiryForm({
       printFormat: String(formData.get("printFormat") || "").trim(),
       printText,
       message: messageRaw,
-      recaptchaToken
+      captchaToken: String(formData.get("captchaToken") || "").trim(),
+      captchaAnswer: String(formData.get("captchaAnswer") || "").trim()
     };
 
     const response = await fetch("/api/contact", {
@@ -248,11 +256,13 @@ export default function BookingInquiryForm({
     const json = (await response.json().catch(() => null)) as { error?: string } | null;
     if (response.ok) {
       setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);
-      setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
+      setSelectedPrintFormat(defaultPrintFormatLabel);
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
-      setRecaptchaToken("");
+      setCaptchaToken("");
+      setCaptchaAnswer("");
+      setCaptchaRefreshKey((value) => value + 1);
       const params = new URLSearchParams();
       params.set("paket", submittedPackage);
       if (payload.eventDate) params.set("eventDate", payload.eventDate);
@@ -262,7 +272,9 @@ export default function BookingInquiryForm({
     }
 
     setStatus(json?.error || inquiry.errorText || "Senden fehlgeschlagen.");
-    setRecaptchaToken("");
+    setCaptchaToken("");
+    setCaptchaAnswer("");
+    setCaptchaRefreshKey((value) => value + 1);
   }
 
   return (
@@ -408,8 +420,14 @@ export default function BookingInquiryForm({
           <p className="inquiry-captcha-help">Bitte bestaetigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="inquiry-field">
-          <span>{requiredLabel("Google reCAPTCHA")}</span>
-          <RecaptchaField value={recaptchaToken} onChange={setRecaptchaToken} />
+          <span>{requiredLabel("Sicherheitsrechnung")}</span>
+          <CaptchaField
+            token={captchaToken}
+            answer={captchaAnswer}
+            onTokenChange={setCaptchaToken}
+            onAnswerChange={setCaptchaAnswer}
+            refreshKey={captchaRefreshKey}
+          />
         </label>
       </div>
 

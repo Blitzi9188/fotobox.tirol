@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import nodemailer from "nodemailer";
 import { createLead } from "@/lib/cms";
-import { verifyRecaptchaToken } from "@/lib/recaptcha";
+import { verifyCaptchaChallenge } from "@/lib/captcha";
 
 function escapeHtml(value: string) {
   return value
@@ -132,9 +132,6 @@ export async function POST(request: Request) {
   const body = await request.json();
   const now = new Date();
   const requestDate = formatDateEu(now.toISOString().slice(0, 10));
-  const forwardedFor = request.headers.get("x-forwarded-for") || "";
-  const remoteIp = forwardedFor.split(",")[0]?.trim() || undefined;
-
   const name = String(body.name || "").trim();
   const email = String(body.email || "").trim();
   const phone = String(body.phone || "").trim();
@@ -146,7 +143,8 @@ export async function POST(request: Request) {
   const printFormat = String(body.printFormat || "").trim();
   const printText = String(body.printText || "").trim();
   const message = String(body.message || "").trim();
-  const recaptchaToken = String(body.recaptchaToken || "").trim();
+  const captchaToken = String(body.captchaToken || "").trim();
+  const captchaAnswer = String(body.captchaAnswer || "").trim();
   const mergedSummary = [
     `Anfrage-Datum: ${requestDate}`,
     `Eventart: ${eventType || "-"}`,
@@ -161,16 +159,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  let recaptchaOk = false;
-  try {
-    recaptchaOk = await verifyRecaptchaToken(recaptchaToken, remoteIp);
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "reCAPTCHA Verifikation fehlgeschlagen.";
-    return NextResponse.json({ error: message }, { status: 502 });
-  }
-
-  if (!recaptchaOk) {
-    return NextResponse.json({ error: "Die Google reCAPTCHA Pruefung war leider nicht erfolgreich. Bitte kurz neu versuchen." }, { status: 400 });
+  if (!verifyCaptchaChallenge(captchaToken, captchaAnswer)) {
+    return NextResponse.json({ error: "Die Sicherheitsrechnung war leider nicht korrekt. Bitte kurz neu versuchen." }, { status: 400 });
   }
 
   await createLead({

@@ -1705,12 +1705,59 @@ p {
   color: #6b7280;
 }
 
-.inquiry-recaptcha-widget {
+.inquiry-recaptcha-widget,
+.inquiry-captcha-widget {
   overflow-x: auto;
 }
 
 .inquiry-recaptcha-widget > div {
   min-width: 304px;
+}
+
+.inquiry-captcha-widget {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.inquiry-captcha-question {
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  background: #fff;
+  color: #111827;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.inquiry-recaptcha-refresh {
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.95rem;
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  background: #fff;
+  color: #111827;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.inquiry-recaptcha-refresh:hover {
+  border-color: #9ca3af;
+  transform: translateY(-1px);
+}
+
+.inquiry-captcha-widget input[type="text"] {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  background: #fff;
+  color: #111827;
 }
 
 .inquiry-recaptcha-missing {
@@ -4496,6 +4543,48 @@ footer {
   z-index: 2;
 }
 
+.ki-compare-swipe-button {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.84);
+  color: #fff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 18px 36px -22px rgba(15, 23, 42, 0.9);
+  pointer-events: none;
+}
+
+.ki-compare-swipe-icon {
+  width: 1.7rem;
+  height: 1.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(230, 36, 36, 0.16);
+  color: #f87171;
+}
+
+.ki-compare-swipe-icon svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .ki-chip {
   position: absolute;
   top: 1.5rem;
@@ -4899,5 +4988,12 @@ footer {
 
   .ki-chip-accent {
     right: 1rem;
+  }
+
+  .ki-compare-swipe-button {
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.58rem 0.8rem;
+    font-size: 0.68rem;
   }
 }

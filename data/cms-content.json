@@ -65,6 +65,55 @@
     "descriptionText": "Die KI Fotobox Tirol bringt moderne Eventunterhaltung auf ein neues Level. Diese innovative KI-Fotobox kombiniert klassische Fotobox-Funktionen mit künstlicher Intelligenz und sorgt für kreative Fotos sowie unvergessliche Momente für Gäste aller Altersgruppen.\n\nMit wenigen Klicks entstehen einzigartige Bilder – ob Superheld, Karikatur oder fantasievolle Themenwelt.\n\nDie Fotobox Tirol mit KI-Technologie ist perfekt für Hochzeiten, Firmenfeiern, Geburtstage, Messen und Events geeignet und macht jede Veranstaltung zu einem besonderen Erlebnis.",
     "bullets": [],
     "buttonText": "Beispiele ansehen",
+    "heroBadge": "New: Artificial Intelligence",
+    "heroTitleTop": "Perfekte Bilder.",
+    "heroTitleAccent": "Magisch",
+    "heroLead": "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttoene und Overlays fuer einen sichtbar hochwertigeren Event-Look.",
+    "featureTitle": "Autofokus auf /Ihre Schokoladenseite.",
+    "featureLead": "Die KI Fotobox Tirol bringt moderne Eventunterhaltung auf ein neues Level. Diese innovative KI-Fotobox kombiniert klassische Fotobox-Funktionen mit kuenstlicher Intelligenz und sorgt fuer kreative Fotos sowie unvergessliche Momente fuer Gaeste aller Altersgruppen.",
+    "featureCards": [
+      {
+        "title": "Smart Lighting",
+        "description": "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhaeltnissen fuer deutlich bessere Ergebnisse."
+      },
+      {
+        "title": "Natuerliche Hauttoene",
+        "description": "Ruhigere Haut, klarere Farben und ein hochwertiger Gesamteindruck, ohne dass die Bilder kuenstlich oder ueberzeichnet wirken."
+      },
+      {
+        "title": "Eventgerechte Looks",
+        "description": "Hochzeit, Firmenfeier oder Gala: Layouts, Farben und Bildwirkung koennen passend zum Anlass inszeniert werden."
+      },
+      {
+        "title": "Sofort einsetzbar",
+        "description": "Die KI ist nicht nur Demo, sondern Teil eines echten Event-Workflows mit Fotobox, Bedienung, Galerie und auf Wunsch Druck."
+      }
+    ],
+    "demoBadge": "Live Preview",
+    "demoTitle": "Intelligente /Design-Overlays.",
+    "demoLead": "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fuers Motiv bleibt.",
+    "demoItems": [
+      {
+        "title": "Dynamic Text Engine",
+        "description": "Namen, Daten oder Claim werden so gesetzt, dass Lesbarkeit und Motiv harmonisch zusammenpassen."
+      },
+      {
+        "title": "Contextual Branding",
+        "description": "Firmenlogos und Event-Branding koennen sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
+      }
+    ],
+    "useCasesTitle": "Fuer welche Events ist die KI Fotobox stark?",
+    "useCasesLead": "Mit wenigen Klicks entstehen einzigartige Bilder fuer Events mit Erlebnis, Aufmerksamkeit und modernem Branding.",
+    "useCases": [
+      "Hochzeiten mit individuellem Storytelling und Wow-Effekt",
+      "Firmenfeiern, Messen und Markenauftritte mit Social Sharing",
+      "Gala-Abende, Weihnachtsfeiern und Sommerfeste",
+      "Produktpraesentationen, Roadshows und Promotion-Aktionen"
+    ],
+    "standardTitle": "Standard in allen Fotoboxen.",
+    "standardLead": "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und laesst sich je nach Eventcharakter intensiver inszenieren.",
+    "finalTitle": "Direkt zur KI-Fotobox beraten lassen",
+    "finalLead": "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenstaendige Attraktion oder als Upgrade zur klassischen Fotobox fuer dein Event passt.",
     "previewImageUrl": "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
     "compareLeftBeforeUrl": "/uploads/ai-left-before-optimized.jpg",
     "compareLeftAfterUrl": "/uploads/ai-left-after-optimized.jpg",
@@ -101,6 +150,100 @@
   },
   "pricing": {
     "heading": "all/inclusive",
+    "pageTitle": "Preisgestaltung",
+    "pageIntro": "Eigene Uebersichtsseite fuer Pakete, Druckformate und Leistungen.",
+    "pageHeading": "all/inclusive",
+    "pagePlans": [
+      {
+        "name": "Essential",
+        "price": 490,
+        "meta": "/ Event",
+        "featured": false,
+        "cta": "Anfragen",
+        "items": [
+          "4 Stunden Laufzeit",
+          "Digitale Flatrate (Online Galerie)",
+          "Standard KI-Retusche",
+          "Auf- & Abbau inklusive"
+        ]
+      },
+      {
+        "name": "Premium",
+        "price": 790,
+        "meta": "/ Event",
+        "featured": true,
+        "cta": "Jetzt buchen",
+        "items": [
+          "Open-End Laufzeit (max. 12h)",
+          "Sofort-Druck Flatrate (400 Prints)",
+          "Premium Hochzeits-Filter & Overlay",
+          "QR-Code Sofort-Download",
+          "Requisiten Box (Hochzeit-Edition)"
+        ]
+      },
+      {
+        "name": "Black Label",
+        "price": 1290,
+        "meta": "/ Event",
+        "featured": false,
+        "cta": "Anfragen",
+        "items": [
+          "Alles aus dem Premium-Paket",
+          "Live-Slideshow auf TV/Beamer",
+          "Persoenlicher Operator vor Ort",
+          "High-End Gaestebuch & Klebe-Service"
+        ]
+      }
+    ],
+    "technologyHeading": "technik/bedienung",
+    "technologyItems": [
+      {
+        "title": "Studioqualitaet",
+        "description": "Integrierte DSLR-Kamera und professioneller Studioblitz sorgen fuer sauber ausgeleuchtete Bilder in jeder Event-Umgebung."
+      },
+      {
+        "title": "Touch Bedienung",
+        "description": "Intuitive Benutzerfuehrung ueber den grossen Touchscreen, damit sich auch Gaeste ohne Einweisung sofort zurechtfinden."
+      },
+      {
+        "title": "Sofortdruck",
+        "description": "High-Speed Fotodruck in Sekunden mit klaren Ausdrucken in Laborqualitaet, abgestimmt auf euer Event oder Branding."
+      }
+    ],
+    "faqHeading": "haeufige/fragen",
+    "referencesHeading": "referenzen/partner",
+    "references": [
+      { "name": "Fiegl+Spielberger", "href": "https://www.fiegl.co.at", "logoDomain": "fiegl.co.at" },
+      { "name": "Congress Messe Innsbruck", "href": "https://www.cmi.at", "logoDomain": "cmi.at" },
+      { "name": "Kloster Bräu Seefeld", "href": "https://klosterbraeu.com", "logoDomain": "klosterbraeu.com" },
+      { "name": "Tiroler Versicherung", "href": "https://www.tiroler-versicherung.at", "logoDomain": "tiroler-versicherung.at" },
+      { "name": "Völkl Ski", "href": "https://www.voelkl.com", "logoDomain": "voelkl.com" },
+      { "name": "Recycling Ahrental", "href": "https://www.rz-ahrental.at", "logoDomain": "rz-ahrental.at" },
+      { "name": "Sandoz", "href": "https://www.sandoz.com", "logoDomain": "sandoz.com" },
+      { "name": "Interalpen Hotel", "href": "https://www.interalpen.com", "logoDomain": "interalpen.com" },
+      { "name": "Wetscher", "href": "https://www.wetscher.com", "logoDomain": "wetscher.com" },
+      { "name": "Burton", "href": "https://www.burton.com", "logoDomain": "burton.com" },
+      { "name": "Tiroler Wasserkraft", "href": "https://www.tiwag.at", "logoDomain": "tiwag.at" },
+      { "name": "Woods Seefeld", "href": "https://www.woods-seefeld.com", "logoDomain": "woods-seefeld.com" },
+      { "name": "OFA", "href": "https://www.ofa.at", "logoDomain": "ofa.at" },
+      { "name": "Bayrischer Hof", "href": "https://www.bayerischerhof.de/de/", "logoDomain": "bayerischerhof.de", "initials": "BH" },
+      { "name": "VOGUE Germany", "href": "https://www.vogue.de", "logoDomain": "vogue.de" },
+      { "name": "Adlers Hotel", "href": "https://www.adlers-innsbruck.com", "logoDomain": "adlers-innsbruck.com" },
+      { "name": "Hypo Tirol Bank", "href": "https://www.hypotirol.com", "logoDomain": "hypotirol.com" },
+      { "name": "Aqua Dome", "href": "https://www.aqua-dome.at", "logoDomain": "aqua-dome.at" },
+      { "name": "Aufschnaiter", "href": "https://www.aufschnaiter.com", "logoDomain": "aufschnaiter.com" },
+      { "name": "Salt Schweiz", "href": "https://www.salt.ch", "logoDomain": "salt.ch" },
+      { "name": "Büro im Laden", "href": "https://www.xn--dasbroimladen-zob.at/im-laden", "logoDomain": "xn--dasbroimladen-zob.at" },
+      { "name": "Donau Versicherung", "href": "https://www.donauversicherung.at", "logoDomain": "donauversicherung.at" },
+      { "name": "Tirol Werbung", "href": "https://www.tirolwerbung.at", "logoDomain": "tirolwerbung.at", "logoSrc": "https://www.tirolwerbung.at/_Resources/Static/Packages/imx.bestpractice/images/PageHeader/tirol.svg?bust=20775f4e" },
+      { "name": "Innsbruck Tourismus", "href": "https://www.innsbruck.info", "logoDomain": "innsbruck.info", "logoSrc": "https://www.innsbruckphoto.at/logos/INNSBRUCK/RGB/Logo_INNSBRUCK_rgb.jpg" },
+      { "name": "Thöni Telfs", "href": "https://www.thoeni.com", "logoDomain": "thoeni.com" },
+      { "name": "Kaufhaus Tyrol", "href": "https://kaufhaus-tyrol.at", "logoDomain": "kaufhaus-tyrol.at" },
+      { "name": "DEZ Einkaufszentrum", "href": "https://www.dez.at", "logoDomain": "dez.at" },
+      { "name": "Löffler", "href": "https://www.loeffler.at", "logoDomain": "loeffler.at" },
+      { "name": "Innio / Jenbach", "href": "https://www.innio.com", "logoDomain": "innio.com" }
+    ],
+    "contactTitle": "Direkt anfragen",
     "plans": [
       {
         "name": "Basic",
