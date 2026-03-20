@@ -6,6 +6,109 @@ import ReferencesCarousel from "@/components/site/ReferencesCarousel";
 
 export const dynamic = "force-dynamic";
 
+const DEFAULT_PAGE_PLANS = [
+  {
+    name: "Essential",
+    price: 490,
+    meta: "/ Event",
+    featured: false,
+    cta: "Anfragen",
+    items: [
+      "4 Stunden Laufzeit",
+      "Digitale Flatrate (Online Galerie)",
+      "Standard KI-Retusche",
+      "Auf- & Abbau inklusive"
+    ]
+  },
+  {
+    name: "Premium",
+    price: 790,
+    meta: "/ Event",
+    featured: true,
+    cta: "Jetzt buchen",
+    items: [
+      "Open-End Laufzeit (max. 12h)",
+      "Sofort-Druck Flatrate (400 Prints)",
+      "Premium Hochzeits-Filter & Overlay",
+      "QR-Code Sofort-Download",
+      "Requisiten Box (Hochzeit-Edition)"
+    ]
+  },
+  {
+    name: "Black Label",
+    price: 1290,
+    meta: "/ Event",
+    featured: false,
+    cta: "Anfragen",
+    items: [
+      "Alles aus dem Premium-Paket",
+      "Live-Slideshow auf TV/Beamer",
+      "Persoenlicher Operator vor Ort",
+      "High-End Gaestebuch & Klebe-Service"
+    ]
+  }
+];
+
+const DEFAULT_TECHNOLOGY_ITEMS = [
+  {
+    title: "Studioqualitaet",
+    description:
+      "Integrierte DSLR-Kamera und professioneller Studioblitz sorgen fuer sauber ausgeleuchtete Bilder in jeder Event-Umgebung."
+  },
+  {
+    title: "Touch Bedienung",
+    description:
+      "Intuitive Benutzerfuehrung ueber den grossen Touchscreen, damit sich auch Gaeste ohne Einweisung sofort zurechtfinden."
+  },
+  {
+    title: "Sofortdruck",
+    description:
+      "High-Speed Fotodruck in Sekunden mit klaren Ausdrucken in Laborqualitaet, abgestimmt auf euer Event oder Branding."
+  }
+];
+
+const DEFAULT_REFERENCES = [
+  { name: "Fiegl+Spielberger", href: "https://www.fiegl.co.at", logoDomain: "fiegl.co.at" },
+  { name: "Congress Messe Innsbruck", href: "https://www.cmi.at", logoDomain: "cmi.at" },
+  { name: "Kloster Bräu Seefeld", href: "https://klosterbraeu.com", logoDomain: "klosterbraeu.com" },
+  { name: "Tiroler Versicherung", href: "https://www.tiroler-versicherung.at", logoDomain: "tiroler-versicherung.at" },
+  { name: "Völkl Ski", href: "https://www.voelkl.com", logoDomain: "voelkl.com" },
+  { name: "Recycling Ahrental", href: "https://www.rz-ahrental.at", logoDomain: "rz-ahrental.at" },
+  { name: "Sandoz", href: "https://www.sandoz.com", logoDomain: "sandoz.com" },
+  { name: "Interalpen Hotel", href: "https://www.interalpen.com", logoDomain: "interalpen.com" },
+  { name: "Wetscher", href: "https://www.wetscher.com", logoDomain: "wetscher.com" },
+  { name: "Burton", href: "https://www.burton.com", logoDomain: "burton.com" },
+  { name: "Tiroler Wasserkraft", href: "https://www.tiwag.at", logoDomain: "tiwag.at" },
+  { name: "Woods Seefeld", href: "https://www.woods-seefeld.com", logoDomain: "woods-seefeld.com" },
+  { name: "OFA", href: "https://www.ofa.at", logoDomain: "ofa.at" },
+  { name: "Bayrischer Hof", href: "https://www.bayerischerhof.de/de/", logoDomain: "bayerischerhof.de", initials: "BH" },
+  { name: "VOGUE Germany", href: "https://www.vogue.de", logoDomain: "vogue.de" },
+  { name: "Adlers Hotel", href: "https://www.adlers-innsbruck.com", logoDomain: "adlers-innsbruck.com" },
+  { name: "Hypo Tirol Bank", href: "https://www.hypotirol.com", logoDomain: "hypotirol.com" },
+  { name: "Aqua Dome", href: "https://www.aqua-dome.at", logoDomain: "aqua-dome.at" },
+  { name: "Aufschnaiter", href: "https://www.aufschnaiter.com", logoDomain: "aufschnaiter.com" },
+  { name: "Salt Schweiz", href: "https://www.salt.ch", logoDomain: "salt.ch" },
+  { name: "Büro im Laden", href: "https://www.xn--dasbroimladen-zob.at/im-laden", logoDomain: "xn--dasbroimladen-zob.at" },
+  { name: "Donau Versicherung", href: "https://www.donauversicherung.at", logoDomain: "donauversicherung.at" },
+  {
+    name: "Tirol Werbung",
+    href: "https://www.tirolwerbung.at",
+    logoDomain: "tirolwerbung.at",
+    logoSrc: "https://www.tirolwerbung.at/_Resources/Static/Packages/imx.bestpractice/images/PageHeader/tirol.svg?bust=20775f4e"
+  },
+  {
+    name: "Innsbruck Tourismus",
+    href: "https://www.innsbruck.info",
+    logoDomain: "innsbruck.info",
+    logoSrc: "https://www.innsbruckphoto.at/logos/INNSBRUCK/RGB/Logo_INNSBRUCK_rgb.jpg"
+  },
+  { name: "Thöni Telfs", href: "https://www.thoeni.com", logoDomain: "thoeni.com" },
+  { name: "Kaufhaus Tyrol", href: "https://kaufhaus-tyrol.at", logoDomain: "kaufhaus-tyrol.at" },
+  { name: "DEZ Einkaufszentrum", href: "https://www.dez.at", logoDomain: "dez.at" },
+  { name: "Löffler", href: "https://www.loeffler.at", logoDomain: "loeffler.at" },
+  { name: "Innio / Jenbach", href: "https://www.innio.com", logoDomain: "innio.com" }
+];
+
 export const metadata: Metadata = {
   title: "Preisgestaltung Fotobox Tirol | Pakete und Leistungen",
   description:
@@ -29,8 +132,15 @@ function CheckIcon() {
 
 export default async function PreisgestaltungPage() {
   const content = await readCmsContent();
-  const pricingPackages = content.pricing.pagePlans || [];
-  const technologyItems = (content.pricing.technologyItems || []).map((item, index) => ({
+  const pricingPackages =
+    content.pricing.pagePlans && content.pricing.pagePlans.length > 0
+      ? content.pricing.pagePlans
+      : DEFAULT_PAGE_PLANS;
+  const technologySource =
+    content.pricing.technologyItems && content.pricing.technologyItems.length > 0
+      ? content.pricing.technologyItems
+      : DEFAULT_TECHNOLOGY_ITEMS;
+  const technologyItems = technologySource.map((item, index) => ({
     ...item,
     icon: (
       index === 0 ? (
@@ -52,7 +162,10 @@ export default async function PreisgestaltungPage() {
       )
     )
   }));
-  const references = content.pricing.references || [];
+  const references =
+    content.pricing.references && content.pricing.references.length > 0
+      ? content.pricing.references
+      : DEFAULT_REFERENCES;
 
   function formatPrice(value: number) {
     return new Intl.NumberFormat("de-AT").format(value);
