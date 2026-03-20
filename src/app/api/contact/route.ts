@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import nodemailer from "nodemailer";
 import { createLead } from "@/lib/cms";
 import { verifyCaptchaChallenge } from "@/lib/captcha";
+import { formatMailConfigError, getMailConfigStatus } from "@/lib/mail-config";
 
 function escapeHtml(value: string) {
   return value
@@ -43,14 +44,6 @@ async function sendLeadMail(params: {
   printText: string;
   message: string;
 }) {
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpPort = Number(process.env.SMTP_PORT || "587");
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
-  const smtpFrom = process.env.SMTP_FROM || process.env.MAIL_FROM;
-  const smtpTo = process.env.SMTP_TO || process.env.MAIL_TO || "info@fotobox.tirol";
-  const smtpSecure = String(process.env.SMTP_SECURE || "").toLowerCase() === "true" || smtpPort === 465;
-
   const textBody = [
     "Neue Buchungsanfrage",
     `Anfrage-Datum: ${params.requestDate}`,
@@ -83,20 +76,22 @@ async function sendLeadMail(params: {
     <p><strong>Zusatznachricht:</strong><br/>${escapeHtml(params.message || "-").replace(/\n/g, "<br/>")}</p>
   `;
 
-  if (smtpHost && smtpUser && smtpPass && smtpFrom && smtpTo) {
+  const config = getMailConfigStatus();
+
+  if (config.mode === "smtp" && config.missing.length === 0) {
     const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpSecure,
+      host: config.values.host,
+      port: config.values.port,
+      secure: config.values.secure,
       auth: {
-        user: smtpUser,
-        pass: smtpPass
+        user: config.values.user,
+        pass: config.values.pass
       }
     });
 
     await transporter.sendMail({
-      from: smtpFrom,
-      to: smtpTo.split(",").map((item) => item.trim()).filter(Boolean),
+      from: config.values.from,
+      to: config.values.to.split(",").map((item) => item.trim()).filter(Boolean),
       replyTo: params.email,
       subject: `Buchungsanfrage ${params.requestDate}`,
       text: textBody,
@@ -105,18 +100,18 @@ async function sendLeadMail(params: {
     return;
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM;
-  const to = process.env.RESEND_TO || "info@fotobox.tirol";
-
-  if (!apiKey || !from || !to) {
-    throw new Error("SMTP ist nicht vollstaendig konfiguriert und Resend ist ebenfalls nicht gesetzt.");
+  if (config.mode === "resend" && config.missing.length > 0) {
+    throw new Error(formatMailConfigError() || "SMTP ist nicht vollstaendig konfiguriert und Resend ist ebenfalls nicht gesetzt.");
   }
 
-  const resend = new Resend(apiKey);
+  if (config.mode !== "resend") {
+    throw new Error("Unerwarteter Mail-Modus.");
+  }
+
+  const resend = new Resend(config.values.apiKey);
   const result = await resend.emails.send({
-    from,
-    to: to.split(",").map((item) => item.trim()).filter(Boolean),
+    from: config.values.from,
+    to: config.values.to.split(",").map((item) => item.trim()).filter(Boolean),
     subject: `Buchungsanfrage ${params.requestDate}`,
     replyTo: params.email,
     text: textBody,
@@ -193,7 +188,7 @@ export async function POST(request: Request) {
     console.error("Mail delivery failed:", error);
     return NextResponse.json(
       {
-        error: `${message} Bitte SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM und SMTP_TO pruefen.`
+        error: message
       },
       { status: 502 }
     );

@@ -18,8 +18,8 @@ const BOX_TYPE_OPTIONS = [
 ];
 
 const PRINT_FORMAT_OPTIONS = [
-  { label: "10x15", desc: "Klassisches Fotopapier" },
-  { label: "5x15", desc: "Streifenformat" }
+  { label: "5x15", desc: "Streifenformat" },
+  { label: "10x15", desc: "Klassisches Fotopapier" }
 ];
 
 function WeddingIcon() {
@@ -181,6 +181,15 @@ function getDefaultPrintFormatLabel(options: Array<{ label: string; desc: string
   return options.find((option) => option.label.includes("5x15"))?.label || options[0]?.label || PRINT_FORMAT_OPTIONS[1].label;
 }
 
+function orderPrintFormatOptions(options: Array<{ label: string; desc: string }>) {
+  return [...options].sort((a, b) => {
+    const aIsStrip = a.label.includes("5x15");
+    const bIsStrip = b.label.includes("5x15");
+    if (aIsStrip === bIsStrip) return 0;
+    return aIsStrip ? -1 : 1;
+  });
+}
+
 export default function BookingInquiryForm({
   plans = [],
   initialPackage,
@@ -195,10 +204,11 @@ export default function BookingInquiryForm({
     [plans]
   );
   const eventOptions = inquiry.eventOptions && inquiry.eventOptions.length > 0 ? inquiry.eventOptions : EVENT_TYPES;
-  const printFormatOptions =
+  const printFormatOptions = orderPrintFormatOptions(
     inquiry.printFormatOptions && inquiry.printFormatOptions.length > 0
       ? inquiry.printFormatOptions
-      : PRINT_FORMAT_OPTIONS;
+      : PRINT_FORMAT_OPTIONS
+  );
   const boxTypeOptionsRaw = inquiry.boxTypeOptions && inquiry.boxTypeOptions.length > 0 ? inquiry.boxTypeOptions : BOX_TYPE_OPTIONS;
   const boxTypeOptions = boxTypeOptionsRaw.map((option) => {
     if ((option.label || "").toLowerCase().includes("ki")) {
@@ -416,11 +426,11 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-captcha-card">
         <div className="inquiry-captcha-copy">
-          <span className="inquiry-section-title">06. Sicherheitsabfrage</span>
+          <span className="inquiry-section-title">06. Sicherheitsabfrage *</span>
           <p className="inquiry-captcha-help">Bitte bestaetigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="inquiry-field">
-          <span>{requiredLabel("Sicherheitsrechnung")}</span>
+          <span>Sicherheitsrechnung</span>
           <CaptchaField
             token={captchaToken}
             answer={captchaAnswer}

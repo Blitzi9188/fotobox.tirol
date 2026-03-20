@@ -105,11 +105,11 @@ export default function ContactForm({
       </label>
       <div className="inquiry-captcha-card">
         <div className="inquiry-captcha-copy">
-          <span className="inquiry-section-title">Sicherheitsabfrage</span>
+          <span className="inquiry-section-title">Sicherheitsabfrage *</span>
           <p className="inquiry-captcha-help">Bitte bestaetigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="admin-field" style={{ marginBottom: 0 }}>
-          <span>{requiredLabel("Sicherheitsrechnung")}</span>
+          <span>Sicherheitsrechnung</span>
           <CaptchaField
             token={captchaToken}
             answer={captchaAnswer}

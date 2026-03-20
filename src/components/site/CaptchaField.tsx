@@ -21,19 +21,32 @@ export default function CaptchaField({
   refreshKey?: number;
 }) {
   const [question, setQuestion] = useState("Lade Sicherheitsfrage...");
+  const [loading, setLoading] = useState(false);
 
-  const loadChallenge = useCallback(async () => {
+  const loadChallenge = useCallback(async (previousQuestion?: string) => {
+    setLoading(true);
     try {
-      const response = await fetch(`/api/captcha?t=${Date.now()}`, { cache: "no-store" });
-      if (!response.ok) throw new Error("captcha-load-failed");
-      const json = (await response.json()) as CaptchaResponse;
-      setQuestion(json.question || "Bitte neue Aufgabe laden.");
-      onTokenChange(json.token || "");
+      let nextQuestion = "";
+      let nextToken = "";
+
+      for (let attempt = 0; attempt < 4; attempt += 1) {
+        const response = await fetch(`/api/captcha?t=${Date.now()}-${attempt}`, { cache: "no-store" });
+        if (!response.ok) throw new Error("captcha-load-failed");
+        const json = (await response.json()) as CaptchaResponse;
+        nextQuestion = json.question || "";
+        nextToken = json.token || "";
+        if (!previousQuestion || nextQuestion !== previousQuestion) break;
+      }
+
+      setQuestion(nextQuestion || "Bitte neue Aufgabe laden.");
+      onTokenChange(nextToken || "");
       onAnswerChange("");
     } catch {
       setQuestion("Sicherheitsfrage konnte nicht geladen werden.");
       onTokenChange("");
       onAnswerChange("");
+    } finally {
+      setLoading(false);
     }
   }, [onAnswerChange, onTokenChange]);
 
@@ -45,8 +58,13 @@ export default function CaptchaField({
     <div className="inquiry-captcha-widget">
       <div className="inquiry-captcha-row">
         <div className="inquiry-captcha-question">{question}</div>
-        <button type="button" className="inquiry-captcha-refresh" onClick={loadChallenge}>
-          Neu
+        <button
+          type="button"
+          className="inquiry-captcha-refresh"
+          onClick={() => loadChallenge(question)}
+          disabled={loading}
+        >
+          {loading ? "Laedt..." : "Neu"}
         </button>
       </div>
       <input type="hidden" name="captchaToken" value={token} />
