@@ -1,0 +1,270 @@
+.main {
+  background: #fafaf9;
+  min-height: calc(100vh - 180px);
+  padding: 3.5rem 0 5rem;
+}
+
+.shell {
+  max-width: 1120px;
+}
+
+.hero {
+  text-align: center;
+  margin: 0 auto 3.5rem;
+  max-width: 860px;
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.checkmarkWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.checkmark {
+  width: 96px;
+  height: 96px;
+}
+
+.checkmarkCircle {
+  fill: none;
+  stroke: var(--c-accent);
+  stroke-width: 2;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmarkPath {
+  fill: none;
+  stroke: var(--c-accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: #fff0f0;
+  color: var(--c-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  line-height: 1;
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.04em;
+}
+
+.lead {
+  max-width: 780px;
+  margin: 0 auto;
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  color: #5a5a5a;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.9fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.stepsCard,
+.summaryCard {
+  background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: 2rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.stepsCard {
+  padding: 2.5rem;
+  animation: fadeUp 0.6s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.summaryCard {
+  padding: 2rem;
+  background: #111;
+  color: #fff;
+  position: sticky;
+  top: 7rem;
+  animation: fadeUp 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.stepsCard h2,
+.summaryCard h2 {
+  font-size: 1.35rem;
+  margin-bottom: 2rem;
+}
+
+.summaryCard h2 {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.steps {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+}
+
+.steps::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: #ececec;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  gap: 1.1rem;
+}
+
+.stepIndex {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  color: #999;
+  font-size: 0.76rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.stepActive .stepIndex {
+  background: var(--c-accent);
+  color: #fff;
+}
+
+.step h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.step p {
+  margin: 0;
+  color: #777;
+  line-height: 1.65;
+}
+
+.summaryList {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.summaryList span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.summaryList strong {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.price {
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+}
+
+.summaryActions {
+  padding-top: 1.5rem;
+}
+
+.summaryActions :global(.btn) {
+  width: 100%;
+  justify-content: center;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.summaryActions :global(.btn:hover) {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.footnote {
+  text-align: center;
+  margin-top: 3rem;
+  color: #9a9a9a;
+  font-size: 0.95rem;
+  animation: fadeUp 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.footnote p {
+  margin: 0;
+}
+
+.footnote a {
+  color: #666;
+  font-weight: 600;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryCard {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 2.5rem 0 4rem;
+  }
+
+  .stepsCard,
+  .summaryCard {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.3rem, 11vw, 3.5rem);
+  }
+}

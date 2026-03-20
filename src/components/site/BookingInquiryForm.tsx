@@ -110,10 +110,11 @@ export default function BookingInquiryForm({
       event.currentTarget.reset();
       setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);
       setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
+      const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
       setCaptchaAnswer("");
-      window.location.assign("/danke");
+      window.location.assign(`/danke?paket=${encodeURIComponent(submittedPackage)}`);
       return;
     }
 

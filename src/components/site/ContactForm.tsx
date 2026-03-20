@@ -58,9 +58,10 @@ export default function ContactForm({
     setStatus(response.ok ? "Anfrage gesendet." : (json?.error || "Senden fehlgeschlagen."));
     if (response.ok) {
       event.currentTarget.reset();
+      const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setCaptchaAnswer("");
-      router.replace("/danke");
+      router.replace(`/danke?paket=${encodeURIComponent(submittedPackage)}`);
       return;
     }
 
