@@ -1,7 +1,7 @@
 .main {
   background: #fafaf9;
   min-height: calc(100vh - 180px);
-  padding: 3.5rem 0 5rem;
+  padding: 3rem 0 4.25rem;
 }
 
 .shell {
@@ -10,7 +10,7 @@
 
 .hero {
   text-align: center;
-  margin: 0 auto 3.5rem;
+  margin: 0 auto 2.4rem;
   max-width: 860px;
   animation: fadeUp 0.6s ease-out forwards;
 }
@@ -76,7 +76,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3rem;
+  gap: 1.5rem;
   align-items: start;
 }
 
@@ -89,13 +89,13 @@
 }
 
 .summaryCardLight {
-  padding: 2.5rem;
+  padding: 2rem;
   animation: fadeUp 0.6s ease-out 0.1s forwards;
   opacity: 0;
 }
 
 .summaryCard {
-  padding: 2rem;
+  padding: 1.75rem;
   background: #111;
   color: #fff;
   position: sticky;
@@ -107,7 +107,7 @@
 .summaryCardLight h2,
 .summaryCard h2 {
   font-size: 1.35rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.35rem;
 }
 
 .summaryRows {
@@ -135,8 +135,8 @@
 }
 
 .priceBox {
-  margin-top: 1.5rem;
-  padding: 1.4rem;
+  margin-top: 1.1rem;
+  padding: 1.1rem 1.2rem;
   border-radius: 1.25rem;
   background: rgba(234, 44, 44, 0.05);
 }
@@ -177,7 +177,7 @@
 .steps {
   position: relative;
   display: grid;
-  gap: 2rem;
+  gap: 1.4rem;
 }
 
 .steps::before {
@@ -228,7 +228,7 @@
 }
 
 .summaryActions {
-  padding-top: 1.5rem;
+  padding-top: 1rem;
 }
 
 .summaryActions :global(.btn) {
@@ -244,7 +244,7 @@
 
 .footnote {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 1.8rem;
   color: #9a9a9a;
   font-size: 0.95rem;
   animation: fadeUp 0.6s ease-out 0.3s forwards;
@@ -257,6 +257,29 @@
 
 .footnote a {
   color: #666;
+  font-weight: 600;
+}
+
+.directContact {
+  margin-top: 1.4rem;
+  text-align: center;
+  padding: 1rem 1rem 0;
+  animation: fadeUp 0.6s ease-out 0.35s forwards;
+  opacity: 0;
+}
+
+.directContact h2 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.directContact p {
+  margin: 0.35rem 0;
+  color: #5b5b5b;
+}
+
+.directContact a {
+  color: #111;
   font-weight: 600;
 }
 

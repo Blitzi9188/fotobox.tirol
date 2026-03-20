@@ -136,25 +136,15 @@ export default async function HomePage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {homepageOrder.includes("hero") ? (
-          <section
-            className="hero"
-            style={
-              content.hero.imageUrl
-                ? {
-                    backgroundImage: `url("${content.hero.imageUrl}")`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center center",
-                    backgroundRepeat: "no-repeat"
-                  }
-                : undefined
-            }
-          >
+          <section className="hero">
             {content.hero.imageUrl ? (
-              <img
-                src={content.hero.imageUrl}
-                alt="Fotobox Tirol Hero"
-                className="hero-bg-image"
-              />
+              <div className="hero-media">
+                <img
+                  src={content.hero.imageUrl}
+                  alt="Fotobox Tirol Hero"
+                  className="hero-bg-image"
+                />
+              </div>
             ) : null}
             <div className="hero-glow hero-glow-left" />
             <div className="hero-glow hero-glow-right" />

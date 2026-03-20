@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { createLead } from "@/lib/cms";
-import { verifyCaptchaChallenge } from "@/lib/captcha";
+import { verifyRecaptchaToken } from "@/lib/recaptcha";
 
 function escapeHtml(value: string) {
   return value
@@ -42,18 +43,74 @@ async function sendLeadMail(params: {
   printText: string;
   message: string;
 }) {
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpPort = Number(process.env.SMTP_PORT || "587");
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
+  const smtpFrom = process.env.SMTP_FROM || process.env.MAIL_FROM;
+  const smtpTo = process.env.SMTP_TO || process.env.MAIL_TO || "info@fotobox.tirol";
+  const smtpSecure = String(process.env.SMTP_SECURE || "").toLowerCase() === "true" || smtpPort === 465;
+
+  const textBody = [
+    "Neue Buchungsanfrage",
+    `Anfrage-Datum: ${params.requestDate}`,
+    `Name: ${params.name}`,
+    `E-Mail: ${params.email}`,
+    `Telefon: ${params.phone || "-"}`,
+    `Event-Datum: ${params.eventDate || "-"}`,
+    `Eventart: ${params.eventType || "-"}`,
+    `Ort: ${params.location || "-"}`,
+    `Paket: ${params.packageName}`,
+    `Fotobox: ${params.boxType || "-"}`,
+    `Format: ${params.printFormat || "-"}`,
+    `Aufdruck-Wunsch: ${params.printText || "-"}`,
+    `Zusatznachricht: ${params.message || "-"}`
+  ].join("\n");
+
+  const htmlBody = `
+    <h2>Neue Buchungsanfrage</h2>
+    <p><strong>Anfrage-Datum:</strong> ${escapeHtml(params.requestDate)}</p>
+    <p><strong>Name:</strong> ${escapeHtml(params.name)}</p>
+    <p><strong>E-Mail:</strong> ${escapeHtml(params.email)}</p>
+    <p><strong>Telefon:</strong> ${escapeHtml(params.phone || "-")}</p>
+    <p><strong>Event-Datum:</strong> ${escapeHtml(params.eventDate || "-")}</p>
+    <p><strong>Eventart:</strong> ${escapeHtml(params.eventType || "-")}</p>
+    <p><strong>Ort:</strong> ${escapeHtml(params.location || "-")}</p>
+    <p><strong>Paket:</strong> ${escapeHtml(params.packageName)}</p>
+    <p><strong>Fotobox:</strong> ${escapeHtml(params.boxType || "-")}</p>
+    <p><strong>Format:</strong> ${escapeHtml(params.printFormat || "-")}</p>
+    <p><strong>Aufdruck-Wunsch:</strong> ${escapeHtml(params.printText || "-")}</p>
+    <p><strong>Zusatznachricht:</strong><br/>${escapeHtml(params.message || "-").replace(/\n/g, "<br/>")}</p>
+  `;
+
+  if (smtpHost && smtpUser && smtpPass && smtpFrom && smtpTo) {
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpSecure,
+      auth: {
+        user: smtpUser,
+        pass: smtpPass
+      }
+    });
+
+    await transporter.sendMail({
+      from: smtpFrom,
+      to: smtpTo.split(",").map((item) => item.trim()).filter(Boolean),
+      replyTo: params.email,
+      subject: `Buchungsanfrage ${params.requestDate}`,
+      text: textBody,
+      html: htmlBody
+    });
+    return;
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM;
   const to = process.env.RESEND_TO || "info@fotobox.tirol";
 
-  if (!apiKey) {
-    throw new Error("RESEND_API_KEY fehlt.");
-  }
-  if (!from) {
-    throw new Error("RESEND_FROM fehlt.");
-  }
-  if (!to) {
-    throw new Error("RESEND_TO fehlt.");
+  if (!apiKey || !from || !to) {
+    throw new Error("SMTP ist nicht vollstaendig konfiguriert und Resend ist ebenfalls nicht gesetzt.");
   }
 
   const resend = new Resend(apiKey);
@@ -62,36 +119,8 @@ async function sendLeadMail(params: {
     to: to.split(",").map((item) => item.trim()).filter(Boolean),
     subject: `Buchungsanfrage ${params.requestDate}`,
     replyTo: params.email,
-    text: [
-      "Neue Buchungsanfrage",
-      `Anfrage-Datum: ${params.requestDate}`,
-      `Name: ${params.name}`,
-      `E-Mail: ${params.email}`,
-      `Telefon: ${params.phone || "-"}`,
-      `Event-Datum: ${params.eventDate || "-"}`,
-      `Eventart: ${params.eventType || "-"}`,
-      `Ort: ${params.location || "-"}`,
-      `Paket: ${params.packageName}`,
-      `Fotobox: ${params.boxType || "-"}`,
-      `Format: ${params.printFormat || "-"}`,
-      `Aufdruck-Wunsch: ${params.printText || "-"}`,
-      `Zusatznachricht: ${params.message || "-"}`
-    ].join("\n"),
-    html: `
-      <h2>Neue Buchungsanfrage</h2>
-      <p><strong>Anfrage-Datum:</strong> ${escapeHtml(params.requestDate)}</p>
-      <p><strong>Name:</strong> ${escapeHtml(params.name)}</p>
-      <p><strong>E-Mail:</strong> ${escapeHtml(params.email)}</p>
-      <p><strong>Telefon:</strong> ${escapeHtml(params.phone || "-")}</p>
-      <p><strong>Event-Datum:</strong> ${escapeHtml(params.eventDate || "-")}</p>
-      <p><strong>Eventart:</strong> ${escapeHtml(params.eventType || "-")}</p>
-      <p><strong>Ort:</strong> ${escapeHtml(params.location || "-")}</p>
-      <p><strong>Paket:</strong> ${escapeHtml(params.packageName)}</p>
-      <p><strong>Fotobox:</strong> ${escapeHtml(params.boxType || "-")}</p>
-      <p><strong>Format:</strong> ${escapeHtml(params.printFormat || "-")}</p>
-      <p><strong>Aufdruck-Wunsch:</strong> ${escapeHtml(params.printText || "-")}</p>
-      <p><strong>Zusatznachricht:</strong><br/>${escapeHtml(params.message || "-").replace(/\n/g, "<br/>")}</p>
-    `
+    text: textBody,
+    html: htmlBody
   });
 
   if (result.error) {
@@ -103,6 +132,8 @@ export async function POST(request: Request) {
   const body = await request.json();
   const now = new Date();
   const requestDate = formatDateEu(now.toISOString().slice(0, 10));
+  const forwardedFor = request.headers.get("x-forwarded-for") || "";
+  const remoteIp = forwardedFor.split(",")[0]?.trim() || undefined;
 
   const name = String(body.name || "").trim();
   const email = String(body.email || "").trim();
@@ -115,8 +146,7 @@ export async function POST(request: Request) {
   const printFormat = String(body.printFormat || "").trim();
   const printText = String(body.printText || "").trim();
   const message = String(body.message || "").trim();
-  const captchaToken = String(body.captchaToken || "").trim();
-  const captchaAnswer = String(body.captchaAnswer || "").trim();
+  const recaptchaToken = String(body.recaptchaToken || "").trim();
   const mergedSummary = [
     `Anfrage-Datum: ${requestDate}`,
     `Eventart: ${eventType || "-"}`,
@@ -131,8 +161,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  if (!verifyCaptchaChallenge(captchaToken, captchaAnswer)) {
-    return NextResponse.json({ error: "Die Sicherheitsabfrage war leider nicht korrekt. Bitte kurz neu versuchen." }, { status: 400 });
+  let recaptchaOk = false;
+  try {
+    recaptchaOk = await verifyRecaptchaToken(recaptchaToken, remoteIp);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "reCAPTCHA Verifikation fehlgeschlagen.";
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
+
+  if (!recaptchaOk) {
+    return NextResponse.json({ error: "Die Google reCAPTCHA Pruefung war leider nicht erfolgreich. Bitte kurz neu versuchen." }, { status: 400 });
   }
 
   await createLead({
@@ -162,10 +200,10 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "E-Mail Versand fehlgeschlagen.";
-    console.error("Resend mail failed:", error);
+    console.error("Mail delivery failed:", error);
     return NextResponse.json(
       {
-        error: `${message} Bitte RESEND_API_KEY, RESEND_FROM und RESEND_TO in Railway prüfen.`
+        error: `${message} Bitte SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM und SMTP_TO pruefen.`
       },
       { status: 502 }
     );

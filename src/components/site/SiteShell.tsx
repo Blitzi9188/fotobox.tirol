@@ -47,7 +47,11 @@ export function SiteHeader({ content }: { content: CMSContent }) {
           </ul>
           <details className="mobile-nav-menu">
             <summary aria-label="Menü öffnen" title="Menü öffnen">
-              <span>•••</span>
+              <span className="mobile-nav-hamburger" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
             </summary>
             <ul className="mobile-nav-list">
               {navItems.map((item) => (

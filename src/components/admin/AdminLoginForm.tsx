@@ -7,8 +7,8 @@ export default function AdminLoginForm({
 }: {
   onSuccess: () => void;
 }) {
-  const [email, setEmail] = useState("admin@fotoboxtirol.at");
-  const [password, setPassword] = useState("admin1234");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -38,17 +38,16 @@ export default function AdminLoginForm({
       <h1>Admin Login</h1>
       <label className="admin-field">
         <span>E-Mail</span>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required />
+        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" autoComplete="username" required />
       </label>
       <label className="admin-field">
         <span>Passwort</span>
-        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" required />
+        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" autoComplete="current-password" required />
       </label>
       {error && <p className="admin-error">{error}</p>}
       <button className="btn" type="submit" disabled={loading}>
         {loading ? "Prüfe..." : "Einloggen"}
       </button>
-      <p className="admin-note">Standard: admin@fotoboxtirol.at / admin1234 (über .env änderbar)</p>
     </form>
   );
 }

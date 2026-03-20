@@ -176,8 +176,23 @@ export type CMSContent = {
     errorText?: string;
   };
   thanks: {
+    badge?: string;
     heading: string;
     message: string;
+    summaryTitle?: string;
+    summaryPackageLabel?: string;
+    summaryDateLabel?: string;
+    summaryLocationLabel?: string;
+    priceLabel?: string;
+    priceNote?: string;
+    stepsTitle?: string;
+    step1Title?: string;
+    step1Text?: string;
+    step2Title?: string;
+    step2Text?: string;
+    step3Title?: string;
+    step3Text?: string;
+    footerText?: string;
     primaryButtonText: string;
     primaryButtonHref: string;
     secondaryButtonText: string;
