@@ -57,7 +57,7 @@ export default function BookingInquiryForm({
   const [captchaAnswer, setCaptchaAnswer] = useState("");
 
   async function loadCaptcha() {
-    const response = await fetch("/api/captcha", { cache: "no-store" });
+    const response = await fetch(`/api/captcha?t=${Date.now()}`, { cache: "no-store" });
     const json = (await response.json()) as { question: string; token: string };
     setCaptchaQuestion(json.question);
     setCaptchaToken(json.token);
@@ -67,6 +67,10 @@ export default function BookingInquiryForm({
   useEffect(() => {
     void loadCaptcha();
   }, []);
+
+  function requiredLabel(label: string) {
+    return `${label} *`;
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -145,7 +149,7 @@ export default function BookingInquiryForm({
         <span className="inquiry-section-title">{inquiry.dateSectionTitle}</span>
         <div className="inquiry-input-group">
           <label className="inquiry-field">
-            <span>{inquiry.dateLabel || "Datum"}</span>
+            <span>{requiredLabel(inquiry.dateLabel || "Datum")}</span>
             <input name="eventDate" type="date" required />
           </label>
           <label className="inquiry-field">
@@ -215,11 +219,11 @@ export default function BookingInquiryForm({
         <span className="inquiry-section-title">{inquiry.contactSectionTitle}</span>
         <div className="inquiry-input-group">
           <label className="inquiry-field">
-            <span>{inquiry.nameLabel || "Vor- & Nachname"}</span>
+            <span>{requiredLabel(inquiry.nameLabel || "Vor- & Nachname")}</span>
             <input name="name" type="text" placeholder={inquiry.namePlaceholder || "Max Mustermann"} required />
           </label>
           <label className="inquiry-field">
-            <span>{inquiry.emailLabel || "E-Mail Adresse"}</span>
+            <span>{requiredLabel(inquiry.emailLabel || "E-Mail Adresse")}</span>
             <input name="email" type="email" placeholder={inquiry.emailPlaceholder || "max@beispiel.at"} required />
           </label>
         </div>
@@ -261,7 +265,7 @@ export default function BookingInquiryForm({
           <p className="inquiry-captcha-help">Bitte kurz die Rechenfrage beantworten, dann kann die Anfrage gesendet werden.</p>
         </div>
         <label className="inquiry-field">
-          <span>{captchaQuestion || "Lade Sicherheitsfrage..."}</span>
+          <span>{requiredLabel(captchaQuestion || "Lade Sicherheitsfrage...")}</span>
           <div className="inquiry-captcha-row">
             <input
               name="captchaAnswer"

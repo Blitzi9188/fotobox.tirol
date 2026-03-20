@@ -22,7 +22,7 @@ export default function ContactForm({
   const router = useRouter();
 
   async function loadCaptcha() {
-    const response = await fetch("/api/captcha", { cache: "no-store" });
+    const response = await fetch(`/api/captcha?t=${Date.now()}`, { cache: "no-store" });
     const json = (await response.json()) as { question: string; token: string };
     setCaptchaQuestion(json.question);
     setCaptchaToken(json.token);
@@ -32,6 +32,10 @@ export default function ContactForm({
   useEffect(() => {
     void loadCaptcha();
   }, []);
+
+  function requiredLabel(label: string) {
+    return `${label} *`;
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -72,11 +76,11 @@ export default function ContactForm({
     <form className="admin-card" onSubmit={handleSubmit}>
       <h2>Unverbindliche Preisanfrage</h2>
       <label className="admin-field">
-        <span>Name</span>
+        <span>{requiredLabel("Name")}</span>
         <input name="name" required />
       </label>
       <label className="admin-field">
-        <span>E-Mail</span>
+        <span>{requiredLabel("E-Mail")}</span>
         <input name="email" type="email" required />
       </label>
       <label className="admin-field">
@@ -88,7 +92,7 @@ export default function ContactForm({
         <input name="eventDate" type="date" />
       </label>
       <label className="admin-field">
-        <span>Paket Auswahl</span>
+        <span>{requiredLabel("Paket Auswahl")}</span>
         <select
           name="packageName"
           value={selectedPackage}
@@ -103,7 +107,7 @@ export default function ContactForm({
         </select>
       </label>
       <label className="admin-field">
-        <span>Nachricht</span>
+        <span>{requiredLabel("Nachricht")}</span>
         <textarea name="message" rows={5} required />
       </label>
       <div className="inquiry-captcha-card">
@@ -112,7 +116,7 @@ export default function ContactForm({
           <p className="inquiry-captcha-help">Ein kurzer Schutz gegen Spam.</p>
         </div>
         <label className="admin-field" style={{ marginBottom: 0 }}>
-          <span>{captchaQuestion || "Lade Sicherheitsfrage..."}</span>
+          <span>{requiredLabel(captchaQuestion || "Lade Sicherheitsfrage...")}</span>
           <div className="inquiry-captcha-row">
             <input
               name="captchaAnswer"
