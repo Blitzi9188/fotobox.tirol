@@ -151,7 +151,7 @@
   "pricing": {
     "heading": "all/inclusive",
     "pageTitle": "Preisgestaltung",
-    "pageIntro": "Eigene Uebersichtsseite fuer Pakete, Druckformate und Leistungen.",
+    "pageIntro": "Eigene Übersichtsseite fuer Pakete, Druckformate und Leistungen.",
     "pageHeading": "all/inclusive",
     "pagePlans": [
       {
@@ -220,6 +220,7 @@
       { "name": "Völkl Ski", "href": "https://www.voelkl.com", "logoDomain": "voelkl.com" },
       { "name": "Recycling Ahrental", "href": "https://www.rz-ahrental.at", "logoDomain": "rz-ahrental.at" },
       { "name": "Sandoz", "href": "https://www.sandoz.com", "logoDomain": "sandoz.com" },
+      { "name": "Sailer Seefeld", "href": "https://www.sailer-seefeld.at", "logoDomain": "sailer-seefeld.at" },
       { "name": "Interalpen Hotel", "href": "https://www.interalpen.com", "logoDomain": "interalpen.com" },
       { "name": "Wetscher", "href": "https://www.wetscher.com", "logoDomain": "wetscher.com" },
       { "name": "Burton", "href": "https://www.burton.com", "logoDomain": "burton.com" },
@@ -230,18 +231,7 @@
       { "name": "VOGUE Germany", "href": "https://www.vogue.de", "logoDomain": "vogue.de" },
       { "name": "Adlers Hotel", "href": "https://www.adlers-innsbruck.com", "logoDomain": "adlers-innsbruck.com" },
       { "name": "Hypo Tirol Bank", "href": "https://www.hypotirol.com", "logoDomain": "hypotirol.com" },
-      { "name": "Aqua Dome", "href": "https://www.aqua-dome.at", "logoDomain": "aqua-dome.at" },
-      { "name": "Aufschnaiter", "href": "https://www.aufschnaiter.com", "logoDomain": "aufschnaiter.com" },
-      { "name": "Salt Schweiz", "href": "https://www.salt.ch", "logoDomain": "salt.ch" },
-      { "name": "Büro im Laden", "href": "https://www.xn--dasbroimladen-zob.at/im-laden", "logoDomain": "xn--dasbroimladen-zob.at" },
-      { "name": "Donau Versicherung", "href": "https://www.donauversicherung.at", "logoDomain": "donauversicherung.at" },
-      { "name": "Tirol Werbung", "href": "https://www.tirolwerbung.at", "logoDomain": "tirolwerbung.at", "logoSrc": "https://www.tirolwerbung.at/_Resources/Static/Packages/imx.bestpractice/images/PageHeader/tirol.svg?bust=20775f4e" },
-      { "name": "Innsbruck Tourismus", "href": "https://www.innsbruck.info", "logoDomain": "innsbruck.info", "logoSrc": "https://www.innsbruckphoto.at/logos/INNSBRUCK/RGB/Logo_INNSBRUCK_rgb.jpg" },
-      { "name": "Thöni Telfs", "href": "https://www.thoeni.com", "logoDomain": "thoeni.com" },
-      { "name": "Kaufhaus Tyrol", "href": "https://kaufhaus-tyrol.at", "logoDomain": "kaufhaus-tyrol.at" },
-      { "name": "DEZ Einkaufszentrum", "href": "https://www.dez.at", "logoDomain": "dez.at" },
-      { "name": "Löffler", "href": "https://www.loeffler.at", "logoDomain": "loeffler.at" },
-      { "name": "Innio / Jenbach", "href": "https://www.innio.com", "logoDomain": "innio.com" }
+      { "name": "Aqua Dome", "href": "https://www.aqua-dome.at", "logoDomain": "aqua-dome.at" }
     ],
     "contactTitle": "Direkt anfragen",
     "plans": [

@@ -92,7 +92,7 @@ export default async function FotoboxMietenTirolPage() {
             </article>
 
             <aside className="admin-card">
-              <h2>Schnellueberblick</h2>
+              <h2>Schnellüberblick</h2>
               <ul className="seo-landing-list">
                 <li>Fotobox fuer Hochzeit, Firmenfeier, Geburtstag und Messe</li>
                 <li>Sofortdruck in Laborqualitaet</li>

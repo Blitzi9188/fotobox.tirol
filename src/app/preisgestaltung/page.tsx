@@ -130,6 +130,22 @@ function CheckIcon() {
   );
 }
 
+function getPlanDescription(name: string) {
+  const value = name.toLowerCase();
+
+  if (value.includes("premium")) {
+    return "Das beliebteste Paket fuer Hochzeiten und grosse Feiern.";
+  }
+  if (value.includes("black") || value.includes("exclusive")) {
+    return "Maximale Qualitaet ohne Kompromisse fuer besondere Ansprueche.";
+  }
+  if (value.includes("essential") || value.includes("basic")) {
+    return "Der starke Einstieg fuer kleinere Feiern und klare Entscheidungen.";
+  }
+
+  return "Transparent kalkuliert und passend auf euer Event abgestimmt.";
+}
+
 export default async function PreisgestaltungPage() {
   const content = await readCmsContent();
   const pricingPackages =
@@ -174,23 +190,26 @@ export default async function PreisgestaltungPage() {
     <>
       <SiteHeader content={content} />
       <main>
-        <section className="page-hero seo-landing-hero">
+        <section className="page-hero seo-landing-hero pricing-hero">
           <div className="container">
+            <span className="pricing-hero-badge">Preise &amp; Pakete</span>
             <h1>{content.pricing.pageTitle || "Preisgestaltung"}</h1>
             <p>
-              {content.pricing.pageIntro || "Eigene Uebersichtsseite fuer Pakete, Druckformate und Leistungen."}
+              {content.pricing.pageIntro || "Eigene Übersichtsseite fuer Pakete, Druckformate und Leistungen."}
             </p>
           </div>
         </section>
 
-        <section className="seo-landing-section">
+        <section className="seo-landing-section pricing-package-section">
           <div className="container">
             <h2><SlashHeading value={content.pricing.pageHeading || "all/inclusive"} /></h2>
             <div className="grid grid-3 pricing-package-grid">
               {pricingPackages.map((plan) => (
                 <article className={`price-card pricing-package-card ${plan.featured ? "featured pricing-package-featured" : ""}`} key={plan.name}>
                   <div className="price-header">
+                    {plan.featured ? <span className="pricing-package-badge">Empfehlung</span> : null}
                     <h3>{plan.name}</h3>
+                    <p className="pricing-package-description">{getPlanDescription(plan.name)}</p>
                     <div className="pricing-package-amount">
                       <span>{formatPrice(plan.price)}€</span>
                       <small>{plan.meta || "/ Event"}</small>
@@ -275,16 +294,39 @@ export default async function PreisgestaltungPage() {
           </div>
         </section>
 
-        <section className="seo-landing-section">
+        <section className="seo-landing-section pricing-contact-section" id="anfragen">
           <div className="container">
-            <aside className="pricing-contact-block">
-              <h2>{content.pricing.contactTitle || "Direkt anfragen"}</h2>
-              <div className="pricing-contact-lines">
-                <p><strong>Telefon:</strong> <a href={`tel:${content.contact.phone.replace(/[^+\d]/g, "")}`}>{content.contact.phone}</a></p>
-                <p><strong>E-Mail:</strong> <a href={`mailto:${content.contact.email}`}>{content.contact.email}</a></p>
-                <p><strong>Adresse:</strong> {content.contact.address}</p>
+            <section className="pricing-contact-panel">
+              <div className="pricing-contact-copy">
+                <h2>{content.pricing.contactTitle || "Direkt anfragen"}</h2>
+                <p className="pricing-contact-intro">
+                  Wenn keines der Pakete exakt passt, erstellen wir euch gerne ein individuelles Angebot fuer Hochzeit,
+                  Firmenfeier oder Event in Tirol.
+                </p>
+                <div className="pricing-contact-details">
+                  <div>
+                    <h4>Telefon</h4>
+                    <p><a href={`tel:${content.contact.phone.replace(/[^+\d]/g, "")}`}>{content.contact.phone}</a></p>
+                  </div>
+                  <div>
+                    <h4>E-Mail</h4>
+                    <p><a href={`mailto:${content.contact.email}`}>{content.contact.email}</a></p>
+                  </div>
+                  <div>
+                    <h4>Adresse</h4>
+                    <p>{content.contact.address}</p>
+                  </div>
+                </div>
               </div>
-            </aside>
+              <div className="pricing-contact-actions">
+                <Link href="/kontakt" className="pricing-contact-primary">
+                  Unverbindliche Anfrage senden
+                </Link>
+                <p className="pricing-contact-note">
+                  Antwort in der Regel innerhalb von 24 Stunden.
+                </p>
+              </div>
+            </section>
           </div>
         </section>
 

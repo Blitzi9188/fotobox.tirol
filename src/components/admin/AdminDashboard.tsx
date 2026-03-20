@@ -351,7 +351,7 @@ export default function AdminDashboard() {
     const normalizedPricing = {
       ...json.pricing,
       pageTitle: json.pricing?.pageTitle || "Preisgestaltung",
-      pageIntro: json.pricing?.pageIntro || "Eigene Uebersichtsseite fuer Pakete, Druckformate und Leistungen.",
+      pageIntro: json.pricing?.pageIntro || "Eigene Übersichtsseite fuer Pakete, Druckformate und Leistungen.",
       pageHeading: json.pricing?.pageHeading || "all/inclusive",
       pagePlans: (json.pricing?.pagePlans && json.pricing.pagePlans.length > 0)
         ? json.pricing.pagePlans
@@ -1946,7 +1946,7 @@ export default function AdminDashboard() {
             <div className="admin-grid-2">
               <div>
                 <label className="admin-field">
-                  <span>Uebertitel</span>
+                  <span>Übertitel</span>
                   <input
                     value={content.accessories.overtitle}
                     onChange={(e) =>
