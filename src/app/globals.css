@@ -901,25 +901,34 @@ p {
 }
 
 .references-marquee-icon {
-  width: 42px;
-  height: 42px;
+  width: 58px;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .references-marquee-icon img {
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   display: block;
 }
 
 .references-slide-monogram {
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   color: var(--c-text);
+}
+
+.home-references-block {
+  margin-top: 2.8rem;
+}
+
+.home-references-title {
+  margin-bottom: 1.25rem;
+  text-align: center;
 }
 
 @keyframes references-marquee {
@@ -3148,17 +3157,17 @@ footer {
     appearance: none;
     display: block;
     overflow: hidden;
-    border: 1px solid rgba(234, 44, 44, 0.18);
+    border: 1px solid rgba(234, 44, 44, 0.14);
     border-radius: 14px;
-    background: linear-gradient(180deg, #ea2c2c 0%, #cf2020 100%);
-    color: #fff;
-    font-weight: 700;
-    box-shadow: 0 12px 26px rgba(234, 44, 44, 0.18);
+    background: rgba(234, 44, 44, 0.06);
+    color: #4b5563;
+    font-weight: 600;
+    box-shadow: none;
   }
 
   .inquiry-field input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    opacity: 1;
+    filter: none;
+    opacity: 0.75;
   }
 
   .inquiry-form-card {
@@ -3360,13 +3369,13 @@ footer {
   }
 
   .references-marquee-icon {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
   }
 
   .references-marquee-icon img {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
   }
 }
 

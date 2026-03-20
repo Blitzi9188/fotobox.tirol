@@ -4,6 +4,7 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
 import AccessoriesCarousel from "@/components/site/AccessoriesCarousel";
+import ReferencesCarousel from "@/components/site/ReferencesCarousel";
 
 export const dynamic = "force-dynamic";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
@@ -314,6 +315,14 @@ export default async function HomePage() {
                         </article>
                       ))}
                     </div>
+                    {content.pricing.references && content.pricing.references.length > 0 ? (
+                      <div className="home-references-block">
+                        <h3 className="home-references-title">
+                          <SlashHeading value={content.pricing.referencesHeading || "referenzen/partner"} />
+                        </h3>
+                        <ReferencesCarousel items={content.pricing.references} />
+                      </div>
+                    ) : null}
                   </div>
                 </section>
               );
