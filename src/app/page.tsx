@@ -146,7 +146,6 @@ export default async function HomePage() {
                 />
               </div>
             ) : null}
-            <div className="hero-glow hero-glow-left" />
             <div className="hero-glow hero-glow-right" />
             <div className="hero-content">
               <h1><SlashHeading value={content.hero.title} /></h1>
