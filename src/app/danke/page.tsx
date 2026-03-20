@@ -8,12 +8,16 @@ export const dynamic = "force-dynamic";
 type DankePageProps = {
   searchParams?: {
     paket?: string;
+    eventDate?: string;
+    location?: string;
   };
 };
 
 export default async function DankePage({ searchParams }: DankePageProps) {
   const content = await readCmsContent();
   const selectedPackage = (searchParams?.paket || "").trim();
+  const rawEventDate = (searchParams?.eventDate || "").trim();
+  const rawLocation = (searchParams?.location || "").trim();
   const packageMatch =
     content.pricing.plans.find(
       (plan) => plan.name.toLowerCase() === selectedPackage.toLowerCase()
@@ -22,6 +26,14 @@ export default async function DankePage({ searchParams }: DankePageProps) {
   const packageLabel = packageMatch?.name || "Fotobox Paket";
   const packagePrice = packageMatch?.price ? `${packageMatch.price}€` : "Auf Anfrage";
   const contactEmail = content.contact.email || "info@fotobox.tirol";
+  const eventDate = rawEventDate
+    ? new Intl.DateTimeFormat("de-AT", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }).format(new Date(rawEventDate))
+    : "Wird mit Ihnen abgestimmt";
+  const location = rawLocation || "Wird mit Ihnen abgestimmt";
 
   return (
     <>
@@ -43,23 +55,47 @@ export default async function DankePage({ searchParams }: DankePageProps) {
               vielen dank<span className="accent-slash">/</span>herzlichst
             </h1>
             <p className={styles.lead}>
-              Wir haben Ihre Anfrage fuer das{" "}
-              <strong>{packageLabel}</strong> erhalten. Unser Team prueft nun die
-              Verfuegbarkeit fuer Ihren Termin und meldet sich zeitnah bei Ihnen.
+              Ihre Anfrage ist erfolgreich bei uns eingegangen. Wir pruefen die
+              Verfuegbarkeit fuer Ihren Wunschtermin und melden uns in Kuerze.
             </p>
           </section>
 
           <section className={styles.grid}>
-            <div className={styles.stepsCard}>
-              <h2>Naechste Schritte</h2>
+            <div className={styles.summaryCardLight}>
+              <h2>Anfrage-Zusammenfassung</h2>
+              <div className={styles.summaryRows}>
+                <div className={styles.summaryRow}>
+                  <span>Paket</span>
+                  <strong>{packageLabel}</strong>
+                </div>
+                <div className={styles.summaryRow}>
+                  <span>Voraussichtlicher Termin</span>
+                  <strong>{eventDate}</strong>
+                </div>
+                <div className={styles.summaryRow}>
+                  <span>Ort der Feier</span>
+                  <strong>{location}</strong>
+                </div>
+              </div>
+              <div className={styles.priceBox}>
+                <div className={styles.priceLine}>
+                  <span>GESCHÄTZTER PREIS</span>
+                  <strong>{packagePrice}</strong>
+                </div>
+                <p>*Inkl. MwSt. Endgueltiger Preis folgt im Angebot.</p>
+              </div>
+            </div>
+
+            <aside className={styles.summaryCard}>
+              <h2>Wie geht es weiter?</h2>
               <div className={styles.steps}>
                 <div className={`${styles.step} ${styles.stepActive}`}>
                   <div className={styles.stepIndex}>1</div>
                   <div>
-                    <h3>Verfuegbarkeits-Check</h3>
+                    <h3>Anfrage-Check</h3>
                     <p>
-                      Wir pruefen, ob die Fotobox an Ihrem Wunschdatum noch frei ist.
-                      Sie erhalten in der Regel innerhalb von 24 Stunden Rueckmeldung.
+                      Wir pruefen die Verfuegbarkeit fuer Ihren Termin innerhalb
+                      von 24 Stunden.
                     </p>
                   </div>
                 </div>
@@ -68,38 +104,20 @@ export default async function DankePage({ searchParams }: DankePageProps) {
                   <div>
                     <h3>Unverbindliches Angebot</h3>
                     <p>
-                      Anschliessend senden wir Ihnen ein klares Angebot inklusive
-                      aller Details und optionaler Erweiterungen zu.
+                      Sie erhalten ein detailliertes Angebot per E-Mail inkl.
+                      aller Inklusivleistungen.
                     </p>
                   </div>
                 </div>
                 <div className={styles.step}>
                   <div className={styles.stepIndex}>3</div>
                   <div>
-                    <h3>Fixe Buchung</h3>
+                    <h3>Termin Fixierung</h3>
                     <p>
-                      Sobald Sie bestaetigen, ist die Fotobox fuer Ihr Event fix
-                      reserviert und wir stimmen die weiteren Details gemeinsam ab.
+                      Nach Ihrer Bestaetigung wird die Fotobox fest fuer Ihren
+                      besonderen Tag reserviert.
                     </p>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <aside className={styles.summaryCard}>
-              <h2>Zusammenfassung</h2>
-              <div className={styles.summaryList}>
-                <div>
-                  <span>Gewaehltes Paket</span>
-                  <strong>{packageLabel}</strong>
-                </div>
-                <div>
-                  <span>Ihr Ansprechpartner</span>
-                  <strong>Fotobox Tirol Team</strong>
-                </div>
-                <div>
-                  <span>Geschaetzte Investition</span>
-                  <strong className={styles.price}>{packagePrice}</strong>
                 </div>
               </div>
               <div className={styles.summaryActions}>
@@ -112,8 +130,7 @@ export default async function DankePage({ searchParams }: DankePageProps) {
 
           <section className={styles.footnote}>
             <p>
-              Haben Sie keine E-Mail erhalten? Bitte pruefen Sie Ihren Spam-Ordner
-              oder kontaktieren Sie uns direkt unter{" "}
+              Haben Sie in der Zwischenzeit Fragen? Kontaktieren Sie uns direkt unter{" "}
               <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
             </p>
           </section>

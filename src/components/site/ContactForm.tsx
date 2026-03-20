@@ -61,7 +61,10 @@ export default function ContactForm({
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setCaptchaAnswer("");
-      window.location.replace(`/danke?paket=${encodeURIComponent(submittedPackage)}`);
+      const params = new URLSearchParams();
+      params.set("paket", submittedPackage);
+      if (payload.eventDate) params.set("eventDate", payload.eventDate);
+      window.location.replace(`/danke?${params.toString()}`);
       return;
     }
 

@@ -112,7 +112,11 @@ export default function BookingInquiryForm({
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
       setCaptchaAnswer("");
-      window.location.replace(`/danke?paket=${encodeURIComponent(submittedPackage)}`);
+      const params = new URLSearchParams();
+      params.set("paket", submittedPackage);
+      if (payload.eventDate) params.set("eventDate", payload.eventDate);
+      if (payload.location) params.set("location", payload.location);
+      window.location.replace(`/danke?${params.toString()}`);
       return;
     }
 
