@@ -111,11 +111,6 @@ export default async function DankePage({ searchParams }: DankePageProps) {
                 <Link href={thanks.primaryButtonHref} className="btn btn-outline">
                   {thanks.primaryButtonText}
                 </Link>
-                {thanks.secondaryButtonText ? (
-                  <Link href={thanks.secondaryButtonHref} className="btn">
-                    {thanks.secondaryButtonText}
-                  </Link>
-                ) : null}
               </div>
             </aside>
           </section>
