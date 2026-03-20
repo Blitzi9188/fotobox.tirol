@@ -3061,6 +3061,8 @@ footer {
   .accessories-carousel-shell {
     grid-template-columns: 32px 1fr 32px;
     gap: 0.4rem;
+    max-width: 720px;
+    margin-inline: auto;
   }
 
   .accessories-head,
@@ -3076,16 +3078,20 @@ footer {
 
   .accessories-slide {
     padding: 0 0.3rem;
+    display: flex;
+    justify-content: center;
   }
 
   .accessories-slide img,
   .accessories-fallback {
     aspect-ratio: 4 / 3;
+    margin-inline: auto;
   }
 
   .accessories-section {
     margin-top: 1.2rem;
     padding-top: 0.6rem;
+    text-align: center;
   }
 
   .references-slide {
