@@ -405,6 +405,7 @@ p {
   background: #fff;
   border: 1px solid var(--c-line);
   padding: 1.6rem;
+  border-radius: 16px;
 }
 
 .ai-grid {
@@ -419,6 +420,10 @@ p {
   grid-template-columns: 1fr minmax(320px, 420px) 1fr;
   gap: 1.2rem;
   align-items: center;
+  padding: 1.1rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .ai-text {
@@ -782,7 +787,12 @@ p {
 .accessories-section {
   margin-top: 4.5rem;
   padding-top: 2.2rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  padding-bottom: 1.4rem;
   background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: 18px;
 }
 
 .accessories-head {
@@ -924,9 +934,14 @@ p {
 
 .home-references-block {
   margin-top: 2.8rem;
+  padding: 1.35rem 1rem 0.35rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .home-references-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   margin-bottom: 1.25rem;
   text-align: center;
 }
@@ -1063,6 +1078,7 @@ p {
   border: 1px solid var(--c-line);
   padding: 1.35rem;
   background: #fff;
+  border-radius: 16px;
 }
 
 .review-top {
@@ -1379,7 +1395,7 @@ p {
 
 .faq-item {
   border: 1px solid var(--c-line);
-  border-radius: 0;
+  border-radius: 16px;
   padding: 1rem 1.1rem;
   background: #fff;
   min-height: 70px;
@@ -2195,6 +2211,10 @@ p {
 .home-bottom-cta-inner {
   display: flex;
   justify-content: center;
+  padding: 1.2rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .home-bottom-cta-btn {

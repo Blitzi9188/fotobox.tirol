@@ -26,6 +26,8 @@ export default async function DankePage({ searchParams }: DankePageProps) {
   const packageLabel = packageMatch?.name || "Fotobox Paket";
   const packagePrice = packageMatch?.price ? `${packageMatch.price}€` : "Auf Anfrage";
   const contactEmail = content.contact.email || "info@fotobox.tirol";
+  const contactPhone = content.contact.phone || "+43 664 3918 228";
+  const contactPhoneHref = `tel:${contactPhone.replace(/\s+/g, "")}`;
   const thanks = content.thanks;
   const eventDate = rawEventDate
     ? new Intl.DateTimeFormat("de-AT", {
@@ -122,20 +124,22 @@ export default async function DankePage({ searchParams }: DankePageProps) {
             </p>
           </section>
 
-          <section className={styles.directContact}>
-            <h2>Direkt anfragen</h2>
-            <p>
-              <strong>Telefon:</strong>{" "}
-              <a href={`tel:${(content.contact.phone || "").replace(/\s+/g, "")}`}>{content.contact.phone}</a>
-            </p>
-            <p>
-              <strong>E-Mail:</strong>{" "}
-              <a href={`mailto:${content.contact.email}`}>{content.contact.email}</a>
-            </p>
-            <p>
-              <strong>Adresse:</strong> {content.contact.address}
-            </p>
+          <section className={styles.quickActions}>
+            <Link href={thanks.primaryButtonHref || "/"} className={styles.backButton}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M10 19l-7-7 7-7" />
+                <path d="M3 12h18" />
+              </svg>
+              Zurück zur Startseite
+            </Link>
+            <a href={contactPhoneHref} className={styles.callButton}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .95.68l1.49 4.49a1 1 0 0 1-.5 1.21l-2.26 1.13a11.04 11.04 0 0 0 5.52 5.52l1.13-2.26a1 1 0 0 1 1.21-.5l4.49 1.49a1 1 0 0 1 .69.95V19a2 2 0 0 1-2 2h-1C9.72 21 3 14.28 3 6V5Z" />
+              </svg>
+              Sofort-Kontakt
+            </a>
           </section>
+
         </div>
       </main>
       <SiteFooter content={content} />
