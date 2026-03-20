@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
+import ConfettiOverlay from "@/components/site/ConfettiOverlay";
 import { readCmsContent } from "@/lib/cms";
 import styles from "./page.module.css";
 
@@ -42,6 +43,7 @@ export default async function DankePage({ searchParams }: DankePageProps) {
     <>
       <SiteHeader content={content} />
       <main className={styles.main}>
+        <ConfettiOverlay />
         <div className={`container ${styles.shell}`}>
           <section className={styles.hero}>
             <div className={styles.checkmarkWrap} aria-hidden="true">

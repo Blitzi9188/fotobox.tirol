@@ -39,7 +39,7 @@
     "ctaText": "Jetzt Termin sichern",
     "secondaryCtaText": "Mehr erfahren",
     "secondaryCtaHref": "/#features",
-    "imageUrl": "/uploads/1774027269897-931f7683-3961-4e1f-b3a9-c35edf7e8346-hero-hader-fotobox-tirol-1.jpg"
+    "imageUrl": "/uploads/hero-optimized.jpg"
   },
   "features": {
     "heading": "einfach/individuell",
@@ -213,25 +213,102 @@
     "faqHeading": "haeufige/fragen",
     "referencesHeading": "referenzen/partner",
     "references": [
-      { "name": "Fiegl+Spielberger", "href": "https://www.fiegl.co.at", "logoDomain": "fiegl.co.at" },
-      { "name": "Congress Messe Innsbruck", "href": "https://www.cmi.at", "logoDomain": "cmi.at" },
-      { "name": "Kloster Bräu Seefeld", "href": "https://klosterbraeu.com", "logoDomain": "klosterbraeu.com" },
-      { "name": "Tiroler Versicherung", "href": "https://www.tiroler-versicherung.at", "logoDomain": "tiroler-versicherung.at" },
-      { "name": "Völkl Ski", "href": "https://www.voelkl.com", "logoDomain": "voelkl.com" },
-      { "name": "Recycling Ahrental", "href": "https://www.rz-ahrental.at", "logoDomain": "rz-ahrental.at" },
-      { "name": "Sandoz", "href": "https://www.sandoz.com", "logoDomain": "sandoz.com" },
-      { "name": "Sailer Seefeld", "href": "https://www.sailer-seefeld.at", "logoDomain": "sailer-seefeld.at" },
-      { "name": "Interalpen Hotel", "href": "https://www.interalpen.com", "logoDomain": "interalpen.com" },
-      { "name": "Wetscher", "href": "https://www.wetscher.com", "logoDomain": "wetscher.com" },
-      { "name": "Burton", "href": "https://www.burton.com", "logoDomain": "burton.com" },
-      { "name": "Tiroler Wasserkraft", "href": "https://www.tiwag.at", "logoDomain": "tiwag.at" },
-      { "name": "Woods Seefeld", "href": "https://www.woods-seefeld.com", "logoDomain": "woods-seefeld.com" },
-      { "name": "OFA", "href": "https://www.ofa.at", "logoDomain": "ofa.at" },
-      { "name": "Bayrischer Hof", "href": "https://www.bayerischerhof.de/de/", "logoDomain": "bayerischerhof.de", "initials": "BH" },
-      { "name": "VOGUE Germany", "href": "https://www.vogue.de", "logoDomain": "vogue.de" },
-      { "name": "Adlers Hotel", "href": "https://www.adlers-innsbruck.com", "logoDomain": "adlers-innsbruck.com" },
-      { "name": "Hypo Tirol Bank", "href": "https://www.hypotirol.com", "logoDomain": "hypotirol.com" },
-      { "name": "Aqua Dome", "href": "https://www.aqua-dome.at", "logoDomain": "aqua-dome.at" }
+      {
+        "name": "Fiegl+Spielberger",
+        "href": "https://www.fiegl.co.at",
+        "logoDomain": "fiegl.co.at"
+      },
+      {
+        "name": "Congress Messe Innsbruck",
+        "href": "https://www.cmi.at",
+        "logoDomain": "cmi.at"
+      },
+      {
+        "name": "Kloster Bräu Seefeld",
+        "href": "https://klosterbraeu.com",
+        "logoDomain": "klosterbraeu.com"
+      },
+      {
+        "name": "Tiroler Versicherung",
+        "href": "https://www.tiroler-versicherung.at",
+        "logoDomain": "tiroler-versicherung.at"
+      },
+      {
+        "name": "Völkl Ski",
+        "href": "https://www.voelkl.com",
+        "logoDomain": "voelkl.com"
+      },
+      {
+        "name": "Recycling Ahrental",
+        "href": "https://www.rz-ahrental.at",
+        "logoDomain": "rz-ahrental.at"
+      },
+      {
+        "name": "Sandoz",
+        "href": "https://www.sandoz.com",
+        "logoDomain": "sandoz.com"
+      },
+      {
+        "name": "Sailer Seefeld",
+        "href": "https://www.sailer-seefeld.at",
+        "logoDomain": "sailer-seefeld.at"
+      },
+      {
+        "name": "Interalpen Hotel",
+        "href": "https://www.interalpen.com",
+        "logoDomain": "interalpen.com"
+      },
+      {
+        "name": "Wetscher",
+        "href": "https://www.wetscher.com",
+        "logoDomain": "wetscher.com"
+      },
+      {
+        "name": "Burton",
+        "href": "https://www.burton.com",
+        "logoDomain": "burton.com"
+      },
+      {
+        "name": "Tiroler Wasserkraft",
+        "href": "https://www.tiwag.at",
+        "logoDomain": "tiwag.at"
+      },
+      {
+        "name": "Woods Seefeld",
+        "href": "https://www.woods-seefeld.com",
+        "logoDomain": "woods-seefeld.com"
+      },
+      {
+        "name": "OFA",
+        "href": "https://www.ofa.at",
+        "logoDomain": "ofa.at"
+      },
+      {
+        "name": "Bayrischer Hof",
+        "href": "https://www.bayerischerhof.de/de/",
+        "logoDomain": "bayerischerhof.de",
+        "initials": "BH"
+      },
+      {
+        "name": "VOGUE Germany",
+        "href": "https://www.vogue.de",
+        "logoDomain": "vogue.de"
+      },
+      {
+        "name": "Adlers Hotel",
+        "href": "https://www.adlers-innsbruck.com",
+        "logoDomain": "adlers-innsbruck.com"
+      },
+      {
+        "name": "Hypo Tirol Bank",
+        "href": "https://www.hypotirol.com",
+        "logoDomain": "hypotirol.com"
+      },
+      {
+        "name": "Aqua Dome",
+        "href": "https://www.aqua-dome.at",
+        "logoDomain": "aqua-dome.at"
+      }
     ],
     "contactTitle": "Direkt anfragen",
     "plans": [

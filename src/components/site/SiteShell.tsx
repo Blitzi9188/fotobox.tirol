@@ -25,6 +25,7 @@ export function SiteHeader({ content }: { content: CMSContent }) {
     { href: "/#accessories", label: "Requisitten" },
     { href: "/#layout", label: "Layout" },
     { href: "/#ai", label: "KI" },
+    { href: "/preisgestaltung", label: "Preise" },
     { href: "/#faq", label: "Fragen" },
     { href: "/kontakt", label: "Anfragen", className: "accent-link" }
   ];

@@ -6,6 +6,8 @@
 
 .shell {
   max-width: 1120px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero {
@@ -360,6 +362,7 @@
     transform: translateY(0);
   }
 }
+
 
 @media (max-width: 900px) {
   .grid {
