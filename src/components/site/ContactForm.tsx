@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { PricePlan } from "@/lib/types";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
@@ -19,7 +18,6 @@ export default function ContactForm({
   const [captchaQuestion, setCaptchaQuestion] = useState("");
   const [captchaToken, setCaptchaToken] = useState("");
   const [captchaAnswer, setCaptchaAnswer] = useState("");
-  const router = useRouter();
 
   async function loadCaptcha() {
     const response = await fetch(`/api/captcha?t=${Date.now()}`, { cache: "no-store" });
@@ -59,16 +57,15 @@ export default function ContactForm({
     });
 
     const json = (await response.json().catch(() => null)) as { error?: string } | null;
-    setStatus(response.ok ? "Anfrage gesendet." : (json?.error || "Senden fehlgeschlagen."));
     if (response.ok) {
-      event.currentTarget.reset();
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setCaptchaAnswer("");
-      router.replace(`/danke?paket=${encodeURIComponent(submittedPackage)}`);
+      window.location.replace(`/danke?paket=${encodeURIComponent(submittedPackage)}`);
       return;
     }
 
+    setStatus(json?.error || "Senden fehlgeschlagen.");
     void loadCaptcha();
   }
 

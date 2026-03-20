@@ -105,22 +105,18 @@ export default function BookingInquiryForm({
     });
 
     const json = (await response.json().catch(() => null)) as { error?: string } | null;
-    setStatus(
-      response.ok
-        ? (inquiry.successText || "Anfrage erfolgreich gesendet.")
-        : (json?.error || inquiry.errorText || "Senden fehlgeschlagen.")
-    );
     if (response.ok) {
-      event.currentTarget.reset();
       setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);
       setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
       setCaptchaAnswer("");
-      window.location.assign(`/danke?paket=${encodeURIComponent(submittedPackage)}`);
+      window.location.replace(`/danke?paket=${encodeURIComponent(submittedPackage)}`);
       return;
     }
+
+    setStatus(json?.error || inquiry.errorText || "Senden fehlgeschlagen.");
 
     void loadCaptcha();
   }
