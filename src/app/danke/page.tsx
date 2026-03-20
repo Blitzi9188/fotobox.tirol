@@ -26,6 +26,7 @@ export default async function DankePage({ searchParams }: DankePageProps) {
   const packageLabel = packageMatch?.name || "Fotobox Paket";
   const packagePrice = packageMatch?.price ? `${packageMatch.price}€` : "Auf Anfrage";
   const contactEmail = content.contact.email || "info@fotobox.tirol";
+  const thanks = content.thanks;
   const eventDate = rawEventDate
     ? new Intl.DateTimeFormat("de-AT", {
         day: "numeric",
@@ -50,88 +51,94 @@ export default async function DankePage({ searchParams }: DankePageProps) {
                 />
               </svg>
             </div>
-            <span className={styles.badge}>Anfrage gesendet</span>
-            <h1>
-              vielen dank<span className="accent-slash">/</span>herzlichst
-            </h1>
-            <p className={styles.lead}>
-              Ihre Anfrage ist erfolgreich bei uns eingegangen. Wir pruefen die
-              Verfuegbarkeit fuer Ihren Wunschtermin und melden uns in Kuerze.
-            </p>
+            <span className={styles.badge}>{thanks.badge || "Anfrage gesendet"}</span>
+            <h1><span>{thanks.heading}</span></h1>
+            <p className={styles.lead}>{thanks.message}</p>
           </section>
 
           <section className={styles.grid}>
             <div className={styles.summaryCardLight}>
-              <h2>Anfrage-Zusammenfassung</h2>
+              <h2>{thanks.summaryTitle || "Anfrage-Zusammenfassung"}</h2>
               <div className={styles.summaryRows}>
                 <div className={styles.summaryRow}>
-                  <span>Paket</span>
+                  <span>{thanks.summaryPackageLabel || "Paket"}</span>
                   <strong>{packageLabel}</strong>
                 </div>
                 <div className={styles.summaryRow}>
-                  <span>Voraussichtlicher Termin</span>
+                  <span>{thanks.summaryDateLabel || "Voraussichtlicher Termin"}</span>
                   <strong>{eventDate}</strong>
                 </div>
                 <div className={styles.summaryRow}>
-                  <span>Ort der Feier</span>
+                  <span>{thanks.summaryLocationLabel || "Ort der Feier"}</span>
                   <strong>{location}</strong>
                 </div>
               </div>
               <div className={styles.priceBox}>
                 <div className={styles.priceLine}>
-                  <span>GESCHÄTZTER PREIS</span>
+                  <span>{thanks.priceLabel || "GESCHÄTZTER PREIS"}</span>
                   <strong>{packagePrice}</strong>
                 </div>
-                <p>*Inkl. MwSt. Endgueltiger Preis folgt im Angebot.</p>
+                <p>{thanks.priceNote || "*Inkl. MwSt. Endgueltiger Preis folgt im Angebot."}</p>
               </div>
             </div>
 
             <aside className={styles.summaryCard}>
-              <h2>Wie geht es weiter?</h2>
+              <h2>{thanks.stepsTitle || "Wie geht es weiter?"}</h2>
               <div className={styles.steps}>
                 <div className={`${styles.step} ${styles.stepActive}`}>
                   <div className={styles.stepIndex}>1</div>
                   <div>
-                    <h3>Anfrage-Check</h3>
-                    <p>
-                      Wir pruefen die Verfuegbarkeit fuer Ihren Termin innerhalb
-                      von 24 Stunden.
-                    </p>
+                    <h3>{thanks.step1Title || "Anfrage-Check"}</h3>
+                    <p>{thanks.step1Text || "Wir pruefen die Verfuegbarkeit fuer Ihren Termin innerhalb von 24 Stunden."}</p>
                   </div>
                 </div>
                 <div className={styles.step}>
                   <div className={styles.stepIndex}>2</div>
                   <div>
-                    <h3>Unverbindliches Angebot</h3>
-                    <p>
-                      Sie erhalten ein detailliertes Angebot per E-Mail inkl.
-                      aller Inklusivleistungen.
-                    </p>
+                    <h3>{thanks.step2Title || "Unverbindliches Angebot"}</h3>
+                    <p>{thanks.step2Text || "Sie erhalten ein detailliertes Angebot per E-Mail inkl. aller Inklusivleistungen."}</p>
                   </div>
                 </div>
                 <div className={styles.step}>
                   <div className={styles.stepIndex}>3</div>
                   <div>
-                    <h3>Termin Fixierung</h3>
-                    <p>
-                      Nach Ihrer Bestaetigung wird die Fotobox fest fuer Ihren
-                      besonderen Tag reserviert.
-                    </p>
+                    <h3>{thanks.step3Title || "Termin Fixierung"}</h3>
+                    <p>{thanks.step3Text || "Nach Ihrer Bestaetigung wird die Fotobox fest fuer Ihren besonderen Tag reserviert."}</p>
                   </div>
                 </div>
               </div>
               <div className={styles.summaryActions}>
-                <Link href="/" className="btn btn-outline">
-                  Zurueck zur Startseite
+                <Link href={thanks.primaryButtonHref} className="btn btn-outline">
+                  {thanks.primaryButtonText}
                 </Link>
+                {thanks.secondaryButtonText ? (
+                  <Link href={thanks.secondaryButtonHref} className="btn">
+                    {thanks.secondaryButtonText}
+                  </Link>
+                ) : null}
               </div>
             </aside>
           </section>
 
           <section className={styles.footnote}>
             <p>
-              Haben Sie in der Zwischenzeit Fragen? Kontaktieren Sie uns direkt unter{" "}
+              {thanks.footerText || "Haben Sie in der Zwischenzeit Fragen? Kontaktieren Sie uns direkt unter"}{" "}
               <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+            </p>
+          </section>
+
+          <section className={styles.directContact}>
+            <h2>Direkt anfragen</h2>
+            <p>
+              <strong>Telefon:</strong>{" "}
+              <a href={`tel:${(content.contact.phone || "").replace(/\s+/g, "")}`}>{content.contact.phone}</a>
+            </p>
+            <p>
+              <strong>E-Mail:</strong>{" "}
+              <a href={`mailto:${content.contact.email}`}>{content.contact.email}</a>
+            </p>
+            <p>
+              <strong>Adresse:</strong> {content.contact.address}
             </p>
           </section>
         </div>

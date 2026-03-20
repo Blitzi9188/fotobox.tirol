@@ -1,7 +1,8 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { PricePlan } from "@/lib/types";
+import RecaptchaField from "@/components/site/RecaptchaField";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
 
@@ -15,21 +16,7 @@ export default function ContactForm({
   const safePlans: PackageOption[] = plans.length > 0 ? plans : [{ name: "Allgemeine Anfrage", price: 0 }];
   const [status, setStatus] = useState("");
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
-  const [captchaQuestion, setCaptchaQuestion] = useState("");
-  const [captchaToken, setCaptchaToken] = useState("");
-  const [captchaAnswer, setCaptchaAnswer] = useState("");
-
-  async function loadCaptcha() {
-    const response = await fetch(`/api/captcha?t=${Date.now()}`, { cache: "no-store" });
-    const json = (await response.json()) as { question: string; token: string };
-    setCaptchaQuestion(json.question);
-    setCaptchaToken(json.token);
-    setCaptchaAnswer("");
-  }
-
-  useEffect(() => {
-    void loadCaptcha();
-  }, []);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   function requiredLabel(label: string) {
     return `${label} *`;
@@ -46,8 +33,7 @@ export default function ContactForm({
       eventDate: String(formData.get("eventDate") || ""),
       packageName: String(formData.get("packageName") || ""),
       message: String(formData.get("message") || ""),
-      captchaToken,
-      captchaAnswer
+      recaptchaToken
     };
 
     const response = await fetch("/api/contact", {
@@ -60,7 +46,7 @@ export default function ContactForm({
     if (response.ok) {
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
-      setCaptchaAnswer("");
+      setRecaptchaToken("");
       const params = new URLSearchParams();
       params.set("paket", submittedPackage);
       if (payload.eventDate) params.set("eventDate", payload.eventDate);
@@ -69,7 +55,7 @@ export default function ContactForm({
     }
 
     setStatus(json?.error || "Senden fehlgeschlagen.");
-    void loadCaptcha();
+    setRecaptchaToken("");
   }
 
   return (
@@ -113,23 +99,11 @@ export default function ContactForm({
       <div className="inquiry-captcha-card">
         <div className="inquiry-captcha-copy">
           <span className="inquiry-section-title">Sicherheitsabfrage</span>
-          <p className="inquiry-captcha-help">Ein kurzer Schutz gegen Spam.</p>
+          <p className="inquiry-captcha-help">Bitte bestaetigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="admin-field" style={{ marginBottom: 0 }}>
-          <span>{requiredLabel(captchaQuestion || "Lade Sicherheitsfrage...")}</span>
-          <div className="inquiry-captcha-row">
-            <input
-              name="captchaAnswer"
-              inputMode="numeric"
-              value={captchaAnswer}
-              onChange={(event) => setCaptchaAnswer(event.target.value)}
-              placeholder="Antwort"
-              required
-            />
-            <button className="btn btn-outline inquiry-captcha-refresh" type="button" onClick={() => void loadCaptcha()}>
-              Neu
-            </button>
-          </div>
+          <span>{requiredLabel("Google reCAPTCHA")}</span>
+          <RecaptchaField value={recaptchaToken} onChange={setRecaptchaToken} />
         </label>
       </div>
       <button className="btn" type="submit">Absenden</button>

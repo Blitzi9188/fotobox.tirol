@@ -1,7 +1,8 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import { PricePlan, CMSContent } from "@/lib/types";
+import RecaptchaField from "@/components/site/RecaptchaField";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
 
@@ -20,6 +21,161 @@ const PRINT_FORMAT_OPTIONS = [
   { label: "10x15", desc: "Klassisches Fotopapier" },
   { label: "5x15", desc: "Streifenformat" }
 ];
+
+function WeddingIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M20 12v10H4V12" />
+      <path d="M2 7h20v5H2z" />
+      <path d="M12 22V7" />
+      <path d="M12 7H4.5a2.5 2.5 0 0 1 0-5C7 2 12 7 12 7z" />
+      <path d="M12 7h7.5a2.5 2.5 0 0 0 0-5C17 2 12 7 12 7z" />
+    </svg>
+  );
+}
+
+function BusinessIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M3 9h18" />
+      <path d="M9 21V9" />
+    </svg>
+  );
+}
+
+function BirthdayIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5c2.4 0 5.4 3 5.5 3" />
+      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5c-2.4 0-5.4 3-5.5 3" />
+      <path d="M4 22h16l-2-13H6l-2 13Z" />
+      <path d="M10.5 14.5c.9 0 1.5-.6 1.5-1.5s-.6-1.5-1.5-1.5-1.5.6-1.5 1.5.6 1.5 1.5 1.5Z" />
+      <path d="M13.5 14.5c.9 0 1.5-.6 1.5-1.5s-.6-1.5-1.5-1.5-1.5.6-1.5 1.5.6 1.5 1.5 1.5Z" />
+    </svg>
+  );
+}
+
+function OtherIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 8v8" />
+      <path d="M8 12h8" />
+    </svg>
+  );
+}
+
+function ClassicPrintIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="5" y="4" width="14" height="16" rx="2" />
+      <path d="M8 8h8" />
+      <path d="M8 12h8" />
+      <path d="M8 16h5" />
+    </svg>
+  );
+}
+
+function StripPrintIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="8" y="3" width="8" height="18" rx="2" />
+      <path d="M10 7h4" />
+      <path d="M10 11h4" />
+      <path d="M10 15h4" />
+    </svg>
+  );
+}
+
+function CameraIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+      <circle cx="12" cy="13" r="4" />
+    </svg>
+  );
+}
+
+function SparklesIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="m12 3 1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z" />
+      <path d="M19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9L19 16Z" />
+      <path d="M5 14l.9 2.1L8 17l-2.1.9L5 20l-.9-2.1L2 17l2.1-.9L5 14Z" />
+    </svg>
+  );
+}
+
+function CalendarIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <path d="M16 2v4" />
+      <path d="M8 2v4" />
+      <path d="M3 10h18" />
+    </svg>
+  );
+}
+
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 21s6-4.35 6-10a6 6 0 1 0-12 0c0 5.65 6 10 6 10Z" />
+      <circle cx="12" cy="11" r="2.5" />
+    </svg>
+  );
+}
+
+function UserIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M20 21a8 8 0 1 0-16 0" />
+      <circle cx="12" cy="8" r="4" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m4 7 8 6 8-6" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72l.35 2.79a2 2 0 0 1-.57 1.73l-1.2 1.2a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 1.73-.57l2.79.35A2 2 0 0 1 22 16.92Z" />
+    </svg>
+  );
+}
+
+function MessageIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  );
+}
+
+function getEventIcon(label: string) {
+  const value = label.toLowerCase();
+  if (value.includes("hoch")) return <WeddingIcon />;
+  if (value.includes("firma") || value.includes("business")) return <BusinessIcon />;
+  if (value.includes("geburt")) return <BirthdayIcon />;
+  return <OtherIcon />;
+}
+
+function getPrintFormatIcon(label: string) {
+  return label.includes("5x15") ? <StripPrintIcon /> : <ClassicPrintIcon />;
+}
+
+function getBoxTypeIcon(label: string) {
+  return label.toLowerCase().includes("ki") ? <SparklesIcon /> : <CameraIcon />;
+}
 
 export default function BookingInquiryForm({
   plans = [],
@@ -52,21 +208,7 @@ export default function BookingInquiryForm({
   const [selectedPrintFormat, setSelectedPrintFormat] = useState(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
   const [selectedBoxType, setSelectedBoxType] = useState(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
-  const [captchaQuestion, setCaptchaQuestion] = useState("");
-  const [captchaToken, setCaptchaToken] = useState("");
-  const [captchaAnswer, setCaptchaAnswer] = useState("");
-
-  async function loadCaptcha() {
-    const response = await fetch(`/api/captcha?t=${Date.now()}`, { cache: "no-store" });
-    const json = (await response.json()) as { question: string; token: string };
-    setCaptchaQuestion(json.question);
-    setCaptchaToken(json.token);
-    setCaptchaAnswer("");
-  }
-
-  useEffect(() => {
-    void loadCaptcha();
-  }, []);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   function requiredLabel(label: string) {
     return `${label} *`;
@@ -94,8 +236,7 @@ export default function BookingInquiryForm({
       printFormat: String(formData.get("printFormat") || "").trim(),
       printText,
       message: messageRaw,
-      captchaToken,
-      captchaAnswer
+      recaptchaToken
     };
 
     const response = await fetch("/api/contact", {
@@ -111,7 +252,7 @@ export default function BookingInquiryForm({
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
-      setCaptchaAnswer("");
+      setRecaptchaToken("");
       const params = new URLSearchParams();
       params.set("paket", submittedPackage);
       if (payload.eventDate) params.set("eventDate", payload.eventDate);
@@ -121,8 +262,7 @@ export default function BookingInquiryForm({
     }
 
     setStatus(json?.error || inquiry.errorText || "Senden fehlgeschlagen.");
-
-    void loadCaptcha();
+    setRecaptchaToken("");
   }
 
   return (
@@ -138,6 +278,7 @@ export default function BookingInquiryForm({
               className={`inquiry-option ${selectedEvent === item.label ? "selected" : ""}`}
               onClick={() => setSelectedEvent(item.label)}
             >
+              <span className="inquiry-option-icon">{getEventIcon(item.label)}</span>
               <span className="inquiry-option-title">{item.label}</span>
               <span className="inquiry-option-desc">{item.desc}</span>
             </button>
@@ -149,11 +290,11 @@ export default function BookingInquiryForm({
         <span className="inquiry-section-title">{inquiry.dateSectionTitle}</span>
         <div className="inquiry-input-group">
           <label className="inquiry-field">
-            <span>{requiredLabel(inquiry.dateLabel || "Datum")}</span>
+            <span className="inquiry-field-heading"><span className="inquiry-field-icon"><CalendarIcon /></span>{requiredLabel(inquiry.dateLabel || "Datum")}</span>
             <input name="eventDate" type="date" required />
           </label>
           <label className="inquiry-field">
-            <span>{inquiry.locationLabel || "Ort der Feier"}</span>
+            <span className="inquiry-field-heading"><span className="inquiry-field-icon"><PinIcon /></span>{inquiry.locationLabel || "Ort der Feier"}</span>
             <input name="location" type="text" placeholder={inquiry.locationPlaceholder || "Innsbruck, Kitzbuehel..."} />
           </label>
         </div>
@@ -168,18 +309,19 @@ export default function BookingInquiryForm({
               <label
                 key={`${option.label}-${index}`}
                 className={`inquiry-checkbox-item ${selectedPrintFormat === option.label ? "selected" : ""}`}
-              >
-                <input
+                >
+                  <input
                   type="radio"
                   name="printFormat"
                   value={option.label}
                   checked={selectedPrintFormat === option.label}
                   onChange={() => setSelectedPrintFormat(option.label)}
-                />
-                <span className="inquiry-checkmark" aria-hidden="true" />
-                <span className="inquiry-choice-line">
-                  <span className="inquiry-choice-title">{option.label}</span>
-                  <span className="inquiry-choice-desc">{option.desc}</span>
+                  />
+                  <span className="inquiry-checkmark" aria-hidden="true" />
+                  <span className="inquiry-choice-icon">{getPrintFormatIcon(option.label)}</span>
+                  <span className="inquiry-choice-line">
+                    <span className="inquiry-choice-title">{option.label}</span>
+                    <span className="inquiry-choice-desc">{option.desc}</span>
                 </span>
               </label>
             ))}
@@ -192,18 +334,19 @@ export default function BookingInquiryForm({
               <label
                 key={`${option.label}-${index}`}
                 className={`inquiry-checkbox-item ${selectedBoxType === option.label ? "selected" : ""}`}
-              >
-                <input
+                >
+                  <input
                   type="radio"
                   name="boxType"
                   value={option.label}
                   checked={selectedBoxType === option.label}
                   onChange={() => setSelectedBoxType(option.label)}
-                />
-                <span className="inquiry-checkmark" aria-hidden="true" />
-                <span className="inquiry-choice-line">
-                  <span className="inquiry-choice-title">{option.label}</span>
-                  <span className="inquiry-choice-desc">{option.desc}</span>
+                  />
+                  <span className="inquiry-checkmark" aria-hidden="true" />
+                  <span className="inquiry-choice-icon">{getBoxTypeIcon(option.label)}</span>
+                  <span className="inquiry-choice-line">
+                    <span className="inquiry-choice-title">{option.label}</span>
+                    <span className="inquiry-choice-desc">{option.desc}</span>
                 </span>
               </label>
             ))}
@@ -219,22 +362,22 @@ export default function BookingInquiryForm({
         <span className="inquiry-section-title">{inquiry.contactSectionTitle}</span>
         <div className="inquiry-input-group">
           <label className="inquiry-field">
-            <span>{requiredLabel(inquiry.nameLabel || "Vor- & Nachname")}</span>
+            <span className="inquiry-field-heading"><span className="inquiry-field-icon"><UserIcon /></span>{requiredLabel(inquiry.nameLabel || "Vor- & Nachname")}</span>
             <input name="name" type="text" placeholder={inquiry.namePlaceholder || "Max Mustermann"} required />
           </label>
           <label className="inquiry-field">
-            <span>{requiredLabel(inquiry.emailLabel || "E-Mail Adresse")}</span>
+            <span className="inquiry-field-heading"><span className="inquiry-field-icon"><MailIcon /></span>{requiredLabel(inquiry.emailLabel || "E-Mail Adresse")}</span>
             <input name="email" type="email" placeholder={inquiry.emailPlaceholder || "max@beispiel.at"} required />
           </label>
         </div>
         <div className="inquiry-input-group inquiry-input-group-single">
           <label className="inquiry-field">
-            <span>{inquiry.phoneLabel || "Telefonnummer"}</span>
+            <span className="inquiry-field-heading"><span className="inquiry-field-icon"><PhoneIcon /></span>{inquiry.phoneLabel || "Telefonnummer"}</span>
             <input name="phone" type="tel" placeholder={inquiry.phonePlaceholder || "+43 664 ..."} />
           </label>
         </div>
         <label className="inquiry-field">
-          <span>{inquiry.messageLabel || "Nachricht (optional)"}</span>
+          <span className="inquiry-field-heading"><span className="inquiry-field-icon"><MessageIcon /></span>{inquiry.messageLabel || "Nachricht (optional)"}</span>
           <textarea name="message" rows={4} placeholder={inquiry.messagePlaceholder || "Besondere Wuensche oder Details..."} />
         </label>
       </div>
@@ -262,24 +405,11 @@ export default function BookingInquiryForm({
       <div className="inquiry-captcha-card">
         <div className="inquiry-captcha-copy">
           <span className="inquiry-section-title">06. Sicherheitsabfrage</span>
-          <p className="inquiry-captcha-help">Bitte kurz die Rechenfrage beantworten, dann kann die Anfrage gesendet werden.</p>
+          <p className="inquiry-captcha-help">Bitte bestaetigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="inquiry-field">
-          <span>{requiredLabel(captchaQuestion || "Lade Sicherheitsfrage...")}</span>
-          <div className="inquiry-captcha-row">
-            <input
-              name="captchaAnswer"
-              type="text"
-              inputMode="numeric"
-              value={captchaAnswer}
-              onChange={(event) => setCaptchaAnswer(event.target.value)}
-              placeholder="Antwort"
-              required
-            />
-            <button className="btn btn-outline inquiry-captcha-refresh" type="button" onClick={() => void loadCaptcha()}>
-              Neu
-            </button>
-          </div>
+          <span>{requiredLabel("Google reCAPTCHA")}</span>
+          <RecaptchaField value={recaptchaToken} onChange={setRecaptchaToken} />
         </label>
       </div>
 

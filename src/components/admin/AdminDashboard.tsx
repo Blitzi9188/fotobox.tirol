@@ -199,8 +199,23 @@ export default function AdminDashboard() {
       references: json.contact?.references || []
     };
     const normalizedThanks = {
+      badge: json.thanks?.badge || "Anfrage gesendet",
       heading: json.thanks?.heading || "danke/anfrage",
-      message: json.thanks?.message || "Danke, wir haben deine Anfrage erhalten und melden uns so schnell als möglich zurück.",
+      message: json.thanks?.message || "Ihre Anfrage ist erfolgreich bei uns eingegangen. Wir pruefen die Verfuegbarkeit fuer Ihren Wunschtermin und melden uns in Kuerze.",
+      summaryTitle: json.thanks?.summaryTitle || "Anfrage-Zusammenfassung",
+      summaryPackageLabel: json.thanks?.summaryPackageLabel || "Paket",
+      summaryDateLabel: json.thanks?.summaryDateLabel || "Voraussichtlicher Termin",
+      summaryLocationLabel: json.thanks?.summaryLocationLabel || "Ort der Feier",
+      priceLabel: json.thanks?.priceLabel || "GESCHÄTZTER PREIS",
+      priceNote: json.thanks?.priceNote || "*Inkl. MwSt. Endgueltiger Preis folgt im Angebot.",
+      stepsTitle: json.thanks?.stepsTitle || "Wie geht es weiter?",
+      step1Title: json.thanks?.step1Title || "Anfrage-Check",
+      step1Text: json.thanks?.step1Text || "Wir pruefen die Verfuegbarkeit fuer Ihren Termin innerhalb von 24 Stunden.",
+      step2Title: json.thanks?.step2Title || "Unverbindliches Angebot",
+      step2Text: json.thanks?.step2Text || "Sie erhalten ein detailliertes Angebot per E-Mail inkl. aller Inklusivleistungen.",
+      step3Title: json.thanks?.step3Title || "Termin Fixierung",
+      step3Text: json.thanks?.step3Text || "Nach Ihrer Bestaetigung wird die Fotobox fest fuer Ihren besonderen Tag reserviert.",
+      footerText: json.thanks?.footerText || "Haben Sie in der Zwischenzeit Fragen? Kontaktieren Sie uns direkt unter",
       primaryButtonText: json.thanks?.primaryButtonText || "Zur Startseite",
       primaryButtonHref: json.thanks?.primaryButtonHref || "/",
       secondaryButtonText: json.thanks?.secondaryButtonText || "Neue Anfrage",
@@ -1857,6 +1872,13 @@ export default function AdminDashboard() {
           <div className="admin-grid-2">
             <div className="admin-panel">
               <label className="admin-field">
+                <span>Badge</span>
+                <input
+                  value={content.thanks.badge || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, badge: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
                 <span>Überschrift (mit /)</span>
                 <input
                   value={content.thanks.heading}
@@ -1871,8 +1893,111 @@ export default function AdminDashboard() {
                   onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, message: e.target.value } }))}
                 />
               </label>
+              <label className="admin-field">
+                <span>Zusammenfassung Titel</span>
+                <input
+                  value={content.thanks.summaryTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, summaryTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Label Paket</span>
+                <input
+                  value={content.thanks.summaryPackageLabel || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, summaryPackageLabel: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Label Termin</span>
+                <input
+                  value={content.thanks.summaryDateLabel || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, summaryDateLabel: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Label Ort</span>
+                <input
+                  value={content.thanks.summaryLocationLabel || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, summaryLocationLabel: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Preis Titel</span>
+                <input
+                  value={content.thanks.priceLabel || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, priceLabel: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Preis Hinweis</span>
+                <textarea
+                  rows={3}
+                  value={content.thanks.priceNote || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, priceNote: e.target.value } }))}
+                />
+              </label>
             </div>
             <div className="admin-panel">
+              <label className="admin-field">
+                <span>Schritte Titel</span>
+                <input
+                  value={content.thanks.stepsTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, stepsTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Schritt 1 Titel</span>
+                <input
+                  value={content.thanks.step1Title || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, step1Title: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Schritt 1 Text</span>
+                <textarea
+                  rows={3}
+                  value={content.thanks.step1Text || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, step1Text: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Schritt 2 Titel</span>
+                <input
+                  value={content.thanks.step2Title || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, step2Title: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Schritt 2 Text</span>
+                <textarea
+                  rows={3}
+                  value={content.thanks.step2Text || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, step2Text: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Schritt 3 Titel</span>
+                <input
+                  value={content.thanks.step3Title || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, step3Title: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Schritt 3 Text</span>
+                <textarea
+                  rows={3}
+                  value={content.thanks.step3Text || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, step3Text: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Footer Text</span>
+                <textarea
+                  rows={3}
+                  value={content.thanks.footerText || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, footerText: e.target.value } }))}
+                />
+              </label>
               <label className="admin-field">
                 <span>Button 1 Text</span>
                 <input
