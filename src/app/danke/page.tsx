@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import ConfettiOverlay from "@/components/site/ConfettiOverlay";
 import { readCmsContent } from "@/lib/cms";
@@ -82,7 +81,7 @@ export default async function DankePage({ searchParams }: DankePageProps) {
                   <span>{thanks.priceLabel || "GESCHÄTZTER PREIS"}</span>
                   <strong>{packagePrice}</strong>
                 </div>
-                <p>{thanks.priceNote || "*Inkl. MwSt. Endgueltiger Preis folgt im Angebot."}</p>
+                <p>{thanks.priceNote || "*Inkl. MwSt. Endgültiger Preis folgt im Angebot."}</p>
               </div>
             </div>
 
@@ -93,7 +92,7 @@ export default async function DankePage({ searchParams }: DankePageProps) {
                   <div className={styles.stepIndex}>1</div>
                   <div>
                     <h3>{thanks.step1Title || "Anfrage-Check"}</h3>
-                    <p>{thanks.step1Text || "Wir pruefen die Verfuegbarkeit fuer Ihren Termin innerhalb von 24 Stunden."}</p>
+                    <p>{thanks.step1Text || "Wir prüfen die Verfügbarkeit für Ihren Termin innerhalb von 24 Stunden."}</p>
                   </div>
                 </div>
                 <div className={styles.step}>
@@ -107,7 +106,7 @@ export default async function DankePage({ searchParams }: DankePageProps) {
                   <div className={styles.stepIndex}>3</div>
                   <div>
                     <h3>{thanks.step3Title || "Termin Fixierung"}</h3>
-                    <p>{thanks.step3Text || "Nach Ihrer Bestaetigung wird die Fotobox fest fuer Ihren besonderen Tag reserviert."}</p>
+                    <p>{thanks.step3Text || "Nach Ihrer Bestätigung wird die Fotobox fest für Ihren besonderen Tag reserviert."}</p>
                   </div>
                 </div>
               </div>
@@ -124,13 +123,6 @@ export default async function DankePage({ searchParams }: DankePageProps) {
           </section>
 
           <section className={styles.quickActions}>
-            <Link href={thanks.primaryButtonHref || "/"} className={styles.backButton}>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M10 19l-7-7 7-7" />
-                <path d="M3 12h18" />
-              </svg>
-              Zurück zur Startseite
-            </Link>
             <a href={contactPhoneHref} className={styles.callButton}>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .95.68l1.49 4.49a1 1 0 0 1-.5 1.21l-2.26 1.13a11.04 11.04 0 0 0 5.52 5.52l1.13-2.26a1 1 0 0 1 1.21-.5l4.49 1.49a1 1 0 0 1 .69.95V19a2 2 0 0 1-2 2h-1C9.72 21 3 14.28 3 6V5Z" />
