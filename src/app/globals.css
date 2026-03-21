@@ -821,9 +821,10 @@ p {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
   padding-bottom: 1.4rem;
-  background: #fff;
-  border: 1px solid var(--c-line);
-  border-radius: 18px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .accessories-head {
@@ -3414,7 +3415,14 @@ footer {
   .accessories-section {
     margin-top: 1.2rem;
     padding-top: 0.6rem;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
     text-align: center;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .references-marquee-track {
@@ -3429,6 +3437,14 @@ footer {
   .references-marquee-icon img {
     width: 30px;
     height: 30px;
+  }
+
+  .home-references-block {
+    padding: 1rem 0 0.2rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
