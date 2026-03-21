@@ -8,43 +8,48 @@ export const dynamic = "force-dynamic";
 
 const DEFAULT_PAGE_PLANS = [
   {
-    name: "Essential",
-    price: 490,
-    meta: "/ Event",
+    name: "Basic",
+    price: 400,
+    meta: "/ Selbstabholung",
     featured: false,
     cta: "Anfragen",
     items: [
-      "4 Stunden Laufzeit",
-      "Digitale Flatrate (Online Galerie)",
-      "Standard KI-Retusche",
-      "Auf- & Abbau inklusive"
+      "Selbst Abholung",
+      "Aufbau Einschulung",
+      "Digitale Bilder",
+      "Sofortdruck (300 Prints)",
+      "Requisiten"
     ]
   },
   {
     name: "Premium",
-    price: 790,
+    price: 600,
     meta: "/ Event",
     featured: true,
-    cta: "Jetzt buchen",
+    cta: "Anfragen",
     items: [
-      "Open-End Laufzeit (max. 12h)",
-      "Sofort-Druck Flatrate (400 Prints)",
-      "Premium Hochzeits-Filter & Overlay",
-      "QR-Code Sofort-Download",
-      "Requisiten Box (Hochzeit-Edition)"
+      "Ganzen Abend Mietdauer",
+      "Sofortdruck (unbegrenzt)",
+      "Accessoires",
+      "Online Galerie",
+      "Requisiten",
+      "Normale Fotobox"
     ]
   },
   {
-    name: "Black Label",
-    price: 1290,
+    name: "Business",
+    price: 800,
     meta: "/ Event",
     featured: false,
     cta: "Anfragen",
     items: [
-      "Alles aus dem Premium-Paket",
-      "Live-Slideshow auf TV/Beamer",
-      "Persönlicher Operator vor Ort",
-      "High-End Gästebuch & Klebe-Service"
+      "Ganzen Abend Mietdauer",
+      "Sofortdruck (unbegrenzt)",
+      "Accessoires",
+      "Online Galerie",
+      "QR Code Upload",
+      "Normal oder KI-Features Modul",
+      "Individuelles Layout"
     ]
   }
 ];
@@ -114,17 +119,49 @@ function CheckIcon() {
   );
 }
 
+function TechnologyIcon({ kind }: { kind: "camera" | "touch" | "print" }) {
+  if (kind === "touch") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="12" rx="2.2" />
+        <line x1="9" y1="20" x2="15" y2="20" />
+        <line x1="12" y1="16" x2="12" y2="20" />
+      </svg>
+    );
+  }
+
+  if (kind === "print") {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" aria-hidden="true">
+        <polyline points="7 8 7 3 17 3 17 8" />
+        <path d="M7 18H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+        <rect x="7" y="14" width="10" height="7" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" aria-hidden="true">
+      <path d="M4 8h3l1.7-2h6.6L17 8h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" />
+      <circle cx="12" cy="13" r="3.2" />
+    </svg>
+  );
+}
+
 function getPlanDescription(name: string) {
   const value = name.toLowerCase();
 
   if (value.includes("premium")) {
-    return "Das beliebteste Paket für Hochzeiten und große Feiern.";
+    return "Das beliebteste Paket fuer Hochzeiten und grosse Feiern.";
+  }
+  if (value.includes("business")) {
+    return "Transparent kalkuliert und passend auf euer Event abgestimmt.";
   }
   if (value.includes("black") || value.includes("exclusive") || value.includes("luxury")) {
     return "Maximale Qualität ohne Kompromisse für besondere Ansprüche.";
   }
   if (value.includes("essential") || value.includes("basic")) {
-    return "Der starke Einstieg für kleinere Feiern und klare Entscheidungen.";
+    return "Der starke Einstieg fuer kleinere Feiern und klare Entscheidungen.";
   }
 
   return "Transparent kalkuliert und passend auf euer Event abgestimmt.";
@@ -136,7 +173,7 @@ function getPlanMeta(plan: { meta?: string; featured?: boolean; name: string }) 
 }
 
 function getTechnologyHighlights(items: Array<{ title: string; description: string }>) {
-  return items.slice(0, 4);
+  return items.slice(0, 3);
 }
 
 function formatPrice(value: number) {
@@ -167,11 +204,10 @@ export default async function PreisgestaltungPage() {
           <div className="container">
             <span className="pricing-hero-badge">Transparente Angebote</span>
             <h1>
-              <SlashHeading value={content.pricing.pageTitle || "preise/pakete"} />
+              <SlashHeading value="preise/pakete" />
             </h1>
             <p>
-              {content.pricing.pageIntro ||
-                "Wählt das passende Paket für eure Feier. Keine versteckten Kosten, klare Leistungen und moderne Technik aus Tirol."}
+              Wählt das passende Paket für eure Feier. Keine versteckten Kosten, volle Emotionen und moderne Technik aus Tirol.
             </p>
           </div>
         </section>
@@ -207,7 +243,7 @@ export default async function PreisgestaltungPage() {
                       href={`/kontakt?paket=${encodeURIComponent(plan.name)}`}
                       className={`pricing-offer-button${isFeatured ? " is-featured" : ""}`}
                     >
-                      {plan.cta || "Jetzt anfragen"}
+                      {isFeatured ? "Auswählen" : "Jetzt anfragen"}
                     </Link>
                   </article>
                 );
@@ -218,40 +254,24 @@ export default async function PreisgestaltungPage() {
 
         <section className="seo-landing-section">
           <div className="container">
-            <div className="pricing-guarantee-panel">
-              <div>
-                <h2 className="pricing-guarantee-title">
-                  Alle Pakete beinhalten<br />
-                  <span>unsere Tirol-Garantie:</span>
-                </h2>
-                <div className="pricing-guarantee-grid">
-                  {technologyHighlights.map((item) => (
-                    <div key={item.title} className="pricing-guarantee-item">
-                      <p>{item.title}</p>
-                      <span>{item.description}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="pricing-tech-panel">
+              <h2 className="pricing-tech-title">
+                <SlashHeading value={content.pricing.technologyHeading || "technik/bedienung"} />
+              </h2>
+              <div className="pricing-tech-grid">
+                {technologyHighlights.map((item, index) => {
+                  const kind = index === 0 ? "camera" : index === 1 ? "touch" : "print";
 
-              <div className="pricing-guarantee-visual-wrap">
-                <div className="pricing-guarantee-visual">
-                  <div className="pricing-guarantee-orb" />
-                  <div className="pricing-guarantee-stack">
-                    <div className="pricing-guarantee-stack-card is-top">
-                      <strong>Premium Setup</strong>
-                      <span>DSLR, Studioblitz, Druck, QR-Download</span>
-                    </div>
-                    <div className="pricing-guarantee-stack-card">
-                      <strong>Persönliches Layout</strong>
-                      <span>Abgestimmt auf Hochzeit, Firmenfeier oder Event</span>
-                    </div>
-                    <div className="pricing-guarantee-note">
-                      <p>Upgrade-Option</p>
-                      <strong>Individuelle Requisiten und Branding-Elemente möglich</strong>
-                    </div>
-                  </div>
-                </div>
+                  return (
+                    <article key={item.title} className="pricing-tech-card">
+                      <div className="pricing-tech-icon">
+                        <TechnologyIcon kind={kind} />
+                      </div>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                    </article>
+                  );
+                })}
               </div>
             </div>
           </div>
