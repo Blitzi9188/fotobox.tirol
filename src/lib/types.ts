@@ -228,6 +228,10 @@ export type CMSContent = {
     summaryPackageLabel?: string;
     summaryDateLabel?: string;
     summaryLocationLabel?: string;
+    summaryReferenceLabel?: string;
+    inspirationTitle?: string;
+    inspirationText?: string;
+    inspirationButtonText?: string;
     priceLabel?: string;
     priceNote?: string;
     stepsTitle?: string;
@@ -238,6 +242,7 @@ export type CMSContent = {
     step3Title?: string;
     step3Text?: string;
     footerText?: string;
+    questionsTitle?: string;
     primaryButtonText: string;
     primaryButtonHref: string;
     secondaryButtonText: string;
