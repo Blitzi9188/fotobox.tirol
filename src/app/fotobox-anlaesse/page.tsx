@@ -1,31 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
+import type { CMSContent } from "@/lib/types";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Fotobox für jeden Anlass in Tirol | Hochzeit, Geburtstag und Events",
-  description:
-    "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenevent und weitere Anlässe. Moderne Fotobox-Lösungen mit Sofortdruck, Branding und starkem Erinnerungswert.",
-  alternates: {
-    canonical: "/fotobox-anlaesse"
-  },
-  openGraph: {
-    title: "Fotobox für jeden Anlass in Tirol",
-    description:
-      "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenfeier und Events. Modern, hochwertig und gemacht für bleibende Erinnerungen.",
-    url: "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse",
-    type: "article"
-  }
-};
-
-const OCCASIONS = [
+const DEFAULT_OCCASIONS = [
   {
     id: "hochzeit",
-    navLabel: "Hochzeit",
     eyebrow: "Der Klassiker für Brautpaare",
     title: "Romantische",
     titleBold: "Hochzeitsfotobox",
@@ -38,14 +22,13 @@ const OCCASIONS = [
       "Personalisiertes Print-Layout mit Namen und Datum",
       "Online-Galerie für alle Hochzeitsgäste"
     ],
-    imageSrc:
+    imageUrl:
       "/uploads/1772725494493-46ba177e-2411-4843-9112-5f417a6cc0c6-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-16-optimized.jpg",
     imageAlt: "Fotobox Tirol bei einer Hochzeit",
     warm: false
   },
   {
     id: "geburtstag",
-    navLabel: "Geburtstag",
     eyebrow: "Action für eure Party",
     title: "Eure",
     titleBold: "Geburtstagsfotobox",
@@ -58,13 +41,12 @@ const OCCASIONS = [
       "Kompakter Aufbau für kleine und große Locations",
       "Professionelles Licht für starke Party-Selfies"
     ],
-    imageSrc: "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
+    imageUrl: "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
     imageAlt: "Geburtstagsfotobox mit lockerer Partystimmung",
     warm: true
   },
   {
     id: "firma",
-    navLabel: "Firmenevent",
     eyebrow: "Branding und Mitarbeiter-Erlebnis",
     title: "Professionelles",
     titleBold: "Firmenevent",
@@ -77,14 +59,13 @@ const OCCASIONS = [
       "Professioneller Thermosublimations-Druck",
       "Technischer Support für einen reibungslosen Ablauf"
     ],
-    imageSrc:
+    imageUrl:
       "/uploads/1772726001232-9db6432f-2bb2-41d2-985a-c749f522c620-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-11-optimized.jpg",
     imageAlt: "Fotobox Tirol bei einem Firmenevent",
     warm: false
   },
   {
     id: "event",
-    navLabel: "Events & Messen",
     eyebrow: "Maximale Aufmerksamkeit",
     title: "Fotobox mieten für",
     titleBold: "Events",
@@ -97,14 +78,14 @@ const OCCASIONS = [
       "Flexibel mit Branding und Aktionslogik kombinierbar",
       "Starker Publikumsmagnet mit echtem Erlebnisfaktor"
     ],
-    imageSrc:
+    imageUrl:
       "/uploads/1772725616835-a3643f1b-9ec6-4d07-b20d-6227a314c187-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-18-optimized.jpg",
     imageAlt: "Eventfotobox bei einer größeren Veranstaltung",
     warm: true
   }
 ];
 
-const FAQ_ITEMS = [
+const DEFAULT_FAQ_ITEMS = [
   {
     question: "Für welche Anlässe kann man die Fotobox in Tirol mieten?",
     answer:
@@ -127,12 +108,52 @@ const FAQ_ITEMS = [
   }
 ];
 
-const SEARCH_TERMS = [
+const DEFAULT_SEARCH_TERMS = [
   "Hochzeitsfotobox mieten Innsbruck",
   "Fotobox für Firmenevent Preise",
   "Geburtstagsfotobox Tirol",
   "Fotobox mit Druck-Flatrate mieten"
 ];
+
+const DEFAULT_SEO_COLUMNS = [
+  {
+    title: "Fotobox mieten Tirol",
+    description:
+      "Wir liefern eure Fotobox in ganz Tirol, von Innsbruck bis Kitzbühel. Lieferung, Aufbau und eine kurze Einweisung sind so abgestimmt, dass euer Anlass entspannt starten kann."
+  },
+  {
+    title: "Häufige Suchanfragen",
+    description: DEFAULT_SEARCH_TERMS.join("\n")
+  },
+  {
+    title: "Qualität & Technik",
+    description:
+      "Wir arbeiten mit echter DSLR-Technik und professionellem Studiolicht. Dadurch liegt die Bildqualität sichtbar über klassischen Standard-Fotoboxen."
+  }
+];
+
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await readCmsContent();
+  const occasions = content.occasions;
+  const title = occasions?.seoTitle || "Fotobox für jeden Anlass in Tirol | Hochzeit, Geburtstag und Events";
+  const description =
+    occasions?.seoDescription ||
+    "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenevent und weitere Anlässe. Moderne Fotobox-Lösungen mit Sofortdruck, Branding und starkem Erinnerungswert.";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: "/fotobox-anlaesse"
+    },
+    openGraph: {
+      title,
+      description,
+      url: "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse",
+      type: "article"
+    }
+  };
+}
 
 function BenefitItem({ text }: { text: string }) {
   return (
@@ -145,19 +166,35 @@ function BenefitItem({ text }: { text: string }) {
 
 export default async function FotoboxAnlaessePage() {
   const content = await readCmsContent();
+  const occasions: NonNullable<CMSContent["occasions"]> = content.occasions || {
+    heroEyebrow: "Professionelle Vermietung in Tirol",
+    heroTitle: "Fotobox für",
+    heroTitleAccent: "jeden Anlass",
+    heroLead:
+      "Entdeckt maßgeschneiderte Fotobox-Lösungen für Hochzeiten, Geburtstage, Firmenfeiern und Events in Tirol. Modern, hochwertig und gemacht für bleibende Erinnerungen.",
+    heroImageUrl: "/uploads/1772725458356-dcdb983d-1a6d-4d1b-bfcd-de04366260ca-fotobox-tirol-selfie-bilder-7-optimized.jpg",
+    sections: DEFAULT_OCCASIONS,
+    seoColumns: DEFAULT_SEO_COLUMNS,
+    searchTerms: DEFAULT_SEARCH_TERMS,
+    faqHeading: "fragen/anlässe",
+    faqItems: DEFAULT_FAQ_ITEMS,
+    ctaMeta: "Alle Pakete inklusive Setup und Support",
+    ctaTitle: "Unverbindlich Termin anfragen",
+    ctaButtonText: "Jetzt anfragen",
+    ctaButtonHref: "/kontakt"
+  };
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebPage",
-        name: "Fotobox für jeden Anlass in Tirol",
+        name: occasions.seoTitle || "Fotobox für jeden Anlass in Tirol",
         url: "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse",
-        description:
-          "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenfeier und Event."
+        description: occasions.seoDescription || "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenfeier und Event."
       },
       {
         "@type": "FAQPage",
-        mainEntity: FAQ_ITEMS.map((item) => ({
+        mainEntity: occasions.faqItems.map((item) => ({
           "@type": "Question",
           name: item.question,
           acceptedAnswer: {
@@ -176,32 +213,23 @@ export default async function FotoboxAnlaessePage() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
         <section className={styles.hero}>
-          <div className={styles.heroImage} aria-hidden="true" />
+          <div
+            className={styles.heroImage}
+            aria-hidden="true"
+            style={{
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.72)), url("${occasions.heroImageUrl || "/uploads/1772725458356-dcdb983d-1a6d-4d1b-bfcd-de04366260ca-fotobox-tirol-selfie-bilder-7-optimized.jpg"}")`
+            }}
+          />
           <div className={`container ${styles.heroInner}`}>
-            <p className={styles.heroEyebrow}>Professionelle Vermietung in Tirol</p>
+            <p className={styles.heroEyebrow}>{occasions.heroEyebrow}</p>
             <h1 className={styles.heroTitle}>
-              Fotobox für <span>jeden Anlass</span> mieten
+              {occasions.heroTitle} <span>{occasions.heroTitleAccent}</span> mieten
             </h1>
-            <p className={styles.heroLead}>
-              Entdeckt maßgeschneiderte Fotobox-Lösungen für Hochzeiten, Geburtstage, Firmenfeiern und Events in Tirol.
-              Modern, hochwertig und gemacht für bleibende Erinnerungen.
-            </p>
+            <p className={styles.heroLead}>{occasions.heroLead}</p>
           </div>
         </section>
 
-        <section className={styles.tabBar}>
-          <div className="container">
-            <nav className={styles.tabNav} aria-label="Anlass Navigation">
-              {OCCASIONS.map((occasion) => (
-                <a key={occasion.id} href={`#${occasion.id}`} className={styles.tabLink}>
-                  {occasion.navLabel}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </section>
-
-        {OCCASIONS.map((occasion, index) => (
+        {occasions.sections.map((occasion, index) => (
           <section
             id={occasion.id}
             key={occasion.id}
@@ -223,7 +251,7 @@ export default async function FotoboxAnlaessePage() {
               </div>
 
               <div className={`${styles.occasionImageWrap} ${index % 2 === 1 ? styles.imageOrderOne : ""}`}>
-                <img src={occasion.imageSrc} alt={occasion.imageAlt} className={styles.occasionImage} />
+                <img src={occasion.imageUrl || ""} alt={occasion.imageAlt || occasion.titleBold} className={styles.occasionImage} />
               </div>
             </div>
           </section>
@@ -231,38 +259,30 @@ export default async function FotoboxAnlaessePage() {
 
         <section className={styles.seoFooter}>
           <div className={`container ${styles.seoGrid}`}>
-            <article>
-              <h2>Fotobox mieten Tirol</h2>
-              <p>
-                Wir liefern eure Fotobox in ganz Tirol, von Innsbruck bis Kitzbühel. Lieferung, Aufbau und eine kurze
-                Einweisung sind so abgestimmt, dass euer Anlass entspannt starten kann.
-              </p>
-            </article>
-            <article>
-              <h2>Häufige Suchanfragen</h2>
-              <ul className={styles.searchList}>
-                {SEARCH_TERMS.map((term) => (
-                  <li key={term}>{term}</li>
-                ))}
-              </ul>
-            </article>
-            <article>
-              <h2>Qualität & Technik</h2>
-              <p>
-                Wir arbeiten mit echter DSLR-Technik und professionellem Studiolicht. Dadurch liegt die Bildqualität
-                sichtbar über klassischen Standard-Fotoboxen.
-              </p>
-            </article>
+            {occasions.seoColumns.map((column, index) => (
+              <article key={`${column.title}-${index}`}>
+                <h2>{column.title}</h2>
+                {index === 1 ? (
+                  <ul className={styles.searchList}>
+                    {(occasions.searchTerms || []).map((term) => (
+                      <li key={term}>{term}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>{column.description}</p>
+                )}
+              </article>
+            ))}
           </div>
         </section>
 
         <section className={styles.faqSection}>
           <div className="container">
             <h2 className={styles.faqTitle}>
-              <SlashHeading value="fragen/anlässe" />
+              <SlashHeading value={occasions.faqHeading} />
             </h2>
             <div className="faq-wrap">
-              {FAQ_ITEMS.map((item) => (
+              {occasions.faqItems.map((item) => (
                 <details className="faq-item" key={item.question}>
                   <summary className="faq-question">{item.question}</summary>
                   <p>{item.answer}</p>
@@ -276,10 +296,10 @@ export default async function FotoboxAnlaessePage() {
       <div className={styles.stickyCta}>
         <div className={`container ${styles.stickyCtaInner}`}>
           <div>
-            <span className={styles.ctaMeta}>Alle Pakete inklusive Setup und Support</span>
-            <strong className={styles.ctaPrice}>Unverbindlich Termin anfragen</strong>
+            <span className={styles.ctaMeta}>{occasions.ctaMeta}</span>
+            <strong className={styles.ctaPrice}>{occasions.ctaTitle}</strong>
           </div>
-          <Link href="/kontakt" className={styles.ctaButton}>Jetzt anfragen</Link>
+          <Link href={occasions.ctaButtonHref} className={styles.ctaButton}>{occasions.ctaButtonText}</Link>
         </div>
       </div>
 

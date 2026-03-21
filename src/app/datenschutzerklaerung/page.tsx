@@ -4,7 +4,7 @@ import { DEFAULT_DATENSCHUTZ_TEXT } from "@/lib/legalDefaults";
 
 export const dynamic = "force-dynamic";
 
-export default async function DatenschutzerklaerungPage() {
+export default async function DatenschutzerklärungPage() {
   const content = await readCmsContent();
   const datenschutzText = (content.legal?.datenschutzerklaerungText || DEFAULT_DATENSCHUTZ_TEXT).trim();
   const blocks = datenschutzText.split("\n\n");
@@ -15,7 +15,7 @@ export default async function DatenschutzerklaerungPage() {
       <main>
         <section className="page-hero">
           <div className="container">
-            <h1>Datenschutzerklaerung</h1>
+            <h1>Datenschutzerklärung</h1>
             <p>Informationen zur Verarbeitung personenbezogener Daten</p>
           </div>
         </section>

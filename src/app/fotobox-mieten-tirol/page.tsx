@@ -10,14 +10,14 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Fotobox mieten Tirol | Fotobox Tirol das Original",
   description:
-    "Fotobox mieten in Tirol fuer Hochzeiten, Firmenfeiern, Geburtstage und Events. Fotobox Tirol das Original mit Druck, Branding, Requisiten und KI-Funktionen.",
+    "Fotobox mieten in Tirol für Hochzeiten, Firmenfeiern, Geburtstage und Events. Fotobox Tirol das Original mit Druck, Branding, Requisiten und KI-Funktionen.",
   alternates: {
     canonical: "/fotobox-mieten-tirol"
   },
   openGraph: {
     title: "Fotobox mieten Tirol | Fotobox Tirol das Original",
     description:
-      "Premium Fotobox mieten in Tirol fuer Hochzeiten, Firmenfeiern, Geburtstage und Events.",
+      "Premium Fotobox mieten in Tirol für Hochzeiten, Firmenfeiern, Geburtstage und Events.",
     url: `${SITE_URL}/fotobox-mieten-tirol`,
     type: "article"
   }
@@ -35,7 +35,7 @@ export default async function FotoboxMietenTirolPage() {
         name: "Fotobox mieten Tirol",
         url: `${SITE_URL}/fotobox-mieten-tirol`,
         description:
-          "Fotobox Tirol fuer Hochzeiten, Firmenfeiern, Geburtstage und Events in Tirol."
+          "Fotobox Tirol für Hochzeiten, Firmenfeiern, Geburtstage und Events in Tirol."
       },
       {
         "@type": "BreadcrumbList",
@@ -67,7 +67,7 @@ export default async function FotoboxMietenTirolPage() {
           <div className="container">
             <h1>Fotobox mieten Tirol</h1>
             <p>
-              Fotobox Tirol das Original fuer Hochzeiten, Firmenfeiern, Geburtstage, Messen und Events in Tirol.
+              Fotobox Tirol das Original für Hochzeiten, Firmenfeiern, Geburtstage, Messen und Events in Tirol.
               Mit Sofortdruck, individuellem Branding, Requisiten und optionaler KI-Fotobox.
             </p>
           </div>
@@ -78,14 +78,14 @@ export default async function FotoboxMietenTirolPage() {
             <article className="admin-card">
               <h2>Warum eine Fotobox in Tirol mieten?</h2>
               <p>
-                Wer eine Fotobox in Tirol mieten will, sucht in der Regel eine unkomplizierte Loesung, die auf
+                Wer eine Fotobox in Tirol mieten will, sucht in der Regel eine unkomplizierte Lösung, die auf
                 Hochzeiten, Firmenfeiern und privaten Events sofort funktioniert. Genau darauf ist Fotobox Tirol
                 ausgelegt: schneller Aufbau, einfache Bedienung, hochwertige Ausdrucke und Bilder, die direkt vor Ort
-                und danach digital verfuegbar sind.
+                und danach digital verfügbar sind.
               </p>
               <p>
-                Besonders bei Hochzeiten in Innsbruck, Seefeld, Kitzbuehel, Telfs oder im gesamten Tiroler Oberland ist
-                eine Fotobox ein fixer Stimmungsmacher. Fuer Firmenkunden kommen individuelle Layouts, Logos und
+                Besonders bei Hochzeiten in Innsbruck, Seefeld, Kitzbühel, Telfs oder im gesamten Tiroler Oberland ist
+                eine Fotobox ein fixer Stimmungsmacher. Für Firmenkunden kommen individuelle Layouts, Logos und
                 gebrandete Ausdrucke dazu. Damit wird aus der Fotobox nicht nur Unterhaltung, sondern ein echter Teil
                 des Event-Konzepts.
               </p>
@@ -94,8 +94,8 @@ export default async function FotoboxMietenTirolPage() {
             <aside className="admin-card">
               <h2>Schnellüberblick</h2>
               <ul className="seo-landing-list">
-                <li>Fotobox fuer Hochzeit, Firmenfeier, Geburtstag und Messe</li>
-                <li>Sofortdruck in Laborqualitaet</li>
+                <li>Fotobox für Hochzeit, Firmenfeier, Geburtstag und Messe</li>
+                <li>Sofortdruck in Laborqualität</li>
                 <li>Individuelle Layouts und Branding</li>
                 <li>Accessoires und Requisiten</li>
                 <li>Optional mit KI-Fotobox</li>
@@ -109,28 +109,28 @@ export default async function FotoboxMietenTirolPage() {
         <section className="seo-landing-section seo-landing-alt">
           <div className="container seo-landing-grid">
             <article className="admin-card">
-              <h2>Fotobox fuer Hochzeiten in Tirol</h2>
+              <h2>Fotobox für Hochzeiten in Tirol</h2>
               <p>
-                Eine Fotobox fuer Hochzeiten in Tirol sorgt dafuer, dass Gaeste unkompliziert Erinnerungsfotos
-                mitnehmen koennen. Beliebt sind vor allem individuelle Drucklayouts mit Namen des Brautpaares,
+                Eine Fotobox für Hochzeiten in Tirol sorgt dafür, dass Gäste unkompliziert Erinnerungsfotos
+                mitnehmen können. Beliebt sind vor allem individuelle Drucklayouts mit Namen des Brautpaares,
                 Hochzeitsdatum und auf Wunsch einem abgestimmten Design im Format 5x15 oder 10x15.
               </p>
               <p>
                 Gerade bei Hochzeiten in Innsbruck, Seefeld, Hall in Tirol oder Kufstein ist der Sofortdruck ein
-                staerker Mehrwert, weil die Bilder direkt als Erinnerung mitgenommen oder ins Gaestebuch geklebt werden
-                koennen.
+                stärker Mehrwert, weil die Bilder direkt als Erinnerung mitgenommen oder ins Gästebuch geklebt werden
+                können.
               </p>
             </article>
 
             <article className="admin-card">
-              <h2>Fotobox fuer Firmenfeiern und Events</h2>
+              <h2>Fotobox für Firmenfeiern und Events</h2>
               <p>
-                Fuer Firmenfeiern, Weihnachtsfeiern, Sommerfeste und Messen in Tirol ist eine gebrandete Fotobox
+                Für Firmenfeiern, Weihnachtsfeiern, Sommerfeste und Messen in Tirol ist eine gebrandete Fotobox
                 besonders interessant. Logos, Farben und Botschaften lassen sich direkt auf die Ausdrucke und Layouts
                 abstimmen. Dadurch entstehen nicht nur Fotos, sondern auch sichtbare Markenkontakte.
               </p>
               <p>
-                Wenn gewuenscht, laesst sich die normale Fotobox auch mit KI-Funktionen kombinieren. Das ist besonders
+                Wenn gewünscht, lässt sich die normale Fotobox auch mit KI-Funktionen kombinieren. Das ist besonders
                 auf Messen und Business-Events ein starker Blickfang.
               </p>
             </article>
@@ -140,12 +140,12 @@ export default async function FotoboxMietenTirolPage() {
         <section className="seo-landing-section">
           <div className="container">
             <div className="admin-card">
-              <h2>Haeufig gesuchte Begriffe rund um Fotobox Tirol</h2>
+              <h2>Häufig gesuchte Begriffe rund um Fotobox Tirol</h2>
               <p>
-                Diese Seite ist bewusst fuer Suchanfragen wie <strong>Fotobox mieten Tirol</strong>,{" "}
+                Diese Seite ist bewusst für Suchanfragen wie <strong>Fotobox mieten Tirol</strong>,{" "}
                 <strong>Fotobox Hochzeit Tirol</strong>, <strong>Fotobox Firmenfeier Innsbruck</strong> und{" "}
-                <strong>Selfie Fotobox Tirol</strong> aufgebaut. Wenn du eine Fotobox fuer dein Event suchst, findest du
-                ueber die Anfrage-Seite direkt das passende Paket und kannst dein Wunschdatum unverbindlich anfragen.
+                <strong>Selfie Fotobox Tirol</strong> aufgebaut. Wenn du eine Fotobox für dein Event suchst, findest du
+                über die Anfrage-Seite direkt das passende Paket und kannst dein Wunschdatum unverbindlich anfragen.
               </p>
             </div>
           </div>

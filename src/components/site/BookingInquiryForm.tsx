@@ -7,7 +7,7 @@ import CaptchaField from "@/components/site/CaptchaField";
 type PackageOption = Pick<PricePlan, "name" | "price">;
 
 const EVENT_TYPES = [
-  { id: "hochzeit", label: "Hochzeit", desc: "Der schoenste Tag" },
+  { id: "hochzeit", label: "Hochzeit", desc: "Der schönste Tag" },
   { id: "firmenfeier", label: "Firmenfeier", desc: "Business & Event" },
   { id: "geburtstag", label: "Geburtstag", desc: "Party & Private" }
 ];
@@ -317,7 +317,7 @@ export default function BookingInquiryForm({
           </label>
           <label className="inquiry-field">
             <span className="inquiry-field-heading"><span className="inquiry-field-icon"><PinIcon /></span>{inquiry.locationLabel || "Ort der Feier"}</span>
-            <input name="location" type="text" placeholder={inquiry.locationPlaceholder || "Innsbruck, Kitzbuehel..."} />
+            <input name="location" type="text" placeholder={inquiry.locationPlaceholder || "Innsbruck, Kitzbühel..."} />
           </label>
         </div>
       </div>
@@ -375,7 +375,7 @@ export default function BookingInquiryForm({
           </div>
         </label>
         <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
-          <span>{inquiry.printTextLabel || "Text fuer Ausdruck (optional)"}</span>
+          <span>{inquiry.printTextLabel || "Text für Ausdruck (optional)"}</span>
           <input name="printText" type="text" placeholder={inquiry.printTextPlaceholder || "z. B. Lisa & Markus | 14.06.2026"} />
         </label>
       </div>
@@ -400,7 +400,7 @@ export default function BookingInquiryForm({
         </div>
         <label className="inquiry-field">
           <span className="inquiry-field-heading"><span className="inquiry-field-icon"><MessageIcon /></span>{inquiry.messageLabel || "Nachricht (optional)"}</span>
-          <textarea name="message" rows={4} placeholder={inquiry.messagePlaceholder || "Besondere Wuensche oder Details..."} />
+          <textarea name="message" rows={4} placeholder={inquiry.messagePlaceholder || "Besondere Wünsche oder Details..."} />
         </label>
       </div>
 
@@ -427,7 +427,7 @@ export default function BookingInquiryForm({
       <div className="inquiry-captcha-card">
         <div className="inquiry-captcha-copy">
           <span className="inquiry-section-title">06. Sicherheitsabfrage *</span>
-          <p className="inquiry-captcha-help">Bitte bestaetigen, dass die Anfrage von einer echten Person gesendet wird.</p>
+          <p className="inquiry-captcha-help">Bitte bestätigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="inquiry-field">
           <span>Sicherheitsrechnung</span>

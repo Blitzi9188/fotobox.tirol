@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CMSContent } from "@/lib/types";
 import BackToTopButton from "@/components/site/BackToTopButton";
 import CookieConsentBanner from "@/components/site/CookieConsentBanner";
@@ -24,8 +25,10 @@ function Brand({ content }: { content: CMSContent }) {
 
 export function SiteHeader({ content }: { content: CMSContent }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
   const navItems = [
     { href: "/", label: "Startseite" },
+    { href: "/fotobox-anlaesse", label: "Anlässe" },
     { href: "/ki-fotobox-tirol", label: "KI" },
     { href: "/preisgestaltung", label: "Preise" },
     { href: "/kontakt", label: "Anfrage", className: "accent-link" }
@@ -41,7 +44,10 @@ export function SiteHeader({ content }: { content: CMSContent }) {
           <ul className="nav-list-desktop">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className={item.className}>
+                <Link
+                  href={item.href}
+                  className={`${item.className || ""}${pathname === item.href ? " nav-link-active" : ""}`.trim()}
+                >
                   {item.label}
                 </Link>
               </li>
@@ -61,24 +67,28 @@ export function SiteHeader({ content }: { content: CMSContent }) {
                 <span />
               </span>
             </button>
-            {mobileMenuOpen ? (
-              <ul className="mobile-nav-list">
+          </div>
+        </nav>
+      </div>
+      {mobileMenuOpen ? (
+        <div className="mobile-nav-panel">
+          <div className="container">
+            <ul className="mobile-nav-list">
               {navItems.map((item) => (
                 <li key={`mobile-${item.href}`}>
                   <Link
                     href={item.href}
-                    className={item.className}
+                    className={`${item.className || ""}${pathname === item.href ? " nav-link-active" : ""}`.trim()}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
-              </ul>
-            ) : null}
+            </ul>
           </div>
-        </nav>
-      </div>
+        </div>
+      ) : null}
     </header>
   );
 }

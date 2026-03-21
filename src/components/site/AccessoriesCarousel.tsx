@@ -140,7 +140,7 @@ export default function AccessoriesCarousel({
             ))}
           </div>
         </div>
-        <button type="button" className="accessories-arrow" onClick={nextPage} aria-label="Naechste Accessoires" disabled={!canSwipe}>
+        <button type="button" className="accessories-arrow" onClick={nextPage} aria-label="Nächste Accessoires" disabled={!canSwipe}>
           ›
         </button>
       </div>

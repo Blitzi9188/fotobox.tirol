@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = content.seo.title?.trim() || "Fotobox Tirol das Original";
   const description =
     content.seo.description?.trim() ||
-    "Fotobox Tirol das Original fuer Hochzeiten, Firmenfeiern und Events in Tirol.";
+    "Fotobox Tirol das Original für Hochzeiten, Firmenfeiern und Events in Tirol.";
   const ogImage = content.hero.imageUrl
     ? new URL(content.hero.imageUrl, SITE_URL).toString()
     : undefined;

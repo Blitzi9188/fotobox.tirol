@@ -17,7 +17,7 @@ export default async function ImpressumPage() {
         <section className="page-hero">
           <div className="container">
             <h1>Impressum</h1>
-            <p>Angaben gemaess § 5 ECG</p>
+            <p>Angaben gemäß § 5 ECG</p>
           </div>
         </section>
 

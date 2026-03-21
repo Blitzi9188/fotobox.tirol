@@ -101,7 +101,7 @@ async function sendLeadMail(params: {
   }
 
   if (config.mode === "resend" && config.missing.length > 0) {
-    throw new Error(formatMailConfigError() || "SMTP ist nicht vollstaendig konfiguriert und Resend ist ebenfalls nicht gesetzt.");
+    throw new Error(formatMailConfigError() || "SMTP ist nicht vollständig konfiguriert und Resend ist ebenfalls nicht gesetzt.");
   }
 
   if (config.mode !== "resend") {

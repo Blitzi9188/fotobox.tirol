@@ -24,7 +24,7 @@ export default function BackToTopButton() {
       type="button"
       className={`back-to-top ${visible ? "visible" : ""}`}
       onClick={scrollToTop}
-      aria-label="Zurueck zum Menue"
+      aria-label="Zurück zum Menü"
     >
       <span className="back-to-top-arrow">↑</span>
       <span className="back-to-top-label">nach oben</span>

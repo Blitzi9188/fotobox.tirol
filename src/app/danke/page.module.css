@@ -60,8 +60,8 @@
 
 .hero h1 {
   margin: 0 0 0.45rem;
-  font-size: clamp(2.8rem, 6vw, 4.8rem);
-  line-height: 1;
+  font-size: clamp(2.1rem, 5vw, 3rem);
+  line-height: 1.06;
   letter-spacing: -0.04em;
 }
 
@@ -419,7 +419,7 @@
   }
 
   .hero h1 {
-    font-size: clamp(2.4rem, 11vw, 3.5rem);
+    font-size: clamp(1.95rem, 9vw, 2.5rem);
   }
 
   .steps {

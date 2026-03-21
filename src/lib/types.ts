@@ -57,6 +57,19 @@ export type FooterLink = {
   newTab?: boolean;
 };
 
+export type OccasionItem = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  titleBold: string;
+  subtitle: string;
+  description: string;
+  benefits: string[];
+  imageUrl?: string;
+  imageAlt?: string;
+  warm?: boolean;
+};
+
 export type ReferenceItem = {
   name: string;
   href: string;
@@ -137,6 +150,24 @@ export type CMSContent = {
     overtitle: string;
     heading: string;
     items: AccessoryItem[];
+  };
+  occasions?: {
+    seoTitle?: string;
+    seoDescription?: string;
+    heroEyebrow: string;
+    heroTitle: string;
+    heroTitleAccent: string;
+    heroLead: string;
+    heroImageUrl?: string;
+    sections: OccasionItem[];
+    seoColumns: Feature[];
+    searchTerms: string[];
+    faqHeading: string;
+    faqItems: FaqItem[];
+    ctaMeta: string;
+    ctaTitle: string;
+    ctaButtonText: string;
+    ctaButtonHref: string;
   };
   pricing: {
     heading: string;

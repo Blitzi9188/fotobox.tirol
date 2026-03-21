@@ -16,7 +16,7 @@ export default async function AgbB2bPage() {
         <section className="page-hero">
           <div className="container">
             <h1>AGB (B2B)</h1>
-            <p>Allgemeine Geschaeftsbedingungen fuer Unternehmensgeschaefte</p>
+            <p>Allgemeine Geschäftsbedingungen für Unternehmensgeschäfte</p>
           </div>
         </section>
 

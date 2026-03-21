@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
+import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "KI Fotobox Tirol | Kreative KI-Erlebnisse fuer Events",
+  title: "KI Fotobox Tirol | Kreative KI-Erlebnisse für Events",
   description:
-    "Eigene Unterseite fuer die KI Fotobox Tirol mit Vorher/Nachher-Beispielen, Live-Demo und Anfrage-CTA."
+    "Eigene Unterseite für die KI Fotobox Tirol mit Vorher/Nachher-Beispielen, Live-Demo und Anfrage-CTA."
 };
 
 function toParagraphs(value?: string) {
@@ -35,33 +36,42 @@ function splitSlashTitle(value?: string, fallbackTop?: string, fallbackBottom?: 
   };
 }
 
+function normalizeHeroSegment(value?: string) {
+  return (value || "")
+    .replace(/[.!?]+$/g, "")
+    .trim()
+    .toLowerCase();
+}
+
 export default async function KiFotoboxTirolPage() {
   const content = await readCmsContent();
   const paragraphs = toParagraphs(content.ai.descriptionText);
   const leftBefore = content.ai.compareLeftBeforeUrl || "/uploads/hero-optimized.jpg";
   const leftAfter = content.ai.compareLeftAfterUrl || leftBefore;
-  const rightAfter = content.ai.compareRightAfterUrl || content.ai.compareRightBeforeUrl || leftBefore;
+  const demoImage = content.ai.compareRightAfterUrl || content.ai.compareRightBeforeUrl || leftAfter;
   const contactEmail = content.contact.email || "info@fotobox.tirol";
   const contactPhone = content.contact.phone || "+43 664 3918 228";
   const featureTitle = splitSlashTitle(content.ai.featureTitle, "Autofokus auf", "Ihre Schokoladenseite.");
   const demoTitle = splitSlashTitle(content.ai.demoTitle, "Intelligente", "Design-Overlays.");
   const heroLineTop = content.ai.heroTitleTop || "Perfekte Bilder.";
   const heroAccent = content.ai.heroTitleAccent || "Magisch";
+  const heroSlashTop = normalizeHeroSegment(heroLineTop);
+  const heroSlashBottom = normalizeHeroSegment(`${heroAccent} einfach`);
 
   const featureCards = (content.ai.featureCards && content.ai.featureCards.length > 0
     ? content.ai.featureCards
     : [
         {
           title: "Smart Lighting",
-          description: "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhaeltnissen fuer deutlich bessere Ergebnisse."
+          description: "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhältnissen für deutlich bessere Ergebnisse."
         },
         {
-          title: "Natuerliche Hauttoene",
-          description: "Ruhigere Haut, klarere Farben und ein hochwertiger Gesamteindruck, ohne dass die Bilder kuenstlich oder ueberzeichnet wirken."
+          title: "Natürliche Hauttöne",
+          description: "Ruhigere Haut, klarere Farben und ein hochwertiger Gesamteindruck, ohne dass die Bilder künstlich oder überzeichnet wirken."
         },
         {
           title: "Eventgerechte Looks",
-          description: "Hochzeit, Firmenfeier oder Gala: Layouts, Farben und Bildwirkung koennen passend zum Anlass inszeniert werden."
+          description: "Hochzeit, Firmenfeier oder Gala: Layouts, Farben und Bildwirkung können passend zum Anlass inszeniert werden."
         },
         {
           title: "Sofort einsetzbar",
@@ -111,7 +121,7 @@ export default async function KiFotoboxTirolPage() {
         },
         {
           title: "Contextual Branding",
-          description: "Firmenlogos und Event-Branding koennen sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
+          description: "Firmenlogos und Event-Branding können sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
         }
       ];
 
@@ -121,7 +131,7 @@ export default async function KiFotoboxTirolPage() {
         "Hochzeiten mit individuellem Storytelling und Wow-Effekt",
         "Firmenfeiern, Messen und Markenauftritte mit Social Sharing",
         "Gala-Abende, Weihnachtsfeiern und Sommerfeste",
-        "Produktpraesentationen, Roadshows und Promotion-Aktionen"
+        "Produktpräsentationen, Roadshows und Promotion-Aktionen"
       ];
 
   return (
@@ -135,12 +145,13 @@ export default async function KiFotoboxTirolPage() {
               <span className="ki-badge-dot" aria-hidden="true" />
               {content.ai.heroBadge || "New: Artificial Intelligence"}
             </div>
-            <h1>
-              {heroLineTop}<br />
-              <span>{heroAccent}</span> einfach.
+            <h1 className="ki-hero-slash-title">
+              <span>{heroSlashTop}</span>
+              <span className="accent-slash">/</span>
+              <span>{heroSlashBottom}</span>
             </h1>
             <p>
-              {content.ai.heroLead || "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttoene und Overlays fuer einen sichtbar hochwertigeren Event-Look."}
+              {content.ai.heroLead || "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttöne und Overlays für einen sichtbar hochwertigeren Event-Look."}
             </p>
             <div className="ki-hero-actions">
               <Link href="#ki-demo" className="btn btn-primary">Demo ansehen</Link>
@@ -164,7 +175,7 @@ export default async function KiFotoboxTirolPage() {
               <p>
                 {content.ai.featureLead ||
                   paragraphs[0] ||
-                  "Vergessen Sie schwieriges Licht, unruhige Hintergruende oder flache Handyfilter. Unsere KI erkennt die Szene in Millisekunden und optimiert das Bild automatisch fuer einen professionelleren Look."}
+                  "Vergessen Sie schwieriges Licht, unruhige Hintergründe oder flache Handyfilter. Unsere KI erkennt die Szene in Millisekunden und optimiert das Bild automatisch für einen professionelleren Look."}
               </p>
               <div className="ki-feature-grid">
                 {featureCards.map((item) => (
@@ -179,28 +190,11 @@ export default async function KiFotoboxTirolPage() {
 
             <div className="ki-compare-shell">
               <div className="ki-compare-card">
-                <div className="ki-compare-stage">
-                  <img src={leftAfter} alt="KI optimiertes Beispiel" className="ki-compare-after" />
-                  <div className="ki-compare-before-wrap">
-                    <img src={leftBefore} alt="Vorher Beispiel" className="ki-compare-before" />
-                  </div>
-                  <button type="button" className="ki-compare-swipe-button" aria-label="Bildvergleich swipen">
-                    <span className="ki-compare-swipe-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24">
-                        <path d="M8 6 2 12l6 6" />
-                        <path d="M16 6l6 6-6 6" />
-                      </svg>
-                    </span>
-                    Swipe
-                  </button>
-                  <div className="ki-compare-handle" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                      <path d="m15 18-6-6 6-6" />
-                    </svg>
-                  </div>
-                  <span className="ki-chip ki-chip-dark">VORHER</span>
-                  <span className="ki-chip ki-chip-accent">KI OPTIMIERT</span>
-                </div>
+                <BeforeAfterSlider
+                  title="KI Bildvergleich"
+                  beforeImageUrl={leftBefore}
+                  afterImageUrl={leftAfter}
+                />
               </div>
             </div>
           </div>
@@ -213,7 +207,7 @@ export default async function KiFotoboxTirolPage() {
               <div className="ki-demo-grid">
                 <div className="ki-demo-visual">
                   <div className="ki-demo-image-wrap">
-                    <img src={rightAfter} alt="KI Demo Motiv" className="ki-demo-image" />
+                    <img src={demoImage} alt="KI Demo Motiv" className="ki-demo-image" />
                     <div className="ki-demo-overlay">
                       <div className="ki-demo-overlay-mark">
                         <h3>SARAH &amp; TIM</h3>
@@ -240,7 +234,7 @@ export default async function KiFotoboxTirolPage() {
                     {demoTitle.top} <br />{demoTitle.bottom}
                   </h2>
                   <p>
-                    {content.ai.demoLead || "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fuers Motiv bleibt."}
+                    {content.ai.demoLead || "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fürs Motiv bleibt."}
                   </p>
                   <div className="ki-demo-list">
                     {demoFeatures.map((item, index) => (
@@ -266,11 +260,11 @@ export default async function KiFotoboxTirolPage() {
         <section className="ki-section ki-section-light">
           <div className="container ki-usecase-grid">
             <article className="ki-copy-card">
-              <h2>{content.ai.useCasesTitle || "Fuer welche Events ist die KI Fotobox stark?"}</h2>
+              <h2>{content.ai.useCasesTitle || "Für welche Events ist die KI Fotobox stark?"}</h2>
               <p>
                 {content.ai.useCasesLead ||
                   paragraphs[1] ||
-                  "Besonders gut funktioniert die KI Fotobox bei Events, auf denen Erlebnis, Aufmerksamkeit und modernes Branding zusammenkommen. Dadurch entsteht nicht nur ein Foto, sondern ein echter Gespraechsanlass."}
+                  "Besonders gut funktioniert die KI Fotobox bei Events, auf denen Erlebnis, Aufmerksamkeit und modernes Branding zusammenkommen. Dadurch entsteht nicht nur ein Foto, sondern ein echter Gesprächsanlass."}
               </p>
               <ul className="ki-check-list">
                 {useCases.map((item) => (
@@ -282,7 +276,7 @@ export default async function KiFotoboxTirolPage() {
             <article className="ki-copy-card ki-copy-card-dark">
               <h2>{content.ai.standardTitle || "Standard in allen Fotoboxen."}</h2>
               <p>
-                {content.ai.standardLead || "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und laesst sich je nach Eventcharakter intensiver inszenieren."}
+                {content.ai.standardLead || "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und lässt sich je nach Eventcharakter intensiver inszenieren."}
               </p>
               <div className="ki-contact-links">
                 <Link href="/kontakt" className="btn btn-primary">Termin anfragen</Link>
@@ -297,7 +291,7 @@ export default async function KiFotoboxTirolPage() {
             <div>
               <h2>{content.ai.finalTitle || "Direkt zur KI-Fotobox beraten lassen"}</h2>
               <p>
-                {content.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenstaendige Attraktion oder als Upgrade zur klassischen Fotobox fuer dein Event passt."}
+                {content.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt."}
               </p>
             </div>
             <div className="ki-direct-contact">

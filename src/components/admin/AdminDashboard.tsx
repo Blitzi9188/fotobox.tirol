@@ -58,6 +58,32 @@ const HOMEPAGE_BLOCKS: Array<{ id: HomepageBlockId; label: string; note: string 
 ];
 const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = HOMEPAGE_BLOCKS.map((block) => block.id);
 
+function getPreviewPathForTab(tab: SectionId) {
+  switch (tab) {
+    case "pricing":
+      return "/preisgestaltung";
+    case "contact":
+    case "inquiry":
+      return "/kontakt";
+    case "thanks":
+      return "/danke?paket=Premium&eventDate=2026-06-14&location=Innsbruck";
+    case "accessories":
+      return "/#accessoires";
+    case "reviews":
+      return "/#reviews";
+    case "faq":
+      return "/#faq";
+    case "legal":
+      return "/impressum";
+    case "seo":
+      return "/fotobox-anlaesse";
+    case "wizard":
+      return "/vorlagen-test";
+    default:
+      return "/";
+  }
+}
+
 function htmlToPlainText(value: string) {
   return value
     .replace(/<br\s*\/?>/gi, "\n")
@@ -3267,7 +3293,7 @@ export default function AdminDashboard() {
             <button
               className="btn btn-outline"
               type="button"
-              onClick={() => window.open(`/?v=${Date.now()}`, "_blank")}
+              onClick={() => window.open(`${getPreviewPathForTab(activeTab)}${getPreviewPathForTab(activeTab).includes("?") ? "&" : "?"}v=${Date.now()}`, "_blank")}
             >
               Geänderte Seite öffnen
             </button>

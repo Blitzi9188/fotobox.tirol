@@ -106,7 +106,7 @@ export default function ContactForm({
       <div className="inquiry-captcha-card">
         <div className="inquiry-captcha-copy">
           <span className="inquiry-section-title">Sicherheitsabfrage *</span>
-          <p className="inquiry-captcha-help">Bitte bestaetigen, dass die Anfrage von einer echten Person gesendet wird.</p>
+          <p className="inquiry-captcha-help">Bitte bestätigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="admin-field" style={{ marginBottom: 0 }}>
           <span>Sicherheitsrechnung</span>

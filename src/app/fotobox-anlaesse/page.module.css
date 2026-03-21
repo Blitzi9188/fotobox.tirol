@@ -39,9 +39,9 @@
 }
 
 .heroTitle {
-  font-size: clamp(2.8rem, 7vw, 4.9rem);
+  font-size: clamp(2.1rem, 5vw, 3rem);
   font-weight: 300;
-  line-height: 1.04;
+  line-height: 1.06;
   margin-bottom: 1rem;
 }
 
@@ -326,7 +326,7 @@
 
 @media (max-width: 640px) {
   .heroTitle {
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 
   .heroLead {

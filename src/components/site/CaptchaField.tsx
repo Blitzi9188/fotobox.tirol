@@ -64,7 +64,7 @@ export default function CaptchaField({
           onClick={() => loadChallenge(question)}
           disabled={loading}
         >
-          {loading ? "Laedt..." : "Neu"}
+          {loading ? "Lädt..." : "Neu"}
         </button>
       </div>
       <input type="hidden" name="captchaToken" value={token} />
