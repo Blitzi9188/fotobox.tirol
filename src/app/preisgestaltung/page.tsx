@@ -43,27 +43,32 @@ const DEFAULT_PAGE_PLANS = [
     items: [
       "Alles aus dem Premium-Paket",
       "Live-Slideshow auf TV/Beamer",
-      "Persoenlicher Operator vor Ort",
-      "High-End Gaestebuch & Klebe-Service"
+      "Persönlicher Operator vor Ort",
+      "High-End Gästebuch & Klebe-Service"
     ]
   }
 ];
 
 const DEFAULT_TECHNOLOGY_ITEMS = [
   {
-    title: "Studioqualitaet",
+    title: "Studioqualität",
     description:
-      "Integrierte DSLR-Kamera und professioneller Studioblitz sorgen fuer sauber ausgeleuchtete Bilder in jeder Event-Umgebung."
+      "Integrierte DSLR-Kamera und professioneller Studioblitz sorgen für sauber ausgeleuchtete Bilder in jeder Event-Umgebung."
   },
   {
     title: "Touch Bedienung",
     description:
-      "Intuitive Benutzerfuehrung ueber den grossen Touchscreen, damit sich auch Gaeste ohne Einweisung sofort zurechtfinden."
+      "Intuitive Benutzerführung über den großen Touchscreen, damit sich auch Gäste ohne Einweisung sofort zurechtfinden."
   },
   {
     title: "Sofortdruck",
     description:
-      "High-Speed Fotodruck in Sekunden mit klaren Ausdrucken in Laborqualitaet, abgestimmt auf euer Event oder Branding."
+      "High-Speed Fotodruck in Sekunden mit klaren Ausdrucken in Laborqualität, abgestimmt auf euer Event oder Branding."
+  },
+  {
+    title: "QR-Code Download",
+    description:
+      "Gäste laden ihre Bilder direkt aufs Handy, ohne App und ohne Wartezeit."
   }
 ];
 
@@ -85,47 +90,26 @@ const DEFAULT_REFERENCES = [
   { name: "VOGUE Germany", href: "https://www.vogue.de", logoDomain: "vogue.de" },
   { name: "Adlers Hotel", href: "https://www.adlers-innsbruck.com", logoDomain: "adlers-innsbruck.com" },
   { name: "Hypo Tirol Bank", href: "https://www.hypotirol.com", logoDomain: "hypotirol.com" },
-  { name: "Aqua Dome", href: "https://www.aqua-dome.at", logoDomain: "aqua-dome.at" },
-  { name: "Aufschnaiter", href: "https://www.aufschnaiter.com", logoDomain: "aufschnaiter.com" },
-  { name: "Salt Schweiz", href: "https://www.salt.ch", logoDomain: "salt.ch" },
-  { name: "Büro im Laden", href: "https://www.xn--dasbroimladen-zob.at/im-laden", logoDomain: "xn--dasbroimladen-zob.at" },
-  { name: "Donau Versicherung", href: "https://www.donauversicherung.at", logoDomain: "donauversicherung.at" },
-  {
-    name: "Tirol Werbung",
-    href: "https://www.tirolwerbung.at",
-    logoDomain: "tirolwerbung.at",
-    logoSrc: "https://www.tirolwerbung.at/_Resources/Static/Packages/imx.bestpractice/images/PageHeader/tirol.svg?bust=20775f4e"
-  },
-  {
-    name: "Innsbruck Tourismus",
-    href: "https://www.innsbruck.info",
-    logoDomain: "innsbruck.info",
-    logoSrc: "https://www.innsbruckphoto.at/logos/INNSBRUCK/RGB/Logo_INNSBRUCK_rgb.jpg"
-  },
-  { name: "Thöni Telfs", href: "https://www.thoeni.com", logoDomain: "thoeni.com" },
-  { name: "Kaufhaus Tyrol", href: "https://kaufhaus-tyrol.at", logoDomain: "kaufhaus-tyrol.at" },
-  { name: "DEZ Einkaufszentrum", href: "https://www.dez.at", logoDomain: "dez.at" },
-  { name: "Löffler", href: "https://www.loeffler.at", logoDomain: "loeffler.at" },
-  { name: "Innio / Jenbach", href: "https://www.innio.com", logoDomain: "innio.com" }
+  { name: "Aqua Dome", href: "https://www.aqua-dome.at", logoDomain: "aqua-dome.at" }
 ];
 
 export const metadata: Metadata = {
   title: "Preisgestaltung Fotobox Tirol | Pakete und Leistungen",
   description:
-    "Eigene Preisgestaltungsseite fuer Pakete, Formate und Leistungen der Fotobox Tirol."
+    "Eigene Preisgestaltungsseite für Pakete, Formate und Leistungen der Fotobox Tirol."
 };
 
 function CheckIcon() {
   return (
     <svg
-      className="pricing-package-check"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
-      strokeWidth="3"
+      strokeWidth="2.5"
       aria-hidden="true"
+      style={{ width: 20, height: 20, color: "#ea2c2c", flexShrink: 0 }}
     >
-      <path d="M5 13l4 4L19 7" />
+      <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -134,16 +118,29 @@ function getPlanDescription(name: string) {
   const value = name.toLowerCase();
 
   if (value.includes("premium")) {
-    return "Das beliebteste Paket fuer Hochzeiten und grosse Feiern.";
+    return "Das beliebteste Paket für Hochzeiten und große Feiern.";
   }
-  if (value.includes("black") || value.includes("exclusive")) {
-    return "Maximale Qualitaet ohne Kompromisse fuer besondere Ansprueche.";
+  if (value.includes("black") || value.includes("exclusive") || value.includes("luxury")) {
+    return "Maximale Qualität ohne Kompromisse für besondere Ansprüche.";
   }
   if (value.includes("essential") || value.includes("basic")) {
-    return "Der starke Einstieg fuer kleinere Feiern und klare Entscheidungen.";
+    return "Der starke Einstieg für kleinere Feiern und klare Entscheidungen.";
   }
 
   return "Transparent kalkuliert und passend auf euer Event abgestimmt.";
+}
+
+function getPlanMeta(plan: { meta?: string; featured?: boolean; name: string }) {
+  if (plan.meta?.trim()) return plan.meta;
+  return "/ Event";
+}
+
+function getTechnologyHighlights(items: Array<{ title: string; description: string }>) {
+  return items.slice(0, 4);
+}
+
+function formatPrice(value: number) {
+  return new Intl.NumberFormat("de-AT").format(value);
 }
 
 export default async function PreisgestaltungPage() {
@@ -152,123 +149,110 @@ export default async function PreisgestaltungPage() {
     content.pricing.pagePlans && content.pricing.pagePlans.length > 0
       ? content.pricing.pagePlans
       : DEFAULT_PAGE_PLANS;
-  const technologySource =
+  const technologyItems =
     content.pricing.technologyItems && content.pricing.technologyItems.length > 0
       ? content.pricing.technologyItems
       : DEFAULT_TECHNOLOGY_ITEMS;
-  const technologyItems = technologySource.map((item, index) => ({
-    ...item,
-    icon: (
-      index === 0 ? (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-          <circle cx="12" cy="13" r="4" />
-        </svg>
-      ) : index === 1 ? (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <rect x="6" y="2" width="12" height="20" rx="2" ry="2" />
-          <line x1="12" y1="18" x2="12.01" y2="18" />
-        </svg>
-      ) : (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <polyline points="6 9 6 2 18 2 18 9" />
-          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-          <rect x="6" y="14" width="12" height="8" />
-        </svg>
-      )
-    )
-  }));
+  const technologyHighlights = getTechnologyHighlights(technologyItems);
   const references =
     content.pricing.references && content.pricing.references.length > 0
       ? content.pricing.references
       : DEFAULT_REFERENCES;
 
-  function formatPrice(value: number) {
-    return new Intl.NumberFormat("de-AT").format(value);
-  }
   return (
     <>
       <SiteHeader content={content} />
       <main>
         <section className="page-hero seo-landing-hero pricing-hero">
           <div className="container">
-            <span className="pricing-hero-badge">Preise &amp; Pakete</span>
-            <h1>{content.pricing.pageTitle || "Preisgestaltung"}</h1>
+            <span className="pricing-hero-badge">Transparente Angebote</span>
+            <h1>
+              <SlashHeading value={content.pricing.pageTitle || "preise/pakete"} />
+            </h1>
             <p>
-              {content.pricing.pageIntro || "Eigene Übersichtsseite fuer Pakete, Druckformate und Leistungen."}
+              {content.pricing.pageIntro ||
+                "Wählt das passende Paket für eure Feier. Keine versteckten Kosten, klare Leistungen und moderne Technik aus Tirol."}
             </p>
           </div>
         </section>
 
         <section className="seo-landing-section pricing-package-section">
           <div className="container">
-            <h2><SlashHeading value={content.pricing.pageHeading || "all/inclusive"} /></h2>
-            <div className="grid grid-3 pricing-package-grid">
-              {pricingPackages.map((plan) => (
-                <article className={`price-card pricing-package-card ${plan.featured ? "featured pricing-package-featured" : ""}`} key={plan.name}>
-                  <div className="price-header">
-                    {plan.featured ? <span className="pricing-package-badge">Empfehlung</span> : null}
-                    <h3>{plan.name}</h3>
-                    <p className="pricing-package-description">{getPlanDescription(plan.name)}</p>
-                    <div className="pricing-package-amount">
-                      <span>{formatPrice(plan.price)}€</span>
-                      <small>{plan.meta || "/ Event"}</small>
-                    </div>
-                  </div>
-                  <ul className="price-list">
-                    {plan.items.map((item) => (
-                      <li key={item}>
-                        <CheckIcon />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={`/kontakt?paket=${encodeURIComponent(plan.name)}`}
-                    className={`pricing-package-btn ${plan.featured ? "is-featured" : ""}`}
+            <div className="pricing-offer-grid">
+              {pricingPackages.map((plan) => {
+                const isFeatured = Boolean(plan.featured);
+                return (
+                  <article
+                    key={plan.name}
+                    className={`pricing-offer-card${isFeatured ? " is-featured" : ""}`}
                   >
-                    {plan.cta}
-                  </Link>
-                </article>
-              ))}
+                    {isFeatured ? <span className="pricing-offer-badge">Beliebteste Wahl</span> : null}
+                    <div className="pricing-offer-head">
+                      <h2>{plan.name}</h2>
+                      <p>{getPlanDescription(plan.name)}</p>
+                    </div>
+                    <div className="pricing-offer-price">
+                      <span>€{formatPrice(plan.price)}</span>
+                      <small>{getPlanMeta(plan)}</small>
+                    </div>
+                    <ul className="pricing-offer-list">
+                      {plan.items.map((item) => (
+                        <li key={item}>
+                          <CheckIcon />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      href={`/kontakt?paket=${encodeURIComponent(plan.name)}`}
+                      className={`pricing-offer-button${isFeatured ? " is-featured" : ""}`}
+                    >
+                      {plan.cta || "Jetzt anfragen"}
+                    </Link>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
 
         <section className="seo-landing-section">
           <div className="container">
-            <h2><SlashHeading value={content.pricing.technologyHeading || "technik/bedienung"} /></h2>
-            <div className="grid grid-3">
-              {technologyItems.map((item) => (
-                <article
-                  className="feature-item"
-                  key={item.title}
-                  style={{
-                    textAlign: "center",
-                    border: "none",
-                    background: "transparent",
-                    padding: 0
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      border: "1px solid var(--c-line)",
-                      borderRadius: "999px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: "0 auto 1.5rem",
-                      color: "var(--c-accent)"
-                    }}
-                  >
-                    {item.icon}
+            <div className="pricing-guarantee-panel">
+              <div>
+                <h2 className="pricing-guarantee-title">
+                  Alle Pakete beinhalten<br />
+                  <span>unsere Tirol-Garantie:</span>
+                </h2>
+                <div className="pricing-guarantee-grid">
+                  {technologyHighlights.map((item) => (
+                    <div key={item.title} className="pricing-guarantee-item">
+                      <p>{item.title}</p>
+                      <span>{item.description}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pricing-guarantee-visual-wrap">
+                <div className="pricing-guarantee-visual">
+                  <div className="pricing-guarantee-orb" />
+                  <div className="pricing-guarantee-stack">
+                    <div className="pricing-guarantee-stack-card is-top">
+                      <strong>Premium Setup</strong>
+                      <span>DSLR, Studioblitz, Druck, QR-Download</span>
+                    </div>
+                    <div className="pricing-guarantee-stack-card">
+                      <strong>Persönliches Layout</strong>
+                      <span>Abgestimmt auf Hochzeit, Firmenfeier oder Event</span>
+                    </div>
+                    <div className="pricing-guarantee-note">
+                      <p>Upgrade-Option</p>
+                      <strong>Individuelle Requisiten und Branding-Elemente möglich</strong>
+                    </div>
                   </div>
-                  <h3 style={{ fontSize: "1.25rem", marginBottom: "0.75rem" }}>{item.title}</h3>
-                  <p style={{ marginBottom: 0 }}>{item.description}</p>
-                </article>
-              ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -300,7 +284,7 @@ export default async function PreisgestaltungPage() {
               <div className="pricing-contact-copy">
                 <h2>{content.pricing.contactTitle || "Direkt anfragen"}</h2>
                 <p className="pricing-contact-intro">
-                  Wenn keines der Pakete exakt passt, erstellen wir euch gerne ein individuelles Angebot fuer Hochzeit,
+                  Wenn keines der Pakete exakt passt, erstellen wir euch gerne ein individuelles Angebot für Hochzeit,
                   Firmenfeier oder Event in Tirol.
                 </p>
                 <div className="pricing-contact-details">
@@ -329,7 +313,6 @@ export default async function PreisgestaltungPage() {
             </section>
           </div>
         </section>
-
       </main>
       <SiteFooter content={content} />
     </>

@@ -114,6 +114,7 @@ function normalizeImageUrl(value: string) {
 
 export default function AdminDashboard() {
   const [content, setContent] = useState<CMSContent | null>(null);
+  const contentRef = useRef<CMSContent | null>(null);
   const [authorized, setAuthorized] = useState<boolean | null>(null);
   const [status, setStatus] = useState("");
   const [dirty, setDirty] = useState(false);
@@ -355,6 +356,15 @@ export default function AdminDashboard() {
       pageHeading: json.pricing?.pageHeading || "all/inclusive",
       pagePlans: (json.pricing?.pagePlans && json.pricing.pagePlans.length > 0)
         ? json.pricing.pagePlans
+        : (json.pricing?.plans && json.pricing.plans.length > 0)
+          ? json.pricing.plans.map((plan) => ({
+              name: plan.name,
+              price: plan.price,
+              meta: "/ Event",
+              featured: plan.featured,
+              cta: plan.cta,
+              items: [...plan.items]
+            }))
         : [
             {
               name: "Essential",
@@ -462,7 +472,7 @@ export default function AdminDashboard() {
       contactTitle: json.pricing?.contactTitle || "Direkt anfragen"
     };
 
-    setContent({
+    const nextContent = {
       ...json,
       ai: normalizedAi,
       footer: normalizedFooter,
@@ -478,7 +488,9 @@ export default function AdminDashboard() {
         ...json.layout,
         homepageOrder: normalizedHomepageOrder
       }
-    });
+    };
+    contentRef.current = nextContent;
+    setContent(nextContent);
     setHomepageOrder(normalizedHomepageOrder);
     setActiveTab((prev) => (SECTION_TABS.some((tab) => tab.id === prev) ? prev : "overview"));
     setAuthorized(true);
@@ -493,7 +505,9 @@ export default function AdminDashboard() {
   function updateContent(update: CmsUpdater) {
     setContent((prev) => {
       if (!prev) return prev;
-      return update(prev);
+      const next = update(prev);
+      contentRef.current = next;
+      return next;
     });
     setDirty(true);
   }
@@ -530,8 +544,9 @@ export default function AdminDashboard() {
   }
 
   async function saveContent() {
-    if (!content) return;
-    await persistContent(content);
+    const latestContent = contentRef.current;
+    if (!latestContent) return;
+    await persistContent(latestContent);
   }
 
   async function uploadImage(file: File): Promise<string | null> {
@@ -632,6 +647,7 @@ export default function AdminDashboard() {
 
     setPendingHeroImageUrl(nextHeroImageUrl);
     setPendingHeroAbsoluteUrl(absoluteUrl);
+    contentRef.current = nextContent;
     setContent(nextContent);
     event.target.value = "";
     await persistContent(nextContent, "Hero Bild hochgeladen und gespeichert.");
