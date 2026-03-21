@@ -11,6 +11,7 @@ type SectionId =
   | "overview"
   | "hero"
   | "features"
+  | "accessories"
   | "space"
   | "spaceLayout"
   | "pricing"
@@ -30,6 +31,7 @@ const SECTION_TABS: Array<{ id: SectionId; label: string }> = [
   { id: "overview", label: "Übersicht" },
   { id: "hero", label: "Hero" },
   { id: "features", label: "Features" },
+  { id: "accessories", label: "Accessoires" },
   { id: "space", label: "Platzbedarf" },
   { id: "spaceLayout", label: "Layout/Gestaltung" },
   { id: "pricing", label: "Preise" },
@@ -152,7 +154,7 @@ export default function AdminDashboard() {
       heroBadge: json.ai.heroBadge || "New: Artificial Intelligence",
       heroTitleTop: json.ai.heroTitleTop || "Perfekte Bilder.",
       heroTitleAccent: json.ai.heroTitleAccent || "Magisch",
-      heroLead: json.ai.heroLead || "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttoene und Overlays fuer einen sichtbar hochwertigeren Event-Look.",
+      heroLead: json.ai.heroLead || "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttöne und Overlays für einen sichtbar hochwertigeren Event-Look.",
       featureTitle: json.ai.featureTitle || "Autofokus auf /Ihre Schokoladenseite.",
       featureLead: json.ai.featureLead || normalizedAiDescriptionText.split(/\n\s*\n/)[0] || "",
       featureCards: (json.ai.featureCards && json.ai.featureCards.length > 0)
@@ -160,15 +162,15 @@ export default function AdminDashboard() {
         : [
             {
               title: "Smart Lighting",
-              description: "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhaeltnissen fuer deutlich bessere Ergebnisse."
+              description: "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhaeltnissen für deutlich bessere Ergebnisse."
             },
             {
-              title: "Natuerliche Hauttoene",
-              description: "Ruhigere Haut, klarere Farben und ein hochwertiger Gesamteindruck, ohne dass die Bilder kuenstlich oder ueberzeichnet wirken."
+              title: "Natürliche Hauttöne",
+              description: "Ruhigere Haut, klarere Farben und ein hochwertiger Gesamteindruck, ohne dass die Bilder künstlich oder überzeichnet wirken."
             },
             {
               title: "Eventgerechte Looks",
-              description: "Hochzeit, Firmenfeier oder Gala: Layouts, Farben und Bildwirkung koennen passend zum Anlass inszeniert werden."
+              description: "Hochzeit, Firmenfeier oder Gala: Layouts, Farben und Bildwirkung können passend zum Anlass inszeniert werden."
             },
             {
               title: "Sofort einsetzbar",
@@ -177,7 +179,7 @@ export default function AdminDashboard() {
           ],
       demoBadge: json.ai.demoBadge || "Live Preview",
       demoTitle: json.ai.demoTitle || "Intelligente /Design-Overlays.",
-      demoLead: json.ai.demoLead || "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fuers Motiv bleibt.",
+      demoLead: json.ai.demoLead || "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fürs Motiv bleibt.",
       demoItems: (json.ai.demoItems && json.ai.demoItems.length > 0)
         ? json.ai.demoItems
         : [
@@ -187,23 +189,23 @@ export default function AdminDashboard() {
             },
             {
               title: "Contextual Branding",
-              description: "Firmenlogos und Event-Branding koennen sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
+              description: "Firmenlogos und Event-Branding können sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
             }
           ],
-      useCasesTitle: json.ai.useCasesTitle || "Fuer welche Events ist die KI Fotobox stark?",
-      useCasesLead: json.ai.useCasesLead || normalizedAiDescriptionText.split(/\n\s*\n/)[1] || "Mit wenigen Klicks entstehen einzigartige Bilder fuer Events mit Erlebnis, Aufmerksamkeit und modernem Branding.",
+      useCasesTitle: json.ai.useCasesTitle || "Für welche Events ist die KI Fotobox stark?",
+      useCasesLead: json.ai.useCasesLead || normalizedAiDescriptionText.split(/\n\s*\n/)[1] || "Mit wenigen Klicks entstehen einzigartige Bilder für Events mit Erlebnis, Aufmerksamkeit und modernem Branding.",
       useCases: (json.ai.useCases && json.ai.useCases.length > 0)
         ? json.ai.useCases
         : [
             "Hochzeiten mit individuellem Storytelling und Wow-Effekt",
             "Firmenfeiern, Messen und Markenauftritte mit Social Sharing",
             "Gala-Abende, Weihnachtsfeiern und Sommerfeste",
-            "Produktpraesentationen, Roadshows und Promotion-Aktionen"
+            "Produktpräsentationen, Roadshows und Promotion-Aktionen"
           ],
       standardTitle: json.ai.standardTitle || "Standard in allen Fotoboxen.",
-      standardLead: json.ai.standardLead || "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und laesst sich je nach Eventcharakter intensiver inszenieren.",
+      standardLead: json.ai.standardLead || "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und lässt sich je nach Eventcharakter intensiver inszenieren.",
       finalTitle: json.ai.finalTitle || "Direkt zur KI-Fotobox beraten lassen",
-      finalLead: json.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenstaendige Attraktion oder als Upgrade zur klassischen Fotobox fuer dein Event passt."
+      finalLead: json.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt."
     };
     const normalizedFooter = {
       questionsTitle: json.footer?.questionsTitle || "Du hast Fragen?",
@@ -248,7 +250,7 @@ export default function AdminDashboard() {
     }
     const normalizedAccessories = {
       overtitle: json.accessories?.overtitle || "Accessoires",
-      heading: json.accessories?.heading || "Passende Requisiten fuer jeden Anlass",
+      heading: json.accessories?.heading || "Passende Requisiten für jeden Anlass",
       items: accessoriesSource
     };
     const normalizedContact = {
@@ -262,21 +264,26 @@ export default function AdminDashboard() {
     const normalizedThanks = {
       badge: json.thanks?.badge || "Anfrage gesendet",
       heading: json.thanks?.heading || "danke/anfrage",
-      message: json.thanks?.message || "Ihre Anfrage ist erfolgreich bei uns eingegangen. Wir pruefen die Verfuegbarkeit fuer Ihren Wunschtermin und melden uns in Kuerze.",
+      message: json.thanks?.message || "Ihre Anfrage ist erfolgreich bei uns eingegangen. Wir prüfen die Verfügbarkeit für Ihren Wunschtermin und melden uns in Kürze.",
       summaryTitle: json.thanks?.summaryTitle || "Anfrage-Zusammenfassung",
       summaryPackageLabel: json.thanks?.summaryPackageLabel || "Paket",
       summaryDateLabel: json.thanks?.summaryDateLabel || "Voraussichtlicher Termin",
       summaryLocationLabel: json.thanks?.summaryLocationLabel || "Ort der Feier",
+      summaryReferenceLabel: json.thanks?.summaryReferenceLabel || "Referenz-ID",
+      inspirationTitle: json.thanks?.inspirationTitle || "Bleiben Sie inspiriert",
+      inspirationText: json.thanks?.inspirationText || "Folgen Sie uns auf Instagram für die neuesten Requisiten, KI-Features und Einblicke von Tiroler Hochzeiten.",
+      inspirationButtonText: json.thanks?.inspirationButtonText || "",
       priceLabel: json.thanks?.priceLabel || "GESCHÄTZTER PREIS",
-      priceNote: json.thanks?.priceNote || "*Inkl. MwSt. Endgueltiger Preis folgt im Angebot.",
+      priceNote: json.thanks?.priceNote || "*Inkl. MwSt. Endgültiger Preis folgt im Angebot.",
       stepsTitle: json.thanks?.stepsTitle || "Wie geht es weiter?",
       step1Title: json.thanks?.step1Title || "Anfrage-Check",
-      step1Text: json.thanks?.step1Text || "Wir pruefen die Verfuegbarkeit fuer Ihren Termin innerhalb von 24 Stunden.",
+      step1Text: json.thanks?.step1Text || "Wir prüfen die Verfügbarkeit für Ihren Termin innerhalb von 24 Stunden.",
       step2Title: json.thanks?.step2Title || "Unverbindliches Angebot",
       step2Text: json.thanks?.step2Text || "Sie erhalten ein detailliertes Angebot per E-Mail inkl. aller Inklusivleistungen.",
       step3Title: json.thanks?.step3Title || "Termin Fixierung",
-      step3Text: json.thanks?.step3Text || "Nach Ihrer Bestaetigung wird die Fotobox fest fuer Ihren besonderen Tag reserviert.",
+      step3Text: json.thanks?.step3Text || "Nach Ihrer Bestätigung wird die Fotobox fest für Ihren besonderen Tag reserviert.",
       footerText: json.thanks?.footerText || "Haben Sie in der Zwischenzeit Fragen? Kontaktieren Sie uns direkt unter",
+      questionsTitle: json.thanks?.questionsTitle || "Haben Sie Fragen?",
       primaryButtonText: json.thanks?.primaryButtonText || "Zur Startseite",
       primaryButtonHref: json.thanks?.primaryButtonHref || "/",
       secondaryButtonText: json.thanks?.secondaryButtonText || "Neue Anfrage",
@@ -352,7 +359,7 @@ export default function AdminDashboard() {
     const normalizedPricing = {
       ...json.pricing,
       pageTitle: json.pricing?.pageTitle || "Preisgestaltung",
-      pageIntro: json.pricing?.pageIntro || "Eigene Übersichtsseite fuer Pakete, Druckformate und Leistungen.",
+      pageIntro: json.pricing?.pageIntro || "Eigene Übersichtsseite für Pakete, Druckformate und Leistungen.",
       pageHeading: json.pricing?.pageHeading || "all/inclusive",
       pagePlans: (json.pricing?.pagePlans && json.pricing.pagePlans.length > 0)
         ? json.pricing.pagePlans
@@ -365,66 +372,71 @@ export default function AdminDashboard() {
               cta: plan.cta,
               items: [...plan.items]
             }))
-        : [
-            {
-              name: "Essential",
-              price: 490,
-              meta: "/ Event",
-              featured: false,
-              cta: "Anfragen",
-              items: [
-                "4 Stunden Laufzeit",
-                "Digitale Flatrate (Online Galerie)",
-                "Standard KI-Retusche",
-                "Auf- & Abbau inklusive"
-              ]
-            },
-            {
-              name: "Premium",
-              price: 790,
-              meta: "/ Event",
-              featured: true,
-              cta: "Jetzt buchen",
-              items: [
-                "Open-End Laufzeit (max. 12h)",
-                "Sofort-Druck Flatrate (400 Prints)",
-                "Premium Hochzeits-Filter & Overlay",
-                "QR-Code Sofort-Download",
-                "Requisiten Box (Hochzeit-Edition)"
-              ]
-            },
-            {
-              name: "Black Label",
-              price: 1290,
-              meta: "/ Event",
-              featured: false,
-              cta: "Anfragen",
-              items: [
-                "Alles aus dem Premium-Paket",
-                "Live-Slideshow auf TV/Beamer",
-                "Persoenlicher Operator vor Ort",
-                "High-End Gaestebuch & Klebe-Service"
-              ]
-            }
-          ],
+            : [
+              {
+                name: "Basic",
+                price: 400,
+                meta: "/ Selbstabholung",
+                featured: false,
+                cta: "Anfragen",
+                items: [
+                  "Selbst Abholung",
+                  "Aufbau Einschulung",
+                  "Digitale Bilder",
+                  "Sofortdruck (300 Prints)",
+                  "Requisiten"
+                ]
+              },
+              {
+                name: "Premium",
+                price: 600,
+                meta: "/ Event",
+                featured: true,
+                cta: "Anfragen",
+                items: [
+                  "Ganzen Abend Mietdauer",
+                  "Sofortdruck (unbegrenzt)",
+                  "Accessoires",
+                  "Online Galerie",
+                  "Requisiten",
+                  "Normale Fotobox"
+                ]
+              },
+              {
+                name: "Business",
+                price: 800,
+                meta: "/ Event",
+                featured: false,
+                cta: "Anfragen",
+                items: [
+                  "Ganzen Abend Mietdauer",
+                  "Sofortdruck (unbegrenzt)",
+                  "Accessoires",
+                  "Online Galerie",
+                  "QR Code Upload",
+                  "Normal oder KI-Features Modul",
+                  "Individuelles Layout"
+                ]
+              }
+            ],
       technologyHeading: json.pricing?.technologyHeading || "technik/bedienung",
       technologyItems: (json.pricing?.technologyItems && json.pricing.technologyItems.length > 0)
         ? json.pricing.technologyItems
         : [
             {
-              title: "Studioqualitaet",
-              description: "Integrierte DSLR-Kamera und professioneller Studioblitz sorgen fuer sauber ausgeleuchtete Bilder in jeder Event-Umgebung."
+              title: "Studioqualität",
+              description: "Integrierte DSLR-Kamera und professioneller Studioblitz sorgen für sauber ausgeleuchtete Bilder in jeder Event-Umgebung."
             },
             {
               title: "Touch Bedienung",
-              description: "Intuitive Benutzerfuehrung ueber den grossen Touchscreen, damit sich auch Gaeste ohne Einweisung sofort zurechtfinden."
+              description: "Intuitive Benutzerführung über den großen Touchscreen, damit sich auch Gäste ohne Einweisung sofort zurechtfinden."
             },
             {
               title: "Sofortdruck",
-              description: "High-Speed Fotodruck in Sekunden mit klaren Ausdrucken in Laborqualitaet, abgestimmt auf euer Event oder Branding."
+              description: "High-Speed Fotodruck in Sekunden mit klaren Ausdrucken in Laborqualität, abgestimmt auf euer Event oder Branding."
             }
           ],
-      faqHeading: json.pricing?.faqHeading || json.faq?.heading || "haeufige/fragen",
+      faqHeading: json.pricing?.faqHeading || json.faq?.heading || "häufige/fragen",
       referencesHeading: json.pricing?.referencesHeading || "referenzen/partner",
       references: (json.pricing?.references && json.pricing.references.length > 0)
         ? json.pricing.references
@@ -1178,7 +1190,7 @@ export default function AdminDashboard() {
                 />
               </label>
               <label className="admin-field">
-                <span>Feature Titel (mit / fuer Zeilenbruch)</span>
+                <span>Feature Titel (mit / für Zeilenbruch)</span>
                 <input
                   value={content.ai.featureTitle || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, featureTitle: e.target.value } }))}
@@ -1225,7 +1237,7 @@ export default function AdminDashboard() {
                 />
               </label>
               <label className="admin-field">
-                <span>Demo Titel (mit / fuer Zeilenbruch)</span>
+                <span>Demo Titel (mit / für Zeilenbruch)</span>
                 <input
                   value={content.ai.demoTitle || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, demoTitle: e.target.value } }))}
@@ -1435,7 +1447,7 @@ export default function AdminDashboard() {
         <section className="admin-section">
           <div className="admin-section-head">
             <h2>Preise</h2>
-            <p>Homepage-Preise und eigene Inhalte fuer die Preisgestaltungs-Seite.</p>
+            <p>Homepage-Preise und eigene Inhalte für die Preisgestaltungs-Seite.</p>
           </div>
           <div className="admin-grid-2">
             <div className="admin-panel">
@@ -1540,7 +1552,7 @@ export default function AdminDashboard() {
 
           <div className="admin-section-head" style={{ marginTop: "1.5rem" }}>
             <h3>Preis-Seite Pakete</h3>
-            <p>Pakete fuer die Unterseite `preisgestaltung`.</p>
+            <p>Pakete für die Unterseite `preisgestaltung`.</p>
           </div>
           {(content.pricing.pagePlans || []).map((plan, index) => (
             <div className="admin-subcard" key={`page-${plan.name}-${index}`}>
@@ -1623,7 +1635,7 @@ export default function AdminDashboard() {
 
           <div className="admin-section-head" style={{ marginTop: "1.5rem" }}>
             <h3>Homepage Preise</h3>
-            <p>Preis-Pakete fuer die Startseite.</p>
+            <p>Preis-Pakete für die Startseite.</p>
           </div>
           {content.pricing.plans.map((plan, index) => (
             <div className="admin-subcard" key={`${plan.name}-${index}`}>
@@ -1951,127 +1963,6 @@ export default function AdminDashboard() {
             ) : null}
           </div>
 
-          <div className="admin-subcard">
-            <div className="admin-section-head">
-              <h2>Accessoires (Startseite)</h2>
-              <p>Querformat, 4 Bilder pro Reihe, Swipe-Buttons und mindestens 10 CMS-Bilder mit Alt-Text.</p>
-            </div>
-            <div className="admin-actions">
-              <button className="btn" type="button" onClick={addAccessoryItem}>Accessoire-Bild hinzufügen</button>
-            </div>
-            <div className="admin-grid-2">
-              <div>
-                <label className="admin-field">
-                  <span>Übertitel</span>
-                  <input
-                    value={content.accessories.overtitle}
-                    onChange={(e) =>
-                      updateContent((prev) => ({
-                        ...prev,
-                        accessories: { ...prev.accessories, overtitle: e.target.value }
-                      }))
-                    }
-                  />
-                </label>
-                <label className="admin-field">
-                  <span>Titel</span>
-                  <input
-                    value={content.accessories.heading}
-                    onChange={(e) =>
-                      updateContent((prev) => ({
-                        ...prev,
-                        accessories: { ...prev.accessories, heading: e.target.value }
-                      }))
-                    }
-                  />
-                </label>
-              </div>
-            </div>
-
-            <div className="admin-grid-3">
-              {content.accessories.items.map((item, index) => (
-                <div className="admin-panel" key={`accessory-${index}`}>
-                  <div className="admin-subcard-head">
-                    <h3>Accessoire Bild {index + 1}</h3>
-                    <button
-                      className="btn btn-outline"
-                      type="button"
-                      onClick={() => removeAccessoryItem(index)}
-                      disabled={content.accessories.items.length <= 1}
-                    >
-                      Entfernen
-                    </button>
-                  </div>
-                  <label className="admin-field">
-                    <span>Titel</span>
-                    <input
-                      value={item.title || ""}
-                      onChange={(e) => updateAccessoryItem(index, { ...item, title: e.target.value })}
-                    />
-                  </label>
-                  <label className="admin-field">
-                    <span>Alt Text</span>
-                    <input
-                      value={item.altText || ""}
-                      onChange={(e) => updateAccessoryItem(index, { ...item, altText: e.target.value })}
-                      placeholder="Beschreibung des Bildinhalts"
-                    />
-                  </label>
-                  <label className="admin-field">
-                    <span>Fallback Farbe</span>
-                    <input
-                      value={item.color || "#e5e7eb"}
-                      onChange={(e) => updateAccessoryItem(index, { ...item, color: e.target.value })}
-                    />
-                  </label>
-                  <label className="admin-field">
-                    <span>Bild hochladen</span>
-                    <input
-                      type="file"
-                      accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
-                      onChange={(event) => {
-                        handleImageUpload(
-                          event,
-                          (prev, url) => {
-                            const items = [...prev.accessories.items];
-                            const current = items[index];
-                            if (!current) return prev;
-                            items[index] = { ...current, imageUrl: url };
-                            return { ...prev, accessories: { ...prev.accessories, items } };
-                          },
-                          `Lade Accessoire-Bild ${index + 1} hoch...`,
-                          `Accessoire-Bild ${index + 1} gespeichert.`
-                        );
-                      }}
-                    />
-                  </label>
-                  <label className="admin-field">
-                    <span>Bild URL</span>
-                    <input
-                      value={item.imageUrl || ""}
-                      onChange={(e) => updateAccessoryItem(index, { ...item, imageUrl: e.target.value })}
-                    />
-                  </label>
-                  <label className="admin-field">
-                    <span>Verlinkung (optional)</span>
-                    <input
-                      value={item.linkUrl || ""}
-                      onChange={(e) => updateAccessoryItem(index, { ...item, linkUrl: e.target.value })}
-                      placeholder="https://... oder /kontakt"
-                    />
-                  </label>
-                  {item.imageUrl ? (
-                    <img src={item.imageUrl} alt={item.altText || item.title || `Accessoire ${index + 1}`} className="admin-preview" />
-                  ) : (
-                    <div className="admin-empty-preview" style={{ background: item.color || "#e5e7eb" }}>
-                      Kein Bild hinterlegt
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
           <div className="admin-actions">
             <button className="btn" type="button" onClick={addGalleryItem}>Galerie-Slot hinzufügen</button>
           </div>
@@ -2328,6 +2219,134 @@ export default function AdminDashboard() {
       );
     }
 
+    if (section === "accessories") {
+      return (
+        <section className="admin-section">
+          <div className="admin-section-head">
+            <h2>Accessoires (Startseite)</h2>
+            <p>Querformat, 4 Bilder pro Reihe, Swipe-Buttons und mindestens 10 CMS-Bilder mit Alt-Text.</p>
+          </div>
+
+          <div className="admin-subcard">
+            <div className="admin-actions">
+              <button className="btn" type="button" onClick={addAccessoryItem}>Accessoire-Bild hinzufügen</button>
+            </div>
+            <div className="admin-grid-2">
+              <div>
+                <label className="admin-field">
+                  <span>Übertitel</span>
+                  <input
+                    value={content.accessories.overtitle}
+                    onChange={(e) =>
+                      updateContent((prev) => ({
+                        ...prev,
+                        accessories: { ...prev.accessories, overtitle: e.target.value }
+                      }))
+                    }
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Titel</span>
+                  <input
+                    value={content.accessories.heading}
+                    onChange={(e) =>
+                      updateContent((prev) => ({
+                        ...prev,
+                        accessories: { ...prev.accessories, heading: e.target.value }
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+            </div>
+
+            <div className="admin-grid-3">
+              {content.accessories.items.map((item, index) => (
+                <div className="admin-panel" key={`accessory-${index}`}>
+                  <div className="admin-subcard-head">
+                    <h3>Accessoire Bild {index + 1}</h3>
+                    <button
+                      className="btn btn-outline"
+                      type="button"
+                      onClick={() => removeAccessoryItem(index)}
+                      disabled={content.accessories.items.length <= 1}
+                    >
+                      Entfernen
+                    </button>
+                  </div>
+                  <label className="admin-field">
+                    <span>Titel</span>
+                    <input
+                      value={item.title || ""}
+                      onChange={(e) => updateAccessoryItem(index, { ...item, title: e.target.value })}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Alt Text</span>
+                    <input
+                      value={item.altText || ""}
+                      onChange={(e) => updateAccessoryItem(index, { ...item, altText: e.target.value })}
+                      placeholder="Beschreibung des Bildinhalts"
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Fallback Farbe</span>
+                    <input
+                      value={item.color || "#e5e7eb"}
+                      onChange={(e) => updateAccessoryItem(index, { ...item, color: e.target.value })}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Bild hochladen</span>
+                    <input
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
+                      onChange={(event) => {
+                        handleImageUpload(
+                          event,
+                          (prev, url) => {
+                            const items = [...prev.accessories.items];
+                            const current = items[index];
+                            if (!current) return prev;
+                            items[index] = { ...current, imageUrl: url };
+                            return { ...prev, accessories: { ...prev.accessories, items } };
+                          },
+                          `Lade Accessoire-Bild ${index + 1} hoch...`,
+                          `Accessoire-Bild ${index + 1} gespeichert.`
+                        );
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Bild URL</span>
+                    <input
+                      value={item.imageUrl || ""}
+                      onChange={(e) => updateAccessoryItem(index, { ...item, imageUrl: e.target.value })}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Verlinkung (optional)</span>
+                    <input
+                      value={item.linkUrl || ""}
+                      onChange={(e) => updateAccessoryItem(index, { ...item, linkUrl: e.target.value })}
+                      placeholder="https://... oder /kontakt"
+                    />
+                  </label>
+                  {item.imageUrl ? (
+                    <img src={item.imageUrl} alt={item.altText || item.title || `Accessoire ${index + 1}`} className="admin-preview" />
+                  ) : (
+                    <div className="admin-empty-preview" style={{ background: item.color || "#e5e7eb" }}>
+                      Kein Bild hinterlegt
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
     if (section === "faq") {
       return (
         <section className="admin-section">
@@ -2479,6 +2498,13 @@ export default function AdminDashboard() {
                 />
               </label>
               <label className="admin-field">
+                <span>Label Referenz-ID</span>
+                <input
+                  value={content.thanks.summaryReferenceLabel || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, summaryReferenceLabel: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
                 <span>Preis Titel</span>
                 <input
                   value={content.thanks.priceLabel || ""}
@@ -2491,6 +2517,29 @@ export default function AdminDashboard() {
                   rows={3}
                   value={content.thanks.priceNote || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, priceNote: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Inspiration Titel</span>
+                <input
+                  value={content.thanks.inspirationTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, inspirationTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Inspiration Text</span>
+                <textarea
+                  rows={4}
+                  value={content.thanks.inspirationText || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, inspirationText: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Inspiration Button Text</span>
+                <input
+                  value={content.thanks.inspirationButtonText || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, inspirationButtonText: e.target.value } }))}
+                  placeholder="Leer = Kontakt E-Mail"
                 />
               </label>
             </div>
@@ -2553,6 +2602,13 @@ export default function AdminDashboard() {
                   rows={3}
                   value={content.thanks.footerText || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, footerText: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Fragen Titel</span>
+                <input
+                  value={content.thanks.questionsTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, thanks: { ...prev.thanks, questionsTitle: e.target.value } }))}
                 />
               </label>
               <label className="admin-field">
@@ -2766,7 +2822,7 @@ export default function AdminDashboard() {
         <section className="admin-section">
           <div className="admin-section-head">
             <h2>Anfrage Seite</h2>
-            <p>Detaillierte Steuerung fuer jetzt/anfragen: klar nach Bereichen aufgeteilt.</p>
+            <p>Detaillierte Steuerung für jetzt/anfragen: klar nach Bereichen aufgeteilt.</p>
           </div>
 
           <div className="admin-grid-2">
@@ -3032,7 +3088,7 @@ export default function AdminDashboard() {
         <section className="admin-section">
           <div className="admin-section-head">
             <h2>Rechtliches</h2>
-            <p>Inhalte fuer Impressum und Datenschutzerklaerung auf den eigenen Unterseiten.</p>
+            <p>Inhalte für Impressum und Datenschutzerklärung auf den eigenen Unterseiten.</p>
           </div>
           <div className="admin-grid-2">
             <div className="admin-panel">
@@ -3052,7 +3108,7 @@ export default function AdminDashboard() {
             </div>
             <div className="admin-panel">
               <label className="admin-field">
-                <span>Datenschutzerklaerung Text</span>
+                <span>Datenschutzerklärung Text</span>
                 <textarea
                   rows={24}
                   value={content.legal.datenschutzerklaerungText}
