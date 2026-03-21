@@ -8,7 +8,6 @@ const uploadsDirectory = getCmsUploadsDir();
 const seedCmsFilePath = path.join(process.cwd(), "data", "cms-content.json");
 const cmsFilePath = path.join(dataDirectory, "cms-content.json");
 const contactFilePath = path.join(dataDirectory, "contact-leads.json");
-const WORKING_HERO_URL = "/uploads/hero-optimized.jpg";
 
 function isRetryableFsError(error: unknown) {
   if (!(error instanceof Error)) return false;
@@ -83,6 +82,11 @@ async function ensureCmsStorage(): Promise<void> {
   }
 }
 
+async function readSeedCmsContent(): Promise<CMSContent> {
+  const seedPayload = await fs.readFile(seedCmsFilePath, "utf-8").catch(() => "{}");
+  return JSON.parse(seedPayload) as CMSContent;
+}
+
 function resolveUploadsPathFromUrl(url: string) {
   try {
     const parsedUrl = url.startsWith("http://") || url.startsWith("https://")
@@ -99,9 +103,9 @@ function resolveUploadsPathFromUrl(url: string) {
   }
 }
 
-async function shouldFallbackHeroImage(imageUrl?: string) {
+async function shouldFallbackHeroImage(imageUrl?: string, fallbackHeroUrl?: string) {
   if (!imageUrl) return false;
-  if (imageUrl === WORKING_HERO_URL) return false;
+  if (fallbackHeroUrl && imageUrl === fallbackHeroUrl) return false;
 
   const uploadPath = resolveUploadsPathFromUrl(imageUrl);
   if (!uploadPath) return false;
@@ -121,12 +125,19 @@ export async function readCmsContent(): Promise<CMSContent> {
     const trimmed = raw.trim();
     if (!trimmed) throw new Error("Empty CMS payload.");
     const parsed = JSON.parse(trimmed) as CMSContent;
-    if (await shouldFallbackHeroImage(parsed?.hero?.imageUrl)) {
+    const seedContent = await readSeedCmsContent();
+    const fallbackHeroUrl = seedContent?.hero?.imageUrl;
+    const fallbackHeroTitle = seedContent?.hero?.title;
+    const needsFallbackImage = await shouldFallbackHeroImage(parsed?.hero?.imageUrl, fallbackHeroUrl);
+    const needsFallbackTitle = !parsed?.hero?.title?.trim();
+
+    if (needsFallbackImage || needsFallbackTitle) {
       const patched: CMSContent = {
         ...parsed,
         hero: {
           ...parsed.hero,
-          imageUrl: WORKING_HERO_URL
+          title: parsed?.hero?.title?.trim() || fallbackHeroTitle || "fotobox tirol/das original",
+          imageUrl: needsFallbackImage ? fallbackHeroUrl || parsed?.hero?.imageUrl : parsed?.hero?.imageUrl
         }
       };
       await writeCmsContent(patched);
