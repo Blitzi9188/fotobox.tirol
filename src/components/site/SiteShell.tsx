@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { CMSContent } from "@/lib/types";
 import BackToTopButton from "@/components/site/BackToTopButton";
@@ -20,14 +23,12 @@ function Brand({ content }: { content: CMSContent }) {
 }
 
 export function SiteHeader({ content }: { content: CMSContent }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navItems = [
-    { href: "/#space", label: "Platz" },
-    { href: "/#accessories", label: "Requisitten" },
-    { href: "/#layout", label: "Layout" },
-    { href: "/#ai", label: "KI" },
+    { href: "/", label: "Startseite" },
+    { href: "/ki-fotobox-tirol", label: "KI" },
     { href: "/preisgestaltung", label: "Preise" },
-    { href: "/#faq", label: "Fragen" },
-    { href: "/kontakt", label: "Anfragen", className: "accent-link" }
+    { href: "/kontakt", label: "Anfrage", className: "accent-link" }
   ];
 
   return (
@@ -46,24 +47,36 @@ export function SiteHeader({ content }: { content: CMSContent }) {
               </li>
             ))}
           </ul>
-          <details className="mobile-nav-menu">
-            <summary aria-label="Menü öffnen" title="Menü öffnen">
+          <div className="mobile-nav-menu">
+            <button
+              type="button"
+              className="mobile-nav-toggle"
+              aria-label={mobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
+              aria-expanded={mobileMenuOpen}
+              onClick={() => setMobileMenuOpen((open) => !open)}
+            >
               <span className="mobile-nav-hamburger" aria-hidden="true">
                 <span />
                 <span />
                 <span />
               </span>
-            </summary>
-            <ul className="mobile-nav-list">
+            </button>
+            {mobileMenuOpen ? (
+              <ul className="mobile-nav-list">
               {navItems.map((item) => (
                 <li key={`mobile-${item.href}`}>
-                  <Link href={item.href} className={item.className}>
+                  <Link
+                    href={item.href}
+                    className={item.className}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     {item.label}
                   </Link>
                 </li>
               ))}
-            </ul>
-          </details>
+              </ul>
+            ) : null}
+          </div>
         </nav>
       </div>
     </header>
@@ -95,7 +108,7 @@ export function SiteFooter({ content }: { content: CMSContent }) {
 
   const legalLinks = content.footer.legalLinks || [];
   const legalDatenschutzLabel =
-    legalLinks.find((link) => normalizeLabel(link.label).includes("datenschutz"))?.label || "Datenschutzerklaerung";
+    legalLinks.find((link) => normalizeLabel(link.label).includes("datenschutz"))?.label || "Datenschutzerklärung";
   const legalAgbB2bLabel =
     legalLinks.find((link) => {
       const label = normalizeLabel(link.label);

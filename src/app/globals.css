@@ -104,7 +104,7 @@ nav a:hover {
   display: none;
 }
 
-.mobile-nav-menu summary {
+.mobile-nav-toggle {
   list-style: none;
   cursor: pointer;
   width: 44px;
@@ -119,6 +119,7 @@ nav a:hover {
   border: 0;
   border-radius: 0;
   box-shadow: none;
+  padding: 0;
 }
 
 .mobile-nav-hamburger {
@@ -135,10 +136,6 @@ nav a:hover {
   height: 2px;
   border-radius: 999px;
   background: currentColor;
-}
-
-.mobile-nav-menu summary::-webkit-details-marker {
-  display: none;
 }
 
 .confetti-overlay {
@@ -176,19 +173,21 @@ nav a:hover {
   margin-top: 0.5rem;
   border: 1px solid var(--c-line);
   background: #fff;
-  border-radius: 10px;
-  padding: 0.45rem 0.7rem;
-  min-width: 180px;
+  border-radius: 16px;
+  padding: 0.35rem 0;
+  min-width: 220px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .mobile-nav-list li + li {
-  margin-top: 0.35rem;
+  border-top: 1px solid rgba(17, 24, 39, 0.08);
 }
 
 .mobile-nav-list a {
   display: block;
-  padding: 0.35rem 0;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 
 main section {
@@ -3567,6 +3566,14 @@ footer {
     min-width: 0;
   }
 
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+  }
+
   .nav-wrap {
     flex-direction: row;
     align-items: center;
@@ -3590,6 +3597,7 @@ footer {
     position: absolute;
     right: 0;
     top: calc(100% + 0.5rem);
+    width: min(78vw, 280px);
   }
 
   .brand-wrap {
