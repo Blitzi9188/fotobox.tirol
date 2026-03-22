@@ -226,6 +226,7 @@ export default function BookingInquiryForm({
   const [captchaToken, setCaptchaToken] = useState("");
   const [captchaAnswer, setCaptchaAnswer] = useState("");
   const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0);
+  const [formStartedAt] = useState(() => Date.now());
 
   function requiredLabel(label: string) {
     return `${label} *`;
@@ -253,6 +254,8 @@ export default function BookingInquiryForm({
       printFormat: String(formData.get("printFormat") || "").trim(),
       printText,
       message: messageRaw,
+      website: String(formData.get("website") || "").trim(),
+      startedAt: String(formData.get("startedAt") || "").trim(),
       captchaToken: String(formData.get("captchaToken") || "").trim(),
       captchaAnswer: String(formData.get("captchaAnswer") || "").trim()
     };
@@ -289,6 +292,21 @@ export default function BookingInquiryForm({
 
   return (
     <form className="inquiry-form-card" onSubmit={handleSubmit}>
+      <input type="hidden" name="startedAt" value={String(formStartedAt)} />
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: "1px",
+          height: "1px",
+          overflow: "hidden"
+        }}
+      >
+        <label htmlFor="website">Website</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.eventSectionTitle}</span>
         <input type="hidden" name="eventType" value={selectedEvent} />

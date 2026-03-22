@@ -5,6 +5,15 @@ import { createLead } from "@/lib/cms";
 import { verifyCaptchaChallenge } from "@/lib/captcha";
 import { formatMailConfigError, getMailConfigStatus } from "@/lib/mail-config";
 
+const REQUEST_WINDOW_MS = 10 * 60 * 1000;
+const EMAIL_WINDOW_MS = 30 * 60 * 1000;
+const MIN_FORM_FILL_MS = 3500;
+const MAX_REQUESTS_PER_IP = 5;
+const MAX_REQUESTS_PER_EMAIL = 3;
+
+const ipRequestStore = new Map<string, number[]>();
+const emailRequestStore = new Map<string, number[]>();
+
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -28,6 +37,54 @@ function formatDateEu(value: string) {
   }
 
   return trimmed;
+}
+
+function getClientIp(request: Request) {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0]?.trim() || "unknown";
+
+  return (
+    request.headers.get("cf-connecting-ip") ||
+    request.headers.get("x-real-ip") ||
+    "unknown"
+  );
+}
+
+function pruneTimestamps(store: Map<string, number[]>, key: string, windowMs: number, now: number) {
+  const recent = (store.get(key) || []).filter((timestamp) => now - timestamp < windowMs);
+  store.set(key, recent);
+  return recent;
+}
+
+function registerRequest(store: Map<string, number[]>, key: string, now: number) {
+  const entries = store.get(key) || [];
+  entries.push(now);
+  store.set(key, entries);
+}
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isSpamContent(values: string[]) {
+  const combined = values.join("\n").toLowerCase();
+  const urlMatches = combined.match(/https?:\/\//g) || [];
+  if (urlMatches.length >= 2) return true;
+
+  const suspiciousPatterns = [
+    /\bseo\b/,
+    /\bbacklinks?\b/,
+    /\bguest post\b/,
+    /\bcasino\b/,
+    /\bcrypto\b/,
+    /\btelegram\b/,
+    /\bwhatsapp\b/,
+    /\bviagra\b/,
+    /\bloan\b/,
+    /\bforex\b/
+  ];
+
+  return suspiciousPatterns.some((pattern) => pattern.test(combined));
 }
 
 async function sendLeadMail(params: {
@@ -138,8 +195,12 @@ export async function POST(request: Request) {
   const printFormat = String(body.printFormat || "").trim();
   const printText = String(body.printText || "").trim();
   const message = String(body.message || "").trim();
+  const website = String(body.website || "").trim();
+  const startedAt = Number(body.startedAt || 0);
   const captchaToken = String(body.captchaToken || "").trim();
   const captchaAnswer = String(body.captchaAnswer || "").trim();
+  const clientIp = getClientIp(request);
+  const nowMs = now.getTime();
   const mergedSummary = [
     `Anfrage-Datum: ${requestDate}`,
     `Eventart: ${eventType || "-"}`,
@@ -153,6 +214,37 @@ export async function POST(request: Request) {
   if (!name || !email || !packageName) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
+
+  if (!isValidEmail(email)) {
+    return NextResponse.json({ error: "Bitte eine gültige E-Mail Adresse eingeben." }, { status: 400 });
+  }
+
+  if (website) {
+    return NextResponse.json({ ok: true });
+  }
+
+  if (startedAt > 0 && nowMs - startedAt < MIN_FORM_FILL_MS) {
+    return NextResponse.json({ ok: true });
+  }
+
+  if (isSpamContent([name, email, location, printText, message])) {
+    return NextResponse.json({ ok: true });
+  }
+
+  if (clientIp !== "unknown") {
+    const recentIpRequests = pruneTimestamps(ipRequestStore, clientIp, REQUEST_WINDOW_MS, nowMs);
+    if (recentIpRequests.length >= MAX_REQUESTS_PER_IP) {
+      return NextResponse.json({ error: "Zu viele Anfragen in kurzer Zeit. Bitte versuche es in ein paar Minuten erneut." }, { status: 429 });
+    }
+    registerRequest(ipRequestStore, clientIp, nowMs);
+  }
+
+  const emailKey = email.toLowerCase();
+  const recentEmailRequests = pruneTimestamps(emailRequestStore, emailKey, EMAIL_WINDOW_MS, nowMs);
+  if (recentEmailRequests.length >= MAX_REQUESTS_PER_EMAIL) {
+    return NextResponse.json({ error: "Für diese E-Mail Adresse wurden gerade bereits mehrere Anfragen gesendet. Bitte versuche es später erneut." }, { status: 429 });
+  }
+  registerRequest(emailRequestStore, emailKey, nowMs);
 
   if (!verifyCaptchaChallenge(captchaToken, captchaAnswer)) {
     return NextResponse.json({ error: "Die Sicherheitsrechnung war leider nicht korrekt. Bitte kurz neu versuchen." }, { status: 400 });
