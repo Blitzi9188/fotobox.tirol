@@ -28,8 +28,8 @@ export function SiteHeader({ content }: { content: CMSContent }) {
   const pathname = usePathname();
   const navItems = [
     { href: "/", label: "Startseite" },
-    { href: "/fotobox-anlaesse", label: "Anlässe" },
-    { href: "/ki-fotobox-tirol", label: "KI" },
+    { href: "/fotobox-anlaesse", label: "Anlass" },
+    { href: "/ki-fotobox-tirol", label: "ki-magie" },
     { href: "/preisgestaltung", label: "Preise" },
     { href: "/kontakt", label: "Anfrage", className: "accent-link" }
   ];
