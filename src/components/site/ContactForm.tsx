@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { PricePlan } from "@/lib/types";
-import RecaptchaField from "@/components/site/RecaptchaField";
+import CaptchaField from "@/components/site/CaptchaField";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
 
@@ -16,7 +16,9 @@ export default function ContactForm({
   const safePlans: PackageOption[] = plans.length > 0 ? plans : [{ name: "Allgemeine Anfrage", price: 0 }];
   const [status, setStatus] = useState("");
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
-  const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
+  const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0);
 
   function requiredLabel(label: string) {
     return `${label} *`;
@@ -33,7 +35,8 @@ export default function ContactForm({
       eventDate: String(formData.get("eventDate") || ""),
       packageName: String(formData.get("packageName") || ""),
       message: String(formData.get("message") || ""),
-      recaptchaToken
+      captchaToken: String(formData.get("captchaToken") || "").trim(),
+      captchaAnswer: String(formData.get("captchaAnswer") || "").trim()
     };
 
     const response = await fetch("/api/contact", {
@@ -46,7 +49,9 @@ export default function ContactForm({
     if (response.ok) {
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
-      setRecaptchaToken("");
+      setCaptchaToken("");
+      setCaptchaAnswer("");
+      setCaptchaRefreshKey((value) => value + 1);
       const params = new URLSearchParams();
       params.set("paket", submittedPackage);
       if (payload.eventDate) params.set("eventDate", payload.eventDate);
@@ -55,7 +60,9 @@ export default function ContactForm({
     }
 
     setStatus(json?.error || "Senden fehlgeschlagen.");
-    setRecaptchaToken("");
+    setCaptchaToken("");
+    setCaptchaAnswer("");
+    setCaptchaRefreshKey((value) => value + 1);
   }
 
   return (
@@ -98,12 +105,18 @@ export default function ContactForm({
       </label>
       <div className="inquiry-captcha-card">
         <div className="inquiry-captcha-copy">
-          <span className="inquiry-section-title">Sicherheitsabfrage</span>
-          <p className="inquiry-captcha-help">Bitte bestaetigen, dass die Anfrage von einer echten Person gesendet wird.</p>
+          <span className="inquiry-section-title">Sicherheitsabfrage *</span>
+          <p className="inquiry-captcha-help">Bitte bestätigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="admin-field" style={{ marginBottom: 0 }}>
-          <span>{requiredLabel("Google reCAPTCHA")}</span>
-          <RecaptchaField value={recaptchaToken} onChange={setRecaptchaToken} />
+          <span>Sicherheitsrechnung</span>
+          <CaptchaField
+            token={captchaToken}
+            answer={captchaAnswer}
+            onTokenChange={setCaptchaToken}
+            onAnswerChange={setCaptchaAnswer}
+            refreshKey={captchaRefreshKey}
+          />
         </label>
       </div>
       <button className="btn" type="submit">Absenden</button>

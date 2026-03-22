@@ -16,7 +16,7 @@ export default async function AgbPage() {
         <section className="page-hero">
           <div className="container">
             <h1>AGB</h1>
-            <p>Allgemeine Geschaeftsbedingungen fuer Verbrauchergeschaefte</p>
+            <p>Allgemeine Geschäftsbedingungen für Verbrauchergeschäfte</p>
           </div>
         </section>
 

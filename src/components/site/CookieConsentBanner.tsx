@@ -17,6 +17,29 @@ function writeConsentCookie(value: string) {
   document.cookie = `${COOKIE_NAME}=${encodeURIComponent(value)}; path=/; max-age=${60 * 60 * 24 * 365}`;
 }
 
+function readConsentCookie() {
+  const cookieEntry = document.cookie
+    .split("; ")
+    .find((entry) => entry.startsWith(`${COOKIE_NAME}=`));
+
+  if (!cookieEntry) return null;
+
+  try {
+    return JSON.parse(decodeURIComponent(cookieEntry.split("=").slice(1).join("="))) as Partial<ConsentState>;
+  } catch {
+    return null;
+  }
+}
+
+function createConsentState(analytics: boolean, marketing: boolean): ConsentState {
+  return {
+    essential: true,
+    analytics,
+    marketing,
+    savedAt: new Date().toISOString()
+  };
+}
+
 export default function CookieConsentBanner() {
   const [visible, setVisible] = useState(false);
   const [analytics, setAnalytics] = useState(false);
@@ -25,12 +48,13 @@ export default function CookieConsentBanner() {
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (!stored) {
+      const parsed = stored ? (JSON.parse(stored) as Partial<ConsentState>) : readConsentCookie();
+
+      if (!parsed) {
         setVisible(true);
         return;
       }
 
-      const parsed = JSON.parse(stored) as Partial<ConsentState>;
       setAnalytics(Boolean(parsed.analytics));
       setMarketing(Boolean(parsed.marketing));
       setVisible(false);
@@ -46,24 +70,18 @@ export default function CookieConsentBanner() {
   }
 
   function acceptAll() {
-    const next: ConsentState = {
-      essential: true,
-      analytics: true,
-      marketing: true,
-      savedAt: new Date().toISOString()
-    };
+    const next = createConsentState(true, true);
     setAnalytics(true);
     setMarketing(true);
     persistConsent(next);
   }
 
+  function confirmSelection() {
+    persistConsent(createConsentState(analytics, marketing));
+  }
+
   function onlyEssential() {
-    const next: ConsentState = {
-      essential: true,
-      analytics: false,
-      marketing: false,
-      savedAt: new Date().toISOString()
-    };
+    const next = createConsentState(false, false);
     setAnalytics(false);
     setMarketing(false);
     persistConsent(next);
@@ -78,7 +96,7 @@ export default function CookieConsentBanner() {
           type="button"
           className="cookie-consent-close"
           aria-label="Popup schließen"
-          onClick={() => setVisible(false)}
+          onClick={onlyEssential}
         >
           ×
         </button>
@@ -105,6 +123,7 @@ export default function CookieConsentBanner() {
 
         <div className="cookie-consent-actions">
           <button type="button" className="btn cookie-btn-primary" onClick={acceptAll}>Ich akzeptiere alle</button>
+          <button type="button" className="btn btn-outline" onClick={confirmSelection}>Auswahl speichern</button>
           <button type="button" className="btn btn-outline" onClick={onlyEssential}>Nur essenzielle Cookies akzeptieren</button>
           <Link href="/datenschutzerklaerung" className="btn btn-outline cookie-consent-btn-link">Datenschutz öffnen</Link>
         </div>

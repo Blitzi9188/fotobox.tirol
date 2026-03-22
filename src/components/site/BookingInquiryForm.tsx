@@ -2,12 +2,12 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { PricePlan, CMSContent } from "@/lib/types";
-import RecaptchaField from "@/components/site/RecaptchaField";
+import CaptchaField from "@/components/site/CaptchaField";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
 
 const EVENT_TYPES = [
-  { id: "hochzeit", label: "Hochzeit", desc: "Der schoenste Tag" },
+  { id: "hochzeit", label: "Hochzeit", desc: "Der schönste Tag" },
   { id: "firmenfeier", label: "Firmenfeier", desc: "Business & Event" },
   { id: "geburtstag", label: "Geburtstag", desc: "Party & Private" }
 ];
@@ -18,8 +18,8 @@ const BOX_TYPE_OPTIONS = [
 ];
 
 const PRINT_FORMAT_OPTIONS = [
-  { label: "10x15", desc: "Klassisches Fotopapier" },
-  { label: "5x15", desc: "Streifenformat" }
+  { label: "5x15", desc: "Streifenformat" },
+  { label: "10x15", desc: "Klassisches Fotopapier" }
 ];
 
 function WeddingIcon() {
@@ -177,6 +177,19 @@ function getBoxTypeIcon(label: string) {
   return label.toLowerCase().includes("ki") ? <SparklesIcon /> : <CameraIcon />;
 }
 
+function getDefaultPrintFormatLabel(options: Array<{ label: string; desc: string }>) {
+  return options.find((option) => option.label.includes("5x15"))?.label || options[0]?.label || PRINT_FORMAT_OPTIONS[1].label;
+}
+
+function orderPrintFormatOptions(options: Array<{ label: string; desc: string }>) {
+  return [...options].sort((a, b) => {
+    const aIsStrip = a.label.includes("5x15");
+    const bIsStrip = b.label.includes("5x15");
+    if (aIsStrip === bIsStrip) return 0;
+    return aIsStrip ? -1 : 1;
+  });
+}
+
 export default function BookingInquiryForm({
   plans = [],
   initialPackage,
@@ -191,10 +204,11 @@ export default function BookingInquiryForm({
     [plans]
   );
   const eventOptions = inquiry.eventOptions && inquiry.eventOptions.length > 0 ? inquiry.eventOptions : EVENT_TYPES;
-  const printFormatOptions =
+  const printFormatOptions = orderPrintFormatOptions(
     inquiry.printFormatOptions && inquiry.printFormatOptions.length > 0
       ? inquiry.printFormatOptions
-      : PRINT_FORMAT_OPTIONS;
+      : PRINT_FORMAT_OPTIONS
+  );
   const boxTypeOptionsRaw = inquiry.boxTypeOptions && inquiry.boxTypeOptions.length > 0 ? inquiry.boxTypeOptions : BOX_TYPE_OPTIONS;
   const boxTypeOptions = boxTypeOptionsRaw.map((option) => {
     if ((option.label || "").toLowerCase().includes("ki")) {
@@ -202,13 +216,17 @@ export default function BookingInquiryForm({
     }
     return option;
   });
+  const defaultPrintFormatLabel = getDefaultPrintFormatLabel(printFormatOptions);
 
   const [status, setStatus] = useState("");
   const [selectedEvent, setSelectedEvent] = useState(eventOptions[0]?.label || EVENT_TYPES[0].label);
-  const [selectedPrintFormat, setSelectedPrintFormat] = useState(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
+  const [selectedPrintFormat, setSelectedPrintFormat] = useState(defaultPrintFormatLabel);
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
   const [selectedBoxType, setSelectedBoxType] = useState(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
-  const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
+  const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0);
+  const [formStartedAt] = useState(() => Date.now());
 
   function requiredLabel(label: string) {
     return `${label} *`;
@@ -236,7 +254,10 @@ export default function BookingInquiryForm({
       printFormat: String(formData.get("printFormat") || "").trim(),
       printText,
       message: messageRaw,
-      recaptchaToken
+      website: String(formData.get("website") || "").trim(),
+      startedAt: String(formData.get("startedAt") || "").trim(),
+      captchaToken: String(formData.get("captchaToken") || "").trim(),
+      captchaAnswer: String(formData.get("captchaAnswer") || "").trim()
     };
 
     const response = await fetch("/api/contact", {
@@ -248,11 +269,13 @@ export default function BookingInquiryForm({
     const json = (await response.json().catch(() => null)) as { error?: string } | null;
     if (response.ok) {
       setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);
-      setSelectedPrintFormat(printFormatOptions[0]?.label || PRINT_FORMAT_OPTIONS[0].label);
+      setSelectedPrintFormat(defaultPrintFormatLabel);
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
       setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
-      setRecaptchaToken("");
+      setCaptchaToken("");
+      setCaptchaAnswer("");
+      setCaptchaRefreshKey((value) => value + 1);
       const params = new URLSearchParams();
       params.set("paket", submittedPackage);
       if (payload.eventDate) params.set("eventDate", payload.eventDate);
@@ -262,11 +285,28 @@ export default function BookingInquiryForm({
     }
 
     setStatus(json?.error || inquiry.errorText || "Senden fehlgeschlagen.");
-    setRecaptchaToken("");
+    setCaptchaToken("");
+    setCaptchaAnswer("");
+    setCaptchaRefreshKey((value) => value + 1);
   }
 
   return (
     <form className="inquiry-form-card" onSubmit={handleSubmit}>
+      <input type="hidden" name="startedAt" value={String(formStartedAt)} />
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: "1px",
+          height: "1px",
+          overflow: "hidden"
+        }}
+      >
+        <label htmlFor="website">Website</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.eventSectionTitle}</span>
         <input type="hidden" name="eventType" value={selectedEvent} />
@@ -295,7 +335,7 @@ export default function BookingInquiryForm({
           </label>
           <label className="inquiry-field">
             <span className="inquiry-field-heading"><span className="inquiry-field-icon"><PinIcon /></span>{inquiry.locationLabel || "Ort der Feier"}</span>
-            <input name="location" type="text" placeholder={inquiry.locationPlaceholder || "Innsbruck, Kitzbuehel..."} />
+            <input name="location" type="text" placeholder={inquiry.locationPlaceholder || "Innsbruck, Kitzbühel..."} />
           </label>
         </div>
       </div>
@@ -353,7 +393,7 @@ export default function BookingInquiryForm({
           </div>
         </label>
         <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
-          <span>{inquiry.printTextLabel || "Text fuer Ausdruck (optional)"}</span>
+          <span>{inquiry.printTextLabel || "Text für Ausdruck (optional)"}</span>
           <input name="printText" type="text" placeholder={inquiry.printTextPlaceholder || "z. B. Lisa & Markus | 14.06.2026"} />
         </label>
       </div>
@@ -378,7 +418,7 @@ export default function BookingInquiryForm({
         </div>
         <label className="inquiry-field">
           <span className="inquiry-field-heading"><span className="inquiry-field-icon"><MessageIcon /></span>{inquiry.messageLabel || "Nachricht (optional)"}</span>
-          <textarea name="message" rows={4} placeholder={inquiry.messagePlaceholder || "Besondere Wuensche oder Details..."} />
+          <textarea name="message" rows={4} placeholder={inquiry.messagePlaceholder || "Besondere Wünsche oder Details..."} />
         </label>
       </div>
 
@@ -404,12 +444,18 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-captcha-card">
         <div className="inquiry-captcha-copy">
-          <span className="inquiry-section-title">06. Sicherheitsabfrage</span>
-          <p className="inquiry-captcha-help">Bitte bestaetigen, dass die Anfrage von einer echten Person gesendet wird.</p>
+          <span className="inquiry-section-title">06. Sicherheitsabfrage *</span>
+          <p className="inquiry-captcha-help">Bitte bestätigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="inquiry-field">
-          <span>{requiredLabel("Google reCAPTCHA")}</span>
-          <RecaptchaField value={recaptchaToken} onChange={setRecaptchaToken} />
+          <span>Sicherheitsrechnung</span>
+          <CaptchaField
+            token={captchaToken}
+            answer={captchaAnswer}
+            onTokenChange={setCaptchaToken}
+            onAnswerChange={setCaptchaAnswer}
+            refreshKey={captchaRefreshKey}
+          />
         </label>
       </div>
 

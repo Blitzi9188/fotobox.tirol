@@ -28,6 +28,15 @@ export type PricePlan = {
   cta: string;
 };
 
+export type PricingPagePlan = {
+  name: string;
+  price: number;
+  meta?: string;
+  featured: boolean;
+  cta: string;
+  items: string[];
+};
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -46,6 +55,28 @@ export type FooterLink = {
   label: string;
   href: string;
   newTab?: boolean;
+};
+
+export type OccasionItem = {
+  id: string;
+  eyebrow: string;
+  orderLabel?: string;
+  title: string;
+  titleBold: string;
+  subtitle: string;
+  description: string;
+  benefits: string[];
+  imageUrl?: string;
+  imageAlt?: string;
+  warm?: boolean;
+};
+
+export type ReferenceItem = {
+  name: string;
+  href: string;
+  logoDomain: string;
+  logoSrc?: string;
+  initials?: string;
 };
 
 export type WizardStepContent = {
@@ -88,11 +119,32 @@ export type CMSContent = {
     descriptionText?: string;
     bullets: string[];
     buttonText: string;
+    heroBadge?: string;
+    heroTitleTop?: string;
+    heroTitleAccent?: string;
+    heroLead?: string;
+    featureTitle?: string;
+    featureLead?: string;
+    featureCards?: Feature[];
+    demoBadge?: string;
+    demoTitle?: string;
+    demoLead?: string;
+    demoItems?: Feature[];
+    useCasesTitle?: string;
+    useCasesLead?: string;
+    useCases?: string[];
+    standardTitle?: string;
+    standardLead?: string;
+    finalTitle?: string;
+    finalLead?: string;
     previewImageUrl?: string;
     compareLeftBeforeUrl?: string;
     compareLeftAfterUrl?: string;
     compareRightBeforeUrl?: string;
     compareRightAfterUrl?: string;
+    pageCompareBeforeUrl?: string;
+    pageCompareAfterUrl?: string;
+    pageDemoImageUrl?: string;
   };
   gallery: {
     heading: string;
@@ -103,9 +155,37 @@ export type CMSContent = {
     heading: string;
     items: AccessoryItem[];
   };
+  occasions?: {
+    seoTitle?: string;
+    seoDescription?: string;
+    heroEyebrow: string;
+    heroTitle: string;
+    heroTitleAccent: string;
+    heroLead: string;
+    heroImageUrl?: string;
+    sections: OccasionItem[];
+    seoColumns: Feature[];
+    searchTerms: string[];
+    faqHeading: string;
+    faqItems: FaqItem[];
+    ctaMeta: string;
+    ctaTitle: string;
+    ctaButtonText: string;
+    ctaButtonHref: string;
+  };
   pricing: {
     heading: string;
     plans: PricePlan[];
+    pageTitle?: string;
+    pageIntro?: string;
+    pageHeading?: string;
+    pagePlans?: PricingPagePlan[];
+    technologyHeading?: string;
+    technologyItems?: Feature[];
+    faqHeading?: string;
+    referencesHeading?: string;
+    references?: ReferenceItem[];
+    contactTitle?: string;
   };
   space: {
     heading: string;
@@ -183,6 +263,10 @@ export type CMSContent = {
     summaryPackageLabel?: string;
     summaryDateLabel?: string;
     summaryLocationLabel?: string;
+    summaryReferenceLabel?: string;
+    inspirationTitle?: string;
+    inspirationText?: string;
+    inspirationButtonText?: string;
     priceLabel?: string;
     priceNote?: string;
     stepsTitle?: string;
@@ -193,6 +277,7 @@ export type CMSContent = {
     step3Title?: string;
     step3Text?: string;
     footerText?: string;
+    questionsTitle?: string;
     primaryButtonText: string;
     primaryButtonHref: string;
     secondaryButtonText: string;

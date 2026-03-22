@@ -23,8 +23,8 @@
     ]
   },
   "seo": {
-    "title": "Fotobox Tirol das Original | Selfie Fotobox fuer Hochzeiten und Events",
-    "description": "Fotobox Tirol das Original fuer Hochzeiten, Firmenfeiern und Events in Tirol. Premium Selfie Fotobox mit Druck, Branding und KI-Funktionen."
+    "title": "Selfie Fotobox Tirol | Hochzeiten, Firmenfeiern und Events",
+    "description": "Selfie Fotobox Tirol für Hochzeiten, Firmenfeiern und Events in Tirol. Moderne Fotobox mit Druck, Branding und KI-Funktionen."
   },
   "navigation": {
     "brandLeft": "fotobox",
@@ -32,14 +32,14 @@
     "logoUrl": "/uploads/1772562306511-41ee0125-88d7-4931-aa7f-5800d416c8c9-selfie-logo-neu-schr-g-02.png"
   },
   "hero": {
-    "title": "fotobox tirol/das original",
+    "title": "selfie/fotobox",
     "subtitleHtml": "<ul><li><font color=\"#000000\"><span style=\"font-family: inherit; font-style: inherit; font-variant-caps: inherit; caret-color: rgb(255, 255, 255); font-size: medium;\">Stilvolle</span><span style=\"font-family: inherit; font-style: inherit; font-variant-caps: inherit; caret-color: rgb(255, 255, 255); font-size: medium;\"> </span><span style=\"font-family: inherit; font-style: inherit; font-variant-caps: inherit; caret-color: rgb(255, 255, 255); font-size: medium;\">Erinnerungen für Events und Fei<span style=\"font-weight: normal;\">er</span>n</span><span style=\"font-family: inherit; font-style: inherit; font-variant-caps: inherit; caret-color: rgb(255, 255, 255); font-size: medium;\">e</span></font><br></li></ul>",
     "subtitleText": "Stilvolle Erinnerungen für Events und Feiern",
     "subtitleColor": "#111827",
     "ctaText": "Jetzt Termin sichern",
     "secondaryCtaText": "Mehr erfahren",
     "secondaryCtaHref": "/#features",
-    "imageUrl": "/uploads/hero-optimized.jpg"
+    "imageUrl": "/uploads/1774109659048-814528e6-091e-4a35-9bdb-f5f1dedca801-wei--pink-umweltfreundliche-mode-nachhaltigkeit-liste-aufz-hlung-infografik-instagram-post--1920-x-500-px---134-x-90-cm-.png"
   },
   "features": {
     "heading": "einfach/individuell",
@@ -65,11 +65,63 @@
     "descriptionText": "Die KI Fotobox Tirol bringt moderne Eventunterhaltung auf ein neues Level. Diese innovative KI-Fotobox kombiniert klassische Fotobox-Funktionen mit künstlicher Intelligenz und sorgt für kreative Fotos sowie unvergessliche Momente für Gäste aller Altersgruppen.\n\nMit wenigen Klicks entstehen einzigartige Bilder – ob Superheld, Karikatur oder fantasievolle Themenwelt.\n\nDie Fotobox Tirol mit KI-Technologie ist perfekt für Hochzeiten, Firmenfeiern, Geburtstage, Messen und Events geeignet und macht jede Veranstaltung zu einem besonderen Erlebnis.",
     "bullets": [],
     "buttonText": "Beispiele ansehen",
-    "previewImageUrl": "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
+    "heroBadge": "NEU: KÜNSTLICHE INTELLIGENZ",
+    "heroTitleTop": "Intelligente",
+    "heroTitleAccent": "Technologien",
+    "heroLead": "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttöne und Overlays für einen sichtbar hochwertigeren Event-Look.",
+    "featureTitle": "Autofokus auf /Ihre Schokoladenseite.",
+    "featureLead": "Die KI Fotobox Tirol bringt moderne Eventunterhaltung auf ein neues Level. Diese innovative KI-Fotobox kombiniert klassische Fotobox-Funktionen mit künstlicher Intelligenz und sorgt für kreative Fotos sowie unvergessliche Momente für Gäste aller Altersgruppen.",
+    "featureCards": [
+      {
+        "title": "Smart Lighting",
+        "description": "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhältnissen für deutlich bessere Ergebnisse."
+      },
+      {
+        "title": "Natürliche Hauttöne",
+        "description": "Ruhigere Haut, klarere Farben und ein hochwertiger Gesamteindruck, ohne dass die Bilder künstlich oder überzeichnet wirken."
+      },
+      {
+        "title": "Eventgerechte Looks",
+        "description": "Hochzeit, Firmenfeier oder Gala: Layouts, Farben und Bildwirkung können passend zum Anlass inszeniert werden."
+      },
+      {
+        "title": "Sofort einsetzbar",
+        "description": "Die KI ist nicht nur Demo, sondern Teil eines echten Event-Workflows mit Fotobox, Bedienung, Galerie und auf Wunsch Druck."
+      }
+    ],
+    "demoBadge": "Live Preview",
+    "demoTitle": "Intelligente /Design-Overlays.",
+    "demoLead": "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fürs Motiv bleibt.",
+    "demoItems": [
+      {
+        "title": "Dynamic Text Engine",
+        "description": "Namen, Daten oder Claim werden so gesetzt, dass Lesbarkeit und Motiv harmonisch zusammenpassen."
+      },
+      {
+        "title": "Contextual Branding",
+        "description": "Firmenlogos und Event-Branding können sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
+      }
+    ],
+    "useCasesTitle": "Für welche Events ist die KI Fotobox stark?",
+    "useCasesLead": "Mit wenigen Klicks entstehen einzigartige Bilder für Events mit Erlebnis, Aufmerksamkeit und modernem Branding.",
+    "useCases": [
+      "Hochzeiten mit individuellem Storytelling und Wow-Effekt",
+      "Firmenfeiern, Messen und Markenauftritte mit Social Sharing",
+      "Gala-Abende, Weihnachtsfeiern und Sommerfeste",
+      "Produktpräsentationen, Roadshows und Promotion-Aktionen"
+    ],
+    "standardTitle": "Standard in allen Fotoboxen.",
+    "standardLead": "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und lässt sich je nach Eventcharakter intensiver inszenieren.",
+    "finalTitle": "Direkt zur KI-Fotobox beraten lassen",
+    "finalLead": "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt.",
+    "previewImageUrl": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
     "compareLeftBeforeUrl": "/uploads/ai-left-before-optimized.jpg",
     "compareLeftAfterUrl": "/uploads/ai-left-after-optimized.jpg",
     "compareRightBeforeUrl": "/uploads/ai-right-before-optimized.jpg",
-    "compareRightAfterUrl": "/uploads/ai-right-after-optimized.jpg"
+    "compareRightAfterUrl": "/uploads/ai-right-after-optimized.jpg",
+    "pageCompareBeforeUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=40&w=1200",
+    "pageCompareAfterUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200",
+    "pageDemoImageUrl": "/uploads/1774123951105-87c15b4a-dc38-40a0-a932-763b6d7bc789-andi-rennen.1.jpg"
   },
   "gallery": {
     "heading": "event/gestaltung",
@@ -101,6 +153,172 @@
   },
   "pricing": {
     "heading": "all/inclusive",
+    "pageTitle": "Preisgestaltung",
+    "pageIntro": "Eigene Übersichtsseite für Pakete, Druckformate und Leistungen.",
+    "pageHeading": "all/inclusive",
+    "pagePlans": [
+      {
+        "name": "Basic",
+        "price": 400,
+        "meta": "/ Selbstabholung",
+        "featured": false,
+        "cta": "Anfragen",
+        "items": [
+          "Selbst Abholung",
+          "Aufbau Einschulung",
+          "Digitale Bilder",
+          "Sofortdruck (300 Prints)",
+          "Requisiten"
+        ]
+      },
+      {
+        "name": "Premium",
+        "price": 600,
+        "meta": "/ Event",
+        "featured": true,
+        "cta": "Anfragen",
+        "items": [
+          "Ganzen Abend Mietdauer",
+          "Sofortdruck (unbegrenzt)",
+          "Accessoires",
+          "Online Galerie",
+          "Requisiten",
+          "Normale Fotobox"
+        ]
+      },
+      {
+        "name": "Business",
+        "price": 800,
+        "meta": "/ Event",
+        "featured": false,
+        "cta": "Anfragen",
+        "items": [
+          "Ganzen Abend Mietdauer",
+          "Sofortdruck (unbegrenzt)",
+          "Accessoires",
+          "Online Galerie",
+          "QR Code Upload",
+          "Normal oder KI-Features Modul",
+          "Individuelles Layout"
+        ]
+      }
+    ],
+    "technologyHeading": "technik/bedienung",
+    "technologyItems": [
+      {
+        "title": "Studioqualität",
+        "description": "Integrierte DSLR-Kamera und professioneller Studioblitz sorgen für sauber ausgeleuchtete Bilder in jeder Event-Umgebung."
+      },
+      {
+        "title": "Touch Bedienung",
+        "description": "Intuitive Benutzerführung über den großen Touchscreen, damit sich auch Gäste ohne Einweisung sofort zurechtfinden."
+      },
+      {
+        "title": "Sofortdruck",
+        "description": "High-Speed Fotodruck in Sekunden mit klaren Ausdrucken in Laborqualität, abgestimmt auf euer Event oder Branding."
+      }
+    ],
+    "faqHeading": "häufige/fragen",
+    "referencesHeading": "referenzen/partner",
+    "references": [
+      {
+        "name": "Fiegl+Spielberger",
+        "href": "https://www.fiegl.co.at",
+        "logoDomain": "fiegl.co.at"
+      },
+      {
+        "name": "Congress Messe Innsbruck",
+        "href": "https://www.cmi.at",
+        "logoDomain": "cmi.at"
+      },
+      {
+        "name": "Kloster Bräu Seefeld",
+        "href": "https://klosterbraeu.com",
+        "logoDomain": "klosterbraeu.com"
+      },
+      {
+        "name": "Tiroler Versicherung",
+        "href": "https://www.tiroler-versicherung.at",
+        "logoDomain": "tiroler-versicherung.at"
+      },
+      {
+        "name": "Völkl Ski",
+        "href": "https://www.voelkl.com",
+        "logoDomain": "voelkl.com"
+      },
+      {
+        "name": "Recycling Ahrental",
+        "href": "https://www.rz-ahrental.at",
+        "logoDomain": "rz-ahrental.at"
+      },
+      {
+        "name": "Sandoz",
+        "href": "https://www.sandoz.com",
+        "logoDomain": "sandoz.com"
+      },
+      {
+        "name": "Sailer Seefeld",
+        "href": "https://www.sailer-seefeld.at",
+        "logoDomain": "sailer-seefeld.at"
+      },
+      {
+        "name": "Interalpen Hotel",
+        "href": "https://www.interalpen.com",
+        "logoDomain": "interalpen.com"
+      },
+      {
+        "name": "Wetscher",
+        "href": "https://www.wetscher.com",
+        "logoDomain": "wetscher.com"
+      },
+      {
+        "name": "Burton",
+        "href": "https://www.burton.com",
+        "logoDomain": "burton.com"
+      },
+      {
+        "name": "Tiroler Wasserkraft",
+        "href": "https://www.tiwag.at",
+        "logoDomain": "tiwag.at"
+      },
+      {
+        "name": "Woods Seefeld",
+        "href": "https://www.woods-seefeld.com",
+        "logoDomain": "woods-seefeld.com"
+      },
+      {
+        "name": "OFA",
+        "href": "https://www.ofa.at",
+        "logoDomain": "ofa.at"
+      },
+      {
+        "name": "Bayrischer Hof",
+        "href": "https://www.bayerischerhof.de/de/",
+        "logoDomain": "bayerischerhof.de",
+        "initials": "BH"
+      },
+      {
+        "name": "VOGUE Germany",
+        "href": "https://www.vogue.de",
+        "logoDomain": "vogue.de"
+      },
+      {
+        "name": "Adlers Hotel",
+        "href": "https://www.adlers-innsbruck.com",
+        "logoDomain": "adlers-innsbruck.com"
+      },
+      {
+        "name": "Hypo Tirol Bank",
+        "href": "https://www.hypotirol.com",
+        "logoDomain": "hypotirol.com"
+      },
+      {
+        "name": "Aqua Dome",
+        "href": "https://www.aqua-dome.at",
+        "logoDomain": "aqua-dome.at"
+      }
+    ],
+    "contactTitle": "Direkt anfragen",
     "plans": [
       {
         "name": "Basic",
@@ -120,7 +338,7 @@
         "price": 600,
         "featured": true,
         "items": [
-          "Ganzen Abend Mietdauer",
+          "Ganzen Abend Mietdaür",
           "Sofortdruck (unbegrenzt)",
           "Accessoires",
           "Online Galerie",
@@ -134,13 +352,13 @@
         "price": 800,
         "featured": false,
         "items": [
-          "Ganzen Abend Mietdauer",
+          "Ganzen Abend Mietdaür",
           "Sofortdruck (unbegrenzt)",
           "Accessoires",
           "Online Galerie",
           "QR Code Upload",
           "Normal oder KI-Features Modul",
-          "Individuelles Layout"
+          "Individülles Layout"
         ],
         "cta": "Auswählen"
       }
@@ -287,7 +505,7 @@
     "eventOptions": [
       {
         "label": "Hochzeit",
-        "desc": "Der schoenste Tag"
+        "desc": "Der schönste Tag"
       },
       {
         "label": "Firmenfeier",
@@ -301,14 +519,14 @@
     "printOptions": [
       {
         "label": "Namen & Datum",
-        "desc": "Klassisch fuer Hochzeit/Event"
+        "desc": "Klassisch für Hochzeit/Event"
       },
       {
         "label": "Logo / Branding",
-        "desc": "Ideal fuer Firmenfeiern"
+        "desc": "Ideal für Firmenfeiern"
       },
       {
-        "label": "Individueller Text",
+        "label": "Individüller Text",
         "desc": "Freie Gestaltung nach Wunsch"
       }
     ],
@@ -325,8 +543,8 @@
     ],
     "dateLabel": "Datum",
     "locationLabel": "Ort der Feier",
-    "locationPlaceholder": "Innsbruck, Kitzbuehel...",
-    "printTextLabel": "Text fuer Ausdruck (optional)",
+    "locationPlaceholder": "Innsbruck, Kitzbühel...",
+    "printTextLabel": "Text für Ausdruck (optional)",
     "printTextPlaceholder": "z. B. Lisa & Markus | 14.06.2026",
     "nameLabel": "Vor- & Nachname",
     "namePlaceholder": "Max Mustermann",
@@ -335,31 +553,36 @@
     "phoneLabel": "Telefonnummer",
     "phonePlaceholder": "+43 664 ...",
     "messageLabel": "Nachricht (optional)",
-    "messagePlaceholder": "Besondere Wuensche oder Details...",
+    "messagePlaceholder": "Besondere Wünsche oder Details...",
     "successText": "Anfrage erfolgreich gesendet.",
     "errorText": "Senden fehlgeschlagen."
   },
   "thanks": {
     "badge": "Anfrage gesendet",
-    "heading": "danke/bestaetigt",
-    "message": "Ihre Anfrage ist erfolgreich bei uns eingegangen. Wir pruefen die Verfuegbarkeit fuer Ihren Wunschtermin und melden uns in Kuerze.",
+    "heading": "danke/bestätigt",
+    "message": "Ihre Anfrage ist erfolgreich bei uns eingegangen. Wir prüfen die Verfügbarkeit für Ihren Wunschtermin und melden uns in Kürze.",
     "summaryTitle": "Anfrage-Zusammenfassung",
     "summaryPackageLabel": "Paket",
     "summaryDateLabel": "Voraussichtlicher Termin",
     "summaryLocationLabel": "Ort der Feier",
+    "summaryReferenceLabel": "Referenz-ID",
+    "inspirationTitle": "Bleiben Sie inspiriert",
+    "inspirationText": "Folgen Sie uns auf Instagram für die neuesten Requisiten, KI-Features und Einblicke von Tiroler Hochzeiten.",
+    "inspirationButtonText": "",
     "priceLabel": "GESCHÄTZTER PREIS",
-    "priceNote": "*Inkl. MwSt. Endgueltiger Preis folgt im Angebot.",
+    "priceNote": "*Inkl. MwSt. Endgültiger Preis folgt im Angebot.",
     "stepsTitle": "Wie geht es weiter?",
     "step1Title": "Anfrage-Check",
-    "step1Text": "Wir pruefen die Verfuegbarkeit fuer Ihren Termin innerhalb von 24 Stunden.",
+    "step1Text": "Wir prüfen die Verfügbarkeit für Ihren Termin innerhalb von 24 Stunden.",
     "step2Title": "Unverbindliches Angebot",
     "step2Text": "Sie erhalten ein detailliertes Angebot per E-Mail inkl. aller Inklusivleistungen.",
     "step3Title": "Termin Fixierung",
-    "step3Text": "Nach Ihrer Bestaetigung wird die Fotobox fest fuer Ihren besonderen Tag reserviert.",
+    "step3Text": "Nach Ihrer Bestätigung wird die Fotobox fest für Ihren besonderen Tag reserviert.",
     "footerText": "Haben Sie in der Zwischenzeit Fragen? Kontaktieren Sie uns direkt unter",
+    "questionsTitle": "Haben Sie Fragen?",
     "primaryButtonText": "Zur Startseite",
     "primaryButtonHref": "/",
-    "secondaryButtonText": "Neue Anfrage",
+    "secondaryButtonText": "Neü Anfrage",
     "secondaryButtonHref": "/kontakt"
   },
   "contact": {
@@ -527,7 +750,7 @@
     "legalTitle": "Rechtliches",
     "legalLinks": [
       {
-        "label": "Datenschutzerklaerung",
+        "label": "Datenschutzerklärung",
         "href": "/datenschutzerklaerung"
       },
       {
@@ -544,7 +767,7 @@
   },
   "legal": {
     "impressumText": "Impressum\nfotobox.tirol\nAndreas Kiss\nClemens-Holzmeister Str.2\n6020 Innsbruck\n\nTel.: +43 664 3918228\nEmail: info@fotobox.tirol\nHomepage: www.fotobox.tirol\n\n \n\nRegistereintrag:\n\nRegistergericht: Landesgericht Innsbruck\nRegisternummer: 1213422a\n\nUmsatzsteuer-ID:\n\nUmsatzsteuer-Identifikationsnummer:\nATU 68683604\n\nHaftungsausschluss:\n\nHaftung für Inhalte\n\nDie Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.\n\nHaftung für Links\n\nUnser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.\n\nUrheberrecht\n\nAlle Urheber-, Leistungsschutz- und Verwertungsrechte des Lichtbildherstellers (§§1; 3 Abs. 2, 73ff UrhG) stehen dem Fotografen zu. Nutzungsbewilligungen (Veröffentlichungsrechte, Bearbeitungen etc.) gelten nur bei ausdrücklicher schriftlicher Vereinbarung als erteilt. Der Vertragspartner erwirbt in diesem Fall eine einfache (nicht exklusive und nicht ausschließende), nicht übertragbare (abtretbare) Nutzungsbewilligung für den ausdrücklich vereinbarten Verwendungszweck und innerhalb der vereinbarten Grenzen (zeitliche und örtliche Beschränkungen etc.). Mangels anderer Vereinbarung gilt die Nutzungsbewilligung nur für eine einmalige Veröffentlichung, nur für das ausdrücklich bezeichnetet Medium des Auftraggebers und nicht für Werbezwecke erteil.\n\nDie durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung von fotobox.tirol. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.\n\nDatenschutz\n\nDie Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.\n\nWir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.\n\nDer Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.\n\n \n\nDatenschutzerklärung für die Nutzung von Facebook-Plugins (Like-Button)\n\nAuf unseren Seiten sind Plugins des sozialen Netzwerks Facebook, 1601 South California Avenue, Palo Alto, CA 94304, USA integriert. Die Facebook-Plugins erkennen Sie an dem Facebook-Logo oder dem „Like-Button“ („Gefällt mir“) auf unserer Seite. Eine Übersicht über die Facebook-Plugins finden Sie hier: http://developers.facebook.com/docs/plugins/.\nWenn Sie unsere Seiten besuchen, wird über das Plugin eine direkte Verbindung zwischen Ihrem Browser und dem Facebook-Server hergestellt. Facebook erhält dadurch die Information, dass Sie mit Ihrer IP-Adresse unsere Seite besucht haben. Wenn Sie den Facebook „Like-Button“ anklicken während Sie in Ihrem Facebook-Account eingeloggt sind, können Sie die Inhalte unserer Seiten auf Ihrem Facebook-Profil verlinken. Dadurch kann Facebook den Besuch unserer Seiten Ihrem Benutzerkonto zuordnen. Wir weisen darauf hin, dass wir als Anbieter der Seiten keine Kenntnis vom Inhalt der übermittelten Daten sowie deren Nutzung durch Facebook erhalten. Weitere Informationen hierzu finden Sie in der Datenschutzerklärung von facebook unter http://de-de.facebook.com/policy.php\n\nWenn Sie nicht wünschen, dass Facebook den Besuch unserer Seiten Ihrem Facebook-Nutzerkonto zuordnen kann, loggen Sie sich bitte aus Ihrem Facebook-Benutzerkonto aus.\n\n \n\nDatenschutzerklärung für die Nutzung von Google Analytics\n\nDiese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. („Google“). Google Analytics verwendet sog. „Cookies“, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Im Falle der Aktivierung der IP-Anonymisierung auf dieser Webseite wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum zuvor gekürzt.\n\nNur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt. Im Auftrag des Betreibers dieser Website wird Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber dem Websitebetreiber zu erbringen. Die im Rahmen von Google Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.\n\nSie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich werden nutzen können. Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren: http://tools.google.com/dlpage/gaoptout?hl=de.\n\n \n\nNähere Informationen hierzu finden Sie unter tools.google.com/dlpage/gaoptout bzw. unter www.google.com/intl/de/analytics/privacyoverview.html (allgemeine Informationen zu Google Analytics und Datenschutz). Wir weisen Sie darauf hin, dass auf dieser Webseite Google Analytics um den Code „gat._anonymizeIp();“ erweitert wurde, um eine anonymisierte Erfassung von IP-Adressen (sog. IP-Masking) zu gewährleisten.“\n\n \n\nDatenschutzerklärung für die Nutzung von Google +1\n\nErfassung und Weitergabe von Informationen:\nMithilfe der Google +1-Schaltfläche können Sie Informationen weltweit veröffentlichen. über die Google +1-Schaltfläche erhalten Sie und andere Nutzer personalisierte Inhalte von Google und unseren Partnern. Google speichert sowohl die Information, dass Sie für einen Inhalt +1 gegeben haben, als auch Informationen über die Seite, die Sie beim Klicken auf +1 angesehen haben. Ihre +1 können als Hinweise zusammen mit Ihrem Profilnamen und Ihrem Foto in Google-Diensten, wie etwa in Suchergebnissen oder in Ihrem Google-Profil, oder an anderen Stellen auf Websites und Anzeigen im Internet eingeblendet werden.\nGoogle zeichnet Informationen über Ihre +1-Aktivitäten auf, um die Google-Dienste für Sie und andere zu verbessern. Um die Google +1-Schaltfläche verwenden zu können, benötigen Sie ein weltweit sichtbares, öffentliches Google-Profil, das zumindest den für das Profil gewählten Namen enthalten muss. Dieser Name wird in allen Google-Diensten verwendet. In manchen Fällen kann dieser Name auch einen anderen Namen ersetzen, den Sie beim Teilen von Inhalten über Ihr Google-Konto verwendet haben. Die Identität Ihres Google-Profils kann Nutzern angezeigt werden, die Ihre E-Mail-Adresse kennen oder über andere identifizierende Informationen von Ihnen verfügen.\n\nVerwendung der erfassten Informationen:\nNeben den oben erläuterten Verwendungszwecken werden die von Ihnen bereitgestellten Informationen gemäß den geltenden Google-Datenschutzbestimmungen genutzt. Google veröffentlicht möglicherweise zusammengefasste Statistiken über die +1-Aktivitäten der Nutzer bzw. gibt diese an Nutzer und Partner weiter, wie etwa Publisher, Inserenten oder verbundene Websites.\n\n \n\nDatenschutzerklärung für die Nutzung von Twitter\n\nAuf unseren Seiten sind Funktionen des Dienstes Twitter eingebunden. Diese Funktionen werden angeboten durch die Twitter Inc., 795 Folsom St., Suite 600, San Francisco, CA 94107, USA. Durch das Benutzen von Twitter und der Funktion „Re-Tweet“ werden die von Ihnen besuchten Webseiten mit Ihrem Twitter-Account verknüpft und anderen Nutzern bekannt gegeben. Dabei werden auch Daten an Twitter übertragen.\n\nWir weisen darauf hin, dass wir als Anbieter der Seiten keine Kenntnis vom Inhalt der übermittelten Daten sowie deren Nutzung durch Twitter erhalten. Weitere Informationen hierzu finden Sie in der Datenschutzerklärung von Twitter unter http://twitter.com/privacy.\n\nIhre Datenschutzeinstellungen bei Twitter können Sie in den Konto-Einstellungen unter http://twitter.com/account/settings ändern.\n\nWebdesign & Grafikdesign by Blitzkneisser! Andreas Kiss www.blitzkneisser.com",
-    "datenschutzerklaerungText": "Datenschutzerklaerung\nStand: 05.03.2026\n\n1) Verantwortlicher\nfotobox.tirol\nAndreas Kiss\nClemens-Holzmeister Str.2\n6020 Innsbruck\n\nTelefon: +43 664 3918228\nE-Mail: info@fotobox.tirol\n\n2) Allgemeine Hinweise zur Datenverarbeitung\nWir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung unserer Website, zur Bearbeitung von Anfragen und zur sicheren technischen Administration erforderlich ist.\n\nRechtsgrundlagen sind insbesondere:\n- Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Massnahmen/Vertrag)\n- Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an sicherem Betrieb und Kommunikation)\n- Art. 6 Abs. 1 lit. a DSGVO (Einwilligung, sofern gesondert eingeholt)\n\n3) Zugriffsdaten / Server-Logfiles\nBeim Aufruf der Website koennen technisch notwendige Daten verarbeitet werden, z. B.:\n- IP-Adresse\n- Datum/Uhrzeit der Anfrage\n- angeforderte URL\n- Browsertyp und Betriebssystem\n- Referrer-URL\n\nDie Verarbeitung erfolgt zur technischen Bereitstellung, Stabilitaet und Sicherheit der Website (Art. 6 Abs. 1 lit. f DSGVO).\n\n4) Kontakt- und Buchungsanfragen\nWenn Sie unser Anfrageformular nutzen, verarbeiten wir die von Ihnen eingegebenen Daten, insbesondere:\n- Name\n- E-Mail-Adresse\n- Telefonnummer (optional)\n- Veranstaltungsdatum\n- ausgewaehlte Paket-/Eventangaben\n- Freitextnachricht\n\nZweck: Bearbeitung Ihrer Anfrage und Kommunikation mit Ihnen.\nRechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO sowie Art. 6 Abs. 1 lit. f DSGVO.\n\n5) Cookies und vergleichbare Technologien\nUnsere oeffentliche Website verwendet derzeit keine Analyse-, Marketing- oder Tracking-Cookies.\n\nIm Admin-Bereich wird nach erfolgreichem Login ein technisch erforderliches Session-Cookie gesetzt (`cms_admin_session`), damit die geschuetzte Backend-Sitzung funktioniert.\n\nRechtsgrundlage fuer technisch erforderliche Cookies: Art. 6 Abs. 1 lit. f DSGVO in Verbindung mit Paragraph 165 Abs. 3 TKG 2021 (Ausnahme fuer technisch unbedingt erforderliche Speicherung/Zugriffe).\n\n6) Empfaenger von Daten\nEine Weitergabe an Dritte erfolgt nur, wenn dies rechtlich erlaubt oder fuer die Leistungserbringung erforderlich ist.\n\nMoegliche Empfaengerkategorien:\n- IT-/Hosting-Dienstleister (als Auftragsverarbeiter, sofern eingesetzt)\n- Behoerden/Gerichte bei gesetzlicher Verpflichtung\n\n7) Speicherdauer\nWir speichern personenbezogene Daten nur so lange, wie es fuer die jeweiligen Zwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen.\n\nAnfragedaten werden grundsaetzlich nur so lange gespeichert, wie sie fuer Bearbeitung, Nachbetreuung und rechtliche Nachweise erforderlich sind.\n\n8) Datensicherheit\nWir treffen technische und organisatorische Sicherheitsmassnahmen nach Art. 32 DSGVO, um Daten vor Verlust, Manipulation und unbefugtem Zugriff zu schuetzen.\n\n9) Ihre Rechte\nSie haben nach DSGVO insbesondere folgende Rechte:\n- Auskunft (Art. 15 DSGVO)\n- Berichtigung (Art. 16 DSGVO)\n- Loeschung (Art. 17 DSGVO)\n- Einschraenkung der Verarbeitung (Art. 18 DSGVO)\n- Datenuebertragbarkeit (Art. 20 DSGVO)\n- Widerspruch (Art. 21 DSGVO)\n- Widerruf einer Einwilligung mit Wirkung fuer die Zukunft (Art. 7 Abs. 3 DSGVO)\n\n10) Beschwerderecht\nSie haben das Recht auf Beschwerde bei der zustaendigen Aufsichtsbehoerde.\n\nIn Oesterreich:\nOesterreichische Datenschutzbehoerde\nBarichgasse 40-42, 1030 Wien\nTelefon: +43 1 52 152-0\nE-Mail: dsb@dsb.gv.at\nWeb: https://www.dsb.gv.at\n\n11) Aenderungen dieser Datenschutzerklaerung\nWir passen diese Datenschutzerklaerung an, wenn sich rechtliche, technische oder organisatorische Rahmenbedingungen aendern.",
+    "datenschutzerklaerungText": "Datenschutzerklärung\nStand: 05.03.2026\n\n1) Verantwortlicher\nfotobox.tirol\nAndreas Kiss\nClemens-Holzmeister Str.2\n6020 Innsbruck\n\nTelefon: +43 664 3918228\nE-Mail: info@fotobox.tirol\n\n2) Allgemeine Hinweise zur Datenverarbeitung\nWir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung unserer Website, zur Bearbeitung von Anfragen und zur sicheren technischen Administration erforderlich ist.\n\nRechtsgrundlagen sind insbesondere:\n- Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen/Vertrag)\n- Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an sicherem Betrieb und Kommunikation)\n- Art. 6 Abs. 1 lit. a DSGVO (Einwilligung, sofern gesondert eingeholt)\n\n3) Zugriffsdaten / Server-Logfiles\nBeim Aufruf der Website können technisch notwendige Daten verarbeitet werden, z. B.:\n- IP-Adresse\n- Datum/Uhrzeit der Anfrage\n- angeforderte URL\n- Browsertyp und Betriebssystem\n- Referrer-URL\n\nDie Verarbeitung erfolgt zur technischen Bereitstellung, Stabilität und Sicherheit der Website (Art. 6 Abs. 1 lit. f DSGVO).\n\n4) Kontakt- und Buchungsanfragen\nWenn Sie unser Anfrageformular nutzen, verarbeiten wir die von Ihnen eingegebenen Daten, insbesondere:\n- Name\n- E-Mail-Adresse\n- Telefonnummer (optional)\n- Veranstaltungsdatum\n- ausgewählte Paket-/Eventangaben\n- Freitextnachricht\n\nZweck: Bearbeitung Ihrer Anfrage und Kommunikation mit Ihnen.\nRechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO sowie Art. 6 Abs. 1 lit. f DSGVO.\n\n5) Cookies und vergleichbare Technologien\nUnsere öffentliche Website verwendet derzeit keine Analyse-, Marketing- oder Tracking-Cookies.\n\nIm Admin-Bereich wird nach erfolgreichem Login ein technisch erforderliches Session-Cookie gesetzt (`cms_admin_session`), damit die geschützte Backend-Sitzung funktioniert.\n\nRechtsgrundlage für technisch erforderliche Cookies: Art. 6 Abs. 1 lit. f DSGVO in Verbindung mit Paragraph 165 Abs. 3 TKG 2021 (Ausnahme für technisch unbedingt erforderliche Speicherung/Zugriffe).\n\n6) Empfänger von Daten\nEine Weitergabe an Dritte erfolgt nur, wenn dies rechtlich erlaubt oder für die Leistungserbringung erforderlich ist.\n\nMögliche Empfängerkategorien:\n- IT-/Hosting-Dienstleister (als Auftragsverarbeiter, sofern eingesetzt)\n- Behörden/Gerichte bei gesetzlicher Verpflichtung\n\n7) Speicherdauer\nWir speichern personenbezogene Daten nur so lange, wie es für die jeweiligen Zwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen.\n\nAnfragedaten werden grundsätzlich nur so lange gespeichert, wie sie für Bearbeitung, Nachbetreuung und rechtliche Nachweise erforderlich sind.\n\n8) Datensicherheit\nWir treffen technische und organisatorische Sicherheitsmaßnahmen nach Art. 32 DSGVO, um Daten vor Verlust, Manipulation und unbefugtem Zugriff zu schützen.\n\n9) Ihre Rechte\nSie haben nach DSGVO insbesondere folgende Rechte:\n- Auskunft (Art. 15 DSGVO)\n- Berichtigung (Art. 16 DSGVO)\n- Löschung (Art. 17 DSGVO)\n- Einschränkung der Verarbeitung (Art. 18 DSGVO)\n- Datenübertragbarkeit (Art. 20 DSGVO)\n- Widerspruch (Art. 21 DSGVO)\n- Widerruf einer Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)\n\n10) Beschwerderecht\nSie haben das Recht auf Beschwerde bei der zuständigen Aufsichtsbehörde.\n\nIn Österreich:\nÖsterreichische Datenschutzbehörde\nBarichgasse 40-42, 1030 Wien\nTelefon: +43 1 52 152-0\nE-Mail: dsb@dsb.gv.at\nWeb: https://www.dsb.gv.at\n\n11) Änderungen dieser Datenschutzerklärung\nWir passen diese Datenschutzerklärung an, wenn sich rechtliche, technische oder organisatorische Rahmenbedingungen ändern.",
     "agbText": "Allgemeine Geschäftsbedingungen für Verbrauchergeschäfte\n1. Anwendbarkeit und Geltungsbereich der Allgemeinen Geschäftsbedingungen\n1.1. Die vorliegenden Allgemeinen Geschäftsbedingungen gelten ausschließlich für Vertragsabschlüsse mit Verbrauchern (Konsumenten). Verbraucher iSd § 1 KSchG ist jede natürliche Person, die ein Rechtsgeschäft zu einem Zweck abschließt, der weder ihrer gewerblichen noch ihrer selbstständigen beruflichen Tätigkeit zugerechnet werden kann. Für Vertragsabschlüsse mit Unternehmern gelangen die Allgemeinen Geschäftsbedingungen für Unternehmensgeschäfte zur Anwendung.\n\n1.2. Der Fotograf schließt Verträge – sofern nicht ausdrücklich Abweichendes vereinbart wurde – ausschließlich auf der Grundlage der vorliegenden Allgemeinen Geschäftsbedingungen ab.\n\n1.3. Der Einbeziehung entgegenstehender oder ergänzender Vertragsbedingungen des Vertragspartners wird ausdrücklich widersprochen. Diese sind ausnahmslos nur gültig, wenn und insoweit sie im Einzelfall schriftlich vereinbart wurden. Insbesondere gelten Vertragserfüllungshandlungen des Fotografen nicht als Zustimmung zu von diesen Allgemeinen Geschäftsbedingungen abweichenden Vertragsbedingungen.\n\n1.4. Sollten einzelne Bestimmungen des Vertrages einschließlich dieser Regelungen ganz oder teilweise unwirksam sein oder im Laufe ihrer Dauer werden oder sollte der Vertrag eine Lücke aufweisen, bleibt die Wirksamkeit der übrigen Bestimmungen oder Teile solcher Bestimmungen unberührt. Dies gilt nicht, wenn die unwirksame Bestimmung eine der Hauptleistungspflichten regelt. Anstelle der unwirksamen oder fehlenden Bestimmungen treten die jeweiligen gesetzlichen Regelungen. Aus dem Umstand, dass der Fotograf einzelne oder alle der ihm zustehenden Rechte nicht ausübt, kann ein Verzicht auf diese Rechte nicht abgeleitet werden.\n\n \n\n2. Angebot, Vertragsabschluss\n2.1. Die Angebote des Fotografen sind – sofern sie nicht ausdrücklich als verbindlich bezeichnet werden – freibleibend und unverbindlich. Dies gilt auch\nfür sämtliche Angaben in Preislisten, Prospekten etc.\n\n2.2. Die Erteilung eines Auftrags an den Fotografen kann sowohl schriftlich (per Brief, E-Mail, Fax etc.) als auch mündlich (persönlich, telefonisch) erfolgen. Der Fotograf übermittelt dem Auftraggeber innerhalb angemessener Zeit nach Einlangen des Auftrags eine Auftragsbestätigung (Angebotsannahme) oder informiert ihn über die Ablehnung des Auftrags. Durch die Annahme kommt ein rechtsverbindlicher Vertrag zwischen dem Fotografen und dem Auftraggeber zustande, wodurch die wechselseitige Leistungspflicht ausgelöst wird.\n\n(Fakultativ bei Möglichkeit der Onlinebestellung von Lichtbildern.)\n\n2.3. Der Auftraggeber hat die Möglichkeit, Lichtbilder und/oder Filmwerke einschließlich der in § 42 UrhG normierten Nutzungsrechte über den Onlineshop zu erwerben. Darüber hinausgehende Nutzungsrechte müssen mit dem Fotografen gesondert vereinbart werden. Das Angebot des Fotografen im Onlineshop ist rechtsverbindlich. Der Kaufvertrag kommt durch Einlangen der Bestellung beim Fotografen zustande. Der Bestellvorgang wird durch Auswahl der gewünschten Produkte in den Warenkorb in Gang gesetzt und durch Anklicken des Kaufbuttons am Ende des Bestellvorgangs abgeschlossen. Der Fotograf stellt die vertragsgegenständlichen Produkte nach Zahlungseingang entweder durch Übersendung an die vom Vertragspartner bekannt gegebene Anschrift oder als Download-Datei zur Verfügung.\n\n \n\n3. Leistungserbringung, Nutzungsbewilligung\n3.1. Der Fotograf kann den Auftrag – zur Gänze oder zum Teil – auch durch Dritte (Labors etc.) ausführen lassen. Sofern der Vertragspartner keine schriftlichen Anordnungen trifft, ist der Fotograf hinsichtlich der Art der Durchführung des Auftrags frei. Dies gilt insbesondere für die Bildauffassung, die Auswahl der Fotomodelle, des Aufnahmeorts und der angewendeten optisch-technischen (fotografischen) Mittel.\n\n3.2. Die Übersendung der Ware erfolgt auf Gefahr des Fotografen, dh die Gefahr für den Verlust oder die Beschädigung der Ware geht in diesem Fall erst auf den Vertragspartner über, sobald die Ware an ihn oder an einen von diesem bestimmten, vom Beförderer verschiedenen, Dritten abgeliefert wird.\n\n3.3. Vom Fotografen genannte Liefer-/Leistungstermine und -fristen sind nur Annäherungswerte und unverbindlich, sofern sie nicht ausdrücklich schriftlich als verbindlich bestätigt wurden. Aus der Nichteinhaltung von unverbindlichen Liefer-/ Leistungsfristen und –terminen können keine Ansprüche gegen den Fotografen hergeleitet werden. Der Fotograf hat die Leistung aber jedenfalls\ninnerhalb von 30 Tagen ab Vertragsabschluss zu erbringen.\n\n3.4. Bei Vereinbarung verbindlicher Liefertermine oder Lieferfristen kann der Vertragspartner – sofern es sich nicht um ein Fixgeschäft iSd Punkt 3.5. handelt – bei Lieferverzug nach Setzung einer angemessenen Nachfrist vom Vertrag zurücktreten. Der Rücktritt vom Vertrag lässt den Anspruch auf Ersatz des durch verschuldete Nichterfüllung verursachten Schadens unberührt.\n\n3.5. Ist die Erfüllung zu einer festbestimmten Zeit oder binnen einer festbestimmten Frist bei sonstigem Rücktritt bedungen und gerät der Fotograf in Verzug, so gilt der Vertrag ohne weiteres Zutun als aufgelöst, sofern der Vertragspartner dem Fotografen nicht umgehend mitteilt, auf die Vertragserfüllung weiterhin zu bestehen. Allfällige Schadenersatzansprüche bleiben hiervon unberührt.\n\n3.6. Mit dem Erwerb eines urheberrechtlich geschützten Werkes, unabhängig ob in Papierform oder digital, erwirbt der Vertragspartner eine einfache (nicht exklusive und nicht ausschließende), nicht übertragbare (abtretbare) Nutzungsbewilligung für den ausdrücklich vereinbarten Verwendungszweck und innerhalb der vereinbarten Grenzen (Auflageziffer, zeitliche und örtliche Beschränkungen etc.); im Zweifel ist der in der Rechnung bzw im Lieferschein angeführte Nutzungsumfang maßgebend. Jedenfalls erwirbt der Vertragspartner nur soviel Rechte wie es dem offengelegten Zweck des Vertrags (erteilten Auftrags) entspricht. Mangels anderer Vereinbarung gilt die Nutzungsbewilligung nur für eine einmalige Veröffentlichung (in einer Auflage), nur für das ausdrücklich bezeichnete Medium des Vertragspartners und nicht für Werbezwecke als erteilt. Darüber hinaus ist der Vertragspartner iSd § 42 UrhG jedenfalls berechtigt, einzelne Vervielfältigungsstücke zum eigenen und privaten Gebrauch herzustellen.\n\n3.7. Die Nutzungsbewilligung gilt erst bei vollständiger Bezahlung des vereinbarten Aufnahme- und Werknutzungsentgelts (vgl. Punkt 6.2.) und unter der Voraussetzung einer ordnungsgemäßen Herstellerbezeichnung/ Namensnennung gemäß Punkt 4.3. als erteilt.\n\n \n\n4. Urheberrechtliche Bestimmungen\n4.1. Lichtbilder und Filmwerke sind urheberrechtlich geschützte Werke iSd §§ 1, 3, 4 UrhG. Alle Urheber- und Leistungsschutzrechte des Herstellers (§§ 14ff, 73ff UrhG) stehen ausnahmslos dem Fotografen zu. Der Fotograf hat mit Ausnahme der in § 42 UrhG normierten Rechte das ausschließliche Verwertungsrecht, d.h. das ausschließliche Recht, das Lichtbild zu vervielfältigen, zu verbreiten, durch optische Einrichtungen öffentlich\nvorzuführen, durch Rundfunk zu senden und der Öffentlichkeit zur Verfügung zu stellen. Eine Nutzung ist in diesem Fall nur nach Maßgabe einer vom Fotografen erteilten Nutzungsbewilligung zulässig (vgl. Punkt 3.6.). § 75 UrhG gelangt nicht zur Anwendung.\n\n4.2. Eine Vervielfältigung oder Verbreitung von Lichtbildern/Filmen in Onlinedatenbanken, in elektronischen Archiven, im Internet oder in Intranets, welche nicht nur für den internen Gebrauch des Vertragspartners bestimmt sind, auf Diskette, CD-Rom oder ähnlichen Datenträgern, ist nur auf Grund einer besonderen schriftlichen Vereinbarung zwischen dem Fotografen und dem Vertragspartner gestattet. Das Recht, eine Sicherungskopie herzustellen, bleibt hiervon unberührt.\n\n4.3. Der Vertragspartner ist bei jeder Nutzung (Vervielfältigung, Verbreitung, Sendung etc.) verpflichtet, die Herstellerbezeichnung (Namensnennung) bzw den Copyrightvermerk im Sinn des WURA (Welturheberrechtsabkommen) deutlich und gut lesbar (sichtbar), insbesondere nicht gestürzt und in Normallettern, unmittelbar beim Lichtbild und diesem eindeutig zuordenbar anzubringen wie folgt:\n\nFoto: © … Name/Firma/Künstlername des Fotografen, Ort und – sofern veröffentlicht –Jahreszahl der ersten Veröffentlichung.\n\nDies gilt auch dann, wenn das Lichtbild nicht mit einer Herstellerbezeichnung versehen ist. Jedenfalls gilt diese Bestimmung als Anbringung der Herstellerbezeichnung im Sinn des § 74 Abs 3 UrhG. Ist das Lichtbild auf der Vorderseite (im Bild) signiert, ersetzt die Veröffentlichung dieser Signatur nicht den vorstehend beschriebenen Herstellervermerk.\n\n4.4. Jede Veränderung des Lichtbilds bedarf der schriftlichen Zustimmung des Fotografen. Dies gilt nur dann nicht, wenn die Änderungen nach dem – dem Fotografen bekannten – Vertragszweck erforderlich sind.\n\n4.5. Im Fall einer Veröffentlichung sind zwei kostenlose Belegexemplare zuzusenden. Bei kostspieligen Produkten (Kunstbücher, Videokassetten) reduziert sich die Zahl der Belegexemplare auf ein Stück. Bei Veröffentlichung im Internet ist dem Fotografen die Webadresse mitzuteilen.\n\n4.6. Bei Verletzung der Urheber- und/oder Leistungsschutzrechte hat der Fotograf nach Maßgabe der §§ 81ff UrhG zivilrechtliche Ansprüche auf Unterlassung, Beseitigung, Schadenersatz, Urteilsveröffentlichung etc. Die Ansprüche stehen dem Fotografen unabhängig von einem Verschulden zu. Im Fall der Verletzung der Pflicht zur Herstellerbezeichnung steht als immaterieller\nSchaden (§ 87 Abs 2 UrhG) unbeschadet eines hinzukommenden Vermögensschadens (§ 87 Abs 1 UrhG) zumindest ein Betrag in Höhe des angemessenen Entgelts (§ 86 UrhG) zu.\n\n \n\n5. Eigentum am Filmmaterial und den Bilddateien, Kennzeichnung Archivierung\n5.1. Analoge Fotografie: Das Eigentumsrecht am belichteten Filmmaterial (Negative, Diapositive etc.) steht dem Fotografen zu. Dieser überlässt dem Vertragspartner gegen vereinbarte und angemessene Honorierung die für die vereinbarte Nutzung erforderlichen Aufnahmen ins Eigentum. Diapositive werden – sofern nicht schriftlich etwas anderes vereinbart ist – dem Vertragspartner nur leihweise gegen Rückstellung nach Gebrauch auf Gefahr und Kosten des Vertragspartners zur Nutzung im Umfang der Nutzungsbewilligung gemäß Punkt 3.6. zur Verfügung gestellt.\n\n5.2. Digitale Fotografie: Das Eigentum an den Bilddateien steht dem Fotografen zu. Ein Recht auf Übergabe digitaler Bilddateien und Nutzung im Umfang der Nutzungsbewilligung gemäß Punkt 3.6. besteht nur nach ausdrücklicher schriftlicher Vereinbarung und betrifft mangels abweichender ausdrücklicher Vereinbarung nur eine zwischen dem Fotografen und dem Vertragspartner einvernehmlich festzusetzende Auswahl der hergestellten Bilddateien.\n\n5.3. Der Fotograf ist berechtigt, die Lichtbilder sowie die digitalen Bilddateien in jeder ihm geeignet erscheinenden Weise (auch auf der Vorderseite) mit seiner Herstellerbezeichnung zu versehen. Der Vertragspartner ist verpflichtet, für die Integrität der Herstellerbezeichnung zu sorgen, insbesondere bei erlaubter Weitergabe an Dritte (Drucker etc.). Erforderlichenfalls ist die Herstellerbezeichnung anzubringen bzw zu erneuern. Dies gilt insbesondere auch für alle bei der Herstellung erstellten Vervielfältigungsmittel (Lithos, Platten etc) bzw bei der Anfertigung von Kopien digitaler Bilddateien.\n\n5.4. Der Vertragspartner ist verpflichtet, digitale Lichtbilder so zu speichern, dass die Herstellerbezeichnung bei jeder Art von Datenübertragung mit den Bildern elektronisch verknüpft bleibt, sodass der Fotograf als Urheber der Bilder klar und eindeutig identifizierbar ist.\n\n5.5. Der Fotograf wird die Aufnahme ohne Rechtspflicht für die Dauer von einem Jahr archivieren. Im Fall des Verlusts oder der Beschädigung stehen dem Vertragspartner keinerlei Ansprüche zu.\n \n\n6. Entgelt (Werklohn, Honorar)\n6.1. Mangels abweichender schriftlicher Vereinbarung steht dem Fotografen für seine Leistungen ein Werklohn (Honorar) nach seinen jeweils gültigen Preislisten zu.\n\n6.2. Der Fotograf hat einerseits Anspruch auf ein Aufnahmehonorar, welches auch für Layout- oder Präsentationsaufnahmen sowie dann zusteht, wenn eine Verwertung unterbleibt oder von der Entscheidung durch Dritte abhängt. Auf das Aufnahmehonorar werden in diesem Fall keine Preisreduktionen gewährt. Darüber hinaus steht dem Fotografen beim Verkauf von Lichtbildern/Filmen ein Verkaufsentgelt und für die Erteilung einer über § 42 UrhG hinausgehenden Nutzungsbewilligung gesondert ein Werknutzungsentgelt (Lizenzhonorar) in vereinbarter Höhe zu.\n\n6.3. Konzeptionelle Leistungen (Beratung, Layout, sonstige grafische Leistungen etc.) sowie Materialkosten und sonstige Aufwendungen für Requisiten, Modelle, Reisekosten, Aufenthaltsspesen, Visagisten etc. sind im Aufnahmehonorar nicht enthalten und werden gesondert verrechnet. Dasselbe gilt für einen überdurchschnittlichen organisatorischen bzw Besprechungsaufwand.\n\n6.4. Die Preisangaben erfolgen in Euro und verstehen sich „ab Werk“ zuzüglich der Umsatzsteuer in ihrer jeweiligen gesetzlichen Höhe sowie bei Versand der Ware zuzüglich einer Versand- und Verpackungspauschale in Höhe von €\n\n6.5. Im Zuge der Auftragsausführung vom Vertragspartner gewünschte Auftragsänderungen gehen zu seinen Lasten und werden gesondert verrechnet.\n\n6.6. An die Einhaltung vorhergehender Preise bei Anschlussaufträgen sind wir nicht gebunden.\n\n6.7. Für die Richtigkeit von Kostenvoranschlägen wird keine Gewähr übernommen.\n\n \n\n7. Zahlung\n7.1. Sofern nicht schriftlich ausdrücklich ein Zahlungsziel vereinbart wurde, ist das Honorar sofort nach Rechnungslegung zur Zahlung fällig. Wurde ein Zahlungsziel vereinbart, sind die gelegten Rechnungen längstens binnen 8 Werktagen ab Rechnungslegung spesen- und abzugsfrei einlangend beim Fotografen zur Zahlung fällig.\n\n7.2. Der Fotograf ist berechtigt, vor Beginn der Auftragsausführung vom Auftraggeber die Leistung einer Akontozahlung zu fordern sowie bei Aufträgen\nüber teilbare Leistungen Teilrechnungen zu legen.\n\n7.3. Der Fotograf ist berechtigt, Zahlungen unabhängig von deren Widmung zur Begleichung der ältesten fälligen Schuld sowie der darauf anerlaufenen Verzugszinsen und Kosten zu verwenden und zwar in der Reihenfolge: Kosten, Zinsen, Hauptforderung.\n\n7.4. Für den Fall des Zahlungsverzuges werden unabhängig vom Verschulden Verzugszinsen in Höhe von 4 % p.a. sowie Zinseszinsen in der gesetzlichen Höhe verrechnet. Darüber hinaus ist der Vertragspartner bei verschuldetem Zahlungsverzug verpflichtet, dem Fotografen sämtliche aufgewendeten, zur zweckentsprechenden Eintreibung der Forderung notwendigen Kosten, wie etwa Anwaltshonorar und Kosten von Inkassobüros, zu refundieren und jeden weiteren Schaden, insbesondere auch den Schaden, der dadurch entsteht, dass infolge Nichtzahlung entsprechend höhere Zinsen auf allfälligen Kreditkonten anfallen, zu ersetzen.\n\n7.5. Der Vertragspartner ist zur Aufrechnung mit einer eigenen Forderung gegen den Fotografen nur dann berechtigt, wenn dieser zahlungsunfähig ist und die Forderung des Vertragspartners in einem rechtlichen Zusammenhang mit seiner Verbindlichkeit steht oder die Forderung vom Gericht rechtskräftig festgestellt oder vom Fotografen anerkannt wurde.\n\n7.6. Der Vertragspartner kann ein Zurückbehaltungsrecht nur ausüben, soweit es sich um Forderungen aus demselben Vertragsverhältnis handelt.\n\n \n\n8. Gesetzliches Rücktrittsrecht\n8.1. Gemäß § 11 FAGG kann der Verbraucher von einem Fernabsatzvertrag oder einem außerhalb von Geschäftsräumen geschlossenen Vertrag binnen 14 Tagen ohne Angabe von Gründen zurücktreten. Näheres zur Ausübung des Rücktrittsrechts und den Folgen des Rücktritts ist der gesondert veröffentlichen Widerrufsbelehrung für Warenlieferungen bzw. der Widerrufsbelehrung für Dienstleistungsaufträge zu entnehmen.\n\n8.2 In nachstehenden Fällen ist das Rücktrittsrecht ausgeschlossen:\n\n• bei Verträgen über Dienstleistungen, wenn der Unternehmer – auf Grundlage eines ausdrücklichen Verlangens des Verbrauchers sowie einer Bestätigung des Verbrauchers über dessen Kenntnis vom Verlust des Rücktrittsrechts bei vollständiger Vertragserfüllung – noch vor Ablauf der vierzehntägigen Rücktrittsfrist mit der Ausführung der Dienstleistung begonnen hatte und die Dienstleistung sodann vollständig erbracht wurde;\nbei Verträgen über Waren, die nach Kundenspezifikationen angefertigt werden oder eindeutig auf die persönlichen Bedürfnisse zugeschnitten sind;\nbei Verträgen über Waren, die nach ihrer Lieferung auf Grund ihrerBeschaffenheit untrennbar mit anderen Gütern vermischt wurden;\nbei Verträgen über Ton- oder Videoaufnahmen oder Computersoftware, die in einer versiegelten Packung geliefert werden, sofern deren Versiegelung nachder Lieferung entfernt wurde;\nbei Verträgen über die Lieferung von nicht auf einem körperlichenDatenträger gespeicherten digitalen Inhalten, wenn der Unternehmer – mit ausdrücklicher Zustimmung des Verbrauchers, verbunden mit dessen Kenntnisnahme vom Verlust des Rücktrittsrechts bei vorzeitigem Beginn mit der Vertragserfüllung, und nach Zurverfügungstellung einer Ausfertigung oder Bestätigung nach § 5 Abs 2 oder § 7 Abs 3 – noch vor Ablauf der Rücktritts- /Widerrufsfrist mit der Lieferung begonnen hat.\n \n\n9. Pflichten des Vertragspartners\n9.1. Der Vertragspartner ist verpflichtet, erforderlichenfalls an der Auftragserfüllung mitzuwirken und den Fotografen nach seinen Kräften zu unterstützen. Der Vertragspartner hat für die Einholung allenfalls erforderlicher Werknutzungsbewilligungen Dritter hinsichtlich abgebildeter Gegenstände (zB Werke der Bildenden Kunst, Muster und Modelle, Marken, Fotovorlagen etc.) und die Einholung der Zustimmung zur Abbildung von Personen (zB Modelle) zu sorgen. Der Fotograf gewährleistet die Zustimmung von Berechtigten, insbesondere von Modellen, nur im Fall ausdrücklicher schriftlicher Zusage für die vertraglichen Verwendungszwecke (Punkt 3.6.).\n\n9.2. Schad- und Klagsloshaltung: Der Vertragspartner verpflichtet sich, den Fotografen vollständig gegenüber Ansprüchen Dritter schad- und klaglos zu halten, falls er aufgrund von Verstößen gegen Rechtsvorschriften bzw des Verhaltens des Vertragspartners zivil- oder strafrechtlich verfolgt oder belangt bzw gerichtlich oder außergerichtlich in Anspruch genommen wird.\n\n9.3. Im Falle der Beauftragung des Fotografen mit der elektronischen Bearbeitung fremder Lichtbilder, versichert der Vertragspartner, dass er die hierzu erforderlichen Rechte besitzt und stellt den Fotografen von allen Ansprüchen Dritter frei, die auf eine Verletzung dieser Pflicht beruhen.\n\n9.4. Der Vertragspartner verpflichtet sich, bereitgestellte Aufnahmeobjekte unverzüglich nach der Aufnahme wieder abzuholen. Werden diese Objekte nach Aufforderung durch den Fotografen nicht spätestens nach zwei Werktagen abgeholt, ist der Fotograf berechtigt, die Gegenstände auf Kosten des\nVertragspartners einzulagern.\n\n \n\n10. Annahmeverzug, Rücktritt des Vertragspartners\n10.1. Wird die Leistung vom Vertragspartner zur bedungenen Zeit am bedungenen Ort nicht angenommen bzw die Leistungserbringung des Fotografen verzögert oder unmöglich gemacht, gerät der Vertragspartner in Annahmeverzug. In diesem Fall ist der Fotograf berechtigt, nach Setzung einer angemessenen Nachfrist von 14 Tagen vom Vertrag zurückzutreten oder auf Vertragserfüllung zu bestehen. Der Fotograf ist ebenso berechtigt vom Vertrag zurückzutreten, wenn der Vertragspartner trotz schriftlicher Abmahnung und Nachfristsetzung von 14 Tagen fortgesetzt gegen wesentliche Verpflichtungen aus dem Vertrag (Mitwirkungspflichten, Leistung der Anzahlung bzw Teilzahlungen) verstößt. Der Vertragspartner hat dem Fotografen jedenfalls den von ihm schuldhaft verursachten Schaden zu ersetzen.\n\n10.2. Bei Annahmeverzug hat der Vertragspartner allfällige Lagerkosten sowie die Kosten für die erfolglose An- und Ablieferung zu tragen. Trifft den Vertragspartner ein Verschulden am Annahmeverzug hat er dem Fotografen darüber hinaus den ihm durch die Verzögerung entstandenen Schaden zu ersetzen. Der Vertragspartner trägt auch die Gefahr der Lagerung.\n\n10.3. Im Fall unbedingt erforderlicher Terminänderungen (zB aus Gründen der Wetterlage) sind ein dem vergeblich erbrachten bzw reservierten Zeitaufwand entsprechendes Honorar und alle Nebenkosten zu bezahlen.\n\n \n\n11. Eigentumsvorbehalt\n11.1. Bis zur vollständigen Bezahlung des Honorars bleibt die Ware im Eigentum des Fotografen. Der Vertragspartner trägt das gesamte Risiko für die Vorbehaltsware, insbesondere für die Gefahr des Untergangs, des Verlustes oder der Verschlechterung.\n\n11.2. Die Verpfändung oder Sicherheitsübereignung der Vorbehaltsware ist dem Vertragspartner untersagt.\n\n11.3. Der Vertragspartner verpflichtet sich, den Fotografen vor Anmeldung eines Insolvenzverfahrens zu verständigen, damit dieser unter Eigentumsvorbehalt gelieferte und in seinem Eigentum stehende Waren übernehmen kann.\n\n11.4. Gerät der Vertragspartner mit seiner Zahlung ganz oder teilweise in Verzug, so ist der Fotograf berechtigt, Rückgabe der Ware bis zur vollständigen\nBefriedigung zu verlangen. Befristete Forderungen werden sofort fällig.\n\n11.5. Es wird vereinbart, dass in der Geltendmachung des Eigentumsvorbehalts kein Rücktritt vom Vertrag liegt, außer der Fotograf erklärt den Rücktritt vom Vertrag schriftlich.\n\n \n\n12. Gewährleistung\n12.1. Ein Gewährleistungsansprüche des Vertragspartners auslösender Mangel liegt nur bei Abweichung des Fotografen vom vertraglich Geschuldeten vor. Die Geltendmachung von Gewährleistungsansprüchen ist nur für Mängel zulässig, die im Zeitpunkt der Übergabe bereits vorhanden waren. Darüber hinausgehende Garantieversprechen werden vom Fotografen nicht übernommen. Für Erfüllungshandlungen des Fotografen, die auf unrichtigen oder ungenauen Anweisungen des Vertragspartners beruhen bzw für Schäden, die durch ungeeignete oder unsachgemäße Verwendung bzw Handhabung hervorgerufen werden, bestehen jedenfalls keine Gewährleistungsansprüche.\n\n12.2. Es gelten die gesetzlichen Gewährleistungsbestimmungen. Die Verjährungsfrist für Gewährleistungsansprüche beträgt zwei Jahre ab Übergabe der Ware an den Vertragspartner. Hat der Fotograf den Mangel verschuldet, kann der Vertragspartner nach Maßgabe des § 933a ABGB binnen drei Jahren ab Kenntnis von Schaden und Schädiger anstelle der Geltendmachung von Gewährleistungsansprüchen Schadenersatz fordern.\n\n12.3. Ist die Nacherfüllung im Wege der Ersatzlieferung erfolgt, ist der Vertragspartner dazu verpflichtet, die zuerst gelieferte Ware innerhalb von 14 Tagen an den Fotografen auf dessen Kosten zurückzusenden. Die Rücksendung der mangelhaften Waren hat nach den gesetzlichen Vorschriften zu erfolgen.\n\n12.4. Die Abtretung der Mängelansprüche des Vertragspartners ist ausgeschlossen.\n\n \n\n13. Schadenshaftung\nDer Fotograf haftet für von ihm schuldhaft verursachte Schäden nach den gesetzlichen Bestimmungen. Schadenersatzansprüche für Sachschäden sind bei bloß leicht fahrlässiger Verursachung ausgeschlossen. Dies gilt nicht für Schäden an vom Vertragspartner zur Bearbeitung übernommenen Sachen, sowie Schäden, die durch eine Verletzung der vertraglichen Hauptleistungspflichten eingetreten sind.\n \n\n14. Abtretung\nDer Vertragspartner darf seine Rechte aus diesem Vertrag nur mit der vorherigen schriftlichen Zustimmung des Fotografen ganz oder teilweise auf Dritte übertragen oder Dritten verpfänden.\n\n \n\n15. Datenschutz\nDer Fotograf ermittelt, speichert und verarbeitet die vom Vertragspartner bekanntgegebenen personenbezogenen Daten (Name, Adresse, E-Mail- Adresse, Kreditkartendaten, Daten für Kontoüberweisungen, Telefonnummer etc.) sowie die mit der Geschäftsbeziehung zusammenhängenden Daten (wie zB Bestelldatum, bestellte bzw gelieferte Produkte oder Dienstleistungen, Stückanzahl, Preis, Liefertermine, Zahlungs- und Mahndaten etc) unter Beachtung der Bestimmungen des Datenschutzgesetzes idgF für Zwecke der Vertragserfüllung. Der Fotograf verwendet die vom Vertragspartner mitgeteilten personenbezogenen Daten ohne dessen gesonderte ausdrückliche Einwilligung ausschließlich zur Vertragsabwicklung und Beantwortung von Anfragen, sofern dieser in die weitere Verwendung seiner Daten, insbesondere zu Werbezwecken, nicht ausdrücklich eingewilligt hat. Mangels Einwilligung in die Verwendung der Daten zu Werbezwecken werden die Daten nach vollständiger Abwicklung des Vertrages und vollständiger Kaufpreiszahlung für die weitere Verwendung gesperrt und nach Ablauf der steuer- und handelsrechtlichen Aufbewahrungsfristen gelöscht. Bei erteilter Einwilligung werden die Daten zu Werbezwecken gespeichert. Der Vertragspartner kann eine erteilte Zustimmung zur Erhebung, Verarbeitung und Nutzung personenbezogener Daten jederzeit widerrufen.\n\n \n\n16. Verwendung von Bildnissen zu Werbezwecken des Fotografen\nDer Fotograf ist – sofern keine ausdrückliche gegenteilige schriftliche Vereinbarung vorliegt – berechtigt, von ihm hergestellte Lichtbilder zur Bewerbung seiner Tätigkeit zu verwenden. Der Vertragspartner erteilt zur Veröffentlichung zu Werbezwecken des Fotografen seine ausdrückliche und unwiderrufliche Zustimmung und verzichtet auf die Geltendmachung jedweder Ansprüche, insbesondere aus dem Recht auf das eigene Bild gem § 78 UrhG sowie auf Verwendungsansprüche gem § 1041 ABGB.\n\n \n\n17. Anwendbares Recht, Gerichtsstand, Vertragssprache\n17.1. Für sämtliche Streitigkeiten zwischen dem Fotografen und dem Vertragspartner aus dem Vertragsverhältnis, einschließlich Streitigkeiten über das Zustandekommen und/oder die Gültigkeit des Vertrages, gilt österreichisches Recht unter Ausschluss des UN-Kaufrechtsübereinkommens\nund der Verweisungsnormen des internationalen Privatrechts als vereinbart. Diese Rechtswahl gilt jedoch nur insoweit, als nicht der gewährte Schutz durch zwingende Bestimmungen des Rechts des Staates, in dem der Vertragspartner seinen gewöhnlichen Aufenthalt hat, entzogen wird.\n\n17.2. Für alle gegen einen Vertragspartner des Fotografen, der im Inland seinen Wohnsitz, gewöhnlichen Aufenthalt oder Ort der Beschäftigung hat, erhobenen Klagen ist eines jener Gerichte zuständig, in dessen Sprengel der Verbraucher seinen Wohnsitz, gewöhnlichen Aufenthalt oder Ort der Beschäftigung hat.\n\n17.3. Die Vertragssprache ist ausschließlich Deutsch.",
     "agbB2bText": "Allgemeine Geschäftsbedingungen für Unternehmergeschäfte\n \n\n1. Anwendbarkeit und Geltungsbereich der Allgemeinen Geschäftsbedingungen\n1.1. Die vorliegenden Allgemeinen Geschäftsbedingungen gelten ausschließlich für Vertragsabschlüsse mit Unternehmern. Unternehmer iSd § 1 KSchG ist jede natürliche oder juristische Person oder eine rechtsfähige Personengesellschaft, die bei Abschluss eines Rechtsgeschäfts in Ausübung ihrer selbstständigen beruflichen oder gewerblichen Tätigkeit handelt. Für Vertragsabschlüsse mit Verbrauchern (Konsumenten) gelangen die Allgemeinen Geschäftsbedingungen für Verbrauchergeschäfte zur Anwendung.\n\n1.2. Der Fotograf schließt Verträge – sofern nicht ausdrücklich Abweichendes vereinbart wurde – ausschließlich auf der Grundlage der vorliegenden Allgemeinen Geschäftsbedingungen ab.\n\n1.3. Die vorliegenden Allgemeinen Geschäftsbedingungen gelten bis zur Bekanntmachung des Inkrafttretens einer neuen Version für sämtliche – auch zukünftige – Verträge, auch wenn bei zukünftigen Vertragsabschlüssen nicht nochmal gesondert auf sie Bezug genommen wird. Mit der Auftragserteilung anerkennt der Vertragspartner deren ausschließliche Anwendbarkeit.\n\n1.4. Der Einbeziehung entgegenstehender oder ergänzender Vertragsbedingungen des Vertragspartners wird ausdrücklich widersprochen. Diese sind ausnahmslos nur gültig, wenn und insoweit sie im Einzelfall schriftlich vereinbart wurden. Insbesondere gelten Vertragserfüllungshandlungen des Fotografen nicht als Zustimmung zu von diesen Allgemeinen Geschäftsbedingungen abweichenden Vertragsbedingungen.\n\n1.5. Sollten einzelne Bestimmungen der vorliegenden Nutzungsbedingungen rechtsunwirksam, ungültig und/oder nichtig sein oder im Laufe ihrer Dauer werden, so berührt dies die Rechtswirksamkeit und die Gültigkeit der übrigen Bestimmungen nicht. In diesem Fall ist die rechtsunwirksame, ungültige und/oder nichtige (rechtsunwirksam, ungültig und/oder nichtig gewordene) Bestimmung durch eine solche zu ersetzen, die rechtswirksam und gültig ist und in ihrer wirtschaftlichen Auswirkung der ersetzten Bestimmung – soweit als möglich und rechtlich zulässig – entspricht. Aus dem Umstand, dass der\nFotograf einzelne oder alle der ihm zustehenden Rechte nicht ausübt, kann ein Verzicht auf diese Rechte nicht abgeleitet werden.\n\n \n\n2. Angebot, Vertragsabschluss\n2.1. Die Angebote des Fotografen sind – sofern sie nicht ausdrücklich als verbindlich bezeichnet werden – freibleibend und unverbindlich. Dies gilt auch für sämtliche Angaben in Preislisten, Prospekten etc.\n\n2.2. Die Erteilung eines Auftrags an den Fotografen kann sowohl schriftlich (per Brief, E-Mail, Fax etc.) als auch mündlich (persönlich, telefonisch) erfolgen. Der Fotograf übermittelt dem Auftraggeber innerhalb angemessener Zeit nach Einlangen des Auftrags eine Auftragsbestätigung (Angebotsannahme) oder informiert ihn über die Ablehnung des Auftrags. Durch die Annahme kommt ein rechtsverbindlicher Vertrag zwischen dem Fotografen und dem Auftraggeber zustande, wodurch die wechselseitige Leistungspflicht ausgelöst wird.\n\n(Fakultativ bei Möglichkeit der Onlinebestellung von Lichtbildern.)\n\n2.3. Der Auftraggeber hat die Möglichkeit, Lichtbilder und/oder Filmwerke einschließlich der in § 42 UrhG normierten Nutzungsrechte über den Onlineshop zu erwerben. Darüber hinausgehende Nutzungsrechte müssen mit dem Fotografen gesondert vereinbart werden. Das Angebot des Fotografen im Onlineshop ist rechtsverbindlich. Der Kaufvertrag kommt durch Einlangen der Bestellung beim Fotografen zustande. Der Bestellvorgang wird durch Auswahl der gewünschten Produkte in den Warenkorb in Gang gesetzt und durch Anklicken des Kaufbuttons am Ende des Bestellvorgangs abgeschlossen. Der Fotograf stellt die vertragsgegenständlichen Produkte nach Zahlungseingang entweder durch Übersendung an die vom Vertragspartner bekannt gegebene Anschrift oder als Download-Datei zur Verfügung.\n\n \n\n3. Leistungserbringung, Nutzungsbewilligung\n3.1. Der Fotograf kann den Auftrag – zur Gänze oder zum Teil – auch durch Dritte (Labors etc.) ausführen lassen. Sofern der Vertragspartner keine schriftlichen Anordnungen trifft, ist der Fotograf hinsichtlich der Art der Durchführung des Auftrags frei. Dies gilt insbesondere für die Bildauffassung, die Auswahl der Fotomodelle, des Aufnahmeorts und der angewendeten optisch-technischen (fotografischen) Mittel.\n\n3.2. Lieferungen des Fotografen erfolgen auf Gefahr und Kosten des Vertragspartners.\n3.3. Vom Fotografen genannte Liefer-/Leistungstermine und -fristen sind nur\nAnnäherungswerte und unverbindlich, sofern sie nicht ausdrücklich schriftlich als verbindlich bestätigt wurden. Aus der Nichteinhaltung von unverbindlichen Liefer-/ Leistungsfristen und –terminen können keine Ansprüche gegen den Fotografen hergeleitet werden.\n\n3.4. Bei Vereinbarung verbindlicher Liefertermine oder Lieferfristen kann der Vertragspartner – sofern es sich nicht um ein Fixgeschäft iSd Punkt 3.5. handelt – bei Lieferverzug nach Setzung einer angemessenen, mindestens zweiwöchigen, Nachfrist vom Vertrag zurücktreten. Der Vertragsrücktritt ist mittels eingeschriebenen Briefes geltend zu machen. Das Rücktrittsrecht bezieht sich nur auf den Lieferungs- oder Leistungsteil, für den Verzug vorliegt. Der Vertragspartner ist verpflichtet, auf Verlangen des Fotografen umgehend zu erklären, ob er wegen der Verzögerung vom Vertrag zurücktritt oder auf Vertragserfüllung besteht. Schadenersatzansprüche wegen Verzugs des Fotografen bestehen nur, wenn der Vertragspartner nachweist, dass der Fotograf die Verzögerung vorsätzlich oder grob fahrlässig herbeigeführt hat und ihm dadurch ein materieller Schaden entstanden ist. Geringfügige Lieferfristüberschreitungen berechtigen nicht zur Geltendmachung von Schadenersatz.\n\n3.5. Ist die Erfüllung zu einer festbestimmten Zeit oder binnen einer festbestimmten Frist bei sonstigem Rücktritt bedungen und gerät der Fotograf in Verzug, so gilt der Vertrag ohne weiteres Zutun als aufgelöst, sofern der Vertragspartner dem Fotografen nicht umgehend mitteilt, auf die Vertragserfüllung weiterhin zu bestehen.\n\n3.6. Schadenersatzansprüche wegen Nichterfüllung oder verspäteter Erfüllung sind jedenfalls ausgeschlossen, sofern sie nicht auf Vorsatz oder grober Fahrlässigkeit beruhen.\n\n3.7. Mit dem Erwerb eines urheberrechtlich geschützten Werkes, unabhängig ob in Papierform oder digital, erwirbt der Vertragspartner eine einfache (nicht exklusive und nicht ausschließende), nicht übertragbare (abtretbare) Nutzungsbewilligung für den ausdrücklich vereinbarten Verwendungszweck und innerhalb der vereinbarten Grenzen (Auflageziffer, zeitliche und örtliche Beschränkungen etc.); im Zweifel ist der in der Rechnung bzw im Lieferschein angeführte Nutzungsumfang maßgebend. Jedenfalls erwirbt der Vertragspartner nur soviel Rechte wie es dem offengelegten Zweck des Vertrags (erteilten Auftrags) entspricht. Mangels anderer Vereinbarung gilt die Nutzungsbewilligung nur für eine einmalige Veröffentlichung (in einer Auflage), nur für das ausdrücklich bezeichnete Medium des Vertragspartners und nicht für Werbezwecke als erteilt. Darüber hinaus ist der Vertragspartner iSd § 42 UrhG jedenfalls berechtigt, einzelne Vervielfältigungsstücke zum eigenen und privaten\nGebrauch herzustellen.\n\n3.8. Die Nutzungsbewilligung gilt erst bei vollständiger Bezahlung des vereinbarten Aufnahme- und Werknutzungsentgelts (vgl. Punkt 6.2.) und unter der Voraussetzung einer ordnungsgemäßen Herstellerbezeichnung/ Namensnennung gemäß Punkt 4.3. als erteilt.\n\n \n\n4. Urheberrechtliche Bestimmungen\n4.1. Lichtbilder und Filmwerke sind urheberrechtlich geschützte Werke iSd §§ 1, 3, 4 UrhG. Alle Urheber- und Leistungsschutzrechte des Herstellers (§§ 14ff, 73ff UrhG) stehen ausnahmslos dem Fotografen zu. Der Fotograf hat mit Ausnahme der in § 42 UrhG normierten Rechte das ausschließliche Verwertungsrecht, d.h. das ausschließliche Recht, das Lichtbild zu vervielfältigen, zu verbreiten, durch optische Einrichtungen öffentlich vorzuführen, durch Rundfunk zu senden und der Öffentlichkeit zur Verfügung zu stellen. Eine Nutzung ist in diesem Fall nur nach Maßgabe einer vom Fotografen erteilten Nutzungsbewilligung zulässig (vgl. Punkt 3.7.). § 75 UrhG gelangt nicht zur Anwendung.\n\n4.2. Eine Vervielfältigung oder Verbreitung von Lichtbildern/Filmen in Onlinedatenbanken, in elektronischen Archiven, im Internet oder in Intranets, welche nicht nur für den internen Gebrauch des Vertragspartners bestimmt sind, auf Diskette, CD-Rom oder ähnlichen Datenträgern, ist nur auf Grund einer besonderen schriftlichen Vereinbarung zwischen dem Fotografen und dem Vertragspartner gestattet. Das Recht, eine Sicherungskopie herzustellen, bleibt hiervon unberührt.\n\n4.3. Der Vertragspartner ist bei jeder Nutzung (Vervielfältigung, Verbreitung, Sendung etc.) verpflichtet, die Herstellerbezeichnung (Namensnennung) bzw den Copyrightvermerk im Sinn des WURA (Welturheberrechtsabkommen) deutlich und gut lesbar (sichtbar), insbesondere nicht gestürzt und in Normallettern, unmittelbar beim Lichtbild und diesem eindeutig zuordenbar anzubringen wie folgt:\n\nFoto: © … Name/Firma/Künstlername des Fotografen, Ort und – sofern veröffentlicht –Jahreszahl der ersten Veröffentlichung.\n\nDies gilt auch dann, wenn das Lichtbild nicht mit einer Herstellerbezeichnung versehen ist. Jedenfalls gilt diese Bestimmung als Anbringung der Herstellerbezeichnung im Sinn des § 74 Abs 3 UrhG. Ist das Lichtbild auf der Vorderseite (im Bild) signiert, ersetzt die Veröffentlichung dieser Signatur nicht den vorstehend beschriebenen Herstellervermerk.\n4.4. Jede Veränderung des Lichtbilds bedarf der schriftlichen Zustimmung des Fotografen. Dies gilt nur dann nicht, wenn die Änderungen nach dem – dem Fotografen bekannten – Vertragszweck erforderlich sind.\n\n4.5. Im Fall einer Veröffentlichung sind zwei kostenlose Belegexemplare zuzusenden. Bei kostspieligen Produkten (Kunstbücher, Videokassetten) reduziert sich die Zahl der Belegexemplare auf ein Stück. Bei Veröffentlichung im Internet ist dem Fotografen die Webadresse mitzuteilen.\n\n4.6. Bei Verletzung der Urheber- und/oder Leistungsschutzrechte hat der Fotograf nach Maßgabe der §§ 81ff UrhG zivilrechtliche Ansprüche auf Unterlassung, Beseitigung, Schadenersatz, Urteilsveröffentlichung etc. Die Ansprüche stehen dem Fotografen unabhängig von einem Verschulden zu. Im Fall der Verletzung der Pflicht zur Herstellerbezeichnung steht als immaterieller Schaden (§ 87 Abs 2 UrhG) unbeschadet eines hinzukommenden Vermögensschadens (§ 87 Abs 1 UrhG) zumindest ein Betrag in Höhe des angemessenen Entgelts (§ 86 UrhG) zu.\n\n \n\n5. Eigentum am Filmmaterial und den Bilddateien, Kennzeichnung Archivierung\n5.1. Analoge Fotografie: Das Eigentumsrecht am belichteten Filmmaterial (Negative, Diapositive etc.) steht dem Fotografen zu. Dieser überlässt dem Vertragspartner gegen vereinbarte und angemessene Honorierung die für die vereinbarte Nutzung erforderlichen Aufnahmen ins Eigentum. Diapositive werden – sofern nicht schriftlich etwas anderes vereinbart ist – dem Vertragspartner nur leihweise gegen Rückstellung nach Gebrauch auf Gefahr und Kosten des Vertragspartners zur Nutzung im Umfang der Nutzungsbewilligung gemäß Punkt 3.7. zur Verfügung gestellt.\n\n5.2. Digitale Fotografie: Das Eigentum an den Bilddateien steht dem Fotografen zu. Ein Recht auf Übergabe digitaler Bilddateien und Nutzung im Umfang der Nutzungsbewilligung gemäß Punkt 3.7. besteht nur nach ausdrücklicher schriftlicher Vereinbarung und betrifft mangels abweichender ausdrücklicher Vereinbarung nur eine zwischen dem Fotografen und dem Vertragspartner einvernehmlich festzusetzende Auswahl der hergestellten Bilddateien.\n\n5.3. Der Fotograf ist berechtigt, die Lichtbilder sowie die digitalen Bilddateien in jeder ihm geeignet erscheinenden Weise (auch auf der Vorderseite) mit seiner Herstellerbezeichnung zu versehen. Der Vertragspartner ist verpflichtet, für die Integrität der Herstellerbezeichnung zu sorgen, insbesondere bei erlaubter\nWeitergabe an Dritte (Drucker etc.). Erforderlichenfalls ist die Herstellerbezeichnung anzubringen bzw. zu erneuern. Dies gilt insbesondere auch für alle bei der Herstellung erstellten Vervielfältigungsmittel (Lithos, Platten etc.) bzw. bei der Anfertigung von Kopien digitaler Bilddateien.\n\n5.4. Der Vertragspartner ist verpflichtet, digitale Lichtbilder so zu speichern, dass die Herstellerbezeichnung bei jeder Art von Datenübertragung mit den Bildern elektronisch verknüpft bleibt, sodass der Fotograf als Urheber der Bilder klar und eindeutig identifizierbar ist.\n\n5.5. Der Fotograf wird die Aufnahme ohne Rechtspflicht für die Dauer von einem Jahr archivieren. Im Fall des Verlusts oder der Beschädigung stehen dem Vertragspartner keinerlei Ansprüche zu.\n\n \n\n6. Entgelt (Werklohn, Honorar)\n6.1. Mangels abweichender schriftlicher Vereinbarung steht dem Fotografen für seine Leistungen ein Werklohn (Honorar) nach seinen jeweils gültigen Preislisten zu.\n\n6.2. Der Fotograf hat einerseits Anspruch auf ein Aufnahmehonorar, welches auch für Layout- oder Präsentationsaufnahmen sowie dann zusteht, wenn eine Verwertung unterbleibt oder von der Entscheidung durch Dritte abhängt. Auf das Aufnahmehonorar werden in diesem Fall keine Preisreduktionen gewährt. Darüber hinaus steht dem Fotografen beim Verkauf von Lichtbildern/Filmen ein Verkaufsentgelt und für die Erteilung einer über § 42 UrhG hinausgehenden Nutzungsbewilligung gesondert ein Werknutzungsentgelt (Lizenzhonorar) in vereinbarter Höhe zu.\n\n6.3. Konzeptionelle Leistungen (Beratung, Layout, sonstige grafische Leistungen etc.) sowie Materialkosten und sonstige Aufwendungen für Requisiten, Modelle, Reisekosten, Aufenthaltsspesen, Visagisten etc. sind im Aufnahmehonorar nicht enthalten und werden gesondert verrechnet. Dasselbe gilt für einen überdurchschnittlichen organisatorischen bzw. Besprechungsaufwand.\n\n6.4. Die Preisangaben erfolgen in Euro und verstehen sich „ab Werk“ zuzüglich der Umsatzsteuer in ihrer jeweiligen gesetzlichen Höhe sowie zuzüglich allfälliger Nebenkosten, wie Porto und Verpackung, Frachten, Zölle, Versicherungen etc.\n\n6.5. Im Zuge der Auftragsausführung vom Vertragspartner gewünschte Auftragsänderungen gehen zu seinen Lasten und werden gesondert verrechnet.\n6.6. An die Einhaltung vorhergehender Preise bei Anschlussaufträgen sind wir nicht gebunden.\n\n6.7. Für die Richtigkeit von Kostenvoranschlägen wird keine Gewähr übernommen.\n\n \n\n7. Zahlung\n7.1. Sofern nicht schriftlich ausdrücklich ein Zahlungsziel vereinbart wurde, ist das Honorar sofort nach Rechnungslegung zur Zahlung fällig. Wurde ein Zahlungsziel vereinbart, sind die gelegten Rechnungen längstens binnen 8 Werktagen ab Rechnungslegung spesen- und abzugsfrei einlangend beim Fotografen zur Zahlung fällig.\n\n7.2. Der Fotograf ist berechtigt, vor Beginn der Auftragsausführung vom Auftraggeber die Leistung einer Akontozahlung zu fordern sowie bei Aufträgen über teilbare Leistungen Teilrechnungen zu legen.\n\n7.3. Der Fotograf ist berechtigt, Zahlungen unabhängig von deren Widmung zur Begleichung der ältesten fälligen Schuld sowie der darauf anerlaufenen Verzugszinsen und Kosten zu verwenden und zwar in der Reihenfolge: Kosten, Zinsen, Hauptforderung.\n\n7.4. Für den Fall des Zahlungsverzuges werden unabhängig vom Verschulden Verzugszinsen in Höhe von 5 % über dem Basiszinssatz p.a. sowie Zinseszinsen in der gesetzlichen Höhe verrechnet. Darüber hinaus ist der Vertragspartner verpflichtet, dem Fotografen sämtliche aufgewendeten, zur zweckentsprechenden Eintreibung der Forderung notwendigen Kosten, wie etwa Anwaltshonorar und Kosten von Inkassobüros, zu refundieren und jeden weiteren Schaden, insbesondere auch den Schaden, der dadurch entsteht, dass infolge Nichtzahlung entsprechend höhere Zinsen auf allfälligen Kreditkonten anfallen, zu ersetzen. Dies umfasst jedenfalls einen Pauschalbetrag in Höhe von € 40,00 als Entschädigung für Betreibungskosten gem. § 458 UGB.\n\n7.5. Bei Verzug des Vertragspartners mit einer (Teil)Zahlung oder Bekanntwerden von Umständen, die die Kreditwürdigkeit des Vertragspartners zu mindern geeignet sind (z.B. Eröffnung eines Insolvenzverfahrens oder Abweisung eines Insolvenzantrages mangels kostendeckenden Vermögens), ist der Fotograf berechtigt, offene, aber noch nicht fällige Rechnungsbeträge aus der Geschäftsverbindung sofort fällig zu stellen, sowie noch ausstehende Lieferungen oder Leistungen bis zur vollständigen Bezahlung der fälligen Forderungen zurückzuhalten und nur gegen Vorauszahlung oder\nSicherheitsleistung auszuführen. Kommt der Vertragspartner diesen Verpflichtungen nicht nach, ist der Fotograf berechtigt, von sämtlichen mit dem Vertragspartner geschlossenen Verträgen ohne Setzung einer Nachfrist zurückzutreten. Davon unberührt bleibt das Recht auf Rückforderung der unter Eigentumsvorbehalt gelieferten Produkte auf Kosten des Vertragspartners sowie auf Geltendmachung von Schadenersatz.\n\n7.6. Der Vertragspartner ist zur Aufrechnung mit einer eigenen Forderung gegen den Fotografen nur dann berechtigt, wenn dieser zahlungsunfähig ist und die Forderung des Vertragspartners in einem rechtlichen Zusammenhang mit seiner Verbindlichkeit steht oder die Forderung vom Gericht rechtskräftig festgestellt oder vom Fotografen anerkannt wurde.\n\n7.7. Ein Zurückbehaltungsrecht des Vertragspartners gegenüber den Forderungen des Fotografen wegen mangelhafter Erfüllung oder der Geltendmachung von Gewährleistungsansprüchen wird ausdrücklich ausgeschlossen.\n\n \n\n8. Pflichten des Vertragspartners\n8.1. Der Vertragspartner ist verpflichtet, erforderlichenfalls an der Auftragserfüllung mitzuwirken und den Fotografen nach seinen Kräften zu unterstützen. Der Vertragspartner hat für die Einholung allenfalls erforderlicher Werknutzungsbewilligungen Dritter hinsichtlich abgebildeter Gegenstände (z.B. Werke der Bildenden Kunst, Muster und Modelle, Marken, Fotovorlagen etc.) und die Einholung der Zustimmung zur Abbildung von Personen (z.B. Modelle) zu sorgen. Der Fotograf gewährleistet die Zustimmung von Berechtigten, insbesondere von Modellen, nur im Fall ausdrücklicher schriftlicher Zusage für die vertraglichen Verwendungszwecke (Punkt 3.7.).\n\n8.2. Schad- und Klagsloshaltung: Der Vertragspartner verpflichtet sich, den Fotografen vollständig gegenüber Ansprüchen Dritter schad- und klaglos zu halten, falls er aufgrund von Verstößen gegen Rechtsvorschriften bzw. des Verhaltens des Vertragspartners zivil- oder strafrechtlich verfolgt oder belangt bzw. gerichtlich oder außergerichtlich in Anspruch genommen wird.\n\n8.3. Im Falle der Beauftragung des Fotografen mit der elektronischen Bearbeitung fremder Lichtbilder, versichert der Vertragspartner, dass er die hierzu erforderlichen Rechte besitzt und stellt den Fotografen von allen Ansprüchen Dritter frei, die auf eine Verletzung dieser Pflicht beruhen.\n\n8.4. Der Vertragspartner verpflichtet sich, bereitgestellte Aufnahmeobjekte unverzüglich nach der Aufnahme wieder abzuholen. Werden diese Objekte nach\nAufforderung durch den Fotografen nicht spätestens nach zwei Werktagen abgeholt, ist der Fotograf berechtigt, die Gegenstände auf Kosten des Vertragspartners einzulagern.\n\n \n\n9. Annahmeverzug, Rücktritt des Vertragspartners\n9.1. Wird die Leistung vom Vertragspartner zur bedungenen Zeit am bedungenen Ort nicht angenommen bzw. die Leistungserbringung des Fotografen verzögert oder unmöglich gemacht, gerät der Vertragspartner in Annahmeverzug. In diesem Fall ist der Fotograf berechtigt, nach Setzung einer angemessenen Nachfrist von 14 Tagen vom Vertrag zurückzutreten oder – unbeschadet weitergehender Schadenersatzansprüche – auf Vertragserfüllung zu bestehen. Der Fotograf ist ebenso berechtigt vom Vertrag zurückzutreten, wenn der Vertragspartner trotz schriftlicher Abmahnung und Nachfristsetzung von 14 Tagen fortgesetzt gegen wesentliche Verpflichtungen aus dem Vertrag (Mitwirkungspflichten, Leistung der Anzahlung bzw. Teilzahlungen) verstößt. Tritt der Fotograf berechtigt vom Vertrag zurück, steht dem Fotografen mangels anderer Vereinbarung das vereinbarte Entgelt zuzüglich aller tatsächlich angefallenen Nebenkosten zu.\n\n9.2. Bei Annahmeverzug hat der Vertragspartner allfällige Lagerkosten sowie die Kosten für die erfolglose An- und Ablieferung zu tragen. Trifft den Vertragspartner ein Verschulden am Annahmeverzug hat er dem Fotografen darüber hinaus den ihm durch die Verzögerung entstandenen Schaden zu ersetzen. Der Vertragspartner trägt auch die Gefahr der Lagerung.\n\n9.3. Im Fall unbedingt erforderlicher Terminänderungen (z.B. aus Gründen der Wetterlage) sind ein dem vergeblich erbrachten bzw. reservierten Zeitaufwand entsprechendes Honorar und alle Nebenkosten zu bezahlen.\n\n \n\n10. Eigentumsvorbehalt\n10.1. Bis zur vollständigen Bezahlung des Honorars bleibt die Ware im Eigentum des Fotografen. Der Vertragspartner trägt das gesamte Risiko für die Vorbehaltsware, insbesondere für die Gefahr des Untergangs, des Verlustes oder der Verschlechterung.\n\n10.2. Der Vertragspartner ist befugt, über die gekauften Waren im ordentlichen Geschäftsbetrieb zu verfügen.\n\n10.3. Die Verpfändung oder Sicherheitsübereignung der Vorbehaltsware ist dem Vertragspartner untersagt.\n10.4. Der Vertragspartner verpflichtet sich, den Fotografen vor Anmeldung eines Insolvenzverfahrens zu verständigen, damit dieser unter Eigentumsvorbehalt gelieferte und in seinem Eigentum stehende Waren übernehmen kann.\n\n10.5. Gerät der Vertragspartner mit seiner Zahlung ganz oder teilweise in Verzug, so ist der Fotograf berechtigt, Rückgabe der Ware bis zur vollständigen Befriedigung zu verlangen. Befristete Forderungen werden sofort fällig.\n\n10.6. Es wird vereinbart, dass in der Geltendmachung des Eigentumsvorbehalts kein Rücktritt vom Vertrag liegt, außer der Fotograf erklärt den Rücktritt vom Vertrag schriftlich.\n\n \n\n11. Gewährleistung\n11.1. Ein Gewährleistungsansprüche des Vertragspartners auslösender Mangel liegt nur bei Abweichung des Fotografen vom vertraglich Geschuldeten vor. Die Geltendmachung von Gewährleistungsansprüchen ist nur für Mängel zulässig, die im Zeitpunkt der Übergabe bereits vorhanden waren. Darüber hinausgehende Garantieversprechen werden vom Fotografen nicht übernommen. Für Erfüllungshandlungen des Fotografen, die auf unrichtigen oder ungenauen Anweisungen des Vertragspartners beruhen bzw. für Schäden, die durch ungeeignete oder unsachgemäße Verwendung bzw. Handhabung hervorgerufen werden, bestehen jedenfalls keine Gewährleistungsansprüche.\n\n11.2. Für unwesentliche Mängel, wie z.B. Farbdifferenzen bei Nachbestellung oder geringfügige Materialabweichungen, sind Gewährleistungsansprüche ausgeschlossen.\n\n11.3. Das Vorliegen eines Mangels ist ausschließlich vom Vertragspartner zu beweisen. § 924 ABGB findet keine Anwendung.\n\n11.4. Der Vertragspartner ist gemäß § 377 UGB bei sonstigem Verlust seiner Gewährleistungs-, Schadenersatz- sowie Irrtumsanfechtungsansprüche aufgrund eines Mangels verpflichtet, den Mangel unverzüglich nach Empfang der Lieferung oder Leistung, längstens innerhalb von 8 Werktagen, versteckte Mängel binnen 3 Werktagen nach Entdeckung schriftlich zu rügen. Die Rüge ist ausreichend zu begründen und mit Beweismaterial zu belegen.\n\n11.5. Die Gewährleistungsfrist beträgt 6 Monate ab Gefahrenübergang/ Übernahme des Werkes. Gewährleistungsansprüche sind innerhalb dieser Frist bei sonstiger Präklusion gerichtlich geltend zu machen. Die Frist beginnt nicht erneut, wenn im Rahmen der Mängelhaftung eine Ersatzlieferung erfolgt.\n11.6. Dem Vertragspartner stehen keine Gewährleistungsansprüche zu, solange er mit seinen eigenen Leistungspflichten in Verzug ist.\n\n11.7. Bei begründeten Mängeln ist der Fotograf nach seiner Wahl zur Beseitigung des Mangels (Verbesserung, Nachtrag des Fehlenden), zur Ersatzlieferung (Austausch) oder zur Vertragsaufhebung berechtigt. Der Vertragspartner hat kein Wahlrecht zwischen den genannten Gewährleistungsbehelfen. Mehrere Nachbesserungen und Ersatzlieferungen sind zulässig. Nach dem zweiten fehlgeschlagenen Verbesserungsversuch ist der Vertragspartner berechtigt, nach seiner Wahl Herabsetzung des Entgelts zu verlangen oder den Rücktritt vom Vertrag zu erklären. Die Kosten einer vom Vertragspartner vorgenommenen Mängelbehebung durch Dritte ist der Fotograf in keinem Fall zu tragen verpflichtet.\n\n11.8. Ist die Nacherfüllung im Wege der Ersatzlieferung erfolgt, ist der Vertragspartner dazu verpflichtet, die zuerst gelieferte Ware innerhalb von 14 Tagen an den Fotografen auf dessen Kosten zurückzusenden. Die Rücksendung der mangelhaften Waren hat nach den gesetzlichen Vorschriften zu erfolgen.\n\n11.9. Die Fälligkeit der Forderungen des Fotografen wird durch allfällige von ihm zu vertretende Mängel nicht hinausgeschoben. Der Vertragspartner hat kein Zurückbehaltungs-, Minderungs- oder Aufrechnungsrecht, sofern ein solches vom Fotografen nicht ausdrücklich schriftlich anerkannt wurde.\n\n11.10. Das Regressrecht gemäß § 933b ABGB wird ausdrücklich abbedungen.\n\n11.11. Die vorstehenden Bestimmungen über die Haftung für Mängel gelten gleichermaßen, unabhängig davon, ob Mängelansprüche aus dem Titel der Gewährleistung oder des Schadenersatzes gemäß § 933a ABGB geltend gemacht werden. Für Mangelfolgeschäden gelten ausschließlich nachstehende Bestimmungen unter Punkt 12.\n\n11.12. Die Abtretung der Mängelansprüche des Vertragspartners ist ausgeschlossen.\n\n \n\n12. Schadenshaftung\n12.1. Soweit die nachstehenden Haftungsbeschränkungen nicht gegen zwingendes Recht verstoßen, haftet der Fotograf – mit Ausnahme von Personenschäden, welche unabhängig vom Verschuldensgrad zu ersetzen sind – nur für den Ersatz von Schäden, die er grob fahrlässig oder vorsätzlich verursacht hat. Dies gilt auch im Fall des Verlusts oder der Beschädigung von über Auftrag hergestellten Aufnahmen (Diapositive, Negativmaterial, digitale\nBilddateien) oder übergebener Vorlagen (Filme, Layouts, Display-Stücke, sonstige Vorlagen etc.), Produkte und Requisiten. Der Vertragspartner verpflichtet sich, wertvolle Gegenstände zu versichern.\n\n12.2. Bei grober Fahrlässigkeit ist die Haftung für Sachschäden der Höhe nach mit dem Auftragswert beschränkt. Weitere Ansprüche stehen dem Vertragspartner nicht zu; der Fotograf haftet insbesondere nicht für allfällige Reise- und Aufenthaltsspesen sowie für Drittkosten (Modelle, Assistenten, Visagisten und sonstiges Aufnahmepersonal).\n\n12.3. Für mittelbare Schäden, entgangenen Gewinn, Zinsverluste, unterbliebene Einsparungen und Schäden aus Ansprüchen Dritter haftet der Fotograf nur bei Vorsatz.\n\n12.4. Sollte der Vertragspartner nach produkthaftungsrechtlichen Bestimmungen zur Haftung herangezogen werden, verzichtet er dem Fotografen gegenüber ausdrücklich auf jeden Regress, insbesondere im Sinne des § 12 des österreichischen Produkthaftungsgesetzes oder ähnlicher ausländischer Bestimmungen.\n\n12.5. Den Beweis, dass den Fotografen am Schadenseintritt ein Verschulden trifft, hat stets der Vertragspartner zu erbringen; die gesetzlich vorgesehene Beweislastumkehr wird ausdrücklich abbedungen.\n\n12.6. Schadenersatzansprüche jeglicher Art sind innerhalb von 6 Monaten ab Kenntnis von Schaden und Schädiger, längstens innerhalb von 10 Jahren ab Gefahrenübergang/Übernahme des Werks, bei sonstiger Präklusion gerichtlich geltend zu machen.\n\n12.7. Den Fotografen trifft keinerlei Prüf- und/oder Warnpflicht bezüglich der vom Vertragspartner beigestellten Produkte und Requisiten. Der Fotograf übernimmt keine wie immer geartete Haftung für direkte oder indirekte Schäden, welche durch derartige Gegenstände verursacht werden.\n\n12.8. Den Fotografen trifft keine Haftung für Umstände, die nicht seiner Sphäre zuordenbar sind, z.B. Wetterlage bei Außenaufnahmen, rechtzeitige Bereitstellung von Produkten und Requisiten, Ausfall von Modellen, Reisebehinderungen etc.\n\n \n\n13. Abtretung\nDer Vertragspartner darf seine Rechte aus diesem Vertrag nur mit der vorherigen schriftlichen Zustimmung des Fotografen ganz oder teilweise auf Dritte übertragen oder Dritten verpfänden.\n \n\n14. Datenschutz, Adressenänderung\n14.1. Der Vertragspartner erklärt sich durch die Auftragserteilung ausdrücklich damit einverstanden, dass der Fotograf die von ihm bekanntgegebenen personenbezogenen Daten (Name, Adresse, E-Mail-Adresse, Kreditkartendaten, Daten für Kontoüberweisungen, Telefonnummer etc.) sowie die mit der Geschäftsbeziehung zusammenhängenden Daten (wie z.B. Bestelldatum, bestellte bzw. gelieferte Produkte oder Dienstleistungen, Stückanzahl, Preis, Liefertermine, Zahlungs- und Mahndaten etc.) unter Beachtung der Bestimmungen des Datenschutzgesetzes idgF für Zwecke der Vertragserfüllung und Betreuung sowie für eigene Werbezwecke automationsunterstützt ermittelt, speichert und verarbeitet. Weiters erklärt der Vertragspartner sein jederzeit widerrufliches Einverständnis, dass ihm bis auf Widerruf elektronische Post zu Werbezwecken zugesendet wird.\n\n14.2. Der Vertragspartner ist verpflichtet, dem Fotografen Änderungen seiner Geschäftsadresse nachweislich, unaufgefordert und unverzüglich bekannt zu geben, solange das vertragsgegenständliche Rechtsgeschäft nicht beiderseits vollständig erfüllt ist, andernfalls Erklärungen an den Vertragspartner auch dann als zugegangen gelten, falls sie an die dem Fotografen zuletzt bekanntgegebene Adresse gesendet wurden. Der Nachweis des Zugangs seiner Änderungsmitteilung obliegt dem Vertragspartner.\n\n \n\n15. Verwendung von Bildnissen zu Werbezwecken des Fotografen\nDer Fotograf ist – sofern keine ausdrückliche gegenteilige schriftliche Vereinbarung vorliegt – berechtigt, von ihm hergestellte Lichtbilder zur Bewerbung seiner Tätigkeit zu verwenden. Der Vertragspartner erteilt zur Veröffentlichung zu Werbezwecken des Fotografen seine ausdrückliche und unwiderrufliche Zustimmung und verzichtet auf die Geltendmachung jedweder Ansprüche, insbesondere aus dem Recht auf das eigene Bild gem. § 78 UrhG sowie auf Verwendungsansprüche gem. § 1041 ABGB.\n\n \n\n16. Erfüllungsort, Gerichtsstand, Anwendbares Recht, Vertragssprache\n16.1. Erfüllungsort für die wechselseitigen Lieferungen und Leistungen und Gerichtsstand für alle Streitigkeiten aus dem Vertragsverhältnis, einschließlich Streitigkeiten über das Zustandekommen und/oder die Gültigkeit des Auftrages und/oder über die Wirksamkeit der Gerichtsstandvereinbarung ist der Hauptfirmensitz des Fotografen. Im Fall der Sitzverlegung können Klagen am alten und am neuen Firmensitz anhängig gemacht werden. Der Fotograf ist auch berechtigt, das am Firmensitz des Vertragspartners sachlich zuständige Gericht anzurufen.\n16.2. Für sämtliche Rechtsbeziehungen zwischen dem Fotografen und seinem Vertragspartner gilt ausschließlich österreichisches Recht unter Ausschluss der Verweisungsnormen des internationalen Privatrechtes (z.B. IPRG, Rom I-VO etc.) und des UN-Kaufrechts.\n\n16.3. Die Vertragssprache ist ausschließlich Deutsch."
   },
@@ -679,5 +902,119 @@
         "linkUrl": ""
       }
     ]
+  },
+  "occasions": {
+    "seoTitle": "Fotobox für jeden Anlass in Tirol | Hochzeit, Geburtstag und Events",
+    "seoDescription": "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenevent und weitere Anlässe. Moderne Fotobox-Lösungen mit Sofortdruck, Branding und starkem Erinnerungswert.",
+    "heroEyebrow": "Professionelle Vermietung in Tirol",
+    "heroTitle": "Fotobox für",
+    "heroTitleAccent": "jeden/anlass",
+    "heroLead": "Entdeckt maßgeschneiderte Fotobox-Lösungen für Hochzeiten, Geburtstage, Firmenfeiern und Events in Tirol. Modern, hochwertig und gemacht für bleibende Erinnerungen.",
+    "heroImageUrl": "/uploads/1772725458356-dcdb983d-1a6d-4d1b-bfcd-de04366260ca-fotobox-tirol-selfie-bilder-7-optimized.jpg",
+    "sections": [
+      {
+        "id": "hochzeit",
+        "eyebrow": "Der Klassiker für Brautpaare",
+        "title": "Romantische",
+        "titleBold": "Hochzeitsfotobox",
+        "subtitle": "Fotobox mieten für den schönsten Tag in Tirol",
+        "description": "Eine Hochzeitsfotobox bringt eure Gäste zusammen, lockert die Stimmung auf und liefert Erinnerungen, die direkt mitgenommen werden können. Gerade auf Hochzeiten in Innsbruck, Seefeld oder ganz Tirol wird sie schnell zum Treffpunkt für ehrliche Momente und starke Bilder.",
+        "benefits": [
+          "Unlimitierter Druck für Gästebuch und Erinnerungen",
+          "Liebevoll ausgewählte Requisiten und Accessoires",
+          "Personalisiertes Print-Layout mit Namen und Datum",
+          "Online-Galerie für alle Hochzeitsgäste"
+        ],
+        "imageUrl": "/uploads/1772725494493-46ba177e-2411-4843-9112-5f417a6cc0c6-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-16-optimized.jpg",
+        "imageAlt": "Fotobox Tirol bei einer Hochzeit",
+        "warm": false
+      },
+      {
+        "id": "geburtstag",
+        "eyebrow": "Action für eure Party",
+        "title": "Eure",
+        "titleBold": "Geburtstagsfotobox",
+        "subtitle": "Das Party-Highlight für lockere Geburtstagsfeiern",
+        "description": "Eine Geburtstagsfotobox sorgt sofort für Bewegung, Spaß und spontane Gruppenbilder. Ob runder Geburtstag oder große Familienfeier: Gäste posieren, lachen und nehmen ihre Bilder direkt mit. So wird aus der Feier ein Erlebnis, über das noch lange gesprochen wird.",
+        "benefits": [
+          "Direkter Download per QR-Code auf das Handy",
+          "Lustige Accessoires für jede Altersgruppe",
+          "Kompakter Aufbau für kleine und große Locations",
+          "Professionelles Licht für starke Party-Selfies"
+        ],
+        "imageUrl": "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
+        "imageAlt": "Geburtstagsfotobox mit lockerer Partystimmung",
+        "warm": true
+      },
+      {
+        "id": "firma",
+        "eyebrow": "Branding und Mitarbeiter-Erlebnis",
+        "title": "Professionelles",
+        "titleBold": "Firmenevent",
+        "subtitle": "Fotoboxen für Unternehmen, Feiern und Markenauftritte",
+        "description": "Für Firmenfeiern, Weihnachtsfeiern, Sommerfeste oder Jubiläen ist die Fotobox ein starker Mix aus Unterhaltung und Markenwirkung. Layouts, Ausdrucke und Bildsprache lassen sich an euer Corporate Design anpassen und schaffen Content mit Wiedererkennungswert.",
+        "benefits": [
+          "Logo und Branding direkt im Layout integrierbar",
+          "DSGVO-konforme Bildspeicherung und Übergabe",
+          "Professioneller Thermosublimations-Druck",
+          "Technischer Support für einen reibungslosen Ablauf"
+        ],
+        "imageUrl": "/uploads/1772726001232-9db6432f-2bb2-41d2-985a-c749f522c620-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-11-optimized.jpg",
+        "imageAlt": "Fotobox Tirol bei einem Firmenevent",
+        "warm": false
+      },
+      {
+        "id": "event",
+        "eyebrow": "Maximale Aufmerksamkeit",
+        "title": "Fotobox mieten für",
+        "titleBold": "Events",
+        "subtitle": "Ideal für Messen, Festivals und öffentliche Veranstaltungen",
+        "description": "Wenn viele Menschen zusammenkommen, braucht es einen Programmpunkt mit Sogwirkung. Eine Eventfotobox zieht Aufmerksamkeit an, schafft Interaktion und liefert Bilder, die geteilt werden. Genau deshalb ist sie für Messen, Festivals und größere Events in Tirol besonders stark.",
+        "benefits": [
+          "Hohe Aufmerksamkeit am Stand oder Eventbereich",
+          "Direkte Social-Media-taugliche Inhalte",
+          "Flexibel mit Branding und Aktionslogik kombinierbar",
+          "Starker Publikumsmagnet mit echtem Erlebnisfaktor"
+        ],
+        "imageUrl": "/uploads/1772725616835-a3643f1b-9ec6-4d07-b20d-6227a314c187-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-18-optimized.jpg",
+        "imageAlt": "Eventfotobox bei einer größeren Veranstaltung",
+        "warm": true
+      }
+    ],
+    "seoColumns": [
+      {
+        "title": "Fotobox mieten Tirol",
+        "description": "Wir liefern eure Fotobox in ganz Tirol, von Innsbruck bis Kitzbühel. Lieferung, Aufbau und eine kurze Einweisung sind so abgestimmt, dass euer Anlass entspannt starten kann."
+      },
+      {
+        "title": "Häufige Suchanfragen",
+        "description": "Hochzeitsfotobox mieten Innsbruck\nFotobox für Firmenevent Preise\nGeburtstagsfotobox Tirol\nFotobox mit Druck-Flatrate mieten"
+      },
+      {
+        "title": "Qualität & Technik",
+        "description": "Wir arbeiten mit echter DSLR-Technik und professionellem Studiolicht. Dadurch liegt die Bildqualität sichtbar über klassischen Standard-Fotoboxen."
+      }
+    ],
+    "searchTerms": [
+      "Hochzeitsfotobox mieten Innsbruck",
+      "Fotobox für Firmenevent Preise",
+      "Geburtstagsfotobox Tirol",
+      "Fotobox mit Druck-Flatrate mieten"
+    ],
+    "faqHeading": "fragen/anlässe",
+    "faqItems": [
+      {
+        "question": "Für welche Anlässe eignet sich die Fotobox?",
+        "answer": "Unsere Fotobox passt ideal zu Hochzeiten, Geburtstagen, Firmenfeiern, Messen und vielen weiteren Veranstaltungen in Tirol."
+      },
+      {
+        "question": "Können Bilder und Layouts individuell angepasst werden?",
+        "answer": "Ja. Drucklayouts, Branding, Requisiten und Bildstil lassen sich passend zu eurem Anlass abstimmen."
+      }
+    ],
+    "ctaMeta": "Alle Pakete inklusive Setup und Support",
+    "ctaTitle": "Unverbindlich Termin anfragen",
+    "ctaButtonText": "Jetzt anfragen",
+    "ctaButtonHref": "/kontakt"
   }
 }

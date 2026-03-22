@@ -1,4 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CMSContent } from "@/lib/types";
 import BackToTopButton from "@/components/site/BackToTopButton";
 import CookieConsentBanner from "@/components/site/CookieConsentBanner";
@@ -20,14 +24,30 @@ function Brand({ content }: { content: CMSContent }) {
 }
 
 export function SiteHeader({ content }: { content: CMSContent }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
   const navItems = [
-    { href: "/#space", label: "Platz" },
-    { href: "/#accessories", label: "Requisitten" },
-    { href: "/#layout", label: "Layout" },
-    { href: "/#ai", label: "KI" },
-    { href: "/#faq", label: "Fragen" },
-    { href: "/kontakt", label: "Anfragen", className: "accent-link" }
+    { href: "/", label: "startseite" },
+    { href: "/fotobox-anlaesse", label: "anlass" },
+    { href: "/ki-fotobox-tirol", label: "ki-magie" },
+    { href: "/preisgestaltung", label: "preise" },
+    { href: "/kontakt", label: "anfrage", className: "accent-link" }
   ];
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    function handleScroll() {
+      setMobileMenuOpen(false);
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mobileMenuOpen]);
 
   return (
     <header>
@@ -39,32 +59,51 @@ export function SiteHeader({ content }: { content: CMSContent }) {
           <ul className="nav-list-desktop">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className={item.className}>
+                <Link
+                  href={item.href}
+                  className={`${item.className || ""}${pathname === item.href ? " nav-link-active" : ""}`.trim()}
+                >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <details className="mobile-nav-menu">
-            <summary aria-label="Menü öffnen" title="Menü öffnen">
+          <div className="mobile-nav-menu">
+            <button
+              type="button"
+              className="mobile-nav-toggle"
+              aria-label={mobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
+              aria-expanded={mobileMenuOpen}
+              onClick={() => setMobileMenuOpen((open) => !open)}
+            >
               <span className="mobile-nav-hamburger" aria-hidden="true">
                 <span />
                 <span />
                 <span />
               </span>
-            </summary>
+            </button>
+          </div>
+        </nav>
+      </div>
+      {mobileMenuOpen ? (
+        <div className="mobile-nav-panel">
+          <div className="container mobile-nav-panel-inner">
             <ul className="mobile-nav-list">
               {navItems.map((item) => (
                 <li key={`mobile-${item.href}`}>
-                  <Link href={item.href} className={item.className}>
+                  <Link
+                    href={item.href}
+                    className={`${item.className || ""}${pathname === item.href ? " nav-link-active" : ""}`.trim()}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </details>
-        </nav>
-      </div>
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }
@@ -94,7 +133,7 @@ export function SiteFooter({ content }: { content: CMSContent }) {
 
   const legalLinks = content.footer.legalLinks || [];
   const legalDatenschutzLabel =
-    legalLinks.find((link) => normalizeLabel(link.label).includes("datenschutz"))?.label || "Datenschutzerklaerung";
+    legalLinks.find((link) => normalizeLabel(link.label).includes("datenschutz"))?.label || "Datenschutzerklärung";
   const legalAgbB2bLabel =
     legalLinks.find((link) => {
       const label = normalizeLabel(link.label);

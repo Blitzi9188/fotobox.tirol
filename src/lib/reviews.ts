@@ -40,6 +40,7 @@ function parseDateParts(label: string, fallbackYear: number): { month: number; y
 export function formatReviewDateWithCurrentYear(label: string, currentYear = new Date().getFullYear()): string {
   const trimmed = (label || "").trim();
   if (!trimmed) return String(currentYear);
+  if (/\b(19|20)\d{2}\b/.test(trimmed)) return trimmed;
 
   const monthPart = trimmed.replace(/\b(19|20)\d{2}\b/g, "").trim();
   return monthPart ? `${monthPart} ${currentYear}` : String(currentYear);

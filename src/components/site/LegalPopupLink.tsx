@@ -30,7 +30,7 @@ export default function LegalPopupLink({
     };
   }, [open]);
 
-  const title = type === "impressum" ? "Impressum" : "Datenschutzerklaerung";
+  const title = type === "impressum" ? "Impressum" : "Datenschutzerklärung";
 
   return (
     <>
@@ -50,9 +50,9 @@ export default function LegalPopupLink({
             <h3>{title}</h3>
             {type === "impressum" ? (
               <div className="legal-modal-content">
-                <p><strong>Angaben gemaess § 5 ECG</strong></p>
+                <p><strong>Angaben gemäß § 5 ECG</strong></p>
                 <p>Fotobox Tirol</p>
-                <p>Rohracker 6 | 6092 Birgitz | Oesterreich</p>
+                <p>Rohracker 6 | 6092 Birgitz | Österreich</p>
                 <p>Telefon: +43 664 3918 228</p>
                 <p>E-Mail: info@fotobox.tirol</p>
                 <p>UID: auf Anfrage</p>
@@ -61,21 +61,21 @@ export default function LegalPopupLink({
               <div className="legal-modal-content">
                 <p><strong>Datenschutzhinweis</strong></p>
                 <p>
-                  Wir verarbeiten personenbezogene Daten ausschliesslich zur Bearbeitung von Anfragen
-                  und zur Vertragserfuellung.
+                  Wir verarbeiten personenbezogene Daten ausschließlich zur Bearbeitung von Anfragen
+                  und zur Vertragserfüllung.
                 </p>
                 <p>
                   Betroffene Daten: Name, E-Mail, Telefonnummer, Veranstaltungsdaten und freiwillige
                   Zusatzangaben.
                 </p>
                 <p>
-                  Auskunft, Berichtigung oder Loeschung: bitte per E-Mail an info@fotobox.tirol.
+                  Auskunft, Berichtigung oder Löschung: bitte per E-Mail an info@fotobox.tirol.
                 </p>
               </div>
             )}
 
             <button type="button" className="legal-modal-close" onClick={() => setOpen(false)}>
-              Schliessen
+              Schließen
             </button>
           </div>
         </div>

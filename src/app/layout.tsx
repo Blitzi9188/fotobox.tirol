@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     default: "Fotobox Tirol das Original",
     template: "%s"
   },
-  description: "Fotobox Tirol das Original fuer Hochzeiten, Firmenfeiern und Events in Tirol."
+  description: "Fotobox Tirol das Original für Hochzeiten, Firmenfeiern und Events in Tirol."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
