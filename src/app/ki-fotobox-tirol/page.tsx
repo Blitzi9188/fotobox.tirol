@@ -43,20 +43,53 @@ function normalizeHeroSegment(value?: string) {
     .toLowerCase();
 }
 
+function normalizeHeroBadge(value?: string) {
+  const source = (value || "").trim();
+  if (!source) return "NEU: KÜNSTLICHE INTELLIGENZ";
+
+  const normalized = source.toLowerCase();
+  if (
+    normalized === "new: artificial intelligence" ||
+    normalized === "neu: künstliche intelligenz" ||
+    normalized === "neu: kunstliche intelligenz"
+  ) {
+    return "NEU: KÜNSTLICHE INTELLIGENZ";
+  }
+
+  return source;
+}
+
+function normalizeLegacyHeroTitle(top?: string, accent?: string) {
+  const normalizedTop = normalizeHeroSegment(top);
+  const normalizedAccent = normalizeHeroSegment(accent);
+  const combined = `${normalizedTop}/${normalizedAccent}`;
+
+  if (
+    combined === "perfekte bilder/magisch einfach" ||
+    combined === "perfekte bilder/magisch"
+  ) {
+    return { top: "intelligente", bottom: "technologien" };
+  }
+
+  return {
+    top: normalizedTop,
+    bottom: normalizedAccent
+  };
+}
+
 export default async function KiFotoboxTirolPage() {
   const content = await readCmsContent();
   const paragraphs = toParagraphs(content.ai.descriptionText);
-  const leftBefore = content.ai.compareLeftBeforeUrl || "/uploads/hero-optimized.jpg";
-  const leftAfter = content.ai.compareLeftAfterUrl || leftBefore;
-  const demoImage = content.ai.compareRightAfterUrl || content.ai.compareRightBeforeUrl || leftAfter;
+  const leftBefore = content.ai.pageCompareBeforeUrl || content.ai.compareLeftBeforeUrl || "/uploads/hero-optimized.jpg";
+  const leftAfter = content.ai.pageCompareAfterUrl || content.ai.compareLeftAfterUrl || leftBefore;
+  const demoImage = content.ai.pageDemoImageUrl || content.ai.compareRightAfterUrl || content.ai.compareRightBeforeUrl || leftAfter;
   const contactEmail = content.contact.email || "info@fotobox.tirol";
   const contactPhone = content.contact.phone || "+43 664 3918 228";
   const featureTitle = splitSlashTitle(content.ai.featureTitle, "Autofokus auf", "Ihre Schokoladenseite.");
-  const demoTitle = splitSlashTitle(content.ai.demoTitle, "Intelligente", "Design-Overlays.");
   const heroLineTop = content.ai.heroTitleTop || "Perfekte Bilder.";
   const heroAccent = content.ai.heroTitleAccent || "Magisch";
-  const heroSlashTop = normalizeHeroSegment(heroLineTop);
-  const heroSlashBottom = normalizeHeroSegment(`${heroAccent} einfach`);
+  const heroBadge = normalizeHeroBadge(content.ai.heroBadge);
+  const heroTitle = normalizeLegacyHeroTitle(heroLineTop, heroAccent);
 
   const featureCards = (content.ai.featureCards && content.ai.featureCards.length > 0
     ? content.ai.featureCards
@@ -143,12 +176,12 @@ export default async function KiFotoboxTirolPage() {
           <div className="container ki-hero-inner">
             <div className="ki-badge">
               <span className="ki-badge-dot" aria-hidden="true" />
-              {content.ai.heroBadge || "New: Artificial Intelligence"}
+              {heroBadge}
             </div>
             <h1 className="ki-hero-slash-title">
-              <span>{heroSlashTop}</span>
+              <span>{heroTitle.top}</span>
               <span className="accent-slash">/</span>
-              <span>{heroSlashBottom}</span>
+              <span>{heroTitle.bottom}</span>
             </h1>
             <p>
               {content.ai.heroLead || "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttöne und Overlays für einen sichtbar hochwertigeren Event-Look."}
@@ -230,9 +263,6 @@ export default async function KiFotoboxTirolPage() {
 
                 <div className="ki-demo-copy">
                   <div className="ki-demo-badge">{content.ai.demoBadge || "Live Preview"}</div>
-                  <h2>
-                    {demoTitle.top} <br />{demoTitle.bottom}
-                  </h2>
                   <p>
                     {content.ai.demoLead || "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fürs Motiv bleibt."}
                   </p>
