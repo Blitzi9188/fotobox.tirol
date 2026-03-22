@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CMSContent } from "@/lib/types";
@@ -27,12 +27,27 @@ export function SiteHeader({ content }: { content: CMSContent }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const navItems = [
-    { href: "/", label: "Startseite" },
-    { href: "/fotobox-anlaesse", label: "Anlass" },
+    { href: "/", label: "startseite" },
+    { href: "/fotobox-anlaesse", label: "anlass" },
     { href: "/ki-fotobox-tirol", label: "ki-magie" },
-    { href: "/preisgestaltung", label: "Preise" },
-    { href: "/kontakt", label: "Anfrage", className: "accent-link" }
+    { href: "/preisgestaltung", label: "preise" },
+    { href: "/kontakt", label: "anfrage", className: "accent-link" }
   ];
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    function handleScroll() {
+      setMobileMenuOpen(false);
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mobileMenuOpen]);
 
   return (
     <header>
@@ -72,7 +87,7 @@ export function SiteHeader({ content }: { content: CMSContent }) {
       </div>
       {mobileMenuOpen ? (
         <div className="mobile-nav-panel">
-          <div className="container">
+          <div className="container mobile-nav-panel-inner">
             <ul className="mobile-nav-list">
               {navItems.map((item) => (
                 <li key={`mobile-${item.href}`}>

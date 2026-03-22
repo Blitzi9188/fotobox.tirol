@@ -235,9 +235,6 @@ export default async function HomePage() {
                             <p key={`ai-copy-${index}`}>{paragraph}</p>
                           ))}
                         </div>
-                        <Link href="/kontakt" className="btn ai-cta-btn">
-                          jetzt die Zukunft Starten
-                        </Link>
                         <ul className="price-list">
                           {content.ai.bullets.map((item) => <li key={item}>✓ {item}</li>)}
                         </ul>

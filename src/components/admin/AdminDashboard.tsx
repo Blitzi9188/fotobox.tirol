@@ -3,7 +3,7 @@
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import AdminLoginForm from "@/components/admin/AdminLoginForm";
-import { AccessoryItem, CMSContent, GalleryItem } from "@/lib/types";
+import { AccessoryItem, CMSContent, Feature, FaqItem, GalleryItem, OccasionItem } from "@/lib/types";
 import { DEFAULT_AGB_B2B_TEXT, DEFAULT_AGB_TEXT, DEFAULT_DATENSCHUTZ_TEXT, DEFAULT_IMPRESSUM_TEXT } from "@/lib/legalDefaults";
 
 type CmsUpdater = (prev: CMSContent) => CMSContent;
@@ -11,6 +11,8 @@ type SectionId =
   | "overview"
   | "hero"
   | "features"
+  | "aiPage"
+  | "occasions"
   | "accessories"
   | "space"
   | "spaceLayout"
@@ -31,6 +33,8 @@ const SECTION_TABS: Array<{ id: SectionId; label: string }> = [
   { id: "overview", label: "Übersicht" },
   { id: "hero", label: "Hero" },
   { id: "features", label: "Features" },
+  { id: "aiPage", label: "KI-Seite" },
+  { id: "occasions", label: "Anlässe" },
   { id: "accessories", label: "Accessoires" },
   { id: "space", label: "Platzbedarf" },
   { id: "spaceLayout", label: "Layout/Gestaltung" },
@@ -60,6 +64,10 @@ const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = HOMEPAGE_BLOCKS.map((block) =>
 
 function getPreviewPathForTab(tab: SectionId) {
   switch (tab) {
+    case "aiPage":
+      return "/ki-fotobox-tirol";
+    case "occasions":
+      return "/fotobox-anlaesse";
     case "pricing":
       return "/preisgestaltung";
     case "contact":
@@ -140,6 +148,107 @@ function normalizeImageUrl(value: string) {
   return trimmed;
 }
 
+const DEFAULT_OCCASIONS_SECTIONS: OccasionItem[] = [
+  {
+    id: "hochzeit",
+    eyebrow: "Der Klassiker für Brautpaare",
+    title: "Romantische",
+    titleBold: "Hochzeitsfotobox",
+    subtitle: "Fotobox mieten für den schönsten Tag in Tirol",
+    description:
+      "Eine Hochzeitsfotobox bringt eure Gäste zusammen, lockert die Stimmung auf und liefert Erinnerungen, die direkt mitgenommen werden können. Gerade auf Hochzeiten in Innsbruck, Seefeld oder ganz Tirol wird sie schnell zum Treffpunkt für ehrliche Momente und starke Bilder.",
+    benefits: [
+      "Unlimitierter Druck für Gästebuch und Erinnerungen",
+      "Liebevoll ausgewählte Requisiten und Accessoires",
+      "Personalisiertes Print-Layout mit Namen und Datum",
+      "Online-Galerie für alle Hochzeitsgäste"
+    ],
+    imageUrl: "/uploads/1772725494493-46ba177e-2411-4843-9112-5f417a6cc0c6-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-16-optimized.jpg",
+    imageAlt: "Fotobox Tirol bei einer Hochzeit",
+    warm: false
+  },
+  {
+    id: "geburtstag",
+    eyebrow: "Action für eure Party",
+    title: "Eure",
+    titleBold: "Geburtstagsfotobox",
+    subtitle: "Das Party-Highlight für lockere Geburtstagsfeiern",
+    description:
+      "Eine Geburtstagsfotobox sorgt sofort für Bewegung, Spaß und spontane Gruppenbilder. Ob runder Geburtstag oder große Familienfeier: Gäste posieren, lachen und nehmen ihre Bilder direkt mit. So wird aus der Feier ein Erlebnis, über das noch lange gesprochen wird.",
+    benefits: [
+      "Direkter Download per QR-Code auf das Handy",
+      "Lustige Accessoires für jede Altersgruppe",
+      "Kompakter Aufbau für kleine und große Locations",
+      "Professionelles Licht für starke Party-Selfies"
+    ],
+    imageUrl: "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
+    imageAlt: "Geburtstagsfotobox mit lockerer Partystimmung",
+    warm: true
+  },
+  {
+    id: "firma",
+    eyebrow: "Branding und Mitarbeiter-Erlebnis",
+    title: "Professionelles",
+    titleBold: "Firmenevent",
+    subtitle: "Fotoboxen für Unternehmen, Feiern und Markenauftritte",
+    description:
+      "Für Firmenfeiern, Weihnachtsfeiern, Sommerfeste oder Jubiläen ist die Fotobox ein starker Mix aus Unterhaltung und Markenwirkung. Layouts, Ausdrucke und Bildsprache lassen sich an euer Corporate Design anpassen und schaffen Content mit Wiedererkennungswert.",
+    benefits: [
+      "Logo und Branding direkt im Layout integrierbar",
+      "DSGVO-konforme Bildspeicherung und Übergabe",
+      "Professioneller Thermosublimations-Druck",
+      "Technischer Support für einen reibungslosen Ablauf"
+    ],
+    imageUrl: "/uploads/1772726001232-9db6432f-2bb2-41d2-985a-c749f522c620-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-11-optimized.jpg",
+    imageAlt: "Fotobox Tirol bei einem Firmenevent",
+    warm: false
+  },
+  {
+    id: "event",
+    eyebrow: "Maximale Aufmerksamkeit",
+    title: "Fotobox mieten für",
+    titleBold: "Events",
+    subtitle: "Ideal für Messen, Festivals und öffentliche Veranstaltungen",
+    description:
+      "Wenn viele Menschen zusammenkommen, braucht es einen Programmpunkt mit Sogwirkung. Eine Eventfotobox zieht Aufmerksamkeit an, schafft Interaktion und liefert Bilder, die geteilt werden. Genau deshalb ist sie für Messen, Festivals und größere Events in Tirol besonders stark.",
+    benefits: [
+      "Hohe Aufmerksamkeit am Stand oder Eventbereich",
+      "Direkte Social-Media-taugliche Inhalte",
+      "Flexibel mit Branding und Aktionslogik kombinierbar",
+      "Starker Publikumsmagnet mit echtem Erlebnisfaktor"
+    ],
+    imageUrl: "/uploads/1772725616835-a3643f1b-9ec6-4d07-b20d-6227a314c187-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-18-optimized.jpg",
+    imageAlt: "Eventfotobox bei einer größeren Veranstaltung",
+    warm: true
+  }
+];
+
+const DEFAULT_OCCASIONS_SEO_COLUMNS: Feature[] = [
+  {
+    title: "Fotobox mieten Tirol",
+    description: "Wir liefern eure Fotobox in ganz Tirol, von Innsbruck bis Kitzbühel. Lieferung, Aufbau und eine kurze Einweisung sind so abgestimmt, dass euer Anlass entspannt starten kann."
+  },
+  {
+    title: "Häufige Suchanfragen",
+    description: "Hochzeitsfotobox mieten Innsbruck\nFotobox für Firmenevent Preise\nGeburtstagsfotobox Tirol\nFotobox mit Druck-Flatrate mieten"
+  },
+  {
+    title: "Qualität & Technik",
+    description: "Wir arbeiten mit echter DSLR-Technik und professionellem Studiolicht. Dadurch liegt die Bildqualität sichtbar über klassischen Standard-Fotoboxen."
+  }
+];
+
+const DEFAULT_OCCASIONS_FAQ_ITEMS: FaqItem[] = [
+  {
+    question: "Für welche Anlässe eignet sich die Fotobox?",
+    answer: "Unsere Fotobox passt ideal zu Hochzeiten, Geburtstagen, Firmenfeiern, Messen und vielen weiteren Veranstaltungen in Tirol."
+  },
+  {
+    question: "Können Bilder und Layouts individuell angepasst werden?",
+    answer: "Ja. Drucklayouts, Branding, Requisiten und Bildstil lassen sich passend zu eurem Anlass abstimmen."
+  }
+];
+
 export default function AdminDashboard() {
   const [content, setContent] = useState<CMSContent | null>(null);
   const contentRef = useRef<CMSContent | null>(null);
@@ -177,7 +286,7 @@ export default function AdminDashboard() {
       ...json.ai,
       descriptionText: normalizedAiDescriptionText,
       descriptionHtml: textToParagraphHtml(normalizedAiDescriptionText),
-      heroBadge: json.ai.heroBadge || "New: Artificial Intelligence",
+      heroBadge: json.ai.heroBadge || "NEU: KÜNSTLICHE INTELLIGENZ",
       heroTitleTop: json.ai.heroTitleTop || "Perfekte Bilder.",
       heroTitleAccent: json.ai.heroTitleAccent || "Magisch",
       heroLead: json.ai.heroLead || "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttöne und Overlays für einen sichtbar hochwertigeren Event-Look.",
@@ -231,7 +340,10 @@ export default function AdminDashboard() {
       standardTitle: json.ai.standardTitle || "Standard in allen Fotoboxen.",
       standardLead: json.ai.standardLead || "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und lässt sich je nach Eventcharakter intensiver inszenieren.",
       finalTitle: json.ai.finalTitle || "Direkt zur KI-Fotobox beraten lassen",
-      finalLead: json.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt."
+      finalLead: json.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt.",
+      pageCompareBeforeUrl: json.ai.pageCompareBeforeUrl || json.ai.compareLeftBeforeUrl || "",
+      pageCompareAfterUrl: json.ai.pageCompareAfterUrl || json.ai.compareLeftAfterUrl || "",
+      pageDemoImageUrl: json.ai.pageDemoImageUrl || json.ai.compareRightAfterUrl || json.ai.compareRightBeforeUrl || json.ai.previewImageUrl || ""
     };
     const normalizedFooter = {
       questionsTitle: json.footer?.questionsTitle || "Du hast Fragen?",
@@ -363,6 +475,38 @@ export default function AdminDashboard() {
               rating: 5
             }
           ]
+    };
+    const normalizedOccasions = {
+      seoTitle: json.occasions?.seoTitle || "Fotobox für jeden Anlass in Tirol | Hochzeit, Geburtstag und Events",
+      seoDescription:
+        json.occasions?.seoDescription ||
+        "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenevent und weitere Anlässe. Moderne Fotobox-Lösungen mit Sofortdruck, Branding und starkem Erinnerungswert.",
+      heroEyebrow: json.occasions?.heroEyebrow || "Professionelle Vermietung in Tirol",
+      heroTitle: json.occasions?.heroTitle || "Fotobox für",
+      heroTitleAccent: json.occasions?.heroTitleAccent || "jeden/anlass",
+      heroLead:
+        json.occasions?.heroLead ||
+        "Entdeckt maßgeschneiderte Fotobox-Lösungen für Hochzeiten, Geburtstage, Firmenfeiern und Events in Tirol. Modern, hochwertig und gemacht für bleibende Erinnerungen.",
+      heroImageUrl:
+        json.occasions?.heroImageUrl ||
+        "/uploads/1772725458356-dcdb983d-1a6d-4d1b-bfcd-de04366260ca-fotobox-tirol-selfie-bilder-7-optimized.jpg",
+      sections: (json.occasions?.sections && json.occasions.sections.length > 0) ? json.occasions.sections : DEFAULT_OCCASIONS_SECTIONS,
+      seoColumns: (json.occasions?.seoColumns && json.occasions.seoColumns.length > 0) ? json.occasions.seoColumns : DEFAULT_OCCASIONS_SEO_COLUMNS,
+      searchTerms:
+        (json.occasions?.searchTerms && json.occasions.searchTerms.length > 0)
+          ? json.occasions.searchTerms
+          : [
+              "Hochzeitsfotobox mieten Innsbruck",
+              "Fotobox für Firmenevent Preise",
+              "Geburtstagsfotobox Tirol",
+              "Fotobox mit Druck-Flatrate mieten"
+            ],
+      faqHeading: json.occasions?.faqHeading || "fragen/anlässe",
+      faqItems: (json.occasions?.faqItems && json.occasions.faqItems.length > 0) ? json.occasions.faqItems : DEFAULT_OCCASIONS_FAQ_ITEMS,
+      ctaMeta: json.occasions?.ctaMeta || "Alle Pakete inklusive Setup und Support",
+      ctaTitle: json.occasions?.ctaTitle || "Unverbindlich Termin anfragen",
+      ctaButtonText: json.occasions?.ctaButtonText || "Jetzt anfragen",
+      ctaButtonHref: json.occasions?.ctaButtonHref || "/kontakt"
     };
     const normalizedTemplateWizard = {
       step1: {
@@ -518,6 +662,7 @@ export default function AdminDashboard() {
       accessories: normalizedAccessories,
       thanks: normalizedThanks,
       contact: normalizedContact,
+      occasions: normalizedOccasions,
       space: normalizedSpace,
       reviews: normalizedReviews,
       templateWizard: normalizedTemplateWizard,
@@ -585,6 +730,21 @@ export default function AdminDashboard() {
     const latestContent = contentRef.current;
     if (!latestContent) return;
     await persistContent(latestContent);
+  }
+
+  async function saveAndOpenPreview(tab: SectionId) {
+    const latestContent = contentRef.current;
+    if (!latestContent) return;
+
+    let saved = true;
+    if (dirty) {
+      saved = await persistContent(latestContent, "Gespeichert. Vorschau wird geöffnet...");
+    }
+
+    if (!saved) return;
+
+    const previewPath = getPreviewPathForTab(tab);
+    window.open(`${previewPath}${previewPath.includes("?") ? "&" : "?"}v=${Date.now()}`, "_blank");
   }
 
   async function uploadImage(file: File): Promise<string | null> {
@@ -1094,49 +1254,60 @@ export default function AdminDashboard() {
       );
     }
 
-    if (section === "features") {
+    if (section === "features" || section === "aiPage") {
       return (
         <section className="admin-section">
           <div className="admin-section-head">
-            <h2>Features & KI</h2>
-            <p>Feature-Texte, KI-Bereich und Detailtexte.</p>
+            <h2>{section === "aiPage" ? "KI-Seite" : "Features & KI"}</h2>
+            <p>{section === "aiPage" ? "Texte und Bilder der Unterseite `ki-fotobox-tirol`." : "Feature-Texte, KI-Bereich und Detailtexte."}</p>
+            {section === "aiPage" ? (
+              <div className="admin-section-actions">
+                <button className="btn" type="button" onClick={saveContent}>
+                  {dirty ? "KI-Seite speichern" : "gespeichert"}
+                </button>
+                <button className="btn btn-outline" type="button" onClick={() => saveAndOpenPreview(section)}>
+                  KI-Seite speichern und öffnen
+                </button>
+                <span className="admin-inline-status">{dirty ? "Ungespeicherte Änderungen" : "Alles gespeichert"}</span>
+              </div>
+            ) : null}
           </div>
           <div className="admin-panel">
-            <label className="admin-field">
-              <span>Feature Überschrift (mit /)</span>
-              <input
-                value={content.features.heading}
-                onChange={(e) => updateContent((prev) => ({ ...prev, features: { ...prev.features, heading: e.target.value } }))}
-              />
-            </label>
-            {content.features.items.map((feature, index) => (
-              <div className="admin-subcard" key={`${feature.title}-${index}`}>
-                <label className="admin-field">
-                  <span>Feature {index + 1} Titel</span>
-                  <input
-                    value={feature.title}
-                    onChange={(e) => {
-                      const items = [...content.features.items];
-                      items[index] = { ...feature, title: e.target.value };
-                      updateContent((prev) => ({ ...prev, features: { ...prev.features, items } }));
-                    }}
-                  />
-                </label>
-                <label className="admin-field">
-                  <span>Beschreibung</span>
-                  <textarea
-                    rows={3}
-                    value={feature.description}
-                    onChange={(e) => {
-                      const items = [...content.features.items];
-                      items[index] = { ...feature, description: e.target.value };
-                      updateContent((prev) => ({ ...prev, features: { ...prev.features, items } }));
-                    }}
-                  />
-                </label>
-              </div>
-            ))}
-          </div>
+              <label className="admin-field">
+                <span>Feature Überschrift (mit /)</span>
+                <input
+                  value={content.features.heading}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, features: { ...prev.features, heading: e.target.value } }))}
+                />
+              </label>
+              {content.features.items.map((feature, index) => (
+                <div className="admin-subcard" key={`${feature.title}-${index}`}>
+                  <label className="admin-field">
+                    <span>Feature {index + 1} Titel</span>
+                    <input
+                      value={feature.title}
+                      onChange={(e) => {
+                        const items = [...content.features.items];
+                        items[index] = { ...feature, title: e.target.value };
+                        updateContent((prev) => ({ ...prev, features: { ...prev.features, items } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Beschreibung</span>
+                    <textarea
+                      rows={3}
+                      value={feature.description}
+                      onChange={(e) => {
+                        const items = [...content.features.items];
+                        items[index] = { ...feature, description: e.target.value };
+                        updateContent((prev) => ({ ...prev, features: { ...prev.features, items } }));
+                      }}
+                    />
+                  </label>
+                </div>
+              ))}
+            </div>
 
           <div className="admin-grid-3">
             <div className="admin-panel">
@@ -1303,7 +1474,81 @@ export default function AdminDashboard() {
 
             <div className="admin-panel">
               <label className="admin-field">
-                <span>Links Vorher hochladen</span>
+                <span>KI Unterseite Vergleich Vorher hochladen</span>
+                <input
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
+                  onChange={(event) => {
+                    handleImageUpload(
+                      event,
+                      (prev, url) => ({ ...prev, ai: { ...prev.ai, pageCompareBeforeUrl: url } }),
+                      "Lade KI Unterseite Vorher hoch...",
+                      "KI Unterseite Vorher gespeichert."
+                    );
+                  }}
+                />
+              </label>
+              <label className="admin-field">
+                <span>KI Unterseite Vergleich Vorher URL</span>
+                <input
+                  value={content.ai.pageCompareBeforeUrl || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, pageCompareBeforeUrl: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>KI Unterseite Vergleich Nachher hochladen</span>
+                <input
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
+                  onChange={(event) => {
+                    handleImageUpload(
+                      event,
+                      (prev, url) => ({ ...prev, ai: { ...prev.ai, pageCompareAfterUrl: url } }),
+                      "Lade KI Unterseite Nachher hoch...",
+                      "KI Unterseite Nachher gespeichert."
+                    );
+                  }}
+                />
+              </label>
+              <label className="admin-field">
+                <span>KI Unterseite Vergleich Nachher URL</span>
+                <input
+                  value={content.ai.pageCompareAfterUrl || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, pageCompareAfterUrl: e.target.value } }))}
+                />
+              </label>
+              {content.ai.pageCompareAfterUrl ? <img src={content.ai.pageCompareAfterUrl} alt="KI Unterseite Nachher" className="admin-preview" /> : null}
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>KI Unterseite Demo Bild hochladen</span>
+                <input
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
+                  onChange={(event) => {
+                    handleImageUpload(
+                      event,
+                      (prev, url) => ({ ...prev, ai: { ...prev.ai, pageDemoImageUrl: url } }),
+                      "Lade KI Unterseite Demo Bild hoch...",
+                      "KI Unterseite Demo Bild gespeichert."
+                    );
+                  }}
+                />
+              </label>
+              <label className="admin-field">
+                <span>KI Unterseite Demo Bild URL</span>
+                <input
+                  value={content.ai.pageDemoImageUrl || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, pageDemoImageUrl: e.target.value } }))}
+                />
+              </label>
+              {content.ai.pageDemoImageUrl ? <img src={content.ai.pageDemoImageUrl} alt="KI Unterseite Demo" className="admin-preview" /> : null}
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Startseite Links Vorher hochladen</span>
                 <input
                   type="file"
                   accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
@@ -1318,14 +1563,14 @@ export default function AdminDashboard() {
                 />
               </label>
               <label className="admin-field">
-                <span>Links Vorher URL</span>
+                <span>Startseite Links Vorher URL</span>
                 <input
                   value={content.ai.compareLeftBeforeUrl || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, compareLeftBeforeUrl: e.target.value } }))}
                 />
               </label>
               <label className="admin-field">
-                <span>Links Nachher hochladen</span>
+                <span>Startseite Links Nachher hochladen</span>
                 <input
                   type="file"
                   accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
@@ -1340,7 +1585,7 @@ export default function AdminDashboard() {
                 />
               </label>
               <label className="admin-field">
-                <span>Links Nachher URL</span>
+                <span>Startseite Links Nachher URL</span>
                 <input
                   value={content.ai.compareLeftAfterUrl || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, compareLeftAfterUrl: e.target.value } }))}
@@ -1351,7 +1596,7 @@ export default function AdminDashboard() {
 
             <div className="admin-panel">
               <label className="admin-field">
-                <span>Rechts Vorher hochladen</span>
+                <span>Startseite Rechts Vorher hochladen</span>
                 <input
                   type="file"
                   accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
@@ -1366,14 +1611,14 @@ export default function AdminDashboard() {
                 />
               </label>
               <label className="admin-field">
-                <span>Rechts Vorher URL</span>
+                <span>Startseite Rechts Vorher URL</span>
                 <input
                   value={content.ai.compareRightBeforeUrl || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, compareRightBeforeUrl: e.target.value } }))}
                 />
               </label>
               <label className="admin-field">
-                <span>Rechts Nachher hochladen</span>
+                <span>Startseite Rechts Nachher hochladen</span>
                 <input
                   type="file"
                   accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
@@ -1388,7 +1633,7 @@ export default function AdminDashboard() {
                 />
               </label>
               <label className="admin-field">
-                <span>Rechts Nachher URL</span>
+                <span>Startseite Rechts Nachher URL</span>
                 <input
                   value={content.ai.compareRightAfterUrl || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, ai: { ...prev.ai, compareRightAfterUrl: e.target.value } }))}
@@ -1464,6 +1709,293 @@ export default function AdminDashboard() {
               </label>
             </div>
           </div>
+        </section>
+      );
+    }
+
+    if (section === "occasions") {
+      return (
+        <section className="admin-section">
+          <div className="admin-section-head">
+            <h2>Anlässe</h2>
+            <p>Hero, Texte, Bilder und CTA der Unterseite `fotobox-anlaesse`.</p>
+          </div>
+
+          <div className="admin-grid-2">
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>SEO Titel</span>
+                <input
+                  value={content.occasions?.seoTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, seoTitle: e.target.value }
+                  }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>SEO Beschreibung</span>
+                <textarea
+                  rows={4}
+                  value={content.occasions?.seoDescription || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, seoDescription: e.target.value }
+                  }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Hero Eyebrow</span>
+                <input
+                  value={content.occasions?.heroEyebrow || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, heroEyebrow: e.target.value }
+                  }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Hero Überschrift</span>
+                <input
+                  value={content.occasions?.heroTitleAccent || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, heroTitleAccent: e.target.value }
+                  }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Hero Einleitung</span>
+                <textarea
+                  rows={5}
+                  value={content.occasions?.heroLead || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, heroLead: e.target.value }
+                  }))}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Hero Bild hochladen</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(event) => {
+                    handleImageUpload(
+                      event,
+                      (prev, url) => ({
+                        ...prev,
+                        occasions: { ...prev.occasions!, heroImageUrl: url }
+                      }),
+                      "Lade Anlässe Hero Bild hoch...",
+                      "Anlässe Hero Bild gespeichert."
+                    );
+                  }}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Hero Bild URL</span>
+                <input
+                  value={content.occasions?.heroImageUrl || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, heroImageUrl: normalizeImageUrl(e.target.value) }
+                  }))}
+                />
+              </label>
+              {content.occasions?.heroImageUrl ? (
+                <img src={content.occasions.heroImageUrl} alt="Anlässe Hero" className="admin-preview" />
+              ) : null}
+              <label className="admin-field">
+                <span>CTA Hinweis</span>
+                <input
+                  value={content.occasions?.ctaMeta || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, ctaMeta: e.target.value }
+                  }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>CTA Titel</span>
+                <input
+                  value={content.occasions?.ctaTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, ctaTitle: e.target.value }
+                  }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>CTA Button Text</span>
+                <input
+                  value={content.occasions?.ctaButtonText || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, ctaButtonText: e.target.value }
+                  }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>CTA Button Link</span>
+                <input
+                  value={content.occasions?.ctaButtonHref || ""}
+                  onChange={(e) => updateContent((prev) => ({
+                    ...prev,
+                    occasions: { ...prev.occasions!, ctaButtonHref: e.target.value }
+                  }))}
+                />
+              </label>
+            </div>
+          </div>
+
+          {(content.occasions?.sections || []).map((occasion, index) => (
+            <div className="admin-subcard" key={`${occasion.id}-${index}`}>
+              <div className="admin-section-head" style={{ marginBottom: "1rem" }}>
+                <h3>{occasion.id}</h3>
+                <p>Text und Bild für diesen Anlass.</p>
+              </div>
+              <div className="admin-grid-2">
+                <div className="admin-panel">
+                  <label className="admin-field">
+                    <span>Übertitel</span>
+                    <input
+                      value={occasion.eyebrow}
+                      onChange={(e) => {
+                        const sections = [...(content.occasions?.sections || [])];
+                        sections[index] = { ...occasion, eyebrow: e.target.value };
+                        updateContent((prev) => ({ ...prev, occasions: { ...prev.occasions!, sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Titel links</span>
+                    <input
+                      value={occasion.title}
+                      onChange={(e) => {
+                        const sections = [...(content.occasions?.sections || [])];
+                        sections[index] = { ...occasion, title: e.target.value };
+                        updateContent((prev) => ({ ...prev, occasions: { ...prev.occasions!, sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Titel fett</span>
+                    <input
+                      value={occasion.titleBold}
+                      onChange={(e) => {
+                        const sections = [...(content.occasions?.sections || [])];
+                        sections[index] = { ...occasion, titleBold: e.target.value };
+                        updateContent((prev) => ({ ...prev, occasions: { ...prev.occasions!, sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Untertitel</span>
+                    <input
+                      value={occasion.subtitle}
+                      onChange={(e) => {
+                        const sections = [...(content.occasions?.sections || [])];
+                        sections[index] = { ...occasion, subtitle: e.target.value };
+                        updateContent((prev) => ({ ...prev, occasions: { ...prev.occasions!, sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Beschreibung</span>
+                    <textarea
+                      rows={6}
+                      value={occasion.description}
+                      onChange={(e) => {
+                        const sections = [...(content.occasions?.sections || [])];
+                        sections[index] = { ...occasion, description: e.target.value };
+                        updateContent((prev) => ({ ...prev, occasions: { ...prev.occasions!, sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Vorteile (eine Zeile pro Punkt)</span>
+                    <textarea
+                      rows={6}
+                      value={occasion.benefits.join("\n")}
+                      onChange={(e) => {
+                        const sections = [...(content.occasions?.sections || [])];
+                        sections[index] = {
+                          ...occasion,
+                          benefits: e.target.value.split("\n").map((line) => line.trim()).filter(Boolean)
+                        };
+                        updateContent((prev) => ({ ...prev, occasions: { ...prev.occasions!, sections } }));
+                      }}
+                    />
+                  </label>
+                </div>
+
+                <div className="admin-panel">
+                  <label className="admin-field">
+                    <span>Bild hochladen</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(event) => {
+                        handleImageUpload(
+                          event,
+                          (prev, url) => {
+                            const sections = [...(prev.occasions?.sections || [])];
+                            const current = sections[index];
+                            if (!current) return prev;
+                            sections[index] = { ...current, imageUrl: url };
+                            return { ...prev, occasions: { ...prev.occasions!, sections } };
+                          },
+                          `Lade Bild für ${occasion.id} hoch...`,
+                          `Bild für ${occasion.id} gespeichert.`
+                        );
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Bild URL</span>
+                    <input
+                      value={occasion.imageUrl || ""}
+                      onChange={(e) => {
+                        const sections = [...(content.occasions?.sections || [])];
+                        sections[index] = { ...occasion, imageUrl: normalizeImageUrl(e.target.value) };
+                        updateContent((prev) => ({ ...prev, occasions: { ...prev.occasions!, sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Alt Text</span>
+                    <input
+                      value={occasion.imageAlt || ""}
+                      onChange={(e) => {
+                        const sections = [...(content.occasions?.sections || [])];
+                        sections[index] = { ...occasion, imageAlt: e.target.value };
+                        updateContent((prev) => ({ ...prev, occasions: { ...prev.occasions!, sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field inline">
+                    <input
+                      type="checkbox"
+                      checked={Boolean(occasion.warm)}
+                      onChange={(e) => {
+                        const sections = [...(content.occasions?.sections || [])];
+                        sections[index] = { ...occasion, warm: e.target.checked };
+                        updateContent((prev) => ({ ...prev, occasions: { ...prev.occasions!, sections } }));
+                      }}
+                    />
+                    <span>Warmer Hintergrund</span>
+                  </label>
+                  {occasion.imageUrl ? (
+                    <img src={occasion.imageUrl} alt={occasion.imageAlt || occasion.titleBold} className="admin-preview" />
+                  ) : null}
+                </div>
+              </div>
+            </div>
+          ))}
         </section>
       );
     }
@@ -3293,7 +3825,7 @@ export default function AdminDashboard() {
             <button
               className="btn btn-outline"
               type="button"
-              onClick={() => window.open(`${getPreviewPathForTab(activeTab)}${getPreviewPathForTab(activeTab).includes("?") ? "&" : "?"}v=${Date.now()}`, "_blank")}
+              onClick={() => saveAndOpenPreview(activeTab)}
             >
               Geänderte Seite öffnen
             </button>

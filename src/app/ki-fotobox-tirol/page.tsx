@@ -3,6 +3,7 @@ import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
+import KiAutoGallery from "@/components/site/KiAutoGallery";
 
 export const dynamic = "force-dynamic";
 
@@ -17,10 +18,6 @@ function toParagraphs(value?: string) {
     .split(/\n\s*\n/)
     .map((item) => item.trim())
     .filter(Boolean);
-}
-
-function formatPhoneForHref(value?: string) {
-  return (value || "").replace(/[^+\d]/g, "");
 }
 
 function splitSlashTitle(value?: string, fallbackTop?: string, fallbackBottom?: string) {
@@ -83,8 +80,6 @@ export default async function KiFotoboxTirolPage() {
   const leftBefore = content.ai.compareLeftBeforeUrl || content.ai.pageCompareBeforeUrl || "/uploads/hero-optimized.jpg";
   const leftAfter = content.ai.compareLeftAfterUrl || content.ai.pageCompareAfterUrl || leftBefore;
   const demoImage = content.ai.pageDemoImageUrl || content.ai.compareRightAfterUrl || content.ai.compareRightBeforeUrl || leftAfter;
-  const contactEmail = content.contact.email || "info@fotobox.tirol";
-  const contactPhone = content.contact.phone || "+43 664 3918 228";
   const featureTitle = splitSlashTitle(content.ai.featureTitle, "Autofokus auf", "Ihre Schokoladenseite.");
   const heroLineTop = content.ai.heroTitleTop || "Perfekte Bilder.";
   const heroAccent = content.ai.heroTitleAccent || "Magisch";
@@ -158,6 +153,41 @@ export default async function KiFotoboxTirolPage() {
         }
       ];
 
+  const kiGallerySlides = [
+    {
+      imageUrl: "/uploads/ki-faceswap-gallery-01.png",
+      altText: "Face Swap Motiv 1"
+    },
+    {
+      imageUrl: "/uploads/ki-faceswap-gallery-02.png",
+      altText: "Face Swap Motiv 2"
+    },
+    {
+      imageUrl: "/uploads/ki-faceswap-gallery-03.png",
+      altText: "Face Swap Motiv 3"
+    },
+    {
+      imageUrl: "/uploads/ki-faceswap-gallery-04.png",
+      altText: "Face Swap Motiv 4"
+    },
+    {
+      imageUrl: "/uploads/ki-faceswap-gallery-05.png",
+      altText: "Face Swap Motiv 5"
+    },
+    {
+      imageUrl: "/uploads/ki-faceswap-gallery-06.png",
+      altText: "Face Swap Motiv 6"
+    },
+    {
+      imageUrl: "/uploads/ki-faceswap-gallery-07.png",
+      altText: "Face Swap Motiv 7"
+    },
+    {
+      imageUrl: "/uploads/ki-faceswap-gallery-08.png",
+      altText: "Face Swap Motiv 8"
+    }
+  ];
+
   const useCases = content.ai.useCases && content.ai.useCases.length > 0
     ? content.ai.useCases
     : [
@@ -196,12 +226,6 @@ export default async function KiFotoboxTirolPage() {
         <section id="ki-features" className="ki-section ki-section-pattern">
           <div className="container ki-feature-layout">
             <div className="ki-feature-copy">
-              <div className="ki-icon-tile" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z" />
-                  <circle cx="12" cy="13" r="3" />
-                </svg>
-              </div>
               <h2>
                 {featureTitle.top} <br />{featureTitle.bottom}
               </h2>
@@ -241,23 +265,6 @@ export default async function KiFotoboxTirolPage() {
                 <div className="ki-demo-visual">
                   <div className="ki-demo-image-wrap">
                     <img src={demoImage} alt="KI Demo Motiv" className="ki-demo-image" />
-                    <div className="ki-demo-overlay">
-                      <div className="ki-demo-overlay-mark">
-                        <h3>SARAH &amp; TIM</h3>
-                        <p>15. Juni 2024 • Seegrube</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ki-demo-status">
-                    <div className="ki-demo-status-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24">
-                        <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <span>Status</span>
-                      <strong>Overlay Generated</strong>
-                    </div>
                   </div>
                 </div>
 
@@ -284,6 +291,17 @@ export default async function KiFotoboxTirolPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="ki-section">
+          <div className="container ki-gallery-heading-wrap">
+            <h2 className="ki-gallery-slash-title">
+              <span>face</span>
+              <span className="accent-slash">/</span>
+              <span>swap</span>
+            </h2>
+            <KiAutoGallery slides={kiGallerySlides} />
           </div>
         </section>
 
@@ -316,21 +334,6 @@ export default async function KiFotoboxTirolPage() {
           </div>
         </section>
 
-        <section className="ki-section ki-footer-cta">
-          <div className="container ki-footer-cta-inner">
-            <div>
-              <h2>{content.ai.finalTitle || "Direkt zur KI-Fotobox beraten lassen"}</h2>
-              <p>
-                {content.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt."}
-              </p>
-            </div>
-            <div className="ki-direct-contact">
-              <a href={`tel:${formatPhoneForHref(contactPhone)}`}>{contactPhone}</a>
-              <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
-              <span>{content.contact.address || "Rohracker 6 | 6092 Birgitz"}</span>
-            </div>
-          </div>
-        </section>
       </main>
       <SiteFooter content={content} />
     </>

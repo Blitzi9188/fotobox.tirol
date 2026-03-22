@@ -60,6 +60,7 @@ export type FooterLink = {
 export type OccasionItem = {
   id: string;
   eyebrow: string;
+  orderLabel?: string;
   title: string;
   titleBold: string;
   subtitle: string;

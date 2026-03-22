@@ -207,7 +207,7 @@ export default async function PreisgestaltungPage() {
               <SlashHeading value="preise/pakete" />
             </h1>
             <p>
-              Wählt das passende Paket für eure Feier. Keine versteckten Kosten, volle Emotionen und moderne Technik aus Tirol.
+              Keine versteckten Kosten, volle Emotionen und moderne Technik aus Tirol.
             </p>
           </div>
         </section>
@@ -315,10 +315,6 @@ export default async function PreisgestaltungPage() {
                   <div>
                     <h4>E-Mail</h4>
                     <p><a href={`mailto:${content.contact.email}`}>{content.contact.email}</a></p>
-                  </div>
-                  <div>
-                    <h4>Adresse</h4>
-                    <p>{content.contact.address}</p>
                   </div>
                 </div>
               </div>
