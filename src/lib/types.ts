@@ -141,6 +141,9 @@ export type CMSContent = {
     compareLeftAfterUrl?: string;
     compareRightBeforeUrl?: string;
     compareRightAfterUrl?: string;
+    pageCompareBeforeUrl?: string;
+    pageCompareAfterUrl?: string;
+    pageDemoImageUrl?: string;
   };
   gallery: {
     heading: string;
