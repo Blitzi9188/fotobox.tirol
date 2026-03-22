@@ -80,8 +80,8 @@ function normalizeLegacyHeroTitle(top?: string, accent?: string) {
 export default async function KiFotoboxTirolPage() {
   const content = await readCmsContent();
   const paragraphs = toParagraphs(content.ai.descriptionText);
-  const leftBefore = content.ai.pageCompareBeforeUrl || content.ai.compareLeftBeforeUrl || "/uploads/hero-optimized.jpg";
-  const leftAfter = content.ai.pageCompareAfterUrl || content.ai.compareLeftAfterUrl || leftBefore;
+  const leftBefore = content.ai.compareLeftBeforeUrl || content.ai.pageCompareBeforeUrl || "/uploads/hero-optimized.jpg";
+  const leftAfter = content.ai.compareLeftAfterUrl || content.ai.pageCompareAfterUrl || leftBefore;
   const demoImage = content.ai.pageDemoImageUrl || content.ai.compareRightAfterUrl || content.ai.compareRightBeforeUrl || leftAfter;
   const contactEmail = content.contact.email || "info@fotobox.tirol";
   const contactPhone = content.contact.phone || "+43 664 3918 228";

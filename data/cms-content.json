@@ -65,9 +65,9 @@
     "descriptionText": "Die KI Fotobox Tirol bringt moderne Eventunterhaltung auf ein neues Level. Diese innovative KI-Fotobox kombiniert klassische Fotobox-Funktionen mit künstlicher Intelligenz und sorgt für kreative Fotos sowie unvergessliche Momente für Gäste aller Altersgruppen.\n\nMit wenigen Klicks entstehen einzigartige Bilder – ob Superheld, Karikatur oder fantasievolle Themenwelt.\n\nDie Fotobox Tirol mit KI-Technologie ist perfekt für Hochzeiten, Firmenfeiern, Geburtstage, Messen und Events geeignet und macht jede Veranstaltung zu einem besonderen Erlebnis.",
     "bullets": [],
     "buttonText": "Beispiele ansehen",
-    "heroBadge": "New: Artificial Intelligence",
-    "heroTitleTop": "Perfekte Bilder.",
-    "heroTitleAccent": "Magisch",
+    "heroBadge": "NEU: KÜNSTLICHE INTELLIGENZ",
+    "heroTitleTop": "Intelligente",
+    "heroTitleAccent": "Technologien",
     "heroLead": "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttöne und Overlays für einen sichtbar hochwertigeren Event-Look.",
     "featureTitle": "Autofokus auf /Ihre Schokoladenseite.",
     "featureLead": "Die KI Fotobox Tirol bringt moderne Eventunterhaltung auf ein neues Level. Diese innovative KI-Fotobox kombiniert klassische Fotobox-Funktionen mit künstlicher Intelligenz und sorgt für kreative Fotos sowie unvergessliche Momente für Gäste aller Altersgruppen.",
@@ -114,11 +114,14 @@
     "standardLead": "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und lässt sich je nach Eventcharakter intensiver inszenieren.",
     "finalTitle": "Direkt zur KI-Fotobox beraten lassen",
     "finalLead": "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt.",
-    "previewImageUrl": "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
+    "previewImageUrl": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
     "compareLeftBeforeUrl": "/uploads/ai-left-before-optimized.jpg",
     "compareLeftAfterUrl": "/uploads/ai-left-after-optimized.jpg",
     "compareRightBeforeUrl": "/uploads/ai-right-before-optimized.jpg",
-    "compareRightAfterUrl": "/uploads/ai-right-after-optimized.jpg"
+    "compareRightAfterUrl": "/uploads/ai-right-after-optimized.jpg",
+    "pageCompareBeforeUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=40&w=1200",
+    "pageCompareAfterUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200",
+    "pageDemoImageUrl": "/uploads/1774123951105-87c15b4a-dc38-40a0-a932-763b6d7bc789-andi-rennen.1.jpg"
   },
   "gallery": {
     "heading": "event/gestaltung",
@@ -899,5 +902,119 @@
         "linkUrl": ""
       }
     ]
+  },
+  "occasions": {
+    "seoTitle": "Fotobox für jeden Anlass in Tirol | Hochzeit, Geburtstag und Events",
+    "seoDescription": "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenevent und weitere Anlässe. Moderne Fotobox-Lösungen mit Sofortdruck, Branding und starkem Erinnerungswert.",
+    "heroEyebrow": "Professionelle Vermietung in Tirol",
+    "heroTitle": "Fotobox für",
+    "heroTitleAccent": "jeden/anlass",
+    "heroLead": "Entdeckt maßgeschneiderte Fotobox-Lösungen für Hochzeiten, Geburtstage, Firmenfeiern und Events in Tirol. Modern, hochwertig und gemacht für bleibende Erinnerungen.",
+    "heroImageUrl": "/uploads/1772725458356-dcdb983d-1a6d-4d1b-bfcd-de04366260ca-fotobox-tirol-selfie-bilder-7-optimized.jpg",
+    "sections": [
+      {
+        "id": "hochzeit",
+        "eyebrow": "Der Klassiker für Brautpaare",
+        "title": "Romantische",
+        "titleBold": "Hochzeitsfotobox",
+        "subtitle": "Fotobox mieten für den schönsten Tag in Tirol",
+        "description": "Eine Hochzeitsfotobox bringt eure Gäste zusammen, lockert die Stimmung auf und liefert Erinnerungen, die direkt mitgenommen werden können. Gerade auf Hochzeiten in Innsbruck, Seefeld oder ganz Tirol wird sie schnell zum Treffpunkt für ehrliche Momente und starke Bilder.",
+        "benefits": [
+          "Unlimitierter Druck für Gästebuch und Erinnerungen",
+          "Liebevoll ausgewählte Requisiten und Accessoires",
+          "Personalisiertes Print-Layout mit Namen und Datum",
+          "Online-Galerie für alle Hochzeitsgäste"
+        ],
+        "imageUrl": "/uploads/1772725494493-46ba177e-2411-4843-9112-5f417a6cc0c6-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-16-optimized.jpg",
+        "imageAlt": "Fotobox Tirol bei einer Hochzeit",
+        "warm": false
+      },
+      {
+        "id": "geburtstag",
+        "eyebrow": "Action für eure Party",
+        "title": "Eure",
+        "titleBold": "Geburtstagsfotobox",
+        "subtitle": "Das Party-Highlight für lockere Geburtstagsfeiern",
+        "description": "Eine Geburtstagsfotobox sorgt sofort für Bewegung, Spaß und spontane Gruppenbilder. Ob runder Geburtstag oder große Familienfeier: Gäste posieren, lachen und nehmen ihre Bilder direkt mit. So wird aus der Feier ein Erlebnis, über das noch lange gesprochen wird.",
+        "benefits": [
+          "Direkter Download per QR-Code auf das Handy",
+          "Lustige Accessoires für jede Altersgruppe",
+          "Kompakter Aufbau für kleine und große Locations",
+          "Professionelles Licht für starke Party-Selfies"
+        ],
+        "imageUrl": "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
+        "imageAlt": "Geburtstagsfotobox mit lockerer Partystimmung",
+        "warm": true
+      },
+      {
+        "id": "firma",
+        "eyebrow": "Branding und Mitarbeiter-Erlebnis",
+        "title": "Professionelles",
+        "titleBold": "Firmenevent",
+        "subtitle": "Fotoboxen für Unternehmen, Feiern und Markenauftritte",
+        "description": "Für Firmenfeiern, Weihnachtsfeiern, Sommerfeste oder Jubiläen ist die Fotobox ein starker Mix aus Unterhaltung und Markenwirkung. Layouts, Ausdrucke und Bildsprache lassen sich an euer Corporate Design anpassen und schaffen Content mit Wiedererkennungswert.",
+        "benefits": [
+          "Logo und Branding direkt im Layout integrierbar",
+          "DSGVO-konforme Bildspeicherung und Übergabe",
+          "Professioneller Thermosublimations-Druck",
+          "Technischer Support für einen reibungslosen Ablauf"
+        ],
+        "imageUrl": "/uploads/1772726001232-9db6432f-2bb2-41d2-985a-c749f522c620-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-11-optimized.jpg",
+        "imageAlt": "Fotobox Tirol bei einem Firmenevent",
+        "warm": false
+      },
+      {
+        "id": "event",
+        "eyebrow": "Maximale Aufmerksamkeit",
+        "title": "Fotobox mieten für",
+        "titleBold": "Events",
+        "subtitle": "Ideal für Messen, Festivals und öffentliche Veranstaltungen",
+        "description": "Wenn viele Menschen zusammenkommen, braucht es einen Programmpunkt mit Sogwirkung. Eine Eventfotobox zieht Aufmerksamkeit an, schafft Interaktion und liefert Bilder, die geteilt werden. Genau deshalb ist sie für Messen, Festivals und größere Events in Tirol besonders stark.",
+        "benefits": [
+          "Hohe Aufmerksamkeit am Stand oder Eventbereich",
+          "Direkte Social-Media-taugliche Inhalte",
+          "Flexibel mit Branding und Aktionslogik kombinierbar",
+          "Starker Publikumsmagnet mit echtem Erlebnisfaktor"
+        ],
+        "imageUrl": "/uploads/1772725616835-a3643f1b-9ec6-4d07-b20d-6227a314c187-fotobox-fotoautomat-selfie-photobooth-tirol-innsbruck-foto-18-optimized.jpg",
+        "imageAlt": "Eventfotobox bei einer größeren Veranstaltung",
+        "warm": true
+      }
+    ],
+    "seoColumns": [
+      {
+        "title": "Fotobox mieten Tirol",
+        "description": "Wir liefern eure Fotobox in ganz Tirol, von Innsbruck bis Kitzbühel. Lieferung, Aufbau und eine kurze Einweisung sind so abgestimmt, dass euer Anlass entspannt starten kann."
+      },
+      {
+        "title": "Häufige Suchanfragen",
+        "description": "Hochzeitsfotobox mieten Innsbruck\nFotobox für Firmenevent Preise\nGeburtstagsfotobox Tirol\nFotobox mit Druck-Flatrate mieten"
+      },
+      {
+        "title": "Qualität & Technik",
+        "description": "Wir arbeiten mit echter DSLR-Technik und professionellem Studiolicht. Dadurch liegt die Bildqualität sichtbar über klassischen Standard-Fotoboxen."
+      }
+    ],
+    "searchTerms": [
+      "Hochzeitsfotobox mieten Innsbruck",
+      "Fotobox für Firmenevent Preise",
+      "Geburtstagsfotobox Tirol",
+      "Fotobox mit Druck-Flatrate mieten"
+    ],
+    "faqHeading": "fragen/anlässe",
+    "faqItems": [
+      {
+        "question": "Für welche Anlässe eignet sich die Fotobox?",
+        "answer": "Unsere Fotobox passt ideal zu Hochzeiten, Geburtstagen, Firmenfeiern, Messen und vielen weiteren Veranstaltungen in Tirol."
+      },
+      {
+        "question": "Können Bilder und Layouts individuell angepasst werden?",
+        "answer": "Ja. Drucklayouts, Branding, Requisiten und Bildstil lassen sich passend zu eurem Anlass abstimmen."
+      }
+    ],
+    "ctaMeta": "Alle Pakete inklusive Setup und Support",
+    "ctaTitle": "Unverbindlich Termin anfragen",
+    "ctaButtonText": "Jetzt anfragen",
+    "ctaButtonHref": "/kontakt"
   }
 }
