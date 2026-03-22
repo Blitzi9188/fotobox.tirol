@@ -68,41 +68,41 @@
     "heroBadge": "NEU: KÜNSTLICHE INTELLIGENZ",
     "heroTitleTop": "Intelligente",
     "heroTitleAccent": "Technologien",
-    "heroLead": "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttöne und Overlays für einen sichtbar hochwertigeren Event-Look.",
+    "heroLead": "Vom Superhelden bis zum Magazin-Cover: Die KI-Fotobox macht aus jedem Foto ein kreatives Highlight.",
     "featureTitle": "Autofokus auf /Ihre Schokoladenseite.",
-    "featureLead": "Die KI Fotobox Tirol bringt moderne Eventunterhaltung auf ein neues Level. Diese innovative KI-Fotobox kombiniert klassische Fotobox-Funktionen mit künstlicher Intelligenz und sorgt für kreative Fotos sowie unvergessliche Momente für Gäste aller Altersgruppen.",
+    "featureLead": "Die KI-Fotobox Tirol sorgt für ein völlig neues Foto-Erlebnis auf deinem Event. Statt klassischer Bilder entstehen mit Hilfe künstlicher Intelligenz einzigartige Avatare, stylische Looks und kreative Motive – von Superhelden bis hin zu Fashion-Editorials im Vogue-Stil. Perfekt für unvergessliche Momente und jede Menge Spaß bei Gästen jeden Alters.",
     "featureCards": [
       {
-        "title": "Smart Lighting",
-        "description": "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhältnissen für deutlich bessere Ergebnisse."
+        "title": "kreative KI-Styles",
+        "description": "Ob Comic, Superheld, Magazin-Cover oder künstlerische Illustration – die KI verwandelt Fotos in außergewöhnliche Looks, die garantiert auffallen."
       },
       {
-        "title": "Natürliche Hauttöne",
-        "description": "Ruhigere Haut, klarere Farben und ein hochwertiger Gesamteindruck, ohne dass die Bilder künstlich oder überzeichnet wirken."
+        "title": "individuelle Avatare",
+        "description": "Jeder Gast wird Teil eines einzigartigen Kunstwerks. Die KI erstellt personalisierte Bilder, die überraschen, begeistern und sofort geteilt werden wollen."
       },
       {
-        "title": "Eventgerechte Looks",
-        "description": "Hochzeit, Firmenfeier oder Gala: Layouts, Farben und Bildwirkung können passend zum Anlass inszeniert werden."
+        "title": "perfekt fürs Event",
+        "description": "Hochzeit, Firmenfeier oder Party: Die Bildstile und Designs lassen sich auf das Event abstimmen und sorgen für ein stimmiges Gesamterlebnis."
       },
       {
-        "title": "Sofort einsetzbar",
-        "description": "Die KI ist nicht nur Demo, sondern Teil eines echten Event-Workflows mit Fotobox, Bedienung, Galerie und auf Wunsch Druck."
+        "title": "direkt erleben & teilen",
+        "description": "Die Fotobox ist vollständig ins Event integriert – mit digitaler Galerie und optionalem Sofortdruck für bleibende Erinnerungen."
       }
     ],
-    "demoBadge": "Live Preview",
+    "demoBadge": "LIVE PREVIEW – SOFORT SEHEN, WAS ENTSTEHT",
     "demoTitle": "Intelligente /Design-Overlays.",
-    "demoLead": "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fürs Motiv bleibt.",
+    "demoLead": "Noch während des Shootings zeigt die Fotobox, wie das finale Motiv aussehen wird. Die KI arrangiert Texte, Namen oder Logos automatisch so, dass das Bild stimmig wirkt und der Fokus auf dem Motiv bleibt.",
     "demoItems": [
       {
-        "title": "Dynamic Text Engine",
-        "description": "Namen, Daten oder Claim werden so gesetzt, dass Lesbarkeit und Motiv harmonisch zusammenpassen."
+        "title": "face-swap",
+        "description": "Unsere KI-Fotobox verwandelt jedes Foto in kreative Erlebniswelten – ob als Superheld, auf dem Titelblatt eines Magazins oder als Rennfahrer. So entstehen individuelle Motive mit Spaßfaktor und echtem Wow-Effekt."
       },
       {
-        "title": "Contextual Branding",
-        "description": "Firmenlogos und Event-Branding können sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
+        "title": "branding mit stil",
+        "description": "Logos und Event-Designs werden elegant integriert, ohne das Bild zu überladen. Ideal für Firmenfeiern, Messen oder gebrandete Events mit Wiedererkennungswert."
       }
     ],
-    "useCasesTitle": "Für welche Events ist die KI Fotobox stark?",
+    "useCasesTitle": "für welche events eignet sich die ki fotobox",
     "useCasesLead": "Mit wenigen Klicks entstehen einzigartige Bilder für Events mit Erlebnis, Aufmerksamkeit und modernem Branding.",
     "useCases": [
       "Hochzeiten mit individuellem Storytelling und Wow-Effekt",
@@ -110,8 +110,8 @@
       "Gala-Abende, Weihnachtsfeiern und Sommerfeste",
       "Produktpräsentationen, Roadshows und Promotion-Aktionen"
     ],
-    "standardTitle": "Standard in allen Fotoboxen.",
-    "standardLead": "Wir machen keine Kompromisse bei der Bildwirkung. Die KI-Grundoptimierung ist in jedem unserer Setups als veredelnde Komponente mitdenkbar und lässt sich je nach Eventcharakter intensiver inszenieren.",
+    "standardTitle": "mehr als nur eine fotobox",
+    "standardLead": "Vom Superhelden bis zum Magazin-Cover: Die KI-Fotobox macht aus jedem Foto ein echtes Erlebnis. In wenigen Sekunden entstehen kreative Motive, die überraschen, begeistern und dein Event um unvergessliche Momente bereichern.",
     "finalTitle": "Direkt zur KI-Fotobox beraten lassen",
     "finalLead": "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt.",
     "previewImageUrl": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
@@ -119,9 +119,9 @@
     "compareLeftAfterUrl": "/uploads/ai-left-after-optimized.jpg",
     "compareRightBeforeUrl": "/uploads/ai-right-before-optimized.jpg",
     "compareRightAfterUrl": "/uploads/ai-right-after-optimized.jpg",
-    "pageCompareBeforeUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=40&w=1200",
-    "pageCompareAfterUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200",
-    "pageDemoImageUrl": "/uploads/1774123951105-87c15b4a-dc38-40a0-a932-763b6d7bc789-andi-rennen.1.jpg"
+    "pageCompareBeforeUrl": "/uploads/ki-swipe-before.jpg",
+    "pageCompareAfterUrl": "/uploads/ki-swipe-after.jpg",
+    "pageDemoImageUrl": "/uploads/ki-demo-grid.png"
   },
   "gallery": {
     "heading": "event/gestaltung",
@@ -255,11 +255,6 @@
         "name": "Sandoz",
         "href": "https://www.sandoz.com",
         "logoDomain": "sandoz.com"
-      },
-      {
-        "name": "Sailer Seefeld",
-        "href": "https://www.sailer-seefeld.at",
-        "logoDomain": "sailer-seefeld.at"
       },
       {
         "name": "Interalpen Hotel",
@@ -619,10 +614,6 @@
       {
         "label": "Sandoz",
         "href": "https://www.sandoz.com"
-      },
-      {
-        "label": "Sailer Seefeld",
-        "href": "https://www.sailer-seefeld.at"
       },
       {
         "label": "Interalpen Hotel",

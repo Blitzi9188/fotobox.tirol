@@ -56,7 +56,8 @@ export default async function KontaktPage({
       <main>
         <section className="inquiry-hero">
           <div className="container inquiry-hero-inner">
-            <h1>{content.inquiry.heading.split("/")[0]}<span className="accent-slash">/</span>{content.inquiry.heading.split("/")[1] || ""}</h1>
+            <span className="inquiry-hero-eyebrow">hol dir dein angebot</span>
+            <h1>jetzt<span className="accent-slash">/</span>anfragen</h1>
             <p>{content.inquiry.introText}</p>
           </div>
         </section>
