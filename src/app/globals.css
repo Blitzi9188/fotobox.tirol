@@ -5074,6 +5074,9 @@ footer {
   position: relative;
   z-index: 1;
   max-width: 72rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
@@ -5083,15 +5086,16 @@ footer {
   justify-content: center;
   gap: 0.625rem;
   padding: 0.7rem 1rem;
-  border: 1px solid rgba(230, 36, 36, 0.2);
+  border: 1px solid rgba(17, 24, 39, 0.12);
   border-radius: 999px;
-  background: rgba(230, 36, 36, 0.06);
-  color: #c61f1f;
+  background: #ffffff;
+  color: #111827;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin: 0 auto 1.1rem;
+  margin: 0 0 1.1rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
 }
 
 .ki-badge-dot {
