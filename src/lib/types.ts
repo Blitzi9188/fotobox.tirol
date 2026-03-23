@@ -79,6 +79,22 @@ export type ReferenceItem = {
   initials?: string;
 };
 
+export type SetupSpecItem = {
+  label: string;
+  value: string;
+  icon: string;
+};
+
+export type SetupStepItem = {
+  title: string;
+  description: string;
+};
+
+export type SetupInfoItem = {
+  label: string;
+  value: string;
+};
+
 export type WizardStepContent = {
   title: string;
   subtitle: string;
@@ -212,6 +228,37 @@ export type CMSContent = {
     ctaLabel: string;
     ctaHref: string;
     items: ReviewItem[];
+  };
+  setup?: {
+    seoTitle?: string;
+    seoDescription?: string;
+    badge: string;
+    heading: string;
+    lead: string;
+    overviewImageUrl?: string;
+    overviewImageAlt?: string;
+    specs: SetupSpecItem[];
+    stepsTitle: string;
+    stepsLead: string;
+    videoUrl?: string;
+    steps: SetupStepItem[];
+    spaceTitle: string;
+    spaceLead: string;
+    noteTitle: string;
+    noteText: string;
+    spaceImageUrl?: string;
+    spaceImageAlt?: string;
+    spaceItems: SetupInfoItem[];
+    checklistTitle: string;
+    checklistItems: string[];
+    featureTitle: string;
+    featureItems: Feature[];
+    ctaTitle: string;
+    ctaLead: string;
+    primaryCtaText: string;
+    primaryCtaHref: string;
+    secondaryCtaText: string;
+    secondaryCtaHref: string;
   };
   templateWizard?: {
     step1: WizardStepContent;

@@ -5,6 +5,7 @@ import RichTextEditor from "@/components/admin/RichTextEditor";
 import AdminLoginForm from "@/components/admin/AdminLoginForm";
 import { AccessoryItem, CMSContent, Feature, FaqItem, GalleryItem, OccasionItem } from "@/lib/types";
 import { DEFAULT_AGB_B2B_TEXT, DEFAULT_AGB_TEXT, DEFAULT_DATENSCHUTZ_TEXT, DEFAULT_IMPRESSUM_TEXT } from "@/lib/legalDefaults";
+import { DEFAULT_SETUP_CONTENT } from "@/lib/setupDefaults";
 
 type CmsUpdater = (prev: CMSContent) => CMSContent;
 type SectionId =
@@ -16,6 +17,7 @@ type SectionId =
   | "accessories"
   | "space"
   | "spaceLayout"
+  | "setup"
   | "pricing"
   | "media"
   | "reviews"
@@ -38,6 +40,7 @@ const SECTION_TABS: Array<{ id: SectionId; label: string }> = [
   { id: "accessories", label: "Accessoires" },
   { id: "space", label: "Platzbedarf" },
   { id: "spaceLayout", label: "Layout/Gestaltung" },
+  { id: "setup", label: "Aufbau/Technik" },
   { id: "pricing", label: "Preise" },
   { id: "reviews", label: "Rezensionen" },
   { id: "wizard", label: "Layout Wizard" },
@@ -70,6 +73,8 @@ function getPreviewPathForTab(tab: SectionId) {
       return "/fotobox-anlaesse";
     case "pricing":
       return "/preisgestaltung";
+    case "setup":
+      return "/technische-daten-aufbau";
     case "contact":
     case "inquiry":
       return "/kontakt";
@@ -440,6 +445,21 @@ export default function AdminDashboard() {
       layoutTwoImageUrl: json.space?.layoutTwoImageUrl || json.space?.imageUrl || "",
       layoutTwoImageAlt: json.space?.layoutTwoImageAlt || "Layout Gestaltung Bild 2"
     };
+    const normalizedSetup = {
+      ...DEFAULT_SETUP_CONTENT,
+      ...json.setup,
+      specs: (json.setup?.specs && json.setup.specs.length > 0) ? json.setup.specs : DEFAULT_SETUP_CONTENT.specs,
+      steps: (json.setup?.steps && json.setup.steps.length > 0) ? json.setup.steps : DEFAULT_SETUP_CONTENT.steps,
+      spaceItems: (json.setup?.spaceItems && json.setup.spaceItems.length > 0) ? json.setup.spaceItems : DEFAULT_SETUP_CONTENT.spaceItems,
+      checklistItems:
+        (json.setup?.checklistItems && json.setup.checklistItems.length > 0)
+          ? json.setup.checklistItems
+          : DEFAULT_SETUP_CONTENT.checklistItems,
+      featureItems:
+        (json.setup?.featureItems && json.setup.featureItems.length > 0)
+          ? json.setup.featureItems
+          : DEFAULT_SETUP_CONTENT.featureItems
+    };
     const normalizedReviews = {
       heading: json.reviews?.heading || "kunden/bewertungen",
       sourceLabel: json.reviews?.sourceLabel || "Google Bewertungen",
@@ -664,6 +684,7 @@ export default function AdminDashboard() {
       contact: normalizedContact,
       occasions: normalizedOccasions,
       space: normalizedSpace,
+      setup: normalizedSetup,
       reviews: normalizedReviews,
       templateWizard: normalizedTemplateWizard,
       pricing: normalizedPricing,
@@ -1996,6 +2017,350 @@ export default function AdminDashboard() {
               </div>
             </div>
           ))}
+        </section>
+      );
+    }
+
+    if (section === "setup") {
+      return (
+        <section className="admin-section">
+          <div className="admin-section-head">
+            <h2>Aufbau/Technik</h2>
+            <p>Texte, Bilder, YouTube-Link und CTA der Unterseite `technische-daten-aufbau`.</p>
+            <div className="admin-section-actions">
+              <button className="btn" type="button" onClick={saveContent}>
+                {dirty ? "Aufbau-Seite speichern" : "gespeichert"}
+              </button>
+              <button className="btn btn-outline" type="button" onClick={() => saveAndOpenPreview(section)}>
+                Aufbau-Seite speichern und öffnen
+              </button>
+              <span className="admin-inline-status">{dirty ? "Ungespeicherte Änderungen" : "Alles gespeichert"}</span>
+            </div>
+          </div>
+
+          <div className="admin-grid-2">
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>SEO Titel</span>
+                <input
+                  value={content.setup?.seoTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, seoTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>SEO Beschreibung</span>
+                <textarea
+                  rows={4}
+                  value={content.setup?.seoDescription || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, seoDescription: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Badge</span>
+                <input
+                  value={content.setup?.badge || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, badge: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Hauptüberschrift (mit /)</span>
+                <input
+                  value={content.setup?.heading || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, heading: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Untertitel</span>
+                <textarea
+                  rows={4}
+                  value={content.setup?.lead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, lead: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>YouTube Video URL</span>
+                <input
+                  value={content.setup?.videoUrl || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, videoUrl: e.target.value } }))}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Technik Bild hochladen</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(event) => {
+                    handleImageUpload(
+                      event,
+                      (prev, url) => ({ ...prev, setup: { ...prev.setup!, overviewImageUrl: url } }),
+                      "Lade Technik Bild hoch...",
+                      "Technik Bild gespeichert."
+                    );
+                  }}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Technik Bild URL</span>
+                <input
+                  value={content.setup?.overviewImageUrl || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, overviewImageUrl: normalizeImageUrl(e.target.value) } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Technik Bild Alt Text</span>
+                <input
+                  value={content.setup?.overviewImageAlt || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, overviewImageAlt: e.target.value } }))}
+                />
+              </label>
+              {content.setup?.overviewImageUrl ? <img src={content.setup.overviewImageUrl} alt="Aufbau Technik" className="admin-preview" /> : null}
+              <label className="admin-field">
+                <span>Platzbedarf Bild hochladen</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(event) => {
+                    handleImageUpload(
+                      event,
+                      (prev, url) => ({ ...prev, setup: { ...prev.setup!, spaceImageUrl: url } }),
+                      "Lade Platzbedarf Bild hoch...",
+                      "Platzbedarf Bild gespeichert."
+                    );
+                  }}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Platzbedarf Bild URL</span>
+                <input
+                  value={content.setup?.spaceImageUrl || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, spaceImageUrl: normalizeImageUrl(e.target.value) } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Platzbedarf Bild Alt Text</span>
+                <input
+                  value={content.setup?.spaceImageAlt || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, spaceImageAlt: e.target.value } }))}
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="admin-grid-2">
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Technische Daten (Label | Wert | Icon, eine Zeile pro Karte)</span>
+                <textarea
+                  rows={10}
+                  value={(content.setup?.specs || []).map((item) => `${item.label} | ${item.value} | ${item.icon}`).join("\n")}
+                  onChange={(e) => {
+                    const specs = e.target.value
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((line) => {
+                        const [label, value, icon] = line.split("|").map((part) => part.trim());
+                        return { label, value, icon: icon || "camera" };
+                      })
+                      .filter((item) => item.label && item.value);
+                    updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, specs } }));
+                  }}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Aufbau Überschrift (mit /)</span>
+                <input
+                  value={content.setup?.stepsTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, stepsTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Aufbau Einleitung</span>
+                <textarea
+                  rows={4}
+                  value={content.setup?.stepsLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, stepsLead: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Aufbau Schritte (Titel | Text, eine Zeile pro Schritt)</span>
+                <textarea
+                  rows={10}
+                  value={(content.setup?.steps || []).map((item) => `${item.title} | ${item.description}`).join("\n")}
+                  onChange={(e) => {
+                    const steps = e.target.value
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((line) => {
+                        const [title, ...rest] = line.split("|");
+                        return { title: (title || "").trim(), description: rest.join("|").trim() };
+                      })
+                      .filter((item) => item.title && item.description);
+                    updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, steps } }));
+                  }}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Platzbedarf Überschrift (mit /)</span>
+                <input
+                  value={content.setup?.spaceTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, spaceTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Platzbedarf Einleitung</span>
+                <textarea
+                  rows={4}
+                  value={content.setup?.spaceLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, spaceLead: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Hinweis Titel</span>
+                <input
+                  value={content.setup?.noteTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, noteTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Hinweis Text</span>
+                <textarea
+                  rows={6}
+                  value={content.setup?.noteText || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, noteText: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Platzbedarf Karten (Label | Wert, eine Zeile pro Karte)</span>
+                <textarea
+                  rows={6}
+                  value={(content.setup?.spaceItems || []).map((item) => `${item.label} | ${item.value}`).join("\n")}
+                  onChange={(e) => {
+                    const spaceItems = e.target.value
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((line) => {
+                        const [label, ...rest] = line.split("|");
+                        return { label: (label || "").trim(), value: rest.join("|").trim() };
+                      })
+                      .filter((item) => item.label && item.value);
+                    updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, spaceItems } }));
+                  }}
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="admin-grid-2">
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Checkliste Überschrift (mit /)</span>
+                <input
+                  value={content.setup?.checklistTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, checklistTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Checkliste Punkte (eine Zeile pro Punkt)</span>
+                <textarea
+                  rows={8}
+                  value={(content.setup?.checklistItems || []).join("\n")}
+                  onChange={(e) => {
+                    const checklistItems = e.target.value.split("\n").map((line) => line.trim()).filter(Boolean);
+                    updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, checklistItems } }));
+                  }}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Features Überschrift (mit /)</span>
+                <input
+                  value={content.setup?.featureTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, featureTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Feature Karten (Titel | Text, eine Zeile pro Karte)</span>
+                <textarea
+                  rows={8}
+                  value={(content.setup?.featureItems || []).map((item) => `${item.title} | ${item.description}`).join("\n")}
+                  onChange={(e) => {
+                    const featureItems = e.target.value
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((line) => {
+                        const [title, ...rest] = line.split("|");
+                        return { title: (title || "").trim(), description: rest.join("|").trim() };
+                      })
+                      .filter((item) => item.title && item.description);
+                    updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, featureItems } }));
+                  }}
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="admin-grid-2">
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>CTA Titel</span>
+                <input
+                  value={content.setup?.ctaTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, ctaTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>CTA Text</span>
+                <textarea
+                  rows={4}
+                  value={content.setup?.ctaLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, ctaLead: e.target.value } }))}
+                />
+              </label>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Primärer Button Text</span>
+                <input
+                  value={content.setup?.primaryCtaText || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, primaryCtaText: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Primärer Button Link</span>
+                <input
+                  value={content.setup?.primaryCtaHref || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, primaryCtaHref: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Sekundärer Button Text</span>
+                <input
+                  value={content.setup?.secondaryCtaText || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, secondaryCtaText: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Sekundärer Button Link</span>
+                <input
+                  value={content.setup?.secondaryCtaHref || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, setup: { ...prev.setup!, secondaryCtaHref: e.target.value } }))}
+                />
+              </label>
+            </div>
+          </div>
         </section>
       );
     }

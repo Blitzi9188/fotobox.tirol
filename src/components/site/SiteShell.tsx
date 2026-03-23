@@ -29,6 +29,7 @@ export function SiteHeader({ content }: { content: CMSContent }) {
   const navItems = [
     { href: "/", label: "startseite" },
     { href: "/fotobox-anlaesse", label: "anlass" },
+    { href: "/technische-daten-aufbau", label: "platz" },
     { href: "/ki-fotobox-tirol", label: "ki-magie" },
     { href: "/preisgestaltung", label: "preise" },
     { href: "/kontakt", label: "anfrage", className: "accent-link" }

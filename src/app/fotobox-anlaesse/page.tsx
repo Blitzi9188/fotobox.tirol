@@ -3,6 +3,7 @@ import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
 import type { CMSContent } from "@/lib/types";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
+import OccasionSectionNav from "./OccasionSectionNav";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -174,17 +175,12 @@ export default async function FotoboxAnlaessePage() {
               <span>{heroTitle.right}</span>
             </h1>
             <p className={styles.heroLead}>{occasions.heroLead}</p>
-            <div className={styles.heroOccasionButtons}>
-              {occasions.sections.map((occasion) => (
-                <Link
-                  key={`hero-${occasion.id}`}
-                  href={`#${occasion.id}`}
-                  className={styles.heroOccasionButton}
-                >
-                  {occasion.orderLabel || occasion.titleBold}
-                </Link>
-              ))}
-            </div>
+            <OccasionSectionNav
+              items={occasions.sections.map((occasion) => ({
+                id: occasion.id,
+                label: occasion.orderLabel || occasion.titleBold
+              }))}
+            />
           </div>
         </section>
 
