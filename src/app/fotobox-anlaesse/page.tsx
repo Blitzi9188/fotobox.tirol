@@ -43,8 +43,8 @@ const DEFAULT_OCCASIONS = [
       "Kompakter Aufbau für kleine und große Locations",
       "Professionelles Licht für starke Party-Selfies"
     ],
-    imageUrl: "/uploads/1772527968262-29cb30f5-f5ab-43a6-af6c-f34ad26ed587-carli-2.jpg",
-    imageAlt: "Geburtstagsfotobox mit lockerer Partystimmung",
+    imageUrl: "/uploads/geburtstagsfotobox-neu.jpg",
+    imageAlt: "Geburtstagsfotobox mit Requisiten und Partybrillen",
     warm: true
   },
   {
@@ -145,6 +145,15 @@ export default async function FotoboxAnlaessePage() {
     ctaButtonText: "Jetzt anfragen",
     ctaButtonHref: "/kontakt"
   };
+  const renderedSections = occasions.sections.map((occasion) =>
+    occasion.id === "geburtstag"
+      ? {
+          ...occasion,
+          imageUrl: "/uploads/geburtstagsfotobox-neu.jpg",
+          imageAlt: "Geburtstagsfotobox mit Requisiten und Partybrillen"
+        }
+      : occasion
+  );
   const heroTitle = splitHeroTitle(occasions.heroTitleAccent);
 
   const jsonLd = {
@@ -175,7 +184,7 @@ export default async function FotoboxAnlaessePage() {
             </h1>
             <p className={styles.heroLead}>{occasions.heroLead}</p>
             <OccasionSectionNav
-              items={occasions.sections.map((occasion) => ({
+              items={renderedSections.map((occasion) => ({
                 id: occasion.id,
                 label: occasion.orderLabel || occasion.titleBold
               }))}
@@ -183,7 +192,7 @@ export default async function FotoboxAnlaessePage() {
           </div>
         </section>
 
-        {occasions.sections.map((occasion, index) => (
+        {renderedSections.map((occasion, index) => (
           <section
             id={occasion.id}
             key={occasion.id}
