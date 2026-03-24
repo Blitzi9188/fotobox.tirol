@@ -298,37 +298,6 @@ export default async function PreisgestaltungPage() {
           </div>
         </section>
 
-        <section className="seo-landing-section pricing-contact-section" id="anfragen">
-          <div className="container">
-            <section className="pricing-contact-panel">
-              <div className="pricing-contact-copy">
-                <h2>{content.pricing.contactTitle || "Direkt anfragen"}</h2>
-                <p className="pricing-contact-intro">
-                  Wenn keines der Pakete exakt passt, erstellen wir euch gerne ein individuelles Angebot für Hochzeit,
-                  Firmenfeier oder Event in Tirol.
-                </p>
-                <div className="pricing-contact-details">
-                  <div>
-                    <h4>Telefon</h4>
-                    <p><a href={`tel:${content.contact.phone.replace(/[^+\d]/g, "")}`}>{content.contact.phone}</a></p>
-                  </div>
-                  <div>
-                    <h4>E-Mail</h4>
-                    <p><a href={`mailto:${content.contact.email}`}>{content.contact.email}</a></p>
-                  </div>
-                </div>
-              </div>
-              <div className="pricing-contact-actions">
-                <Link href="/kontakt" className="pricing-contact-primary">
-                  Unverbindliche Anfrage senden
-                </Link>
-                <p className="pricing-contact-note">
-                  Antwort in der Regel innerhalb von 24 Stunden.
-                </p>
-              </div>
-            </section>
-          </div>
-        </section>
       </main>
       <SiteFooter content={content} />
     </>

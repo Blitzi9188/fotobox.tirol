@@ -200,14 +200,19 @@ export default async function TechnischeDatenAufbauPage() {
               )}
             </div>
 
-            <div className="setup-steps-grid">
-              {setup.steps.map((step, index) => (
-                <article key={`${step.title}-${index}`} className="setup-step-card">
-                  <div className="setup-step-number">{index + 1}</div>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </article>
-              ))}
+            <div className="setup-steps-shell">
+              <p className="setup-steps-label">Aufbau in {setup.steps.length} Schritten</p>
+              <div className="setup-steps-grid">
+                {setup.steps.map((step, index) => (
+                  <article key={`${step.title}-${index}`} className="setup-step-cell">
+                    <span className="setup-step-number">{String(index + 1).padStart(2, "0")}</span>
+                    <div className="setup-step-copy">
+                      <h3>{step.title}</h3>
+                      <p>{step.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>

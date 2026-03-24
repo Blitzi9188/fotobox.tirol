@@ -10,7 +10,7 @@ import { formatReviewDateWithCurrentYear, getSortedLatestReviews } from "@/lib/r
 
 export const dynamic = "force-dynamic";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
-const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = ["hero", "features", "space", "media", "pricing", "reviews", "faq"];
+const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = ["hero", "features", "reviews", "space", "media"];
 const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
 
 function subtitleHtmlToText(html: string): string {
@@ -72,7 +72,13 @@ export default async function HomePage() {
   const homepageOrder: HomepageBlockId[] = [
     ...uniqueCmsOrder.filter((id): id is HomepageBlockId => DEFAULT_HOMEPAGE_ORDER.includes(id as HomepageBlockId)),
     ...DEFAULT_HOMEPAGE_ORDER.filter((id) => !uniqueCmsOrder.includes(id))
-  ].filter((id) => id !== "reviews");
+  ];
+  const orderedHomepageSections: HomepageBlockId[] = [
+    ...homepageOrder.filter((id) => id === "hero"),
+    ...homepageOrder.filter((id) => id === "features"),
+    ...homepageOrder.filter((id) => id === "reviews"),
+    ...homepageOrder.filter((id) => !["hero", "features", "reviews"].includes(id))
+  ];
   const stars = (count: number) => Array.from({ length: Math.max(0, Math.min(5, Math.round(count))) }, (_, i) => (
     <span className="star" key={i}>★</span>
   ));
@@ -94,14 +100,6 @@ export default async function HomePage() {
         : reviewsDefaults.items
   };
   const latestReviews = getSortedLatestReviews(reviews.items);
-  const faqEntities = content.faq.items.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer
-    }
-  }));
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -143,11 +141,6 @@ export default async function HomePage() {
           }))
         }
       },
-      {
-        "@type": "FAQPage",
-        "@id": `${SITE_URL}/#faq`,
-        mainEntity: faqEntities
-      }
     ]
   };
 
@@ -192,7 +185,7 @@ export default async function HomePage() {
           </section>
         ) : null}
 
-        {homepageOrder
+        {orderedHomepageSections
           .filter((section) => section !== "hero")
           .map((section) => {
             if (section === "features") {
@@ -238,6 +231,11 @@ export default async function HomePage() {
                         <ul className="price-list">
                           {content.ai.bullets.map((item) => <li key={item}>✓ {item}</li>)}
                         </ul>
+                        <div className="section-subpage-link">
+                          <Link href="/ki-fotobox-tirol" className="btn">
+                            zur ki-seite
+                          </Link>
+                        </div>
                       </div>
                       <div className="ai-compare-wrap">
                         <BeforeAfterSlider
@@ -260,6 +258,11 @@ export default async function HomePage() {
                       <div className="space-copy">
                         <h2><SlashHeading value={content.space.heading} /></h2>
                         <p>{content.space.description}</p>
+                        <div className="section-subpage-link">
+                          <Link href="/technische-daten-aufbau" className="btn">
+                            zu platz & aufbau
+                          </Link>
+                        </div>
                       </div>
                       <div className="space-visual">
                         {content.space.imageUrl ? (
@@ -309,6 +312,44 @@ export default async function HomePage() {
                   </div>
                 </section>
               );
+            }
+
+            if (section === "reviews") {
+              return latestReviews.length > 0 ? (
+                <section id="reviews" className="reviews" key="reviews">
+                  <div className="container">
+                    <div className="overall-rating">
+                      <div className="reviews-header">
+                        <h2 style={{ marginBottom: "0.35rem" }}>
+                          {reviews.heading.split("/")[0]}<span className="accent-slash">/</span>{reviews.heading.split("/")[1] || ""}
+                        </h2>
+                        <div className="google-badge">
+                          <svg className="google-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                          </svg>
+                          {reviews.sourceLabel}
+                        </div>
+                      </div>
+                      <div className="stars-row">{stars(5)}</div>
+                      <div className="review-count">{reviews.reviewCountLabel}</div>
+                    </div>
+                    <GoogleReviewsCarousel
+                      items={latestReviews.map((review) => ({
+                        ...review,
+                        date: formatReviewDateWithCurrentYear(review.date)
+                      }))}
+                    />
+                    <div className="reviews-cta">
+                      <a href={reviews.ctaHref} target="_blank" rel="noopener noreferrer">
+                        {reviews.ctaLabel}
+                      </a>
+                    </div>
+                  </div>
+                </section>
+              ) : null;
             }
 
             if (section === "pricing") {
@@ -366,48 +407,6 @@ export default async function HomePage() {
 
             return null;
           })}
-        {latestReviews.length > 0 ? (
-          <section id="reviews" className="reviews">
-            <div className="container">
-              <div className="overall-rating">
-                <div className="reviews-header">
-                  <h2 style={{ marginBottom: "0.35rem" }}>
-                    {reviews.heading.split("/")[0]}<span className="accent-slash">/</span>{reviews.heading.split("/")[1] || ""}
-                  </h2>
-                  <div className="google-badge">
-                    <svg className="google-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
-                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
-                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
-                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
-                    </svg>
-                    {reviews.sourceLabel}
-                  </div>
-                </div>
-                <div className="stars-row">{stars(5)}</div>
-                <div className="review-count">{reviews.reviewCountLabel}</div>
-              </div>
-              <GoogleReviewsCarousel
-                items={latestReviews.map((review) => ({
-                  ...review,
-                  date: formatReviewDateWithCurrentYear(review.date)
-                }))}
-              />
-              <div className="reviews-cta">
-                <a href={reviews.ctaHref} target="_blank" rel="noopener noreferrer">
-                  {reviews.ctaLabel}
-                </a>
-              </div>
-            </div>
-          </section>
-        ) : null}
-        <section className="home-bottom-cta">
-          <div className="container home-bottom-cta-inner">
-            <Link href="/kontakt" className="btn home-bottom-cta-btn">
-              jetzt anfragen
-            </Link>
-          </div>
-        </section>
       </main>
       <SiteFooter content={content} />
     </>

@@ -6,107 +6,6 @@ import CaptchaField from "@/components/site/CaptchaField";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
 
-const EVENT_TYPES = [
-  { id: "hochzeit", label: "Hochzeit", desc: "Der schönste Tag" },
-  { id: "firmenfeier", label: "Firmenfeier", desc: "Business & Event" },
-  { id: "geburtstag", label: "Geburtstag", desc: "Party & Private" }
-];
-
-const BOX_TYPE_OPTIONS = [
-  { id: "normal", label: "Normale Fotobox", desc: "" },
-  { id: "ki", label: "KI-Fotobox", desc: "" }
-];
-
-const PRINT_FORMAT_OPTIONS = [
-  { label: "5x15", desc: "Streifenformat" },
-  { label: "10x15", desc: "Klassisches Fotopapier" }
-];
-
-function WeddingIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M20 12v10H4V12" />
-      <path d="M2 7h20v5H2z" />
-      <path d="M12 22V7" />
-      <path d="M12 7H4.5a2.5 2.5 0 0 1 0-5C7 2 12 7 12 7z" />
-      <path d="M12 7h7.5a2.5 2.5 0 0 0 0-5C17 2 12 7 12 7z" />
-    </svg>
-  );
-}
-
-function BusinessIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="2" />
-      <path d="M3 9h18" />
-      <path d="M9 21V9" />
-    </svg>
-  );
-}
-
-function BirthdayIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5c2.4 0 5.4 3 5.5 3" />
-      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5c-2.4 0-5.4 3-5.5 3" />
-      <path d="M4 22h16l-2-13H6l-2 13Z" />
-      <path d="M10.5 14.5c.9 0 1.5-.6 1.5-1.5s-.6-1.5-1.5-1.5-1.5.6-1.5 1.5.6 1.5 1.5 1.5Z" />
-      <path d="M13.5 14.5c.9 0 1.5-.6 1.5-1.5s-.6-1.5-1.5-1.5-1.5.6-1.5 1.5.6 1.5 1.5 1.5Z" />
-    </svg>
-  );
-}
-
-function OtherIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 8v8" />
-      <path d="M8 12h8" />
-    </svg>
-  );
-}
-
-function ClassicPrintIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="5" y="4" width="14" height="16" rx="2" />
-      <path d="M8 8h8" />
-      <path d="M8 12h8" />
-      <path d="M8 16h5" />
-    </svg>
-  );
-}
-
-function StripPrintIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="8" y="3" width="8" height="18" rx="2" />
-      <path d="M10 7h4" />
-      <path d="M10 11h4" />
-      <path d="M10 15h4" />
-    </svg>
-  );
-}
-
-function CameraIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-      <circle cx="12" cy="13" r="4" />
-    </svg>
-  );
-}
-
-function SparklesIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="m12 3 1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3Z" />
-      <path d="M19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9L19 16Z" />
-      <path d="M5 14l.9 2.1L8 17l-2.1.9L5 20l-.9-2.1L2 17l2.1-.9L5 14Z" />
-    </svg>
-  );
-}
-
 function CalendarIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -161,35 +60,6 @@ function MessageIcon() {
   );
 }
 
-function getEventIcon(label: string) {
-  const value = label.toLowerCase();
-  if (value.includes("hoch")) return <WeddingIcon />;
-  if (value.includes("firma") || value.includes("business")) return <BusinessIcon />;
-  if (value.includes("geburt")) return <BirthdayIcon />;
-  return <OtherIcon />;
-}
-
-function getPrintFormatIcon(label: string) {
-  return label.includes("5x15") ? <StripPrintIcon /> : <ClassicPrintIcon />;
-}
-
-function getBoxTypeIcon(label: string) {
-  return label.toLowerCase().includes("ki") ? <SparklesIcon /> : <CameraIcon />;
-}
-
-function getDefaultPrintFormatLabel(options: Array<{ label: string; desc: string }>) {
-  return options.find((option) => option.label.includes("5x15"))?.label || options[0]?.label || PRINT_FORMAT_OPTIONS[1].label;
-}
-
-function orderPrintFormatOptions(options: Array<{ label: string; desc: string }>) {
-  return [...options].sort((a, b) => {
-    const aIsStrip = a.label.includes("5x15");
-    const bIsStrip = b.label.includes("5x15");
-    if (aIsStrip === bIsStrip) return 0;
-    return aIsStrip ? -1 : 1;
-  });
-}
-
 export default function BookingInquiryForm({
   plans = [],
   initialPackage,
@@ -203,26 +73,8 @@ export default function BookingInquiryForm({
     () => (plans.length > 0 ? plans : [{ name: "Allgemeine Anfrage", price: 0 }]),
     [plans]
   );
-  const eventOptions = inquiry.eventOptions && inquiry.eventOptions.length > 0 ? inquiry.eventOptions : EVENT_TYPES;
-  const printFormatOptions = orderPrintFormatOptions(
-    inquiry.printFormatOptions && inquiry.printFormatOptions.length > 0
-      ? inquiry.printFormatOptions
-      : PRINT_FORMAT_OPTIONS
-  );
-  const boxTypeOptionsRaw = inquiry.boxTypeOptions && inquiry.boxTypeOptions.length > 0 ? inquiry.boxTypeOptions : BOX_TYPE_OPTIONS;
-  const boxTypeOptions = boxTypeOptionsRaw.map((option) => {
-    if ((option.label || "").toLowerCase().includes("ki")) {
-      return { ...option, desc: "" };
-    }
-    return option;
-  });
-  const defaultPrintFormatLabel = getDefaultPrintFormatLabel(printFormatOptions);
-
   const [status, setStatus] = useState("");
-  const [selectedEvent, setSelectedEvent] = useState(eventOptions[0]?.label || EVENT_TYPES[0].label);
-  const [selectedPrintFormat, setSelectedPrintFormat] = useState(defaultPrintFormatLabel);
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
-  const [selectedBoxType, setSelectedBoxType] = useState(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
   const [captchaToken, setCaptchaToken] = useState("");
   const [captchaAnswer, setCaptchaAnswer] = useState("");
   const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0);
@@ -238,21 +90,17 @@ export default function BookingInquiryForm({
 
     const messageRaw = String(formData.get("message") || "").trim();
     const location = String(formData.get("location") || "").trim();
-    const eventType = String(formData.get("eventType") || "").trim();
-    const boxType = String(formData.get("boxType") || "").trim();
-    const printText = String(formData.get("printText") || "").trim();
-
     const payload = {
       name: String(formData.get("name") || "").trim(),
       email: String(formData.get("email") || "").trim(),
       phone: String(formData.get("phone") || "").trim(),
       eventDate: String(formData.get("eventDate") || "").trim(),
       packageName: String(formData.get("packageName") || "").trim(),
-      eventType,
+      eventType: "",
       location,
-      boxType,
-      printFormat: String(formData.get("printFormat") || "").trim(),
-      printText,
+      boxType: "",
+      printFormat: "",
+      printText: "",
       message: messageRaw,
       website: String(formData.get("website") || "").trim(),
       startedAt: String(formData.get("startedAt") || "").trim(),
@@ -268,11 +116,8 @@ export default function BookingInquiryForm({
 
     const json = (await response.json().catch(() => null)) as { error?: string } | null;
     if (response.ok) {
-      setSelectedEvent(eventOptions[0]?.label || EVENT_TYPES[0].label);
-      setSelectedPrintFormat(defaultPrintFormatLabel);
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
-      setSelectedBoxType(boxTypeOptions[0]?.label || BOX_TYPE_OPTIONS[0].label);
       setCaptchaToken("");
       setCaptchaAnswer("");
       setCaptchaRefreshKey((value) => value + 1);
@@ -308,25 +153,6 @@ export default function BookingInquiryForm({
       </div>
 
       <div className="inquiry-form-section">
-        <span className="inquiry-section-title">{inquiry.eventSectionTitle}</span>
-        <input type="hidden" name="eventType" value={selectedEvent} />
-        <div className="inquiry-options-grid">
-          {eventOptions.map((item, index) => (
-            <button
-              key={`${item.label}-${index}`}
-              type="button"
-              className={`inquiry-option ${selectedEvent === item.label ? "selected" : ""}`}
-              onClick={() => setSelectedEvent(item.label)}
-            >
-              <span className="inquiry-option-icon">{getEventIcon(item.label)}</span>
-              <span className="inquiry-option-title">{item.label}</span>
-              <span className="inquiry-option-desc">{item.desc}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="inquiry-form-section">
         <span className="inquiry-section-title">{inquiry.dateSectionTitle}</span>
         <div className="inquiry-input-group">
           <label className="inquiry-field">
@@ -338,64 +164,6 @@ export default function BookingInquiryForm({
             <input name="location" type="text" placeholder={inquiry.locationPlaceholder || "Innsbruck, Kitzbühel..."} />
           </label>
         </div>
-      </div>
-
-      <div className="inquiry-form-section">
-        <span className="inquiry-section-title">{inquiry.printSectionTitle}</span>
-        <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
-          <span>{inquiry.printFormatLabel || "Druckformat"}</span>
-          <div className="inquiry-checkbox-group">
-            {printFormatOptions.map((option, index) => (
-              <label
-                key={`${option.label}-${index}`}
-                className={`inquiry-checkbox-item ${selectedPrintFormat === option.label ? "selected" : ""}`}
-                >
-                  <input
-                  type="radio"
-                  name="printFormat"
-                  value={option.label}
-                  checked={selectedPrintFormat === option.label}
-                  onChange={() => setSelectedPrintFormat(option.label)}
-                  />
-                  <span className="inquiry-checkmark" aria-hidden="true" />
-                  <span className="inquiry-choice-icon">{getPrintFormatIcon(option.label)}</span>
-                  <span className="inquiry-choice-line">
-                    <span className="inquiry-choice-title">{option.label}</span>
-                    <span className="inquiry-choice-desc">{option.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </label>
-        <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
-          <span>{inquiry.boxTypeLabel || "Fotobox Variante"}</span>
-          <div className="inquiry-checkbox-group">
-            {boxTypeOptions.map((option, index) => (
-              <label
-                key={`${option.label}-${index}`}
-                className={`inquiry-checkbox-item ${selectedBoxType === option.label ? "selected" : ""}`}
-                >
-                  <input
-                  type="radio"
-                  name="boxType"
-                  value={option.label}
-                  checked={selectedBoxType === option.label}
-                  onChange={() => setSelectedBoxType(option.label)}
-                  />
-                  <span className="inquiry-checkmark" aria-hidden="true" />
-                  <span className="inquiry-choice-icon">{getBoxTypeIcon(option.label)}</span>
-                  <span className="inquiry-choice-line">
-                    <span className="inquiry-choice-title">{option.label}</span>
-                    <span className="inquiry-choice-desc">{option.desc}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </label>
-        <label className="inquiry-field" style={{ marginTop: "0.8rem" }}>
-          <span>{inquiry.printTextLabel || "Text für Ausdruck (optional)"}</span>
-          <input name="printText" type="text" placeholder={inquiry.printTextPlaceholder || "z. B. Lisa & Markus | 14.06.2026"} />
-        </label>
       </div>
 
       <div className="inquiry-form-section">

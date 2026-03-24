@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
 import type { CMSContent } from "@/lib/types";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
@@ -213,16 +212,6 @@ export default async function FotoboxAnlaessePage() {
         ))}
 
       </main>
-
-      <div className={styles.stickyCta}>
-        <div className={`container ${styles.stickyCtaInner}`}>
-          <div>
-            <span className={styles.ctaMeta}>{occasions.ctaMeta}</span>
-            <strong className={styles.ctaPrice}>{occasions.ctaTitle}</strong>
-          </div>
-          <Link href={occasions.ctaButtonHref} className={styles.ctaButton}>{occasions.ctaButtonText}</Link>
-        </div>
-      </div>
 
       <SiteFooter content={content} />
     </>

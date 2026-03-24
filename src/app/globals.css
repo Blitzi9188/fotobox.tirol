@@ -276,6 +276,11 @@ main section {
   animation: heroRise 0.9s var(--ani-ease) both;
 }
 
+.hero h1 {
+  font-size: clamp(2.2rem, 5.4vw, 2.6rem);
+  line-height: 1.08;
+}
+
 .hero-kicker {
   display: inline-block;
   margin-bottom: 0.8rem;
@@ -386,6 +391,7 @@ p {
 .btn {
   display: inline-block;
   border: none;
+  border-radius: 999px;
   cursor: pointer;
   background: var(--c-accent);
   color: #fff;
@@ -448,6 +454,10 @@ p {
 .features,
 .pricing {
   background: var(--c-surface);
+}
+
+.features {
+  padding-bottom: 1.6rem;
 }
 
 .feature-item,
@@ -573,6 +583,12 @@ p {
 .ai-text .price-list {
   margin: 0.5rem auto 0;
   text-align: left;
+}
+
+.section-subpage-link {
+  margin-top: 1.35rem;
+  display: flex;
+  justify-content: center;
 }
 
 .ai-visual {
@@ -1005,6 +1021,8 @@ p {
 
 .reviews {
   background: var(--c-bg);
+  margin-top: -0.6rem;
+  padding-top: 0.6rem;
 }
 
 .reviews-contact {
@@ -2163,10 +2181,27 @@ p {
   line-height: 1.45;
 }
 
+.setup-steps-shell {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.setup-steps-label {
+  margin: 0 0 1rem;
+  color: #a3a3a3;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .setup-steps-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: 1px;
+  border: 1px solid #e5e5e5;
+  background: #e5e5e5;
+  overflow: hidden;
 }
 
 .setup-video-shell {
@@ -2236,37 +2271,36 @@ p {
   line-height: 1.7;
 }
 
-.setup-step-card {
+.setup-step-cell {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
   background: #fff;
-  border: 1px solid #ececec;
-  border-radius: 2rem;
-  padding: 1.55rem 1.35rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  padding: 1.5rem 1.25rem;
 }
 
 .setup-step-number {
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  background: #fef2f2;
-  color: var(--c-accent);
-  font-weight: 800;
-  margin-bottom: 1rem;
+  min-width: 16px;
+  padding-top: 2px;
+  color: #b8b8b8;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
-.setup-step-card h3 {
-  margin: 0 0 0.6rem;
-  font-size: 1.08rem;
-  line-height: 1.2;
+.setup-step-copy h3 {
+  margin: 0 0 0.18rem;
+  color: #111;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
-.setup-step-card p {
+.setup-step-copy p {
   margin: 0;
-  color: #6b7280;
-  line-height: 1.6;
+  color: #888;
+  font-size: 0.84rem;
+  line-height: 1.35;
 }
 
 .setup-space-panel {
@@ -3847,6 +3881,20 @@ footer {
 }
 
 @media (max-width: 900px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+  }
+
   .pricing-package-featured {
     transform: none;
   }
@@ -3921,6 +3969,42 @@ footer {
   .admin-grid-3,
   .admin-stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .ai-showcase,
+  .ai-text,
+  .ai-description-block,
+  .ai-description-block p,
+  .ai-compare-wrap,
+  .space-copy,
+  .space-copy p {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  .ai-showcase {
+    gap: 1rem;
+    padding: 1rem;
+    overflow: hidden;
+  }
+
+  .ai-text,
+  .space-copy {
+    align-items: center;
+    text-align: center;
+  }
+
+  .ai-description-block,
+  .ai-description-block p,
+  .space-copy p {
+    text-align: center;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    hyphens: auto;
   }
 
   .admin-shell {
@@ -4053,11 +4137,15 @@ footer {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 0.75rem;
   }
 
   .site-nav {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    flex: 0 0 auto;
   }
 
   .nav-list-desktop {
@@ -4066,6 +4154,7 @@ footer {
 
   .mobile-nav-menu {
     display: block !important;
+    margin-left: auto;
   }
 
   .mobile-nav-panel {
@@ -4087,6 +4176,8 @@ footer {
 
   .brand-wrap {
     flex-wrap: wrap;
+    flex: 0 1 auto;
+    min-width: 0;
   }
 
   .hero-bg-image {
@@ -4345,9 +4436,12 @@ footer {
 
   .setup-spec-layout,
   .setup-spec-grid,
-  .setup-steps-grid,
   .setup-two-column-grid,
   .setup-space-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .setup-steps-grid {
     grid-template-columns: 1fr;
   }
 
