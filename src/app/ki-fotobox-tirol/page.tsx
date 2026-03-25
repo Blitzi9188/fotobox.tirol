@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     "Eigene Unterseite für die KI Fotobox Tirol mit Vorher/Nachher-Beispielen, Live-Demo und Anfrage-CTA."
 };
 
+const KI_LIVE_PREVIEW_IMAGE = "/uploads/ki-demo-grid.png";
+
 function toParagraphs(value?: string) {
   return (value || "")
     .split(/\n\s*\n/)
@@ -79,7 +81,7 @@ export default async function KiFotoboxTirolPage() {
   const paragraphs = toParagraphs(content.ai.descriptionText);
   const leftBefore = content.ai.compareLeftBeforeUrl || content.ai.pageCompareBeforeUrl || "/uploads/hero-optimized.jpg";
   const leftAfter = content.ai.compareLeftAfterUrl || content.ai.pageCompareAfterUrl || leftBefore;
-  const demoImage = content.ai.pageDemoImageUrl || content.ai.compareRightAfterUrl || content.ai.compareRightBeforeUrl || leftAfter;
+  const demoImage = KI_LIVE_PREVIEW_IMAGE;
   const featureTitle = splitSlashTitle(content.ai.featureTitle, "Autofokus auf", "Ihre Schokoladenseite.");
   const heroLineTop = content.ai.heroTitleTop || "Perfekte Bilder.";
   const heroAccent = content.ai.heroTitleAccent || "Magisch";
