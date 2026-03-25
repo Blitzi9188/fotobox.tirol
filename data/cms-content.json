@@ -800,8 +800,9 @@
         "newTab": true
       },
       {
-        "label": "E-Mail",
-        "href": "mailto:info@fotobox.tirol"
+        "label": "Instagram",
+        "href": "https://www.instagram.com/fotobox.blitzkneisser/",
+        "newTab": true
       }
     ],
     "infoTitle": "Informationen",
