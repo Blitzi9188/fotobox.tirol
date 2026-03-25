@@ -252,6 +252,13 @@ export default async function PreisgestaltungPage() {
           </div>
         </section>
 
+        <section className="seo-landing-section seo-landing-alt">
+          <div className="container">
+            <h2><SlashHeading value={content.pricing.referencesHeading || "referenzen/partner"} /></h2>
+            <ReferencesCarousel items={references} />
+          </div>
+        </section>
+
         <section className="seo-landing-section">
           <div className="container">
             <div className="pricing-tech-panel">
@@ -288,13 +295,6 @@ export default async function PreisgestaltungPage() {
                 </details>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="seo-landing-section seo-landing-alt">
-          <div className="container">
-            <h2><SlashHeading value={content.pricing.referencesHeading || "referenzen/partner"} /></h2>
-            <ReferencesCarousel items={references} />
           </div>
         </section>
 

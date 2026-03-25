@@ -80,6 +80,10 @@ export default function BookingInquiryForm({
   const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0);
   const [formStartedAt] = useState(() => Date.now());
 
+  function plainSectionTitle(value: string) {
+    return value.replace(/^\s*\d+\.\s*/, "").trim();
+  }
+
   function requiredLabel(label: string) {
     return `${label} *`;
   }
@@ -153,7 +157,7 @@ export default function BookingInquiryForm({
       </div>
 
       <div className="inquiry-form-section">
-        <span className="inquiry-section-title">{inquiry.dateSectionTitle}</span>
+        <span className="inquiry-section-title">{plainSectionTitle(inquiry.dateSectionTitle)}</span>
         <div className="inquiry-input-group">
           <label className="inquiry-field">
             <span className="inquiry-field-heading"><span className="inquiry-field-icon"><CalendarIcon /></span>{requiredLabel(inquiry.dateLabel || "Datum")}</span>
@@ -167,7 +171,7 @@ export default function BookingInquiryForm({
       </div>
 
       <div className="inquiry-form-section">
-        <span className="inquiry-section-title">{inquiry.contactSectionTitle}</span>
+        <span className="inquiry-section-title">{plainSectionTitle(inquiry.contactSectionTitle)}</span>
         <div className="inquiry-input-group">
           <label className="inquiry-field">
             <span className="inquiry-field-heading"><span className="inquiry-field-icon"><UserIcon /></span>{requiredLabel(inquiry.nameLabel || "Vor- & Nachname")}</span>
@@ -191,7 +195,7 @@ export default function BookingInquiryForm({
       </div>
 
       <div className="inquiry-form-section">
-        <span className="inquiry-section-title">{inquiry.packageSectionTitle || "05. Paket Wunsch"}</span>
+        <span className="inquiry-section-title">{plainSectionTitle(inquiry.packageSectionTitle || "05. Paket Wunsch")}</span>
         <input type="hidden" name="packageName" value={selectedPackage} />
         <div className={`inquiry-options-grid ${safePlans.length === 2 ? "inquiry-options-grid-2" : ""}`}>
           {safePlans.map((plan) => (
@@ -212,7 +216,7 @@ export default function BookingInquiryForm({
 
       <div className="inquiry-captcha-card">
         <div className="inquiry-captcha-copy">
-          <span className="inquiry-section-title">06. Sicherheitsabfrage *</span>
+          <span className="inquiry-section-title">Sicherheitsabfrage *</span>
           <p className="inquiry-captcha-help">Bitte bestätigen, dass die Anfrage von einer echten Person gesendet wird.</p>
         </div>
         <label className="inquiry-field">

@@ -491,11 +491,11 @@
     "stepEvent": "Event Details",
     "stepPrint": "Aufdruck",
     "stepContact": "Kontakt",
-    "eventSectionTitle": "01. Was feiern Sie?",
-    "dateSectionTitle": "02. Wann findet es statt?",
-    "printSectionTitle": "03. Was soll auf euren Ausdrucken stehen?",
-    "contactSectionTitle": "04. Ihre Kontaktdaten",
-    "packageSectionTitle": "05. Paket Wunsch",
+    "eventSectionTitle": "Was feiern Sie?",
+    "dateSectionTitle": "Wann findet es statt?",
+    "printSectionTitle": "Was soll auf euren Ausdrucken stehen?",
+    "contactSectionTitle": "Ihre Kontaktdaten",
+    "packageSectionTitle": "Paket Wunsch",
     "submitText": "Unverbindliche Anfrage Senden",
     "eventOptions": [
       {
