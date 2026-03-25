@@ -55,6 +55,7 @@ export default function OccasionSectionNav({ items }: OccasionSectionNavProps) {
     <div className={styles.heroOccasionButtons}>
       {items.map((item) => {
         const isActive = item.id === activeId;
+        const [left, right] = item.label.split("/");
 
         return (
           <Link
@@ -63,7 +64,15 @@ export default function OccasionSectionNav({ items }: OccasionSectionNavProps) {
             className={`${styles.heroOccasionButton} ${isActive ? styles.heroOccasionButtonActive : ""}`}
             aria-current={isActive ? "true" : undefined}
           >
-            {item.label}
+            {right ? (
+              <>
+                <span>{left}</span>
+                <span className="accent-slash">/</span>
+                <span>{right}</span>
+              </>
+            ) : (
+              item.label
+            )}
           </Link>
         );
       })}

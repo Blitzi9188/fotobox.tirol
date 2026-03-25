@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 const DEFAULT_OCCASIONS = [
   {
     id: "hochzeit",
-    orderLabel: "Hochzeitsfotobox",
+    orderLabel: "hochzeits/fotobox",
     eyebrow: "Der Klassiker für Brautpaare",
     title: "Romantische",
     titleBold: "Hochzeitsfotobox",
@@ -30,7 +30,7 @@ const DEFAULT_OCCASIONS = [
   },
   {
     id: "geburtstag",
-    orderLabel: "Geburtstagsfotobox",
+    orderLabel: "geburtstags/fotobox",
     eyebrow: "Action für eure Party",
     title: "Eure",
     titleBold: "Geburtstagsfotobox",
@@ -49,7 +49,7 @@ const DEFAULT_OCCASIONS = [
   },
   {
     id: "firma",
-    orderLabel: "Firmen-Event",
+    orderLabel: "firmen/event",
     eyebrow: "Branding und Mitarbeiter-Erlebnis",
     title: "Professionelles",
     titleBold: "Firmenevent",
@@ -69,7 +69,7 @@ const DEFAULT_OCCASIONS = [
   },
   {
     id: "event",
-    orderLabel: "Events",
+    orderLabel: "event/fotobox",
     eyebrow: "Maximale Aufmerksamkeit",
     title: "Fotobox mieten für",
     titleBold: "Events",
@@ -115,6 +115,17 @@ export async function generateMetadata(): Promise<Metadata> {
 function splitHeroTitle(value?: string) {
   const [left, right] = (value || "jeden/anlass").split("/");
   return { left: (left || "jeden").trim(), right: (right || "anlass").trim() };
+}
+
+function getOccasionNavLabel(occasion: NonNullable<CMSContent["occasions"]>["sections"][number]) {
+  const fallbackLabels: Record<string, string> = {
+    hochzeit: "hochzeits/fotobox",
+    geburtstag: "geburtstags/fotobox",
+    firma: "firmen/event",
+    event: "event/fotobox"
+  };
+
+  return fallbackLabels[occasion.id] || occasion.orderLabel?.trim() || occasion.titleBold;
 }
 
 function BenefitItem({ text }: { text: string }) {
@@ -186,7 +197,7 @@ export default async function FotoboxAnlaessePage() {
             <OccasionSectionNav
               items={renderedSections.map((occasion) => ({
                 id: occasion.id,
-                label: occasion.orderLabel || occasion.titleBold
+                label: getOccasionNavLabel(occasion)
               }))}
             />
           </div>

@@ -67,6 +67,10 @@ export default async function HomePage() {
     .split(/\n{2,}/)
     .map((paragraph) => paragraph.trim())
     .filter(Boolean);
+  const homepageAiRightBeforeImage =
+    content.ai.compareRightBeforeUrl || content.ai.pageDemoImageUrl || content.ai.previewImageUrl;
+  const homepageAiRightAfterImage =
+    content.ai.compareRightAfterUrl || content.ai.pageDemoImageUrl || content.ai.previewImageUrl;
   const cmsOrder = content.layout?.homepageOrder || [];
   const uniqueCmsOrder = [...new Set(cmsOrder)];
   const homepageOrder: HomepageBlockId[] = [
@@ -240,8 +244,8 @@ export default async function HomePage() {
                       <div className="ai-compare-wrap">
                         <BeforeAfterSlider
                           title="KI Vergleich Rechts"
-                          beforeImageUrl={content.ai.compareRightBeforeUrl}
-                          afterImageUrl={content.ai.compareRightAfterUrl}
+                          beforeImageUrl={homepageAiRightBeforeImage}
+                          afterImageUrl={homepageAiRightAfterImage}
                         />
                       </div>
                     </div>
@@ -280,11 +284,6 @@ export default async function HomePage() {
                       <div className="space-copy">
                         <h2><SlashHeading value={content.space.layoutOneHeading || "layout/gestaltung"} /></h2>
                         <p>{content.space.layoutOneDescription || content.space.description}</p>
-                        <div className="section-subpage-link">
-                          <Link href="/layout-gestaltung" className="btn">
-                            zur layout-seite
-                          </Link>
-                        </div>
                       </div>
                       <div className="space-visual space-visual-small">
                         {(content.space.layoutOneImageUrl || content.space.imageUrl) ? (

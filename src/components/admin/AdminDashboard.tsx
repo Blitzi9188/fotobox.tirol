@@ -355,10 +355,18 @@ export default function AdminDashboard() {
       finalLead: json.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt.",
       pageCompareBeforeUrl: json.ai.pageCompareBeforeUrl || json.ai.compareLeftBeforeUrl || "",
       pageCompareAfterUrl: json.ai.pageCompareAfterUrl || json.ai.compareLeftAfterUrl || "",
-      previewImageUrl: KI_SHARED_PREVIEW_IMAGE,
-      compareRightBeforeUrl: KI_SHARED_PREVIEW_IMAGE,
-      compareRightAfterUrl: KI_SHARED_PREVIEW_IMAGE,
-      pageDemoImageUrl: KI_SHARED_PREVIEW_IMAGE
+      previewImageUrl: json.ai.previewImageUrl || KI_SHARED_PREVIEW_IMAGE,
+      compareRightBeforeUrl:
+        json.ai.compareRightBeforeUrl ||
+        json.ai.previewImageUrl ||
+        json.ai.pageDemoImageUrl ||
+        KI_SHARED_PREVIEW_IMAGE,
+      compareRightAfterUrl:
+        json.ai.compareRightAfterUrl ||
+        json.ai.previewImageUrl ||
+        json.ai.pageDemoImageUrl ||
+        KI_SHARED_PREVIEW_IMAGE,
+      pageDemoImageUrl: json.ai.pageDemoImageUrl || json.ai.previewImageUrl || KI_SHARED_PREVIEW_IMAGE
     };
     const normalizedFooter = {
       questionsTitle: json.footer?.questionsTitle || "Du hast Fragen?",
