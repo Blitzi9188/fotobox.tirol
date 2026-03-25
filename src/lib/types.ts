@@ -95,6 +95,20 @@ export type SetupInfoItem = {
   value: string;
 };
 
+export type LayoutBenefitItem = {
+  title: string;
+  text: string;
+};
+
+export type LayoutFormatItem = {
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  items: LayoutBenefitItem[];
+};
+
 export type WizardStepContent = {
   title: string;
   subtitle: string;
@@ -259,6 +273,27 @@ export type CMSContent = {
     primaryCtaHref: string;
     secondaryCtaText: string;
     secondaryCtaHref: string;
+  };
+  layoutPage?: {
+    seoTitle?: string;
+    seoDescription?: string;
+    badge: string;
+    heading: string;
+    lead: string;
+    primaryCtaText: string;
+    primaryCtaHref: string;
+    secondaryCtaText: string;
+    secondaryCtaHref: string;
+    formatSections: LayoutFormatItem[];
+    advantagesTitle: string;
+    advantagesLead: string;
+    advantages: LayoutBenefitItem[];
+    finalTitle: string;
+    finalLead: string;
+    finalPrimaryCtaText: string;
+    finalPrimaryCtaHref: string;
+    finalSecondaryCtaText: string;
+    finalSecondaryCtaHref: string;
   };
   templateWizard?: {
     step1: WizardStepContent;

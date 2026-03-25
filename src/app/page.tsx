@@ -280,6 +280,11 @@ export default async function HomePage() {
                       <div className="space-copy">
                         <h2><SlashHeading value={content.space.layoutOneHeading || "layout/gestaltung"} /></h2>
                         <p>{content.space.layoutOneDescription || content.space.description}</p>
+                        <div className="section-subpage-link">
+                          <Link href="/layout-gestaltung" className="btn">
+                            zur layout-seite
+                          </Link>
+                        </div>
                       </div>
                       <div className="space-visual space-visual-small">
                         {(content.space.layoutOneImageUrl || content.space.imageUrl) ? (
@@ -307,6 +312,11 @@ export default async function HomePage() {
                       </div>
                       <div className="space-copy">
                         <p>{content.space.layoutTwoDescription || content.space.description}</p>
+                        <div className="section-subpage-link">
+                          <Link href="/layout-gestaltung" className="btn">
+                            zur layout-seite
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>

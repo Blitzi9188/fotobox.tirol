@@ -6,6 +6,7 @@ import AdminLoginForm from "@/components/admin/AdminLoginForm";
 import { AccessoryItem, CMSContent, Feature, FaqItem, GalleryItem, OccasionItem } from "@/lib/types";
 import { DEFAULT_AGB_B2B_TEXT, DEFAULT_AGB_TEXT, DEFAULT_DATENSCHUTZ_TEXT, DEFAULT_IMPRESSUM_TEXT } from "@/lib/legalDefaults";
 import { DEFAULT_SETUP_CONTENT } from "@/lib/setupDefaults";
+import { DEFAULT_LAYOUT_PAGE_CONTENT } from "@/lib/layoutPageDefaults";
 
 type CmsUpdater = (prev: CMSContent) => CMSContent;
 type SectionId =
@@ -17,6 +18,7 @@ type SectionId =
   | "accessories"
   | "space"
   | "spaceLayout"
+  | "layoutPage"
   | "setup"
   | "pricing"
   | "media"
@@ -42,6 +44,7 @@ const SECTION_TABS: Array<{ id: SectionId; label: string }> = [
   { id: "accessories", label: "Accessoires" },
   { id: "space", label: "Platzbedarf" },
   { id: "spaceLayout", label: "Layout/Gestaltung" },
+  { id: "layoutPage", label: "Layout-Seite" },
   { id: "setup", label: "Aufbau/Technik" },
   { id: "pricing", label: "Preise" },
   { id: "reviews", label: "Rezensionen" },
@@ -77,6 +80,8 @@ function getPreviewPathForTab(tab: SectionId) {
       return "/preisgestaltung";
     case "setup":
       return "/technische-daten-aufbau";
+    case "layoutPage":
+      return "/layout-gestaltung";
     case "contact":
     case "inquiry":
       return "/kontakt";
@@ -465,6 +470,18 @@ export default function AdminDashboard() {
           ? json.setup.featureItems
           : DEFAULT_SETUP_CONTENT.featureItems
     };
+    const normalizedLayoutPage = {
+      ...DEFAULT_LAYOUT_PAGE_CONTENT,
+      ...json.layoutPage,
+      formatSections:
+        (json.layoutPage?.formatSections && json.layoutPage.formatSections.length > 0)
+          ? json.layoutPage.formatSections
+          : DEFAULT_LAYOUT_PAGE_CONTENT.formatSections,
+      advantages:
+        (json.layoutPage?.advantages && json.layoutPage.advantages.length > 0)
+          ? json.layoutPage.advantages
+          : DEFAULT_LAYOUT_PAGE_CONTENT.advantages
+    };
     const normalizedReviews = {
       heading: json.reviews?.heading || "kunden/bewertungen",
       sourceLabel: json.reviews?.sourceLabel || "Google Bewertungen",
@@ -690,6 +707,7 @@ export default function AdminDashboard() {
       occasions: normalizedOccasions,
       space: normalizedSpace,
       setup: normalizedSetup,
+      layoutPage: normalizedLayoutPage,
       reviews: normalizedReviews,
       templateWizard: normalizedTemplateWizard,
       pricing: normalizedPricing,
@@ -3143,6 +3161,299 @@ export default function AdminDashboard() {
             </label>
             {content.space.layoutTwoImageUrl ? <img src={content.space.layoutTwoImageUrl} alt="Layout/Gestaltung 2 Vorschau" className="admin-preview" /> : null}
           </div>
+        </section>
+      );
+    }
+
+    if (section === "layoutPage") {
+      return (
+        <section className="admin-section">
+          <div className="admin-section-head">
+            <h2>Layout-Seite</h2>
+            <p>Texte, Bilder, Reihenfolge und CTA der Unterseite `layout-gestaltung`.</p>
+            <div className="admin-section-actions">
+              <button className="btn" type="button" onClick={saveContent}>
+                {dirty ? "Layout-Seite speichern" : "gespeichert"}
+              </button>
+              <button className="btn btn-outline" type="button" onClick={() => saveAndOpenPreview(section)}>
+                Layout-Seite speichern und öffnen
+              </button>
+              <span className="admin-inline-status">{dirty ? "Ungespeicherte Änderungen" : "Alles gespeichert"}</span>
+            </div>
+          </div>
+
+          <div className="admin-grid-2">
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>SEO Titel</span>
+                <input
+                  value={content.layoutPage?.seoTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, seoTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>SEO Beschreibung</span>
+                <textarea
+                  rows={4}
+                  value={content.layoutPage?.seoDescription || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, seoDescription: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Badge</span>
+                <input
+                  value={content.layoutPage?.badge || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, badge: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Überschrift (mit /)</span>
+                <input
+                  value={content.layoutPage?.heading || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, heading: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Lead Text</span>
+                <textarea
+                  rows={4}
+                  value={content.layoutPage?.lead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, lead: e.target.value } }))}
+                />
+              </label>
+              <div className="admin-grid-2">
+                <label className="admin-field">
+                  <span>Hero CTA Text</span>
+                  <input
+                    value={content.layoutPage?.primaryCtaText || ""}
+                    onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, primaryCtaText: e.target.value } }))}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Hero CTA Link</span>
+                  <input
+                    value={content.layoutPage?.primaryCtaHref || ""}
+                    onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, primaryCtaHref: e.target.value } }))}
+                  />
+                </label>
+              </div>
+              <div className="admin-grid-2">
+                <label className="admin-field">
+                  <span>Sekundär CTA Text</span>
+                  <input
+                    value={content.layoutPage?.secondaryCtaText || ""}
+                    onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, secondaryCtaText: e.target.value } }))}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Sekundär CTA Link</span>
+                  <input
+                    value={content.layoutPage?.secondaryCtaHref || ""}
+                    onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, secondaryCtaHref: e.target.value } }))}
+                  />
+                </label>
+              </div>
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Vorteils-Überschrift (mit /)</span>
+                <input
+                  value={content.layoutPage?.advantagesTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, advantagesTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Vorteils-Lead</span>
+                <textarea
+                  rows={3}
+                  value={content.layoutPage?.advantagesLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, advantagesLead: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Vorteile (je Zeile: Titel | Text)</span>
+                <textarea
+                  rows={8}
+                  value={(content.layoutPage?.advantages || []).map((item) => `${item.title} | ${item.text}`).join("\n")}
+                  onChange={(e) =>
+                    updateContent((prev) => ({
+                      ...prev,
+                      layoutPage: {
+                        ...prev.layoutPage!,
+                        advantages: e.target.value
+                          .split("\n")
+                          .map((line) => line.trim())
+                          .filter(Boolean)
+                          .map((line) => {
+                            const [title, ...rest] = line.split("|");
+                            return { title: (title || "").trim(), text: rest.join("|").trim() };
+                          })
+                          .filter((item) => item.title && item.text)
+                      }
+                    }))
+                  }
+                />
+              </label>
+              <label className="admin-field">
+                <span>Abschluss-Titel</span>
+                <input
+                  value={content.layoutPage?.finalTitle || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalTitle: e.target.value } }))}
+                />
+              </label>
+              <label className="admin-field">
+                <span>Abschluss-Lead</span>
+                <textarea
+                  rows={3}
+                  value={content.layoutPage?.finalLead || ""}
+                  onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalLead: e.target.value } }))}
+                />
+              </label>
+              <div className="admin-grid-2">
+                <label className="admin-field">
+                  <span>Primär CTA Text</span>
+                  <input
+                    value={content.layoutPage?.finalPrimaryCtaText || ""}
+                    onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalPrimaryCtaText: e.target.value } }))}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Primär CTA Link</span>
+                  <input
+                    value={content.layoutPage?.finalPrimaryCtaHref || ""}
+                    onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalPrimaryCtaHref: e.target.value } }))}
+                  />
+                </label>
+              </div>
+              <div className="admin-grid-2">
+                <label className="admin-field">
+                  <span>Sekundär CTA Text</span>
+                  <input
+                    value={content.layoutPage?.finalSecondaryCtaText || ""}
+                    onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalSecondaryCtaText: e.target.value } }))}
+                  />
+                </label>
+                <label className="admin-field">
+                  <span>Sekundär CTA Link</span>
+                  <input
+                    value={content.layoutPage?.finalSecondaryCtaHref || ""}
+                    onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalSecondaryCtaHref: e.target.value } }))}
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          {(content.layoutPage?.formatSections || []).map((sectionItem, index) => (
+            <div className="admin-subcard" key={`layout-page-section-${index}`}>
+              <h3 style={{ marginBottom: "1rem" }}>Format Block {index + 1}</h3>
+              <div className="admin-grid-2">
+                <div className="admin-panel">
+                  <label className="admin-field">
+                    <span>Eyebrow</span>
+                    <input
+                      value={sectionItem.eyebrow}
+                      onChange={(e) => {
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, eyebrow: e.target.value };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Überschrift (mit /)</span>
+                    <input
+                      value={sectionItem.heading}
+                      onChange={(e) => {
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, heading: e.target.value };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Lead Text</span>
+                    <textarea
+                      rows={4}
+                      value={sectionItem.lead}
+                      onChange={(e) => {
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, lead: e.target.value };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Bullets (je Zeile: Titel | Text)</span>
+                    <textarea
+                      rows={8}
+                      value={(sectionItem.items || []).map((item) => `${item.title} | ${item.text}`).join("\n")}
+                      onChange={(e) => {
+                        const items = e.target.value
+                          .split("\n")
+                          .map((line) => line.trim())
+                          .filter(Boolean)
+                          .map((line) => {
+                            const [title, ...rest] = line.split("|");
+                            return { title: (title || "").trim(), text: rest.join("|").trim() };
+                          })
+                          .filter((item) => item.title && item.text);
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, items };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                </div>
+
+                <div className="admin-panel">
+                  <label className="admin-field">
+                    <span>Bild hochladen</span>
+                    <input
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
+                      onChange={(event) => {
+                        handleImageUpload(
+                          event,
+                          (prev, url) => {
+                            const sections = [...(prev.layoutPage?.formatSections || [])];
+                            sections[index] = { ...sections[index], imageUrl: url };
+                            return { ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } };
+                          },
+                          `Lade Layout-Bild ${index + 1} hoch...`,
+                          `Layout-Bild ${index + 1} gespeichert.`
+                        );
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Bild URL</span>
+                    <input
+                      value={sectionItem.imageUrl || ""}
+                      onChange={(e) => {
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, imageUrl: e.target.value };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Alt Text</span>
+                    <input
+                      value={sectionItem.imageAlt || ""}
+                      onChange={(e) => {
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, imageAlt: e.target.value };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                  {sectionItem.imageUrl ? <img src={sectionItem.imageUrl} alt={`Layout-Seite Vorschau ${index + 1}`} className="admin-preview" /> : null}
+                </div>
+              </div>
+            </div>
+          ))}
         </section>
       );
     }
