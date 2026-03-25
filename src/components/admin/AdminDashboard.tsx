@@ -31,6 +31,8 @@ type SectionId =
   | "seo";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
 
+const KI_SHARED_PREVIEW_IMAGE = "/uploads/ki-demo-grid.png";
+
 const SECTION_TABS: Array<{ id: SectionId; label: string }> = [
   { id: "overview", label: "Übersicht" },
   { id: "hero", label: "Hero" },
@@ -302,7 +304,7 @@ export default function AdminDashboard() {
         : [
             {
               title: "Smart Lighting",
-              description: "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhaeltnissen für deutlich bessere Ergebnisse."
+              description: "Die KI hebt Gesichter hervor, gleicht Schatten aus und sorgt selbst bei schwierigen Lichtverhältnissen für deutlich bessere Ergebnisse."
             },
             {
               title: "Natürliche Hauttöne",
@@ -348,7 +350,10 @@ export default function AdminDashboard() {
       finalLead: json.ai.finalLead || "Wir schauen gemeinsam, ob die KI-Fotobox besser als eigenständige Attraktion oder als Upgrade zur klassischen Fotobox für dein Event passt.",
       pageCompareBeforeUrl: json.ai.pageCompareBeforeUrl || json.ai.compareLeftBeforeUrl || "",
       pageCompareAfterUrl: json.ai.pageCompareAfterUrl || json.ai.compareLeftAfterUrl || "",
-      pageDemoImageUrl: json.ai.pageDemoImageUrl || json.ai.compareRightAfterUrl || json.ai.compareRightBeforeUrl || json.ai.previewImageUrl || ""
+      previewImageUrl: KI_SHARED_PREVIEW_IMAGE,
+      compareRightBeforeUrl: KI_SHARED_PREVIEW_IMAGE,
+      compareRightAfterUrl: KI_SHARED_PREVIEW_IMAGE,
+      pageDemoImageUrl: KI_SHARED_PREVIEW_IMAGE
     };
     const normalizedFooter = {
       questionsTitle: json.footer?.questionsTitle || "Du hast Fragen?",
