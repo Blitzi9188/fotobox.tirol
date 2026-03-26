@@ -112,6 +112,7 @@ export function SiteHeader({ content }: { content: CMSContent }) {
 
 export function SiteFooter({ content }: { content: CMSContent }) {
   const isInternalHref = (href: string) => href.startsWith("/");
+  const INSTAGRAM_URL = "https://www.instagram.com/fotobox.blitzkneisser/";
   const normalizeLabel = (value: string) =>
     (value || "")
       .toLowerCase()
@@ -146,6 +147,21 @@ export function SiteFooter({ content }: { content: CMSContent }) {
       const label = normalizeLabel(link.label);
       return label === "agb" || label.startsWith("agb ");
     })?.label || "AGB";
+  const socialLinks = (content.footer.socialLinks || []).map((link) => {
+    const normalizedLabel = normalizeLabel(link.label);
+    const normalizedHref = (link.href || "").trim().toLowerCase();
+
+    if (normalizedLabel === "e-mail" || normalizedLabel === "email" || normalizedHref.startsWith("mailto:")) {
+      return {
+        ...link,
+        label: "Instagram",
+        href: INSTAGRAM_URL,
+        newTab: true
+      };
+    }
+
+    return link;
+  });
   const phoneHref = `tel:${normalizePhoneForTel(content.contact.phone)}`;
   const emailHref = `mailto:${content.contact.email}`;
 
@@ -170,7 +186,7 @@ export function SiteFooter({ content }: { content: CMSContent }) {
           <div>
             <h4>{content.footer.socialTitle}</h4>
             <p>{content.footer.socialIntro}</p>
-            {content.footer.socialLinks.map((link) => (
+            {socialLinks.map((link) => (
               <a
                 key={`${link.label}-${link.href}`}
                 href={link.href}
