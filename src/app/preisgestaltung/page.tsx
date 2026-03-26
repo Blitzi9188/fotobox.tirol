@@ -5,6 +5,7 @@ import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShel
 import ReferencesCarousel from "@/components/site/ReferencesCarousel";
 
 export const dynamic = "force-dynamic";
+const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
 
 const BLOCKED_REFERENCE_DOMAINS = ["sailer-seefeld.at"];
 
@@ -101,9 +102,19 @@ const DEFAULT_REFERENCES = [
 ];
 
 export const metadata: Metadata = {
-  title: "Preisgestaltung Fotobox Tirol | Pakete und Leistungen",
+  title: "Fotobox Preise Tirol | Pakete, Leistungen und Sofortdruck",
   description:
-    "Eigene Preisgestaltungsseite für Pakete, Formate und Leistungen der Fotobox Tirol."
+    "Fotobox Preise in Tirol für Hochzeiten, Firmenfeiern und Events. Alle Pakete, Leistungen, Sofortdruck, Branding und optionale KI-Funktionen im Überblick.",
+  alternates: {
+    canonical: "/preisgestaltung"
+  },
+  openGraph: {
+    title: "Fotobox Preise Tirol | Pakete, Leistungen und Sofortdruck",
+    description:
+      "Alle Fotobox Pakete und Leistungen in Tirol im Überblick. Ideal für Hochzeiten, Geburtstage, Firmenfeiern und Messen.",
+    url: `${SITE_URL}/preisgestaltung`,
+    type: "article"
+  }
 };
 
 function CheckIcon() {

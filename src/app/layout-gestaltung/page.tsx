@@ -5,6 +5,7 @@ import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShel
 import { DEFAULT_LAYOUT_PAGE_CONTENT } from "@/lib/layoutPageDefaults";
 
 export const dynamic = "force-dynamic";
+const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
 
 const ADVANTAGE_ICONS = [
   (
@@ -38,7 +39,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: layoutPage.seoTitle || DEFAULT_LAYOUT_PAGE_CONTENT.seoTitle,
-    description: layoutPage.seoDescription || DEFAULT_LAYOUT_PAGE_CONTENT.seoDescription
+    description: layoutPage.seoDescription || DEFAULT_LAYOUT_PAGE_CONTENT.seoDescription,
+    alternates: {
+      canonical: "/layout-gestaltung"
+    },
+    openGraph: {
+      title: layoutPage.seoTitle || DEFAULT_LAYOUT_PAGE_CONTENT.seoTitle,
+      description: layoutPage.seoDescription || DEFAULT_LAYOUT_PAGE_CONTENT.seoDescription,
+      url: `${SITE_URL}/layout-gestaltung`,
+      type: "article"
+    }
   };
 }
 
@@ -62,18 +72,18 @@ function LayoutStripMockup({
   secondaryImageAlt?: string;
 }) {
   return (
-    <div className="layout-mockup layout-mockup-strip" aria-hidden="true">
+    <div className="layout-mockup layout-mockup-strip">
       <div className="layout-strip-secondary">
         <img
           src={secondaryImageUrl || "/uploads/layout-strip-weihnachtsfeier-2.png"}
-          alt={secondaryImageAlt || ""}
+          alt={secondaryImageAlt || "Hinterer Fotostreifen im Format 5x15 mit Beispiel-Layout für Eventfotos"}
           className="layout-strip-image"
         />
       </div>
       <div className="layout-strip-primary">
         <img
           src={primaryImageUrl || "/uploads/layout-strip-weihnachtsfeier-1.png"}
-          alt={primaryImageAlt || ""}
+          alt={primaryImageAlt || "Vorderer Fotostreifen im Format 5x15 mit individuellem Fotobox-Layout"}
           className="layout-strip-image is-featured"
         />
       </div>
@@ -93,18 +103,18 @@ function LayoutClassicMockup({
   secondaryImageAlt?: string;
 }) {
   return (
-    <div className="layout-mockup layout-mockup-classic" aria-hidden="true">
+    <div className="layout-mockup layout-mockup-classic">
       <div className="layout-classic-secondary">
         <img
           src={secondaryImageUrl || "/uploads/layout-classic-10x15-2.png"}
-          alt={secondaryImageAlt || ""}
+          alt={secondaryImageAlt || "Hinterer Print im Format 10x15 mit Beispiel-Layout für Eventfotos"}
           className="layout-classic-image"
         />
       </div>
       <div className="layout-classic-primary">
         <img
           src={primaryImageUrl || "/uploads/layout-classic-10x15-1.png"}
-          alt={primaryImageAlt || ""}
+          alt={primaryImageAlt || "Vorderer Print im Format 10x15 mit individuellem Fotobox-Layout"}
           className="layout-classic-image is-featured"
         />
       </div>
@@ -129,14 +139,6 @@ export default async function LayoutGestaltungPage() {
               <SlashHeading value={layoutPage.heading} />
             </h1>
             <p>{layoutPage.lead}</p>
-            <div className="layout-page-hero-actions">
-              <Link href={layoutPage.primaryCtaHref} className="btn btn-primary">
-                {layoutPage.primaryCtaText}
-              </Link>
-              <a href={layoutPage.secondaryCtaHref} className="btn btn-secondary">
-                {layoutPage.secondaryCtaText}
-              </a>
-            </div>
           </div>
         </section>
 

@@ -12,8 +12,8 @@ export const dynamic = "force-dynamic";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
 const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = ["hero", "features", "reviews", "space", "media"];
 const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
-const HOMEPAGE_AI_RIGHT_BEFORE_IMAGE = "/uploads/home-ai-right-before.jpg";
-const HOMEPAGE_AI_RIGHT_AFTER_IMAGE = "/uploads/home-ai-right-after.jpg";
+const HOMEPAGE_AI_RIGHT_BEFORE_IMAGE = "/uploads/home-ai-right-after.jpg";
+const HOMEPAGE_AI_RIGHT_AFTER_IMAGE = "/uploads/home-ai-right-before.jpg";
 
 function subtitleHtmlToText(html: string): string {
   return html
@@ -29,10 +29,10 @@ function subtitleHtmlToText(html: string): string {
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await readCmsContent();
-  const title = content.seo.title?.trim() || "Fotobox Tirol das Original";
+  const title = content.seo.title?.trim() || "Selfie Fotobox Tirol | Fotobox für Hochzeiten, Firmenfeiern und Events";
   const description =
     content.seo.description?.trim() ||
-    "Fotobox Tirol das Original für Hochzeiten, Firmenfeiern und Events in Tirol.";
+    "Selfie Fotobox Tirol für Hochzeiten, Firmenfeiern, Geburtstage und Events in Tirol. Moderne Fotobox mit Sofortdruck, Layouts, Branding und KI-Funktionen.";
   const ogImage = content.hero.imageUrl
     ? new URL(content.hero.imageUrl, SITE_URL).toString()
     : undefined;
@@ -162,7 +162,7 @@ export default async function HomePage() {
               <div className="hero-media">
                 <img
                   src={content.hero.imageUrl}
-                  alt="Fotobox Tirol Hero"
+                  alt="Selfie Fotobox Tirol für Hochzeiten, Firmenfeiern und Events in Tirol"
                   className="hero-bg-image"
                 />
               </div>
@@ -220,6 +220,8 @@ export default async function HomePage() {
                           title="KI Vergleich Links"
                           beforeImageUrl={content.ai.compareLeftBeforeUrl}
                           afterImageUrl={content.ai.compareLeftAfterUrl}
+                          beforeImageAlt="Vorher-Bild der KI-Fotobox mit normalem Portrait vor der Umwandlung"
+                          afterImageAlt="Nachher-Bild der KI-Fotobox mit kreativ verwandeltem Portrait"
                         />
                       </div>
                       <div className="ai-text">
@@ -246,6 +248,8 @@ export default async function HomePage() {
                           title="KI Vergleich Rechts"
                           beforeImageUrl={homepageAiRightBeforeImage}
                           afterImageUrl={homepageAiRightAfterImage}
+                          beforeImageAlt="Vorher-Bild der KI-Fotobox mit Person vor der KI-Transformation"
+                          afterImageAlt="Nachher-Bild der KI-Fotobox mit Rennfahrer-Motiv nach der KI-Transformation"
                         />
                       </div>
                     </div>
@@ -270,7 +274,7 @@ export default async function HomePage() {
                       </div>
                       <div className="space-visual">
                         {content.space.imageUrl ? (
-                          <img src={content.space.imageUrl} alt="Platzbedarf Fotobox" className="cover-image" />
+                          <img src={content.space.imageUrl} alt="Platzbedarf der Fotobox für Events, Hochzeiten und Firmenfeiern" className="cover-image" />
                         ) : (
                           <div className="placeholder">[Platzbedarf Grafik]</div>
                         )}
@@ -289,7 +293,7 @@ export default async function HomePage() {
                         {(content.space.layoutOneImageUrl || content.space.imageUrl) ? (
                           <img
                             src={content.space.layoutOneImageUrl || content.space.imageUrl}
-                            alt={content.space.layoutOneImageAlt || "Layout Gestaltung Fotobox"}
+                            alt={content.space.layoutOneImageAlt || "Fotobox Layout im Format 5x15 für Hochzeit oder Firmenfeier"}
                             className="cover-image"
                           />
                         ) : (
@@ -302,7 +306,7 @@ export default async function HomePage() {
                         {(content.space.layoutTwoImageUrl || content.space.imageUrl) ? (
                           <img
                             src={content.space.layoutTwoImageUrl || content.space.imageUrl}
-                            alt={content.space.layoutTwoImageAlt || "Layout Gestaltung Fotobox"}
+                            alt={content.space.layoutTwoImageAlt || "Fotobox Layout im Format 10x15 mit individuellem Event-Design"}
                             className="cover-image"
                           />
                         ) : (

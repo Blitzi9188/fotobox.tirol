@@ -5,11 +5,15 @@ import { KeyboardEvent, PointerEvent, useRef, useState } from "react";
 export default function BeforeAfterSlider({
   beforeImageUrl,
   afterImageUrl,
-  title
+  title,
+  beforeImageAlt,
+  afterImageAlt
 }: {
   beforeImageUrl?: string;
   afterImageUrl?: string;
   title: string;
+  beforeImageAlt?: string;
+  afterImageAlt?: string;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
@@ -88,11 +92,17 @@ export default function BeforeAfterSlider({
       tabIndex={0}
       onKeyDown={handleKeyDown}
     >
-      {before ? <img src={before} alt={`${title} Vorher`} className="compare-image" /> : null}
+      {before ? (
+        <img
+          src={before}
+          alt={beforeImageAlt || `${title} Vorher`}
+          className="compare-image"
+        />
+      ) : null}
       {after ? (
         <img
           src={after}
-          alt={`${title} Nachher`}
+          alt={afterImageAlt || `${title} Nachher`}
           className="compare-image compare-image-after"
         />
       ) : null}

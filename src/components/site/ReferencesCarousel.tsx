@@ -43,7 +43,7 @@ export default function ReferencesCarousel({
                     reference.logoSrc ??
                     `https://www.google.com/s2/favicons?sz=128&domain=${reference.logoDomain}`
                   }
-                  alt={reference.name}
+                  alt={`Logo von ${reference.name}`}
                 />
               )}
             </div>

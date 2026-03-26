@@ -1775,6 +1775,7 @@ export default function AdminDashboard() {
 
           <div className="admin-grid-2">
             <div className="admin-panel">
+              <h3 style={{ marginBottom: "1rem" }}>Hero</h3>
               <label className="admin-field">
                 <span>SEO Titel</span>
                 <input
@@ -3199,6 +3200,7 @@ export default function AdminDashboard() {
                   onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, seoTitle: e.target.value } }))}
                 />
               </label>
+              <p className="admin-note">Wichtig für Google: Hauptthema, Format und Region möglichst klar im Titel nennen.</p>
               <label className="admin-field">
                 <span>SEO Beschreibung</span>
                 <textarea
@@ -3207,38 +3209,40 @@ export default function AdminDashboard() {
                   onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, seoDescription: e.target.value } }))}
                 />
               </label>
+              <p className="admin-note">Kurz und klickstark formulieren. Ideal sind Nutzen, Anlass und Tirol-Bezug in 1 bis 2 Sätzen.</p>
               <label className="admin-field">
-                <span>Badge</span>
+                <span>Überzeile</span>
                 <input
                   value={content.layoutPage?.badge || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, badge: e.target.value } }))}
                 />
               </label>
               <label className="admin-field">
-                <span>Überschrift (mit /)</span>
+                <span>Hauptüberschrift (mit /)</span>
                 <input
                   value={content.layoutPage?.heading || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, heading: e.target.value } }))}
                 />
               </label>
               <label className="admin-field">
-                <span>Lead Text</span>
+                <span>Einleitung</span>
                 <textarea
                   rows={4}
                   value={content.layoutPage?.lead || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, lead: e.target.value } }))}
                 />
               </label>
+              <p className="admin-note">Sehr wichtig für SEO: Hier sollten Thema, Nutzen und Suchbegriffe natürlich vorkommen.</p>
               <div className="admin-grid-2">
                 <label className="admin-field">
-                  <span>Hero CTA Text</span>
+                  <span>Primärer Button Text</span>
                   <input
                     value={content.layoutPage?.primaryCtaText || ""}
                     onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, primaryCtaText: e.target.value } }))}
                   />
                 </label>
                 <label className="admin-field">
-                  <span>Hero CTA Link</span>
+                  <span>Primärer Button Link</span>
                   <input
                     value={content.layoutPage?.primaryCtaHref || ""}
                     onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, primaryCtaHref: e.target.value } }))}
@@ -3247,14 +3251,14 @@ export default function AdminDashboard() {
               </div>
               <div className="admin-grid-2">
                 <label className="admin-field">
-                  <span>Sekundär CTA Text</span>
+                  <span>Sekundärer Button Text</span>
                   <input
                     value={content.layoutPage?.secondaryCtaText || ""}
                     onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, secondaryCtaText: e.target.value } }))}
                   />
                 </label>
                 <label className="admin-field">
-                  <span>Sekundär CTA Link</span>
+                  <span>Sekundärer Button Link</span>
                   <input
                     value={content.layoutPage?.secondaryCtaHref || ""}
                     onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, secondaryCtaHref: e.target.value } }))}
@@ -3264,15 +3268,16 @@ export default function AdminDashboard() {
             </div>
 
             <div className="admin-panel">
+              <h3 style={{ marginBottom: "1rem" }}>Vorteile & Abschluss</h3>
               <label className="admin-field">
-                <span>Vorteils-Überschrift (mit /)</span>
+                <span>Vorteile Überschrift (mit /)</span>
                 <input
                   value={content.layoutPage?.advantagesTitle || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, advantagesTitle: e.target.value } }))}
                 />
               </label>
               <label className="admin-field">
-                <span>Vorteils-Lead</span>
+                <span>Vorteile Einleitung</span>
                 <textarea
                   rows={3}
                   value={content.layoutPage?.advantagesLead || ""}
@@ -3280,7 +3285,7 @@ export default function AdminDashboard() {
                 />
               </label>
               <label className="admin-field">
-                <span>Vorteile (je Zeile: Titel | Text)</span>
+                <span>Vorteile Karten (je Zeile: Titel | Text)</span>
                 <textarea
                   rows={8}
                   value={(content.layoutPage?.advantages || []).map((item) => `${item.title} | ${item.text}`).join("\n")}
@@ -3303,15 +3308,16 @@ export default function AdminDashboard() {
                   }
                 />
               </label>
+              <p className="admin-note">Diese Texte stärken die Relevanz der Seite. Begriffe wie Hochzeit, Geburtstag, Firmenfeier oder Tirol ruhig natürlich mitdenken.</p>
               <label className="admin-field">
-                <span>Abschluss-Titel</span>
+                <span>Abschluss Überschrift</span>
                 <input
                   value={content.layoutPage?.finalTitle || ""}
                   onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalTitle: e.target.value } }))}
                 />
               </label>
               <label className="admin-field">
-                <span>Abschluss-Lead</span>
+                <span>Abschluss Einleitung</span>
                 <textarea
                   rows={3}
                   value={content.layoutPage?.finalLead || ""}
@@ -3320,14 +3326,14 @@ export default function AdminDashboard() {
               </label>
               <div className="admin-grid-2">
                 <label className="admin-field">
-                  <span>Primär CTA Text</span>
+                  <span>Abschluss Button 1 Text</span>
                   <input
                     value={content.layoutPage?.finalPrimaryCtaText || ""}
                     onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalPrimaryCtaText: e.target.value } }))}
                   />
                 </label>
                 <label className="admin-field">
-                  <span>Primär CTA Link</span>
+                  <span>Abschluss Button 1 Link</span>
                   <input
                     value={content.layoutPage?.finalPrimaryCtaHref || ""}
                     onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalPrimaryCtaHref: e.target.value } }))}
@@ -3336,14 +3342,14 @@ export default function AdminDashboard() {
               </div>
               <div className="admin-grid-2">
                 <label className="admin-field">
-                  <span>Sekundär CTA Text</span>
+                  <span>Abschluss Button 2 Text</span>
                   <input
                     value={content.layoutPage?.finalSecondaryCtaText || ""}
                     onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalSecondaryCtaText: e.target.value } }))}
                   />
                 </label>
                 <label className="admin-field">
-                  <span>Sekundär CTA Link</span>
+                  <span>Abschluss Button 2 Link</span>
                   <input
                     value={content.layoutPage?.finalSecondaryCtaHref || ""}
                     onChange={(e) => updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, finalSecondaryCtaHref: e.target.value } }))}
@@ -3355,11 +3361,13 @@ export default function AdminDashboard() {
 
           {(content.layoutPage?.formatSections || []).map((sectionItem, index) => (
             <div className="admin-subcard" key={`layout-page-section-${index}`}>
-              <h3 style={{ marginBottom: "1rem" }}>Format Block {index + 1}</h3>
+              <h3 style={{ marginBottom: "1rem" }}>
+                {index === 0 ? "Format 5x15" : index === 1 ? "Format 10x15" : `Format Block ${index + 1}`}
+              </h3>
               <div className="admin-grid-2">
                 <div className="admin-panel">
                   <label className="admin-field">
-                    <span>Eyebrow</span>
+                    <span>Überzeile</span>
                     <input
                       value={sectionItem.eyebrow}
                       onChange={(e) => {
@@ -3370,7 +3378,7 @@ export default function AdminDashboard() {
                     />
                   </label>
                   <label className="admin-field">
-                    <span>Überschrift (mit /)</span>
+                    <span>Hauptüberschrift (mit /)</span>
                     <input
                       value={sectionItem.heading}
                       onChange={(e) => {
@@ -3381,7 +3389,7 @@ export default function AdminDashboard() {
                     />
                   </label>
                   <label className="admin-field">
-                    <span>Lead Text</span>
+                    <span>Einleitung</span>
                     <textarea
                       rows={4}
                       value={sectionItem.lead}
@@ -3393,7 +3401,7 @@ export default function AdminDashboard() {
                     />
                   </label>
                   <label className="admin-field">
-                    <span>Bullets (je Zeile: Titel | Text)</span>
+                    <span>Textblöcke (je Zeile: Titel | Text)</span>
                     <textarea
                       rows={8}
                       value={(sectionItem.items || []).map((item) => `${item.title} | ${item.text}`).join("\n")}
@@ -3413,9 +3421,11 @@ export default function AdminDashboard() {
                       }}
                     />
                   </label>
+                  <p className="admin-note">Gut für Google und Besucher: kurze, klare Textblöcke mit Format, Einsatzbereich und Personalisierung.</p>
                 </div>
 
                 <div className="admin-panel">
+                  <h4 style={{ marginBottom: "1rem" }}>Beispielbilder</h4>
                   <label className="admin-field">
                     <span>Beispielbild vorne hochladen</span>
                     <input
@@ -3457,6 +3467,7 @@ export default function AdminDashboard() {
                       }}
                     />
                   </label>
+                  <p className="admin-note">Alt-Texte helfen bei Bild-SEO. Am besten Format, Motiv und Anlass konkret beschreiben.</p>
                   {sectionItem.mockupPrimaryImageUrl ? <img src={sectionItem.mockupPrimaryImageUrl} alt={`Layout-Mockup vorne ${index + 1}`} className="admin-preview" /> : null}
                   <label className="admin-field">
                     <span>Beispielbild hinten hochladen</span>
@@ -3500,8 +3511,10 @@ export default function AdminDashboard() {
                     />
                   </label>
                   {sectionItem.mockupSecondaryImageUrl ? <img src={sectionItem.mockupSecondaryImageUrl} alt={`Layout-Mockup hinten ${index + 1}`} className="admin-preview" /> : null}
+                  <h4 style={{ margin: "1.25rem 0 1rem" }}>Optionales Zusatzbild</h4>
+                  <p className="admin-note">Optional. Nur verwenden, wenn du zusätzlich ein statisches Bild für diesen Formatblock zeigen willst.</p>
                   <label className="admin-field">
-                    <span>Bild hochladen</span>
+                    <span>Zusatzbild hochladen</span>
                     <input
                       type="file"
                       accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
@@ -3520,7 +3533,7 @@ export default function AdminDashboard() {
                     />
                   </label>
                   <label className="admin-field">
-                    <span>Bild URL</span>
+                    <span>Zusatzbild URL</span>
                     <input
                       value={sectionItem.imageUrl || ""}
                       onChange={(e) => {
@@ -3531,7 +3544,7 @@ export default function AdminDashboard() {
                     />
                   </label>
                   <label className="admin-field">
-                    <span>Alt Text</span>
+                    <span>Zusatzbild Alt-Text</span>
                     <input
                       value={sectionItem.imageAlt || ""}
                       onChange={(e) => {

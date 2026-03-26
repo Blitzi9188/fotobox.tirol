@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import BookingInquiryForm from "@/components/site/BookingInquiryForm";
 import GoogleReviewsCarousel from "@/components/site/GoogleReviewsCarousel";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
@@ -6,6 +7,23 @@ import { fetchGoogleLatestReviews } from "@/lib/google-reviews";
 import { formatReviewDateWithCurrentYear, getSortedLatestReviews } from "@/lib/reviews";
 
 export const dynamic = "force-dynamic";
+const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+
+export const metadata: Metadata = {
+  title: "Fotobox anfragen Tirol | Termin für Hochzeit, Firmenfeier oder Event sichern",
+  description:
+    "Fotobox in Tirol unverbindlich anfragen. Wunschdatum, Paket, Hochzeit, Firmenfeier oder Event direkt online anfragen und Angebot erhalten.",
+  alternates: {
+    canonical: "/kontakt"
+  },
+  openGraph: {
+    title: "Fotobox anfragen Tirol | Termin für Hochzeit, Firmenfeier oder Event sichern",
+    description:
+      "Fotobox Anfrage für Hochzeiten, Firmenfeiern, Geburtstage und Events in Tirol direkt online senden.",
+    url: `${SITE_URL}/kontakt`,
+    type: "website"
+  }
+};
 
 export default async function KontaktPage({
   searchParams

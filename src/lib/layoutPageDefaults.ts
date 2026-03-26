@@ -8,9 +8,9 @@ export const DEFAULT_LAYOUT_PAGE_CONTENT: NonNullable<CMSContent["layoutPage"]> 
   heading: "layout/gestaltung",
   lead:
     "Deine Feier ist einzigartig. Genau so sollten auch die Erinnerungen daran aussehen. Mit einem individuell gestalteten Fotobox-Layout werden Schnappschüsse zu echten Event-Erinnerungen.",
-  primaryCtaText: "Jetzt Layout besprechen",
+  primaryCtaText: "",
   primaryCtaHref: "/kontakt",
-  secondaryCtaText: "Formate entdecken",
+  secondaryCtaText: "",
   secondaryCtaHref: "#layout-formate",
   formatSections: [
     {

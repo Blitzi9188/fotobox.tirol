@@ -6,11 +6,22 @@ import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
 import KiAutoGallery from "@/components/site/KiAutoGallery";
 
 export const dynamic = "force-dynamic";
+const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
 
 export const metadata: Metadata = {
-  title: "KI Fotobox Tirol | Kreative KI-Erlebnisse für Events",
+  title: "KI Fotobox Tirol | KI-Fotoerlebnisse für Hochzeiten, Firmenfeiern und Events",
   description:
-    "Eigene Unterseite für die KI Fotobox Tirol mit Vorher/Nachher-Beispielen, Live-Demo und Anfrage-CTA."
+    "KI Fotobox Tirol mit Vorher-Nachher-Beispielen, kreativen KI-Motiven, Branding und Live-Preview für Hochzeiten, Firmenfeiern, Messen und Events in Tirol.",
+  alternates: {
+    canonical: "/ki-fotobox-tirol"
+  },
+  openGraph: {
+    title: "KI Fotobox Tirol | KI-Fotoerlebnisse für Hochzeiten, Firmenfeiern und Events",
+    description:
+      "Kreative KI-Fotobox für Hochzeiten, Firmenfeiern, Messen und Events in Tirol mit Live-Preview und sofort sichtbaren Ergebnissen.",
+    url: `${SITE_URL}/ki-fotobox-tirol`,
+    type: "article"
+  }
 };
 
 const KI_LIVE_PREVIEW_IMAGE = "/uploads/ki-demo-grid.png";
@@ -218,10 +229,6 @@ export default async function KiFotoboxTirolPage() {
             <p>
               {content.ai.heroLead || "Unsere KI-Fotobox analysiert jedes Motiv in Echtzeit und veredelt Licht, Farben, Hauttöne und Overlays für einen sichtbar hochwertigeren Event-Look."}
             </p>
-            <div className="ki-hero-actions">
-              <Link href="#ki-demo" className="btn btn-primary">Demo ansehen</Link>
-              <Link href="#ki-features" className="btn btn-secondary">Wie es funktioniert</Link>
-            </div>
           </div>
         </section>
 
@@ -253,6 +260,8 @@ export default async function KiFotoboxTirolPage() {
                   title="KI Bildvergleich"
                   beforeImageUrl={leftBefore}
                   afterImageUrl={leftAfter}
+                  beforeImageAlt="Vorher-Bild der KI-Fotobox mit unbearbeitetem Portrait vor der KI-Optimierung"
+                  afterImageAlt="Nachher-Bild der KI-Fotobox mit kreativ optimiertem Portrait nach der KI-Umwandlung"
                 />
               </div>
             </div>
@@ -266,7 +275,7 @@ export default async function KiFotoboxTirolPage() {
               <div className="ki-demo-grid">
                 <div className="ki-demo-visual">
                   <div className="ki-demo-image-wrap">
-                    <img src={demoImage} alt="KI Demo Motiv" className="ki-demo-image" />
+                    <img src={demoImage} alt="Live Preview der KI-Fotobox mit kreativen Eventmotiven" className="ki-demo-image" />
                   </div>
                 </div>
 

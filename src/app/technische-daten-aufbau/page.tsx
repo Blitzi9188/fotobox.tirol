@@ -5,6 +5,7 @@ import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShel
 import { DEFAULT_SETUP_CONTENT } from "@/lib/setupDefaults";
 
 export const dynamic = "force-dynamic";
+const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await readCmsContent();
@@ -12,7 +13,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: setup.seoTitle || DEFAULT_SETUP_CONTENT.seoTitle,
-    description: setup.seoDescription || DEFAULT_SETUP_CONTENT.seoDescription
+    description: setup.seoDescription || DEFAULT_SETUP_CONTENT.seoDescription,
+    alternates: {
+      canonical: "/technische-daten-aufbau"
+    },
+    openGraph: {
+      title: setup.seoTitle || DEFAULT_SETUP_CONTENT.seoTitle,
+      description: setup.seoDescription || DEFAULT_SETUP_CONTENT.seoDescription,
+      url: `${SITE_URL}/technische-daten-aufbau`,
+      type: "article"
+    }
   };
 }
 
