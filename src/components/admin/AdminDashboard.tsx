@@ -3417,6 +3417,90 @@ export default function AdminDashboard() {
 
                 <div className="admin-panel">
                   <label className="admin-field">
+                    <span>Beispielbild vorne hochladen</span>
+                    <input
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
+                      onChange={(event) => {
+                        handleImageUpload(
+                          event,
+                          (prev, url) => {
+                            const sections = [...(prev.layoutPage?.formatSections || [])];
+                            sections[index] = { ...sections[index], mockupPrimaryImageUrl: url };
+                            return { ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } };
+                          },
+                          `Lade Layout-Mockup vorne ${index + 1} hoch...`,
+                          `Layout-Mockup vorne ${index + 1} gespeichert.`
+                        );
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Beispielbild vorne URL</span>
+                    <input
+                      value={sectionItem.mockupPrimaryImageUrl || ""}
+                      onChange={(e) => {
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, mockupPrimaryImageUrl: e.target.value };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Beispielbild vorne Alt-Text</span>
+                    <input
+                      value={sectionItem.mockupPrimaryImageAlt || ""}
+                      onChange={(e) => {
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, mockupPrimaryImageAlt: e.target.value };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                  {sectionItem.mockupPrimaryImageUrl ? <img src={sectionItem.mockupPrimaryImageUrl} alt={`Layout-Mockup vorne ${index + 1}`} className="admin-preview" /> : null}
+                  <label className="admin-field">
+                    <span>Beispielbild hinten hochladen</span>
+                    <input
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif"
+                      onChange={(event) => {
+                        handleImageUpload(
+                          event,
+                          (prev, url) => {
+                            const sections = [...(prev.layoutPage?.formatSections || [])];
+                            sections[index] = { ...sections[index], mockupSecondaryImageUrl: url };
+                            return { ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } };
+                          },
+                          `Lade Layout-Mockup hinten ${index + 1} hoch...`,
+                          `Layout-Mockup hinten ${index + 1} gespeichert.`
+                        );
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Beispielbild hinten URL</span>
+                    <input
+                      value={sectionItem.mockupSecondaryImageUrl || ""}
+                      onChange={(e) => {
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, mockupSecondaryImageUrl: e.target.value };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                  <label className="admin-field">
+                    <span>Beispielbild hinten Alt-Text</span>
+                    <input
+                      value={sectionItem.mockupSecondaryImageAlt || ""}
+                      onChange={(e) => {
+                        const sections = [...(content.layoutPage?.formatSections || [])];
+                        sections[index] = { ...sectionItem, mockupSecondaryImageAlt: e.target.value };
+                        updateContent((prev) => ({ ...prev, layoutPage: { ...prev.layoutPage!, formatSections: sections } }));
+                      }}
+                    />
+                  </label>
+                  {sectionItem.mockupSecondaryImageUrl ? <img src={sectionItem.mockupSecondaryImageUrl} alt={`Layout-Mockup hinten ${index + 1}`} className="admin-preview" /> : null}
+                  <label className="admin-field">
                     <span>Bild hochladen</span>
                     <input
                       type="file"

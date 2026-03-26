@@ -50,20 +50,30 @@ function BenefitIcon() {
   );
 }
 
-function LayoutStripMockup() {
+function LayoutStripMockup({
+  primaryImageUrl,
+  primaryImageAlt,
+  secondaryImageUrl,
+  secondaryImageAlt
+}: {
+  primaryImageUrl?: string;
+  primaryImageAlt?: string;
+  secondaryImageUrl?: string;
+  secondaryImageAlt?: string;
+}) {
   return (
     <div className="layout-mockup layout-mockup-strip" aria-hidden="true">
       <div className="layout-strip-secondary">
         <img
-          src="/uploads/layout-strip-weihnachtsfeier-2.png"
-          alt=""
+          src={secondaryImageUrl || "/uploads/layout-strip-weihnachtsfeier-2.png"}
+          alt={secondaryImageAlt || ""}
           className="layout-strip-image"
         />
       </div>
       <div className="layout-strip-primary">
         <img
-          src="/uploads/layout-strip-weihnachtsfeier-1.png"
-          alt=""
+          src={primaryImageUrl || "/uploads/layout-strip-weihnachtsfeier-1.png"}
+          alt={primaryImageAlt || ""}
           className="layout-strip-image is-featured"
         />
       </div>
@@ -71,20 +81,30 @@ function LayoutStripMockup() {
   );
 }
 
-function LayoutClassicMockup() {
+function LayoutClassicMockup({
+  primaryImageUrl,
+  primaryImageAlt,
+  secondaryImageUrl,
+  secondaryImageAlt
+}: {
+  primaryImageUrl?: string;
+  primaryImageAlt?: string;
+  secondaryImageUrl?: string;
+  secondaryImageAlt?: string;
+}) {
   return (
     <div className="layout-mockup layout-mockup-classic" aria-hidden="true">
       <div className="layout-classic-secondary">
         <img
-          src="/uploads/layout-classic-10x15-2.png"
-          alt=""
+          src={secondaryImageUrl || "/uploads/layout-classic-10x15-2.png"}
+          alt={secondaryImageAlt || ""}
           className="layout-classic-image"
         />
       </div>
       <div className="layout-classic-primary">
         <img
-          src="/uploads/layout-classic-10x15-1.png"
-          alt=""
+          src={primaryImageUrl || "/uploads/layout-classic-10x15-1.png"}
+          alt={primaryImageAlt || ""}
           className="layout-classic-image is-featured"
         />
       </div>
@@ -149,7 +169,21 @@ export default async function LayoutGestaltungPage() {
                   </div>
 
                   <div className="layout-format-visual">
-                    {index === 0 ? <LayoutStripMockup /> : <LayoutClassicMockup />}
+                    {index === 0 ? (
+                      <LayoutStripMockup
+                        primaryImageUrl={section.mockupPrimaryImageUrl}
+                        primaryImageAlt={section.mockupPrimaryImageAlt}
+                        secondaryImageUrl={section.mockupSecondaryImageUrl}
+                        secondaryImageAlt={section.mockupSecondaryImageAlt}
+                      />
+                    ) : (
+                      <LayoutClassicMockup
+                        primaryImageUrl={section.mockupPrimaryImageUrl}
+                        primaryImageAlt={section.mockupPrimaryImageAlt}
+                        secondaryImageUrl={section.mockupSecondaryImageUrl}
+                        secondaryImageAlt={section.mockupSecondaryImageAlt}
+                      />
+                    )}
                   </div>
                 </article>
               );

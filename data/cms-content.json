@@ -389,6 +389,10 @@
         "lead": "Der klassische Fotostreifen ist handlich, charmant und auf Events sofort wiedererkennbar. Er eignet sich perfekt für Hochzeiten, Geburtstage und Feiern mit persönlichem Look.",
         "imageUrl": "/uploads/layout-one-optimized.jpg",
         "imageAlt": "Fotobox Eventfoto im klassischen 5x15 Format mit personalisiertem Design für Hochzeit oder Firmenfeier",
+        "mockupPrimaryImageUrl": "/uploads/layout-strip-weihnachtsfeier-1.png",
+        "mockupPrimaryImageAlt": "Vorderer Fotostreifen im Format 5x15 mit Weihnachtsfeier-Layout",
+        "mockupSecondaryImageUrl": "/uploads/layout-strip-weihnachtsfeier-2.png",
+        "mockupSecondaryImageAlt": "Hinterer Fotostreifen im Format 5x15 mit Weihnachtsfeier-Layout",
         "items": [
           {
             "title": "Vorteile",
@@ -410,6 +414,10 @@
         "lead": "Wenn mehr Raum für Gestaltung, Gruppenbilder und Details gefragt ist, bietet das 10x15-Format die größte Flexibilität. So entstehen hochwertige Eventprints mit viel Platz für Motiv und Design.",
         "imageUrl": "/uploads/layout-two-optimized.jpg",
         "imageAlt": "Fotobox Bild im Format 10x15 mit individuellem Layout für Hochzeit mit Namen und Datum des Brautpaares",
+        "mockupPrimaryImageUrl": "/uploads/layout-classic-10x15-1.png",
+        "mockupPrimaryImageAlt": "Vorderer Print im Format 10x15 mit individuellem Fotobox-Layout",
+        "mockupSecondaryImageUrl": "/uploads/layout-classic-10x15-2.png",
+        "mockupSecondaryImageAlt": "Hinterer Print im Format 10x15 mit individuellem Fotobox-Layout",
         "items": [
           {
             "title": "Vorteile",

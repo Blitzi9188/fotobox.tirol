@@ -106,6 +106,10 @@ export type LayoutFormatItem = {
   lead: string;
   imageUrl?: string;
   imageAlt?: string;
+  mockupPrimaryImageUrl?: string;
+  mockupPrimaryImageAlt?: string;
+  mockupSecondaryImageUrl?: string;
+  mockupSecondaryImageAlt?: string;
   items: LayoutBenefitItem[];
 };
 
