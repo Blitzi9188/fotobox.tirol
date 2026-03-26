@@ -366,7 +366,35 @@ export default function AdminDashboard() {
         json.ai.previewImageUrl ||
         json.ai.pageDemoImageUrl ||
         KI_SHARED_PREVIEW_IMAGE,
-      pageDemoImageUrl: json.ai.pageDemoImageUrl || json.ai.previewImageUrl || KI_SHARED_PREVIEW_IMAGE
+      pageDemoImageUrl: json.ai.pageDemoImageUrl || json.ai.previewImageUrl || KI_SHARED_PREVIEW_IMAGE,
+      livePreviewImages: (json.ai.livePreviewImages && json.ai.livePreviewImages.length > 0)
+        ? json.ai.livePreviewImages.filter((item) => item?.imageUrl)
+        : [
+            {
+              imageUrl: "/uploads/ki-live-preview-cartoon.jpg",
+              altText: "Karikatur-Stil Motiv der KI-Fotobox mit lustigem Schnurrbart-Portrait"
+            },
+            {
+              imageUrl: "/uploads/ki-live-preview-title.jpg",
+              altText: "Editorial KI-Motiv der Fotobox Tirol mit Magazin-Cover-Look"
+            },
+            {
+              imageUrl: "/uploads/ki-live-preview-instagram.jpg",
+              altText: "Instagram-Rahmen Motiv der KI-Fotobox Tirol mit Social-Media-Look"
+            },
+            {
+              imageUrl: "/uploads/ki-live-preview-cowboy.jpg",
+              altText: "Cowboy-Motiv der KI-Fotobox Tirol in Western-Inszenierung"
+            },
+            {
+              imageUrl: "/uploads/ki-live-preview-worker.jpg",
+              altText: "Bauarbeiter-Motiv der KI-Fotobox Tirol mit Skyline-Hintergrund"
+            },
+            {
+              imageUrl: "/uploads/ki-live-preview-racer.jpg",
+              altText: "Rennfahrer-Motiv der KI-Fotobox Tirol im Motorsport-Look"
+            }
+          ]
     };
     const normalizedFooter = {
       questionsTitle: json.footer?.questionsTitle || "Du hast Fragen?",
@@ -1596,6 +1624,35 @@ export default function AdminDashboard() {
                 />
               </label>
               {content.ai.pageDemoImageUrl ? <img src={content.ai.pageDemoImageUrl} alt="KI Unterseite Demo" className="admin-preview" /> : null}
+            </div>
+
+            <div className="admin-panel">
+              <label className="admin-field">
+                <span>Live Preview Bilder (Bild-URL | Alt-Text, eine Zeile pro Bild)</span>
+                <small>Wichtig für SEO und Barrierefreiheit. Hier werden die rotierenden 10x15-Vorschaubilder unter LIVE PREVIEW gepflegt.</small>
+                <textarea
+                  rows={8}
+                  value={(content.ai.livePreviewImages || []).map((item) => `${item.imageUrl} | ${item.altText || ""}`).join("\n")}
+                  onChange={(e) => {
+                    const livePreviewImages = e.target.value
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((line) => {
+                        const [imageUrl, ...rest] = line.split("|");
+                        return {
+                          imageUrl: (imageUrl || "").trim(),
+                          altText: rest.join("|").trim()
+                        };
+                      })
+                      .filter((item) => item.imageUrl);
+                    updateContent((prev) => ({ ...prev, ai: { ...prev.ai, livePreviewImages } }));
+                  }}
+                />
+              </label>
+              {(content.ai.livePreviewImages || []).slice(0, 2).map((item, index) => (
+                item.imageUrl ? <img key={`${item.imageUrl}-${index}`} src={item.imageUrl} alt={item.altText || `Live Preview ${index + 1}`} className="admin-preview" /> : null
+              ))}
             </div>
 
             <div className="admin-panel">

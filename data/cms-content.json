@@ -121,7 +121,33 @@
     "compareRightAfterUrl": "/uploads/home-ai-right-after.jpg",
     "pageCompareBeforeUrl": "/uploads/ki-swipe-before.jpg",
     "pageCompareAfterUrl": "/uploads/ki-swipe-after.jpg",
-    "pageDemoImageUrl": "/uploads/ki-demo-grid.png"
+    "pageDemoImageUrl": "/uploads/ki-demo-grid.png",
+    "livePreviewImages": [
+      {
+        "imageUrl": "/uploads/ki-live-preview-cartoon.jpg",
+        "altText": "Karikatur-Stil Motiv der KI-Fotobox mit lustigem Schnurrbart-Portrait"
+      },
+      {
+        "imageUrl": "/uploads/ki-live-preview-title.jpg",
+        "altText": "Editorial KI-Motiv der Fotobox Tirol mit Magazin-Cover-Look"
+      },
+      {
+        "imageUrl": "/uploads/ki-live-preview-instagram.jpg",
+        "altText": "Instagram-Rahmen Motiv der KI-Fotobox Tirol mit Social-Media-Look"
+      },
+      {
+        "imageUrl": "/uploads/ki-live-preview-cowboy.jpg",
+        "altText": "Cowboy-Motiv der KI-Fotobox Tirol in Western-Inszenierung"
+      },
+      {
+        "imageUrl": "/uploads/ki-live-preview-worker.jpg",
+        "altText": "Bauarbeiter-Motiv der KI-Fotobox Tirol mit Skyline-Hintergrund"
+      },
+      {
+        "imageUrl": "/uploads/ki-live-preview-racer.jpg",
+        "altText": "Rennfahrer-Motiv der KI-Fotobox Tirol im Motorsport-Look"
+      }
+    ]
   },
   "gallery": {
     "heading": "event/gestaltung",

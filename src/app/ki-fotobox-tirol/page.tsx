@@ -4,6 +4,7 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
 import KiAutoGallery from "@/components/site/KiAutoGallery";
+import KiLivePreviewRotator from "@/components/site/KiLivePreviewRotator";
 
 export const dynamic = "force-dynamic";
 const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
@@ -24,7 +25,32 @@ export const metadata: Metadata = {
   }
 };
 
-const KI_LIVE_PREVIEW_IMAGE = "/uploads/ki-demo-grid.png";
+const KI_LIVE_PREVIEW_IMAGES = [
+  {
+    imageUrl: "/uploads/ki-live-preview-cartoon.jpg",
+    altText: "Karikatur-Stil Motiv der KI-Fotobox mit lustigem Schnurrbart-Portrait"
+  },
+  {
+    imageUrl: "/uploads/ki-live-preview-title.jpg",
+    altText: "Editorial KI-Motiv der Fotobox Tirol mit Magazin-Cover-Look"
+  },
+  {
+    imageUrl: "/uploads/ki-live-preview-instagram.jpg",
+    altText: "Instagram-Rahmen Motiv der KI-Fotobox Tirol mit Social-Media-Look"
+  },
+  {
+    imageUrl: "/uploads/ki-live-preview-cowboy.jpg",
+    altText: "Cowboy-Motiv der KI-Fotobox Tirol in Western-Inszenierung"
+  },
+  {
+    imageUrl: "/uploads/ki-live-preview-worker.jpg",
+    altText: "Bauarbeiter-Motiv der KI-Fotobox Tirol mit Skyline-Hintergrund"
+  },
+  {
+    imageUrl: "/uploads/ki-live-preview-racer.jpg",
+    altText: "Rennfahrer-Motiv der KI-Fotobox Tirol im Motorsport-Look"
+  }
+] as const;
 
 function toParagraphs(value?: string) {
   return (value || "")
@@ -92,7 +118,6 @@ export default async function KiFotoboxTirolPage() {
   const paragraphs = toParagraphs(content.ai.descriptionText);
   const leftBefore = content.ai.compareLeftBeforeUrl || content.ai.pageCompareBeforeUrl || "/uploads/hero-optimized.jpg";
   const leftAfter = content.ai.compareLeftAfterUrl || content.ai.pageCompareAfterUrl || leftBefore;
-  const demoImage = KI_LIVE_PREVIEW_IMAGE;
   const featureTitle = splitSlashTitle(content.ai.featureTitle, "Autofokus auf", "Ihre Schokoladenseite.");
   const heroLineTop = content.ai.heroTitleTop || "Perfekte Bilder.";
   const heroAccent = content.ai.heroTitleAccent || "Magisch";
@@ -165,6 +190,15 @@ export default async function KiFotoboxTirolPage() {
           description: "Firmenlogos und Event-Branding können sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
         }
       ];
+
+  const livePreviewImages = content.ai.livePreviewImages && content.ai.livePreviewImages.length > 0
+    ? content.ai.livePreviewImages
+        .filter((item) => item.imageUrl)
+        .map((item, index) => ({
+          imageUrl: item.imageUrl,
+          altText: item.altText?.trim() || `KI Live Preview Motiv ${index + 1}`
+        }))
+    : KI_LIVE_PREVIEW_IMAGES;
 
   const kiGallerySlides = [
     {
@@ -275,7 +309,7 @@ export default async function KiFotoboxTirolPage() {
               <div className="ki-demo-grid">
                 <div className="ki-demo-visual">
                   <div className="ki-demo-image-wrap">
-                    <img src={demoImage} alt="Live Preview der KI-Fotobox mit kreativen Eventmotiven" className="ki-demo-image" />
+                <KiLivePreviewRotator items={livePreviewImages} intervalMs={3000} />
                   </div>
                 </div>
 

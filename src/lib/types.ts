@@ -100,6 +100,11 @@ export type LayoutBenefitItem = {
   text: string;
 };
 
+export type CmsImageItem = {
+  imageUrl: string;
+  altText?: string;
+};
+
 export type LayoutFormatItem = {
   eyebrow: string;
   heading: string;
@@ -179,6 +184,7 @@ export type CMSContent = {
     pageCompareBeforeUrl?: string;
     pageCompareAfterUrl?: string;
     pageDemoImageUrl?: string;
+    livePreviewImages?: CmsImageItem[];
   };
   gallery: {
     heading: string;
