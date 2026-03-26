@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { readCmsContent } from "@/lib/cms";
 import type { CMSContent } from "@/lib/types";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
-import OccasionSectionNav from "./OccasionSectionNav";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -117,17 +116,6 @@ function splitHeroTitle(value?: string) {
   return { left: (left || "jeden").trim(), right: (right || "anlass").trim() };
 }
 
-function getOccasionNavLabel(occasion: NonNullable<CMSContent["occasions"]>["sections"][number]) {
-  const fallbackLabels: Record<string, string> = {
-    hochzeit: "hochzeits/fotobox",
-    geburtstag: "geburtstags/fotobox",
-    firma: "firmen/event",
-    event: "event/fotobox"
-  };
-
-  return fallbackLabels[occasion.id] || occasion.orderLabel?.trim() || occasion.titleBold;
-}
-
 function BenefitItem({ text }: { text: string }) {
   return (
     <li className={styles.benefitItem}>
@@ -194,12 +182,6 @@ export default async function FotoboxAnlaessePage() {
               <span>{heroTitle.right}</span>
             </h1>
             <p className={styles.heroLead}>{occasions.heroLead}</p>
-            <OccasionSectionNav
-              items={renderedSections.map((occasion) => ({
-                id: occasion.id,
-                label: getOccasionNavLabel(occasion)
-              }))}
-            />
           </div>
         </section>
 

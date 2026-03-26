@@ -12,6 +12,8 @@ export const dynamic = "force-dynamic";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
 const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = ["hero", "features", "reviews", "space", "media"];
 const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+const HOMEPAGE_AI_RIGHT_BEFORE_IMAGE = "/uploads/home-ai-right-before.jpg";
+const HOMEPAGE_AI_RIGHT_AFTER_IMAGE = "/uploads/home-ai-right-after.jpg";
 
 function subtitleHtmlToText(html: string): string {
   return html
@@ -67,10 +69,8 @@ export default async function HomePage() {
     .split(/\n{2,}/)
     .map((paragraph) => paragraph.trim())
     .filter(Boolean);
-  const homepageAiRightBeforeImage =
-    content.ai.compareRightBeforeUrl || content.ai.pageDemoImageUrl || content.ai.previewImageUrl;
-  const homepageAiRightAfterImage =
-    content.ai.compareRightAfterUrl || content.ai.pageDemoImageUrl || content.ai.previewImageUrl;
+  const homepageAiRightBeforeImage = HOMEPAGE_AI_RIGHT_BEFORE_IMAGE;
+  const homepageAiRightAfterImage = HOMEPAGE_AI_RIGHT_AFTER_IMAGE;
   const cmsOrder = content.layout?.homepageOrder || [];
   const uniqueCmsOrder = [...new Set(cmsOrder)];
   const homepageOrder: HomepageBlockId[] = [

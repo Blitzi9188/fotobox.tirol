@@ -301,35 +301,93 @@ nav a:hover {
 }
 
 .layout-benefit-item {
+  position: relative;
+  overflow: hidden;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1rem;
   align-items: start;
   padding: 1.15rem 1.25rem;
-  border: 1px solid var(--c-line);
+  border: 1px solid rgba(234, 44, 44, 0.18);
   border-radius: 24px;
-  background: var(--c-surface);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 249, 249, 0.92) 100%);
+  box-shadow: 0 16px 30px -24px rgba(15, 23, 42, 0.24);
+  transition: transform 0.28s var(--ani-ease), box-shadow 0.28s var(--ani-ease), border-color 0.28s var(--ani-ease), background 0.28s var(--ani-ease);
+  animation: layoutBenefitRise 0.72s var(--ani-ease) both;
+}
+
+.layout-benefit-item::before {
+  content: "";
+  position: absolute;
+  inset: auto -2.4rem -2.8rem auto;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 999px;
+  background: rgba(234, 44, 44, 0.12);
+  filter: blur(34px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.layout-benefit-item:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.layout-benefit-item:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.layout-benefit-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(234, 44, 44, 0.54);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 244, 244, 0.96) 100%);
+  box-shadow: 0 24px 42px -24px rgba(15, 23, 42, 0.32);
 }
 
 .layout-benefit-icon {
   width: 2.4rem;
   height: 2.4rem;
-  border: 1px solid var(--c-line);
+  border: 1px solid rgba(234, 44, 44, 0.22);
   border-radius: 999px;
   display: grid;
   place-items: center;
   color: var(--c-accent);
   flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 20px -16px rgba(234, 44, 44, 0.5);
+  transition: transform 0.28s var(--ani-ease), border-color 0.28s var(--ani-ease), box-shadow 0.28s var(--ani-ease);
+}
+
+.layout-benefit-item:hover .layout-benefit-icon {
+  transform: scale(1.08);
+  border-color: rgba(234, 44, 44, 0.45);
+  box-shadow: 0 16px 28px -18px rgba(234, 44, 44, 0.65);
 }
 
 .layout-benefit-item h3 {
   font-size: 1rem;
   margin-bottom: 0.2rem;
+  color: #111827;
+}
+
+.layout-benefit-item:hover h3 {
+  color: var(--c-accent);
 }
 
 .layout-benefit-item p,
 .layout-advantage-card p {
   color: var(--c-text-light);
+}
+
+@keyframes layoutBenefitRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .layout-format-visual {
@@ -354,14 +412,15 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.5s var(--ani-ease);
 }
 
 .layout-strip-secondary {
-  transform: translate(4.8rem, 2.4rem) rotate(4.5deg);
+  transform: translate(5.9rem, 2.8rem) rotate(5.6deg);
 }
 
 .layout-strip-primary {
-  transform: translate(-1.1rem, -0.35rem) rotate(-1.8deg);
+  transform: translate(-1.6rem, -0.55rem) rotate(-2.3deg);
   z-index: 1;
 }
 
@@ -378,13 +437,21 @@ nav a:hover {
 }
 
 .layout-mockup-strip:hover .layout-strip-secondary .layout-strip-image {
-  transform: rotate(-1deg) scale(1.025) translateY(0.15rem);
-  box-shadow: 0 28px 54px -26px rgba(15, 23, 42, 0.5);
+  transform: rotate(-2.8deg) scale(1.05) translate(0.85rem, 0.25rem);
+  box-shadow: 0 30px 58px -24px rgba(15, 23, 42, 0.54);
+}
+
+.layout-mockup-strip:hover .layout-strip-secondary {
+  transform: translate(7.1rem, 3.15rem) rotate(7deg);
+}
+
+.layout-mockup-strip:hover .layout-strip-primary {
+  transform: translate(-2.25rem, -0.95rem) rotate(-3deg);
 }
 
 .layout-strip-primary:hover .layout-strip-image.is-featured {
-  transform: rotate(1.2deg) scale(1.04) translateY(-0.2rem);
-  box-shadow: 0 34px 62px -26px rgba(15, 23, 42, 0.55);
+  transform: rotate(2deg) scale(1.055) translate(-0.15rem, -0.35rem);
+  box-shadow: 0 36px 66px -24px rgba(15, 23, 42, 0.58);
 }
 
 .layout-mockup-classic {
@@ -399,14 +466,15 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.5s var(--ani-ease);
 }
 
 .layout-classic-secondary {
-  transform: translate(2.8rem, 1.9rem) rotate(3.8deg);
+  transform: translate(3.6rem, 2.1rem) rotate(4.6deg);
 }
 
 .layout-classic-primary {
-  transform: translate(-0.6rem, -0.2rem) rotate(-2deg);
+  transform: translate(-1rem, -0.4rem) rotate(-2.6deg);
   z-index: 1;
 }
 
@@ -423,13 +491,21 @@ nav a:hover {
 }
 
 .layout-mockup-classic:hover .layout-classic-secondary .layout-classic-image {
-  transform: rotate(-0.8deg) scale(1.02) translateY(0.12rem);
-  box-shadow: 0 30px 60px -28px rgba(15, 23, 42, 0.5);
+  transform: rotate(-2deg) scale(1.035) translate(0.5rem, 0.15rem);
+  box-shadow: 0 32px 62px -24px rgba(15, 23, 42, 0.54);
+}
+
+.layout-mockup-classic:hover .layout-classic-secondary {
+  transform: translate(4.6rem, 2.55rem) rotate(5.8deg);
+}
+
+.layout-mockup-classic:hover .layout-classic-primary {
+  transform: translate(-1.45rem, -0.7rem) rotate(-3.15deg);
 }
 
 .layout-classic-primary:hover .layout-classic-image.is-featured {
-  transform: rotate(1.1deg) scale(1.04) translateY(-0.2rem);
-  box-shadow: 0 34px 68px -26px rgba(15, 23, 42, 0.56);
+  transform: rotate(1.8deg) scale(1.05) translate(-0.15rem, -0.3rem);
+  box-shadow: 0 36px 70px -24px rgba(15, 23, 42, 0.58);
 }
 
 .layout-section-head {
@@ -4544,6 +4620,8 @@ footer {
     justify-content: flex-end;
     margin-left: auto;
     flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
   }
 
   .nav-list-desktop {
@@ -4551,8 +4629,20 @@ footer {
   }
 
   .mobile-nav-menu {
-    display: block !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: flex-end;
     margin-left: auto;
+  }
+
+  .mobile-nav-toggle {
+    width: 36px;
+    height: 32px;
+  }
+
+  .mobile-nav-hamburger {
+    width: 14px;
+    height: 10px;
   }
 
   .mobile-nav-panel {
@@ -4569,13 +4659,15 @@ footer {
 
   .mobile-nav-list {
     margin-top: 0;
-    width: min(18rem, calc(100vw - 2rem));
+    width: min(14rem, calc(100vw - 1.25rem));
+    margin-left: auto;
   }
 
   .brand-wrap {
     flex-wrap: wrap;
     flex: 0 1 auto;
     min-width: 0;
+    max-width: calc(100% - 3.5rem);
   }
 
   .hero-bg-image {

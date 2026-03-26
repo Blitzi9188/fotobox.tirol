@@ -117,8 +117,8 @@
     "previewImageUrl": "/uploads/ki-demo-grid.png",
     "compareLeftBeforeUrl": "/uploads/ai-left-before-optimized.jpg",
     "compareLeftAfterUrl": "/uploads/ai-left-after-optimized.jpg",
-    "compareRightBeforeUrl": "/uploads/home-ai-right-after.jpg",
-    "compareRightAfterUrl": "/uploads/home-ai-right-before.jpg",
+    "compareRightBeforeUrl": "/uploads/home-ai-right-before.jpg",
+    "compareRightAfterUrl": "/uploads/home-ai-right-after.jpg",
     "pageCompareBeforeUrl": "/uploads/ki-swipe-before.jpg",
     "pageCompareAfterUrl": "/uploads/ki-swipe-after.jpg",
     "pageDemoImageUrl": "/uploads/ki-demo-grid.png"
