@@ -6,6 +6,8 @@ import ReferencesCarousel from "@/components/site/ReferencesCarousel";
 
 export const dynamic = "force-dynamic";
 
+const BLOCKED_REFERENCE_DOMAINS = ["sailer-seefeld.at"];
+
 const DEFAULT_PAGE_PLANS = [
   {
     name: "Basic",
@@ -195,6 +197,10 @@ export default async function PreisgestaltungPage() {
     content.pricing.references && content.pricing.references.length > 0
       ? content.pricing.references
       : DEFAULT_REFERENCES;
+  const safeReferences = references.filter((item) => {
+    const haystack = `${item.href || ""} ${item.logoDomain || ""} ${item.name || ""}`.toLowerCase();
+    return !BLOCKED_REFERENCE_DOMAINS.some((domain) => haystack.includes(domain));
+  });
 
   return (
     <>
@@ -255,7 +261,7 @@ export default async function PreisgestaltungPage() {
         <section className="seo-landing-section seo-landing-alt">
           <div className="container">
             <h2><SlashHeading value={content.pricing.referencesHeading || "referenzen/partner"} /></h2>
-            <ReferencesCarousel items={references} />
+              <ReferencesCarousel items={safeReferences} />
           </div>
         </section>
 
