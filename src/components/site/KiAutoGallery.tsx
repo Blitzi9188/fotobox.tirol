@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 type Slide = {
@@ -120,7 +121,15 @@ export default function KiAutoGallery({
                 key={`${item.imageUrl}-${slideIndex}`}
                 style={{ ["--accessories-visible" as string]: String(visibleCount) }}
               >
-                <img src={item.imageUrl} alt={item.altText} />
+                <Image
+                  src={item.imageUrl}
+                  alt={item.altText}
+                  width={900}
+                  height={900}
+                  sizes="(max-width: 700px) 46vw, 18vw"
+                  loading={slideIndex < visibleCount ? "eager" : "lazy"}
+                  decoding="async"
+                />
               </figure>
             ))}
           </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type KiLivePreviewItem = {
@@ -31,10 +32,15 @@ export default function KiLivePreviewRotator({
   return (
     <div className="ki-live-preview-rotator" aria-live="polite">
       {items.map((item, index) => (
-        <img
+        <Image
           key={`${item.imageUrl}-${index}`}
           src={item.imageUrl}
           alt={index === activeIndex ? item.altText : ""}
+          fill
+          sizes="(max-width: 700px) 70vw, 23rem"
+          priority={index === 0}
+          loading={index === 0 ? "eager" : "lazy"}
+          decoding="async"
           aria-hidden={index === activeIndex ? undefined : true}
           className={`ki-demo-image ki-live-preview-image${index === activeIndex ? " is-active" : ""}`}
         />

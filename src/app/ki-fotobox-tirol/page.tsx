@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
@@ -243,11 +244,55 @@ export default async function KiFotoboxTirolPage() {
         "Gala-Abende, Weihnachtsfeiern und Sommerfeste",
         "Produktpräsentationen, Roadshows und Promotion-Aktionen"
       ];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `${SITE_URL}/ki-fotobox-tirol#service`,
+        name: "KI Fotobox Tirol",
+        serviceType: "KI-Fotobox für Hochzeiten, Firmenfeiern und Events",
+        url: `${SITE_URL}/ki-fotobox-tirol`,
+        areaServed: "Tirol",
+        provider: {
+          "@type": "LocalBusiness",
+          name: "Fotobox Tirol",
+          url: SITE_URL,
+          telephone: content.contact.phone,
+          email: content.contact.email
+        },
+        description:
+          content.ai.heroLead ||
+          content.ai.featureLead ||
+          "KI Fotobox Tirol für kreative Eventbilder, Branding und sofort sichtbare Live-Preview auf Hochzeiten, Firmenfeiern und Events.",
+        image: livePreviewImages.map((item) => new URL(item.imageUrl, SITE_URL).toString())
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${SITE_URL}/ki-fotobox-tirol#live-preview`,
+        name: "KI Live Preview Beispiele",
+        itemListElement: livePreviewImages.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "ImageObject",
+            contentUrl: new URL(item.imageUrl, SITE_URL).toString(),
+            description: item.altText
+          }
+        }))
+      }
+    ]
+  };
 
   return (
     <>
       <SiteHeader content={content} />
       <main className="ki-page">
+        <Script
+          id="ki-service-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <section className="ki-hero">
           <div className="ki-hero-glow" aria-hidden="true" />
           <div className="container ki-hero-inner">
