@@ -106,7 +106,14 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse",
-      type: "article"
+      type: "article",
+      locale: "de_AT",
+      siteName: "Fotobox Tirol"
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description
     }
   };
 }
@@ -155,17 +162,69 @@ export default async function FotoboxAnlaessePage() {
   );
   const heroTitle = splitHeroTitle(occasions.heroTitleAccent);
 
-  const jsonLd = {
+  const jsonLd: { "@context": string; "@graph": Array<Record<string, unknown>> } = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebPage",
+        "@type": "CollectionPage",
+        "@id": "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse#page",
         name: occasions.seoTitle || "Fotobox für jeden Anlass in Tirol",
         url: "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse",
         description: occasions.seoDescription || "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenfeier und Event."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse#breadcrumbs",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Startseite",
+            item: "https://fotoboxtirol-production.up.railway.app/"
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Anlässe",
+            item: "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse#occasions",
+        name: "Fotobox Anlässe in Tirol",
+        itemListElement: renderedSections.map((occasion, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Service",
+            name: `${occasion.title} ${occasion.titleBold}`.trim(),
+            description: occasion.description,
+            image: occasion.imageUrl
+              ? new URL(occasion.imageUrl, "https://fotoboxtirol-production.up.railway.app").toString()
+              : undefined,
+            areaServed: "Tirol"
+          }
+        }))
       }
     ]
   };
+
+  if (occasions.faqItems?.length) {
+    jsonLd["@graph"].push({
+      "@type": "FAQPage",
+      "@id": "https://fotoboxtirol-production.up.railway.app/fotobox-anlaesse#faq",
+      mainEntity: occasions.faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer
+        }
+      }))
+    });
+  }
 
   return (
     <>

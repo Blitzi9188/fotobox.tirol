@@ -113,7 +113,15 @@ export const metadata: Metadata = {
     description:
       "Alle Fotobox Pakete und Leistungen in Tirol im Überblick. Ideal für Hochzeiten, Geburtstage, Firmenfeiern und Messen.",
     url: `${SITE_URL}/preisgestaltung`,
-    type: "article"
+    type: "article",
+    locale: "de_AT",
+    siteName: "Fotobox Tirol"
+  },
+  twitter: {
+    card: "summary",
+    title: "Fotobox Preise Tirol | Pakete, Leistungen und Sofortdruck",
+    description:
+      "Alle Fotobox Pakete und Leistungen in Tirol im Überblick. Ideal für Hochzeiten, Geburtstage, Firmenfeiern und Messen."
   }
 };
 
@@ -212,11 +220,74 @@ export default async function PreisgestaltungPage() {
     const haystack = `${item.href || ""} ${item.logoDomain || ""} ${item.name || ""}`.toLowerCase();
     return !BLOCKED_REFERENCE_DOMAINS.some((domain) => haystack.includes(domain));
   });
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/preisgestaltung#page`,
+        name: "Fotobox Preise Tirol",
+        url: `${SITE_URL}/preisgestaltung`,
+        description: "Fotobox Preise in Tirol für Hochzeiten, Firmenfeiern und Events mit transparenten Paketen und Leistungen."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/preisgestaltung#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Startseite",
+            item: `${SITE_URL}/`
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Preisgestaltung",
+            item: `${SITE_URL}/preisgestaltung`
+          }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "@id": `${SITE_URL}/preisgestaltung#offers`,
+        name: "Fotobox Pakete Tirol",
+        itemListElement: pricingPackages.map((plan) => ({
+          "@type": "Offer",
+          name: `${plan.name} Fotobox Paket`,
+          price: String(plan.price),
+          priceCurrency: "EUR",
+          availability: "https://schema.org/InStock",
+          itemOffered: {
+            "@type": "Service",
+            name: `${plan.name} Fotobox Paket`,
+            description: plan.items.join(", "),
+            areaServed: "Tirol"
+          }
+        }))
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${SITE_URL}/preisgestaltung#references`,
+        name: "Referenzen und Partner",
+        itemListElement: safeReferences.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Organization",
+            name: item.name,
+            url: item.href
+          }
+        }))
+      }
+    ]
+  };
 
   return (
     <>
       <SiteHeader content={content} />
       <main>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <section className="page-hero seo-landing-hero pricing-hero">
           <div className="container">
             <span className="pricing-hero-badge">Transparente Angebote</span>

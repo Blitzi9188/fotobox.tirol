@@ -36,18 +36,27 @@ const ADVANTAGE_ICONS = [
 export async function generateMetadata(): Promise<Metadata> {
   const content = await readCmsContent();
   const layoutPage = content.layoutPage || DEFAULT_LAYOUT_PAGE_CONTENT;
+  const title = layoutPage.seoTitle || DEFAULT_LAYOUT_PAGE_CONTENT.seoTitle;
+  const description = layoutPage.seoDescription || DEFAULT_LAYOUT_PAGE_CONTENT.seoDescription;
 
   return {
-    title: layoutPage.seoTitle || DEFAULT_LAYOUT_PAGE_CONTENT.seoTitle,
-    description: layoutPage.seoDescription || DEFAULT_LAYOUT_PAGE_CONTENT.seoDescription,
+    title,
+    description,
     alternates: {
       canonical: "/layout-gestaltung"
     },
     openGraph: {
-      title: layoutPage.seoTitle || DEFAULT_LAYOUT_PAGE_CONTENT.seoTitle,
-      description: layoutPage.seoDescription || DEFAULT_LAYOUT_PAGE_CONTENT.seoDescription,
+      title,
+      description,
       url: `${SITE_URL}/layout-gestaltung`,
-      type: "article"
+      type: "article",
+      locale: "de_AT",
+      siteName: "Fotobox Tirol"
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description
     }
   };
 }
@@ -127,11 +136,77 @@ export default async function LayoutGestaltungPage() {
   const layoutPage = content.layoutPage || DEFAULT_LAYOUT_PAGE_CONTENT;
   const formatSections = layoutPage.formatSections?.length ? layoutPage.formatSections : DEFAULT_LAYOUT_PAGE_CONTENT.formatSections;
   const advantages = layoutPage.advantages?.length ? layoutPage.advantages : DEFAULT_LAYOUT_PAGE_CONTENT.advantages;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/layout-gestaltung#page`,
+        name: layoutPage.seoTitle || DEFAULT_LAYOUT_PAGE_CONTENT.seoTitle,
+        url: `${SITE_URL}/layout-gestaltung`,
+        description: layoutPage.seoDescription || DEFAULT_LAYOUT_PAGE_CONTENT.seoDescription
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${SITE_URL}/layout-gestaltung#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Startseite",
+            item: `${SITE_URL}/`
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Layout Gestaltung",
+            item: `${SITE_URL}/layout-gestaltung`
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": `${SITE_URL}/layout-gestaltung#service`,
+        name: "Fotobox Layout Gestaltung Tirol",
+        serviceType: "Individuelle Fotobox Layouts für 5x15 und 10x15",
+        url: `${SITE_URL}/layout-gestaltung`,
+        areaServed: "Tirol",
+        description: layoutPage.lead,
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Fotobox Layout Formate",
+          itemListElement: formatSections.map((section) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: section.heading,
+              description: section.lead
+            }
+          }))
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${SITE_URL}/layout-gestaltung#benefits`,
+        name: "Vorteile individueller Fotobox Layouts",
+        itemListElement: advantages.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Thing",
+            name: item.title,
+            description: item.text
+          }
+        }))
+      }
+    ]
+  };
 
   return (
     <>
       <SiteHeader content={content} />
       <main className="layout-page">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <section className="page-hero seo-landing-hero pricing-hero layout-page-hero">
           <div className="container">
             <span className="pricing-hero-badge">{layoutPage.badge}</span>
