@@ -242,6 +242,47 @@
   flex-shrink: 0;
 }
 
+.relatedLinks {
+  margin-top: 1.6rem;
+}
+
+.relatedLinksLabel {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: #6b7280;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.relatedLinksList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.relatedLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.72rem 1.15rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  background: #fff;
+  color: #111827;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.relatedLink:hover {
+  color: #ea2c2c;
+  border-color: #ea2c2c;
+  transform: translateY(-1px);
+}
+
 .seoFooter {
   padding: 4rem 0;
   background: #faf9f6;
@@ -375,6 +416,15 @@
   }
 
   .ctaButton {
+    width: 100%;
+  }
+
+  .relatedLinksList {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .relatedLink {
     width: 100%;
   }
 }

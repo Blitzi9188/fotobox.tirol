@@ -420,6 +420,13 @@ export default async function KiFotoboxTirolPage() {
                 <Link href="/kontakt" className="btn btn-primary">Termin anfragen</Link>
                 <Link href="/preisgestaltung" className="btn btn-secondary btn-secondary-light">Pakete vergleichen</Link>
               </div>
+              <div className="seo-link-cluster seo-link-cluster--light" aria-label="Weitere passende Seiten">
+                <span className="seo-link-cluster-label">Dazu passend:</span>
+                <div className="seo-link-cluster-list">
+                  <Link href="/layout-gestaltung" className="seo-link-chip seo-link-chip--light">Layouts und Formate ansehen</Link>
+                  <Link href="/fotobox-anlaesse" className="seo-link-chip seo-link-chip--light">Passende Anlässe entdecken</Link>
+                </div>
+              </div>
             </article>
           </div>
         </section>

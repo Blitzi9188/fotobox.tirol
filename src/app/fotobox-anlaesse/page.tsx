@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
 import type { CMSContent } from "@/lib/types";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
@@ -132,6 +133,34 @@ function BenefitItem({ text }: { text: string }) {
   );
 }
 
+function getOccasionLinks(id: string) {
+  if (id === "hochzeit") {
+    return [
+      { href: "/layout-gestaltung", label: "Passende Layouts ansehen" },
+      { href: "/preisgestaltung", label: "Pakete und Preise vergleichen" }
+    ];
+  }
+
+  if (id === "geburtstag") {
+    return [
+      { href: "/preisgestaltung", label: "Preise für eure Party prüfen" },
+      { href: "/ki-fotobox-tirol", label: "KI-Fotobox für noch mehr Wow entdecken" }
+    ];
+  }
+
+  if (id === "firma") {
+    return [
+      { href: "/ki-fotobox-tirol", label: "KI-Features für Firmenfeiern ansehen" },
+      { href: "/layout-gestaltung", label: "Branding und Layouts entdecken" }
+    ];
+  }
+
+  return [
+    { href: "/ki-fotobox-tirol", label: "KI-Erlebnisse für Events ansehen" },
+    { href: "/preisgestaltung", label: "Leistungen und Pakete prüfen" }
+  ];
+}
+
 export default async function FotoboxAnlaessePage() {
   const content = await readCmsContent();
   const occasions: NonNullable<CMSContent["occasions"]> = content.occasions || {
@@ -263,6 +292,16 @@ export default async function FotoboxAnlaessePage() {
                     <BenefitItem key={benefit} text={benefit} />
                   ))}
                 </ul>
+                <div className={styles.relatedLinks}>
+                  <span className={styles.relatedLinksLabel}>Dazu passend:</span>
+                  <div className={styles.relatedLinksList}>
+                    {getOccasionLinks(occasion.id).map((link) => (
+                      <Link key={link.href} href={link.href} className={styles.relatedLink}>
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               <div className={`${styles.occasionImageWrap} ${index % 2 === 1 ? styles.imageOrderOne : ""}`}>
