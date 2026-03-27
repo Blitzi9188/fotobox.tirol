@@ -337,14 +337,6 @@ export default async function PreisgestaltungPage() {
                 );
               })}
             </div>
-            <div className="seo-link-cluster" aria-label="Weitere passende Seiten">
-              <span className="seo-link-cluster-label">Dazu passend:</span>
-              <div className="seo-link-cluster-list">
-                <Link href="/fotobox-anlaesse" className="seo-link-chip">Anlässe im Überblick</Link>
-                <Link href="/layout-gestaltung" className="seo-link-chip">Layouts und Druckformate ansehen</Link>
-                <Link href="/ki-fotobox-tirol" className="seo-link-chip">KI-Fotobox als Upgrade entdecken</Link>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -375,13 +367,6 @@ export default async function PreisgestaltungPage() {
                     </article>
                   );
                 })}
-              </div>
-              <div className="seo-link-cluster seo-link-cluster--center" aria-label="Weitere technische Seiten">
-                <span className="seo-link-cluster-label">Mehr dazu:</span>
-                <div className="seo-link-cluster-list">
-                  <Link href="/technische-daten-aufbau" className="seo-link-chip">Aufbau und Platzbedarf ansehen</Link>
-                  <Link href="/kontakt" className="seo-link-chip">Termin unverbindlich anfragen</Link>
-                </div>
               </div>
             </div>
           </div>

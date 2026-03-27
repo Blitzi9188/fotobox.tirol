@@ -243,14 +243,6 @@ export default async function LayoutGestaltungPage() {
                         </article>
                       ))}
                     </div>
-                    <div className="seo-link-cluster" aria-label="Weitere passende Seiten">
-                      <span className="seo-link-cluster-label">Dazu passend:</span>
-                      <div className="seo-link-cluster-list">
-                        <Link href="/preisgestaltung" className="seo-link-chip">Pakete und Preise ansehen</Link>
-                        <Link href="/fotobox-anlaesse" className="seo-link-chip">Passende Anlässe entdecken</Link>
-                        <Link href="/ki-fotobox-tirol" className="seo-link-chip">KI-Layouts und Motive ansehen</Link>
-                      </div>
-                    </div>
                   </div>
 
                   <div className="layout-format-visual">
@@ -312,13 +304,6 @@ export default async function LayoutGestaltungPage() {
                 <Link href={layoutPage.finalSecondaryCtaHref} className="pricing-offer-button">
                   {layoutPage.finalSecondaryCtaText}
                 </Link>
-                <div className="seo-link-cluster seo-link-cluster--center" aria-label="Weitere empfohlene Seiten">
-                  <span className="seo-link-cluster-label">Auch interessant:</span>
-                  <div className="seo-link-cluster-list">
-                    <Link href="/ki-fotobox-tirol" className="seo-link-chip">KI-Fotobox ansehen</Link>
-                    <Link href="/fotobox-anlaesse" className="seo-link-chip">Anlässe vergleichen</Link>
-                  </div>
-                </div>
               </div>
             </section>
           </div>

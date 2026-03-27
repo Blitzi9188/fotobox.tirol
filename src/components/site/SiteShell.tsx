@@ -89,7 +89,7 @@ export function SiteHeader({ content }: { content: CMSContent }) {
       </div>
       {mobileMenuOpen ? (
         <div className="mobile-nav-panel">
-          <div className="container mobile-nav-panel-inner">
+          <div className="mobile-nav-panel-inner">
             <ul className="mobile-nav-list">
               {navItems.map((item) => (
                 <li key={`mobile-${item.href}`}>
