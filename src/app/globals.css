@@ -6640,6 +6640,49 @@ footer {
   pointer-events: none;
 }
 
+.ki-showcase-switch {
+  position: relative;
+  z-index: 1;
+}
+
+.ki-showcase-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ki-showcase-tab {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border-radius: 999px;
+  padding: 0.8rem 1.15rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.ki-showcase-tab:hover,
+.ki-showcase-tab:focus-visible {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.ki-showcase-tab.is-active {
+  color: #fff;
+  border-color: rgba(230, 36, 36, 0.55);
+  background: linear-gradient(180deg, rgba(230, 36, 36, 0.26), rgba(230, 36, 36, 0.14));
+  box-shadow: 0 10px 26px -18px rgba(230, 36, 36, 0.7);
+}
+
 .ki-demo-grid {
   position: relative;
   z-index: 1;
@@ -6651,6 +6694,12 @@ footer {
 
 .ki-demo-visual {
   position: relative;
+}
+
+.ki-showcase-gallery-panel {
+  display: grid;
+  align-items: center;
+  min-height: 29rem;
 }
 
 .ki-demo-image-wrap {
@@ -7014,9 +7063,21 @@ footer {
     display: grid;
   }
 
-  .ki-auto-gallery {
-    margin-top: 1.35rem;
-  }
+.ki-auto-gallery {
+  margin-top: 1.35rem;
+}
+
+.ki-showcase-gallery-panel .ki-auto-gallery {
+  margin-top: 0;
+}
+
+.ki-showcase-gallery-panel .accessories-carousel-shell {
+  gap: 0.75rem;
+}
+
+.ki-showcase-gallery-panel .accessories-arrow {
+  background: rgba(255, 255, 255, 0.92);
+}
 
   .ki-compare-shell {
     justify-content: center;
@@ -7042,6 +7103,15 @@ footer {
   .ki-copy-card,
   .ki-compare-card {
     padding: 1.2rem;
+  }
+
+  .ki-showcase-tabs {
+    width: 100%;
+  }
+
+  .ki-showcase-tab {
+    flex: 1 1 0;
+    justify-content: center;
   }
 
   .ki-demo-overlay {

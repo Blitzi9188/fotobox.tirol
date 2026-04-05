@@ -4,8 +4,7 @@ import Script from "next/script";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
-import KiAutoGallery from "@/components/site/KiAutoGallery";
-import KiLivePreviewRotator from "@/components/site/KiLivePreviewRotator";
+import KiShowcaseSwitcher from "@/components/site/KiShowcaseSwitcher";
 
 export const dynamic = "force-dynamic";
 const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
@@ -349,49 +348,13 @@ export default async function KiFotoboxTirolPage() {
 
         <section id="ki-demo" className="ki-section ki-demo-section">
           <div className="container">
-            <div className="ki-demo-shell">
-              <div className="ki-demo-glow" aria-hidden="true" />
-              <div className="ki-demo-grid">
-                <div className="ki-demo-visual">
-                  <div className="ki-demo-image-wrap">
-                <KiLivePreviewRotator items={livePreviewImages} intervalMs={3000} />
-                  </div>
-                </div>
-
-                <div className="ki-demo-copy">
-                  <div className="ki-demo-badge">{content.ai.demoBadge || "Live Preview"}</div>
-                  <p>
-                    {content.ai.demoLead || "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fürs Motiv bleibt."}
-                  </p>
-                  <div className="ki-demo-list">
-                    {demoFeatures.map((item, index) => (
-                      <article className={`ki-demo-item ${index === 0 ? "is-active" : ""}`} key={item.title}>
-                        <div>
-                          <h3>{item.title}</h3>
-                          <p>{item.description}</p>
-                        </div>
-                        <span className="ki-demo-item-check" aria-hidden="true">
-                          <svg viewBox="0 0 24 24">
-                            <path d="M20 6 9 17l-5-5" />
-                          </svg>
-                        </span>
-                      </article>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="ki-section">
-          <div className="container ki-gallery-heading-wrap">
-            <h2 className="ki-gallery-slash-title">
-              <span>face</span>
-              <span className="accent-slash">/</span>
-              <span>swap</span>
-            </h2>
-            <KiAutoGallery slides={kiGallerySlides} />
+            <KiShowcaseSwitcher
+              livePreviewImages={livePreviewImages}
+              demoBadge={content.ai.demoBadge || "Live Preview"}
+              demoLead={content.ai.demoLead || "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fürs Motiv bleibt."}
+              demoFeatures={demoFeatures}
+              faceSwapSlides={kiGallerySlides}
+            />
           </div>
         </section>
 

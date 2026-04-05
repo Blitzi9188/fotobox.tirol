@@ -39,6 +39,10 @@ function formatDateEu(value: string) {
   return trimmed;
 }
 
+function hasValue(value?: string) {
+  return Boolean(value && value.trim());
+}
+
 function getClientIp(request: Request) {
   const forwarded = request.headers.get("x-forwarded-for");
   if (forwarded) return forwarded.split(",")[0]?.trim() || "unknown";
@@ -101,6 +105,13 @@ async function sendLeadMail(params: {
   printText: string;
   message: string;
 }) {
+  const optionalTextLines = [
+    hasValue(params.eventType) ? `Eventart: ${params.eventType}` : null,
+    hasValue(params.boxType) ? `Fotobox: ${params.boxType}` : null,
+    hasValue(params.printFormat) ? `Format: ${params.printFormat}` : null,
+    hasValue(params.printText) ? `Aufdruck-Wunsch: ${params.printText}` : null
+  ].filter(Boolean);
+
   const textBody = [
     "Neue Buchungsanfrage",
     `Anfrage-Datum: ${params.requestDate}`,
@@ -108,30 +119,29 @@ async function sendLeadMail(params: {
     `E-Mail: ${params.email}`,
     `Telefon: ${params.phone || "-"}`,
     `Event-Datum: ${params.eventDate || "-"}`,
-    `Eventart: ${params.eventType || "-"}`,
+    ...optionalTextLines,
     `Ort: ${params.location || "-"}`,
     `Paket: ${params.packageName}`,
-    `Fotobox: ${params.boxType || "-"}`,
-    `Format: ${params.printFormat || "-"}`,
-    `Aufdruck-Wunsch: ${params.printText || "-"}`,
     `Zusatznachricht: ${params.message || "-"}`
   ].join("\n");
 
-  const htmlBody = `
-    <h2>Neue Buchungsanfrage</h2>
-    <p><strong>Anfrage-Datum:</strong> ${escapeHtml(params.requestDate)}</p>
-    <p><strong>Name:</strong> ${escapeHtml(params.name)}</p>
-    <p><strong>E-Mail:</strong> ${escapeHtml(params.email)}</p>
-    <p><strong>Telefon:</strong> ${escapeHtml(params.phone || "-")}</p>
-    <p><strong>Event-Datum:</strong> ${escapeHtml(params.eventDate || "-")}</p>
-    <p><strong>Eventart:</strong> ${escapeHtml(params.eventType || "-")}</p>
-    <p><strong>Ort:</strong> ${escapeHtml(params.location || "-")}</p>
-    <p><strong>Paket:</strong> ${escapeHtml(params.packageName)}</p>
-    <p><strong>Fotobox:</strong> ${escapeHtml(params.boxType || "-")}</p>
-    <p><strong>Format:</strong> ${escapeHtml(params.printFormat || "-")}</p>
-    <p><strong>Aufdruck-Wunsch:</strong> ${escapeHtml(params.printText || "-")}</p>
-    <p><strong>Zusatznachricht:</strong><br/>${escapeHtml(params.message || "-").replace(/\n/g, "<br/>")}</p>
-  `;
+  const htmlLines = [
+    `<h2>Neue Buchungsanfrage</h2>`,
+    `<p><strong>Anfrage-Datum:</strong> ${escapeHtml(params.requestDate)}</p>`,
+    `<p><strong>Name:</strong> ${escapeHtml(params.name)}</p>`,
+    `<p><strong>E-Mail:</strong> ${escapeHtml(params.email)}</p>`,
+    `<p><strong>Telefon:</strong> ${escapeHtml(params.phone || "-")}</p>`,
+    `<p><strong>Event-Datum:</strong> ${escapeHtml(params.eventDate || "-")}</p>`,
+    hasValue(params.eventType) ? `<p><strong>Eventart:</strong> ${escapeHtml(params.eventType)}</p>` : "",
+    `<p><strong>Ort:</strong> ${escapeHtml(params.location || "-")}</p>`,
+    `<p><strong>Paket:</strong> ${escapeHtml(params.packageName)}</p>`,
+    hasValue(params.boxType) ? `<p><strong>Fotobox:</strong> ${escapeHtml(params.boxType)}</p>` : "",
+    hasValue(params.printFormat) ? `<p><strong>Format:</strong> ${escapeHtml(params.printFormat)}</p>` : "",
+    hasValue(params.printText) ? `<p><strong>Aufdruck-Wunsch:</strong> ${escapeHtml(params.printText)}</p>` : "",
+    `<p><strong>Zusatznachricht:</strong><br/>${escapeHtml(params.message || "-").replace(/\n/g, "<br/>")}</p>`
+  ].filter(Boolean);
+  const htmlBody = htmlLines.join("\n");
+  const mailSubject = `Buchungsanfrage ${params.eventDate || "ohne Eventdatum"}`;
 
   const config = getMailConfigStatus();
 
@@ -150,7 +160,7 @@ async function sendLeadMail(params: {
       from: config.values.from,
       to: config.values.to.split(",").map((item) => item.trim()).filter(Boolean),
       replyTo: params.email,
-      subject: `Buchungsanfrage ${params.requestDate}`,
+      subject: mailSubject,
       text: textBody,
       html: htmlBody
     });
@@ -169,7 +179,7 @@ async function sendLeadMail(params: {
   const result = await resend.emails.send({
     from: config.values.from,
     to: config.values.to.split(",").map((item) => item.trim()).filter(Boolean),
-    subject: `Buchungsanfrage ${params.requestDate}`,
+    subject: mailSubject,
     replyTo: params.email,
     text: textBody,
     html: htmlBody
@@ -203,11 +213,11 @@ export async function POST(request: Request) {
   const nowMs = now.getTime();
   const mergedSummary = [
     `Anfrage-Datum: ${requestDate}`,
-    `Eventart: ${eventType || "-"}`,
+    ...(hasValue(eventType) ? [`Eventart: ${eventType}`] : []),
     `Ort: ${location || "-"}`,
-    `Fotobox: ${boxType || "-"}`,
-    `Format: ${printFormat || "-"}`,
-    `Aufdruck-Wunsch: ${printText || "-"}`,
+    ...(hasValue(boxType) ? [`Fotobox: ${boxType}`] : []),
+    ...(hasValue(printFormat) ? [`Format: ${printFormat}`] : []),
+    ...(hasValue(printText) ? [`Aufdruck-Wunsch: ${printText}`] : []),
     `Zusatznachricht: ${message || "-"}`
   ].join("\n");
 
