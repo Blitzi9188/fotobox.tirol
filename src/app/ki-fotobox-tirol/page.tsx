@@ -352,7 +352,6 @@ export default async function KiFotoboxTirolPage() {
               livePreviewImages={livePreviewImages}
               demoBadge={content.ai.demoBadge || "Live Preview"}
               demoLead={content.ai.demoLead || "Unsere KI analysiert die Bildkomposition und platziert Texte, Daten oder Logos dort, wo sie wirken und trotzdem genug Raum fürs Motiv bleibt."}
-              demoFeatures={demoFeatures}
               faceSwapSlides={kiGallerySlides}
             />
           </div>

@@ -14,16 +14,6 @@ type DankePageProps = {
   };
 };
 
-function createReferenceId(rawDate: string, rawLocation: string, packageLabel: string) {
-  const base = `${rawDate}|${rawLocation}|${packageLabel}`;
-  let hash = 0;
-  for (let i = 0; i < base.length; i += 1) {
-    hash = (hash * 31 + base.charCodeAt(i)) % 10000;
-  }
-  const year = rawDate ? new Date(rawDate).getFullYear() : new Date().getFullYear();
-  return `#FT-${year}-${String(hash || 8832).padStart(4, "0")}`;
-}
-
 export default async function DankePage({ searchParams }: DankePageProps) {
   const content = await readCmsContent();
   const selectedPackage = (searchParams?.paket || "").trim();
@@ -44,7 +34,6 @@ export default async function DankePage({ searchParams }: DankePageProps) {
       }).format(new Date(rawEventDate))
     : "Wird mit Ihnen abgestimmt";
   const location = rawLocation || "Wird mit Ihnen abgestimmt";
-  const referenceId = createReferenceId(rawEventDate, rawLocation, packageLabel);
   const thanks = content.thanks;
   const contactEmail = content.contact.email || "hallo@fotoboxtirol.at";
   const contactPhone = content.contact.phone || "+43 664 3918 228";
@@ -85,20 +74,16 @@ export default async function DankePage({ searchParams }: DankePageProps) {
 
                 <div className={styles.summaryGrid}>
                   <div className={styles.summaryItem}>
-                    <span>Event Datum</span>
+                    <span>{thanks.summaryDateLabel || "Event Datum"}</span>
                     <strong>{eventDate}</strong>
                   </div>
                   <div className={styles.summaryItem}>
-                    <span>Location</span>
+                    <span>{thanks.summaryLocationLabel || "Location"}</span>
                     <strong>{location}</strong>
                   </div>
                   <div className={styles.summaryItem}>
-                    <span>Gewähltes Paket</span>
+                    <span>{thanks.summaryPackageLabel || "Gewähltes Paket"}</span>
                     <strong>{packageLabel}</strong>
-                  </div>
-                  <div className={styles.summaryItem}>
-                    <span>{thanks.summaryReferenceLabel || "Referenz-ID"}</span>
-                    <strong className={styles.referenceId}>{referenceId}</strong>
                   </div>
                 </div>
               </article>
@@ -133,10 +118,10 @@ export default async function DankePage({ searchParams }: DankePageProps) {
                 <div className={`${styles.step} ${styles.stepActive}`}>
                   <div className={styles.stepIndex}>1</div>
                   <div>
-                    <h3>E-Mail Bestätigung</h3>
+                    <h3>{thanks.step1Title || "E-Mail Bestätigung"}</h3>
                     <p>
-                      Sie erhalten in Kürze eine Zusammenfassung per E-Mail
-                      (bitte auch im Spam-Ordner nachsehen).
+                      {thanks.step1Text ||
+                        "Sie erhalten in Kürze eine Zusammenfassung per E-Mail (bitte auch im Spam-Ordner nachsehen)."}
                     </p>
                   </div>
                 </div>
@@ -144,19 +129,16 @@ export default async function DankePage({ searchParams }: DankePageProps) {
                 <div className={styles.step}>
                   <div className={styles.stepIndex}>2</div>
                   <div>
-                    <h3>Verfügbarkeits-Check</h3>
-                    <p>Unser Team prüft den Termin innerhalb von 24 Stunden persönlich.</p>
+                    <h3>{thanks.step2Title || "Verfügbarkeits-Check"}</h3>
+                    <p>{thanks.step2Text || "Unser Team prüft den Termin innerhalb von 24 Stunden persönlich."}</p>
                   </div>
                 </div>
 
                 <div className={styles.step}>
                   <div className={styles.stepIndex}>3</div>
                   <div>
-                    <h3>Unverbindliches Angebot</h3>
-                    <p>
-                      Wir senden Ihnen ein detailliertes Angebot inklusive aller Optionen für
-                      Ihre Hochzeitslocation.
-                    </p>
+                    <h3>{thanks.step3Title || "Unverbindliches Angebot"}</h3>
+                    <p>{thanks.step3Text || "Wir senden Ihnen ein detailliertes Angebot inklusive aller Optionen für Ihre Hochzeitslocation."}</p>
                   </div>
                 </div>
               </div>
