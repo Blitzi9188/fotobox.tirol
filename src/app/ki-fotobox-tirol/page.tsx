@@ -178,19 +178,6 @@ export default async function KiFotoboxTirolPage() {
         )
       }));
 
-  const demoFeatures = content.ai.demoItems && content.ai.demoItems.length > 0
-    ? content.ai.demoItems
-    : [
-        {
-          title: "Dynamic Text Engine",
-          description: "Namen, Daten oder Claim werden so gesetzt, dass Lesbarkeit und Motiv harmonisch zusammenpassen."
-        },
-        {
-          title: "Contextual Branding",
-          description: "Firmenlogos und Event-Branding können sichtbar eingebunden werden, ohne das Bild unruhig zu machen."
-        }
-      ];
-
   const livePreviewImages = content.ai.livePreviewImages && content.ai.livePreviewImages.length > 0
     ? content.ai.livePreviewImages
         .filter((item) => item.imageUrl)
