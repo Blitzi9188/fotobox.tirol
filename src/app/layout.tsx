@@ -8,7 +8,22 @@ export const metadata: Metadata = {
     default: "Fotobox Tirol das Original",
     template: "%s"
   },
-  description: "Fotobox Tirol das Original für Hochzeiten, Firmenfeiern und Events in Tirol."
+  description: "Fotobox Tirol das Original für Hochzeiten, Firmenfeiern und Events in Tirol.",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
+      { url: "/favicon-192x192.png", type: "image/png", sizes: "192x192" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }
+    ]
+  }
+};
+
+export const viewport = {
+  themeColor: "#ffffff"
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
