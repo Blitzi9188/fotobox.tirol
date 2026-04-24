@@ -388,7 +388,7 @@
   "space": {
     "heading": "wie viel platz/brauchen wir",
     "description": "Idealerweise steht für unsere Selfie Fotobox Tirol eine Fläche von 300×200 cm zur Verfügung. \nAllerdings lassen sich auch auf kleineren Flächen problemlos großartige Fotos aufnehmen, sofern es die Gegebenheiten erfordern. Als Hintergrund empfehlen wir eine neutrale Fläche, beispielsweise eine Holz- oder Steinwand. Glasflächen und Fensterscheiben sollten hingegen vermieden werden, da sie unerwünschte Reflexionen verursachen können.\n\nFür den Betrieb der Selfie Fotobox in Tirol wird lediglich ein 230-V-Stromanschluss benötigt. Falls WLAN vorhanden ist, besteht zusätzlich die Möglichkeit, die Bilder KI-Generieren zu lassen. Damit die Nutzung der Accessoires noch komfortabler wird, empfehlen wir außerdem die Platzierung eines Stehtisches direkt neben der Fotobox. So lassen sich die Requisiten übersichtlich ablegen und bequem verwenden.",
-    "imageUrl": "/uploads/1772571257775-078ffaef-7825-4281-92cd-a3f94ff1a2b7-selfie-ma-e-2.png.webp",
+    "imageUrl": "/uploads/platzbedarf-fotobox-neu.png",
     "layoutOneHeading": "layout/gestaltung",
     "layoutOneDescription": "Wir gestalten gerne individuelle Layouts für eure Veranstaltung im beliebten Streifen-Format 5x15. Ob für Hochzeiten, Firmenfeiern, Geburtstage oder Events – wir personalisieren eure Streifen mit Namen des Brautpaares, Datum der Hochzeit, Logo der Firma oder Veranstaltungsort.\nDas 5x15 Streifenformat eignet sich perfekt für Fotobox-Streifen, Erinnerungsfotos und Event-Souvenirs. Durch ein individuell gestaltetes Design wird jeder Fotostreifen zu einer einzigartigen Erinnerung an euren besonderen Tag.",
     "layoutOneImageUrl": "/uploads/layout-one-optimized.jpg",
@@ -1219,8 +1219,8 @@
     "spaceLead": "Für einen entspannten Ablauf reicht meist schon wenig Fläche. Mit etwas mehr Raum wirkt die Fotobox im Einsatz aber deutlich angenehmer, vor allem bei Gruppenfotos.",
     "noteTitle": "Hinweis",
     "noteText": "Ein Outdoor-Einsatz ist grundsätzlich möglich, jedoch nur an einem geschützten Standort. Die Fotobox sollte keiner direkten Witterung ausgesetzt sein. Insbesondere Regen, Wind, hohe Luftfeuchtigkeit und starke Sonneneinstrahlung sollten vermieden werden. Ideal ist ein überdachter Bereich, etwa unter einem Pavillon, Vordach oder in einem Zelt.",
-    "spaceImageUrl": "/uploads/setup-space-requirements.png.webp",
-    "spaceImageAlt": "Platzbedarf der Fotobox mit empfohlenen Abständen und Stellfläche",
+    "spaceImageUrl": "/uploads/platzbedarf-fotobox-neu.png",
+    "spaceImageAlt": "Platzbedarf der Fotobox mit Empfehlungen für Höhe, Breite und Stellfläche",
     "spaceItems": [
       {
         "label": "Mindestplatz",
