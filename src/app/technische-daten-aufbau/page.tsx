@@ -186,8 +186,8 @@ export default async function TechnischeDatenAufbauPage() {
               <p className="setup-section-intro">{setup.stepsLead}</p>
             </div>
 
-            <div className="setup-video-shell">
-              {setupVideoEmbedUrl ? (
+            {setupVideoEmbedUrl ? (
+              <div className="setup-video-shell">
                 <div className="setup-video-frame">
                   <iframe
                     src={setupVideoEmbedUrl}
@@ -197,18 +197,8 @@ export default async function TechnischeDatenAufbauPage() {
                     allowFullScreen
                   />
                 </div>
-              ) : (
-                <div className="setup-video-placeholder">
-                  <span className="setup-video-play" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 6.8v10.4a1 1 0 0 0 1.52.85l8.15-5.2a1 1 0 0 0 0-1.7l-8.15-5.2A1 1 0 0 0 8 6.8Z" />
-                    </svg>
-                  </span>
-                  <strong>YouTube-Aufbauvideo</strong>
-                  <p>Hier kann direkt ein YouTube-Video zum Aufbau und zur Funktionsweise der Fotobox eingebunden werden.</p>
-                </div>
-              )}
-            </div>
+              </div>
+            ) : null}
 
             <div className="setup-steps-shell">
               <p className="setup-steps-label">Aufbau in {setup.steps.length} Schritten</p>
