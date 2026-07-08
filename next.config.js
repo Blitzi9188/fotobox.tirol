@@ -23,6 +23,20 @@ const nextConfig = {
         ],
         destination: "https://www.fotobox.tirol/:path*",
         permanent: true // 301
+      },
+      // Alte Railway-Vorschau-URL -> echte Domain.
+      // Sorgt dafuer, dass die railway.app-URL aus dem Google-Index faellt
+      // und niemand mehr auf der Vorschau-Adresse landet.
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "fotoboxtirol-production.up.railway.app"
+          }
+        ],
+        destination: "https://www.fotobox.tirol/:path*",
+        permanent: true // 301
       }
     ];
   }
