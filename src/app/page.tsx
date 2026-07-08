@@ -11,7 +11,7 @@ import { formatReviewDateWithCurrentYear, getSortedLatestReviews } from "@/lib/r
 export const dynamic = "force-dynamic";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
 const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = ["hero", "features", "reviews", "space", "media"];
-const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+const SITE_URL = "https://www.fotobox.tirol";
 const HOMEPAGE_AI_RIGHT_BEFORE_IMAGE = "/uploads/home-ai-right-after.jpg";
 const HOMEPAGE_AI_RIGHT_AFTER_IMAGE = "/uploads/home-ai-right-before.jpg";
 
@@ -118,9 +118,30 @@ export default async function HomePage() {
         email: content.contact.email,
         address: {
           "@type": "PostalAddress",
-          streetAddress: content.contact.address
+          streetAddress: content.contact.address,
+          addressLocality: "Birgitz",
+          postalCode: "6092",
+          addressRegion: "Tirol",
+          addressCountry: "AT"
         },
-        areaServed: "Tirol",
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 47.2361,
+          longitude: 11.3167
+        },
+        areaServed: {
+          "@type": "State",
+          name: "Tirol"
+        },
+        priceRange: "€€",
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            opens: "09:00",
+            closes: "20:00"
+          }
+        ],
         sameAs: (content.footer.socialLinks || []).map((link) => link.href).filter(Boolean)
       },
       {

@@ -77,7 +77,7 @@ function getPreviewPathForTab(tab: SectionId) {
     case "occasions":
       return "/fotobox-anlaesse";
     case "pricing":
-      return "/preisgestaltung";
+      return "/preise";
     case "setup":
       return "/technische-daten-aufbau";
     case "layoutPage":
@@ -2564,7 +2564,7 @@ export default function AdminDashboard() {
 
           <div className="admin-section-head" style={{ marginTop: "1.5rem" }}>
             <h3>Preis-Seite Pakete</h3>
-            <p>Pakete für die Unterseite `preisgestaltung`.</p>
+            <p>Pakete für die Unterseite `preise`.</p>
           </div>
           {(content.pricing.pagePlans || []).map((plan, index) => (
             <div className="admin-subcard" key={`page-${plan.name}-${index}`}>

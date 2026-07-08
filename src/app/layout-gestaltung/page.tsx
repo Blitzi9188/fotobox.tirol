@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShel
 import { DEFAULT_LAYOUT_PAGE_CONTENT } from "@/lib/layoutPageDefaults";
 
 export const dynamic = "force-dynamic";
-const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+const SITE_URL = "https://www.fotobox.tirol";
 
 const ADVANTAGE_ICONS = [
   (

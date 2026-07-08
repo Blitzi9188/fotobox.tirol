@@ -3,7 +3,7 @@ import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 
-const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+const SITE_URL = "https://www.fotobox.tirol";
 
 export const dynamic = "force-dynamic";
 

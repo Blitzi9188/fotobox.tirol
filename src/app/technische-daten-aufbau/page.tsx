@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShel
 import { DEFAULT_SETUP_CONTENT } from "@/lib/setupDefaults";
 
 export const dynamic = "force-dynamic";
-const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+const SITE_URL = "https://www.fotobox.tirol";
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await readCmsContent();

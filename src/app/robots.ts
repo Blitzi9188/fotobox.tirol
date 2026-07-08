@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+const SITE_URL = "https://www.fotobox.tirol";
 
 export default function robots(): MetadataRoute.Robots {
   return {

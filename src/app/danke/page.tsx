@@ -2,9 +2,16 @@ import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import ConfettiOverlay from "@/components/site/ConfettiOverlay";
 import { readCmsContent } from "@/lib/cms";
+import type { Metadata } from "next";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
+
+// Danke-Seite nach Formularabsendung: nicht indexieren, nicht in Sitemap.
+export const metadata: Metadata = {
+  title: "Danke",
+  robots: { index: false, follow: false }
+};
 
 type DankePageProps = {
   searchParams?: {

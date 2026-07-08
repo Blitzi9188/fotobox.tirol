@@ -63,5 +63,5 @@ export const DEFAULT_SETUP_CONTENT: NonNullable<CMSContent["setup"]> = {
   primaryCtaText: "Jetzt anfragen",
   primaryCtaHref: "/kontakt",
   secondaryCtaText: "Pakete vergleichen",
-  secondaryCtaHref: "/preisgestaltung"
+  secondaryCtaHref: "/preise"
 };

@@ -92,5 +92,5 @@ export const DEFAULT_LAYOUT_PAGE_CONTENT: NonNullable<CMSContent["layoutPage"]> 
   finalPrimaryCtaText: "Unverbindlich anfragen",
   finalPrimaryCtaHref: "/kontakt",
   finalSecondaryCtaText: "Preise ansehen",
-  finalSecondaryCtaHref: "/preisgestaltung"
+  finalSecondaryCtaHref: "/preise"
 };

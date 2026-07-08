@@ -7,17 +7,17 @@ import { fetchGoogleLatestReviews } from "@/lib/google-reviews";
 import { formatReviewDateWithCurrentYear, getSortedLatestReviews } from "@/lib/reviews";
 
 export const dynamic = "force-dynamic";
-const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+const SITE_URL = "https://www.fotobox.tirol";
 
 export const metadata: Metadata = {
-  title: "Fotobox anfragen Tirol | Termin für Hochzeit, Firmenfeier oder Event sichern",
+  title: "Fotobox anfragen Tirol | Termin sichern",
   description:
     "Fotobox in Tirol unverbindlich anfragen. Wunschdatum, Paket, Hochzeit, Firmenfeier oder Event direkt online anfragen und Angebot erhalten.",
   alternates: {
     canonical: "/kontakt"
   },
   openGraph: {
-    title: "Fotobox anfragen Tirol | Termin für Hochzeit, Firmenfeier oder Event sichern",
+    title: "Fotobox anfragen Tirol | Termin sichern",
     description:
       "Fotobox Anfrage für Hochzeiten, Firmenfeiern, Geburtstage und Events in Tirol direkt online senden.",
     url: `${SITE_URL}/kontakt`,

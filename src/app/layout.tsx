@@ -3,7 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fotoboxtirol-production.up.railway.app"),
+  metadataBase: new URL("https://www.fotobox.tirol"),
   title: {
     default: "Fotobox Tirol das Original",
     template: "%s"

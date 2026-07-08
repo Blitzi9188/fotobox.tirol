@@ -1,4 +1,4 @@
-const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+const SITE_URL = "https://www.fotobox.tirol";
 
 export function GET() {
   const body = [

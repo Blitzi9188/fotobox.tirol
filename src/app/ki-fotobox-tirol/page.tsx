@@ -7,17 +7,17 @@ import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
 import KiShowcaseSwitcher from "@/components/site/KiShowcaseSwitcher";
 
 export const dynamic = "force-dynamic";
-const SITE_URL = "https://fotoboxtirol-production.up.railway.app";
+const SITE_URL = "https://www.fotobox.tirol";
 
 export const metadata: Metadata = {
-  title: "KI Fotobox Tirol | KI-Fotoerlebnisse für Hochzeiten, Firmenfeiern und Events",
+  title: "KI Fotobox Tirol | KI-Fotoerlebnisse für jedes Event",
   description:
     "KI Fotobox Tirol mit Vorher-Nachher-Beispielen, kreativen KI-Motiven, Branding und Live-Preview für Hochzeiten, Firmenfeiern, Messen und Events in Tirol.",
   alternates: {
     canonical: "/ki-fotobox-tirol"
   },
   openGraph: {
-    title: "KI Fotobox Tirol | KI-Fotoerlebnisse für Hochzeiten, Firmenfeiern und Events",
+    title: "KI Fotobox Tirol | KI-Fotoerlebnisse für jedes Event",
     description:
       "Kreative KI-Fotobox für Hochzeiten, Firmenfeiern, Messen und Events in Tirol mit Live-Preview und sofort sichtbaren Ergebnissen.",
     url: `${SITE_URL}/ki-fotobox-tirol`,
@@ -367,7 +367,7 @@ export default async function KiFotoboxTirolPage() {
               </p>
               <div className="ki-contact-links">
                 <Link href="/kontakt" className="btn btn-primary">Termin anfragen</Link>
-                <Link href="/preisgestaltung" className="btn btn-secondary btn-secondary-light">Pakete vergleichen</Link>
+                <Link href="/preise" className="btn btn-secondary btn-secondary-light">Pakete vergleichen</Link>
               </div>
             </article>
           </div>
