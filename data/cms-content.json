@@ -364,7 +364,8 @@
           "Accessoires",
           "Online Galerie",
           "Requisiten",
-          "Normale Fotobox"
+          "Normale Fotobox",
+          "Auf- und Abbau"
         ],
         "cta": "Anfragen"
       },
@@ -379,7 +380,8 @@
           "Online Galerie",
           "QR Code Upload",
           "Normal oder KI-Features Modul",
-          "Individülles Layout"
+          "Individülles Layout",
+          "Auf- und Abbau"
         ],
         "cta": "Auswählen"
       }
