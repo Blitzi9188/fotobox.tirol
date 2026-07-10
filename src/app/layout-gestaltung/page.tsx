@@ -4,7 +4,7 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
 import { DEFAULT_LAYOUT_PAGE_CONTENT } from "@/lib/layoutPageDefaults";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
 const SITE_URL = "https://www.fotobox.tirol";
 
 const ADVANTAGE_ICONS = [
@@ -83,14 +83,14 @@ function LayoutStripMockup({
   return (
     <div className="layout-mockup layout-mockup-strip">
       <div className="layout-strip-secondary">
-        <img
+        <img loading="lazy" decoding="async"
           src={secondaryImageUrl || "/uploads/layout-strip-weihnachtsfeier-2.png"}
           alt={secondaryImageAlt || "Hinterer Fotostreifen im Format 5x15 mit Beispiel-Layout für Eventfotos"}
           className="layout-strip-image"
         />
       </div>
       <div className="layout-strip-primary">
-        <img
+        <img loading="lazy" decoding="async"
           src={primaryImageUrl || "/uploads/layout-strip-weihnachtsfeier-1.png"}
           alt={primaryImageAlt || "Vorderer Fotostreifen im Format 5x15 mit individuellem Fotobox-Layout"}
           className="layout-strip-image is-featured"
@@ -114,14 +114,14 @@ function LayoutClassicMockup({
   return (
     <div className="layout-mockup layout-mockup-classic">
       <div className="layout-classic-secondary">
-        <img
+        <img loading="lazy" decoding="async"
           src={secondaryImageUrl || "/uploads/layout-classic-10x15-2.png"}
           alt={secondaryImageAlt || "Hinterer Print im Format 10x15 mit Beispiel-Layout für Eventfotos"}
           className="layout-classic-image"
         />
       </div>
       <div className="layout-classic-primary">
-        <img
+        <img loading="lazy" decoding="async"
           src={primaryImageUrl || "/uploads/layout-classic-10x15-1.png"}
           alt={primaryImageAlt || "Vorderer Print im Format 10x15 mit individuellem Fotobox-Layout"}
           className="layout-classic-image is-featured"

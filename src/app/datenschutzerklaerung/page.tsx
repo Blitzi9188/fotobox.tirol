@@ -2,7 +2,7 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { DEFAULT_DATENSCHUTZ_TEXT } from "@/lib/legalDefaults";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
 
 export default async function DatenschutzerklärungPage() {
   const content = await readCmsContent();

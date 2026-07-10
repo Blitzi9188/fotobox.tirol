@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { readCmsContent } from "@/lib/cms";
 import type { CMSContent } from "@/lib/types";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import styles from "./page.module.css";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
 
 const DEFAULT_OCCASIONS = [
   {
@@ -263,10 +264,15 @@ export default async function FotoboxAnlaessePage() {
                     <BenefitItem key={benefit} text={benefit} />
                   ))}
                 </ul>
+                {occasion.id === "hochzeit" ? (
+                  <p>
+                    <Link href="/fotobox-hochzeit">Mehr zur Hochzeitsfotobox in Tirol →</Link>
+                  </p>
+                ) : null}
               </div>
 
               <div className={`${styles.occasionImageWrap} ${index % 2 === 1 ? styles.imageOrderOne : ""}`}>
-                <img src={occasion.imageUrl || ""} alt={occasion.imageAlt || occasion.titleBold} className={styles.occasionImage} />
+                <img loading="lazy" decoding="async" src={occasion.imageUrl || ""} alt={occasion.imageAlt || occasion.titleBold} className={styles.occasionImage} />
               </div>
             </div>
           </section>

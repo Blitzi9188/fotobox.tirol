@@ -4,7 +4,7 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
 import { DEFAULT_SETUP_CONTENT } from "@/lib/setupDefaults";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
 const SITE_URL = "https://www.fotobox.tirol";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -171,7 +171,7 @@ export default async function TechnischeDatenAufbauPage() {
               </div>
 
               <div className="setup-spec-visual">
-                <img src={setup.overviewImageUrl} alt={setup.overviewImageAlt || setup.heading} className="setup-spec-image" />
+                <img loading="lazy" decoding="async" src={setup.overviewImageUrl} alt={setup.overviewImageAlt || setup.heading} className="setup-spec-image" />
               </div>
             </div>
           </div>
@@ -234,7 +234,7 @@ export default async function TechnischeDatenAufbauPage() {
               <div className="setup-space-side">
                 {setup.spaceImageUrl ? (
                   <div className="setup-space-visual">
-                    <img src={setup.spaceImageUrl} alt={setup.spaceImageAlt || setup.spaceTitle} className="setup-space-image" />
+                    <img loading="lazy" decoding="async" src={setup.spaceImageUrl} alt={setup.spaceImageAlt || setup.spaceTitle} className="setup-space-image" />
                   </div>
                 ) : null}
 

@@ -8,7 +8,7 @@ import ReferencesCarousel from "@/components/site/ReferencesCarousel";
 import GoogleReviewsCarousel from "@/components/site/GoogleReviewsCarousel";
 import { formatReviewDateWithCurrentYear, getSortedLatestReviews } from "@/lib/reviews";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
 const DEFAULT_HOMEPAGE_ORDER: HomepageBlockId[] = ["hero", "features", "reviews", "space", "media"];
 const SITE_URL = "https://www.fotobox.tirol";
@@ -181,7 +181,7 @@ export default async function HomePage() {
           <section className="hero">
             {content.hero.imageUrl ? (
               <div className="hero-media">
-                <img
+                <img loading="eager" decoding="async" fetchPriority="high"
                   src={content.hero.imageUrl}
                   alt="Selfie Fotobox Tirol für Hochzeiten, Firmenfeiern und Events in Tirol"
                   className="hero-bg-image"
@@ -295,7 +295,7 @@ export default async function HomePage() {
                       </div>
                       <div className="space-visual">
                         {content.space.imageUrl ? (
-                          <img src={content.space.imageUrl} alt="Platzbedarf der Fotobox für Events, Hochzeiten und Firmenfeiern" className="cover-image" />
+                          <img loading="lazy" decoding="async" src={content.space.imageUrl} alt="Platzbedarf der Fotobox für Events, Hochzeiten und Firmenfeiern" className="cover-image" />
                         ) : (
                           <div className="placeholder">[Platzbedarf Grafik]</div>
                         )}
@@ -312,7 +312,7 @@ export default async function HomePage() {
                       </div>
                       <div className="space-visual space-visual-small">
                         {(content.space.layoutOneImageUrl || content.space.imageUrl) ? (
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={content.space.layoutOneImageUrl || content.space.imageUrl}
                             alt={content.space.layoutOneImageAlt || "Fotobox Layout im Format 5x15 für Hochzeit oder Firmenfeier"}
                             className="cover-image"
@@ -325,7 +325,7 @@ export default async function HomePage() {
                     <div className="space-grid layout-grid-two" style={{ marginTop: "2rem" }}>
                       <div className="space-visual">
                         {(content.space.layoutTwoImageUrl || content.space.imageUrl) ? (
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={content.space.layoutTwoImageUrl || content.space.imageUrl}
                             alt={content.space.layoutTwoImageAlt || "Fotobox Layout im Format 10x15 mit individuellem Event-Design"}
                             className="cover-image"

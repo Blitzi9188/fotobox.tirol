@@ -2,7 +2,7 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { DEFAULT_AGB_TEXT } from "@/lib/legalDefaults";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
 
 export default async function AgbPage() {
   const content = await readCmsContent();

@@ -6,7 +6,7 @@ import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
 import KiShowcaseSwitcher from "@/components/site/KiShowcaseSwitcher";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
 const SITE_URL = "https://www.fotobox.tirol";
 
 export const metadata: Metadata = {

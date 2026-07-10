@@ -93,14 +93,14 @@ export default function BeforeAfterSlider({
       onKeyDown={handleKeyDown}
     >
       {before ? (
-        <img
+        <img loading="lazy" decoding="async"
           src={before}
           alt={beforeImageAlt || `${title} Vorher`}
           className="compare-image"
         />
       ) : null}
       {after ? (
-        <img
+        <img loading="lazy" decoding="async"
           src={after}
           alt={afterImageAlt || `${title} Nachher`}
           className="compare-image compare-image-after"

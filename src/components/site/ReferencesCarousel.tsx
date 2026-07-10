@@ -38,7 +38,7 @@ export default function ReferencesCarousel({
               {reference.initials ? (
                 <span className="references-slide-monogram">{reference.initials}</span>
               ) : (
-                <img
+                <img loading="lazy" decoding="async"
                   src={
                     reference.logoSrc ??
                     `https://www.google.com/s2/favicons?sz=128&domain=${reference.logoDomain}`

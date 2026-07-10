@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 
 const SITE_URL = "https://www.fotobox.tirol";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
 
 export const metadata: Metadata = {
   title: "Fotobox mieten Tirol | Fotobox Tirol das Original",

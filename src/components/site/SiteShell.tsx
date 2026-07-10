@@ -12,7 +12,7 @@ function Brand({ content }: { content: CMSContent }) {
   return (
     <span className="brand-wrap">
       {content.navigation.logoUrl ? (
-        <img src={content.navigation.logoUrl} alt="Fotobox Tirol Logo" className="brand-logo" />
+        <img loading="lazy" decoding="async" src={content.navigation.logoUrl} alt="Fotobox Tirol Logo" className="brand-logo" />
       ) : null}
       <span className="brand">
         {content.navigation.brandLeft}
@@ -218,7 +218,7 @@ export function SiteFooter({ content }: { content: CMSContent }) {
 
         <div className="container footer-bottom">
           {content.navigation.logoUrl ? (
-            <img src={content.navigation.logoUrl} alt="Fotobox Tirol Logo" className="footer-logo footer-logo-contact" />
+            <img loading="lazy" decoding="async" src={content.navigation.logoUrl} alt="Fotobox Tirol Logo" className="footer-logo footer-logo-contact" />
           ) : null}
           <div className="footer-bottom-copy">
             <p>{content.footer.copyrightLine}</p>

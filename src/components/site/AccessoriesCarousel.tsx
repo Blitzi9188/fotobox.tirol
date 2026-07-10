@@ -117,7 +117,7 @@ export default function AccessoriesCarousel({
                   item.linkUrl.startsWith("/") ? (
                     <Link href={item.linkUrl} className="accessories-link">
                       {item.imageUrl ? (
-                        <img src={item.imageUrl} alt={(item.altText || item.title || `Accessoire ${slideIndex + 1}`).trim()} />
+                        <img loading="lazy" decoding="async" src={item.imageUrl} alt={(item.altText || item.title || `Accessoire ${slideIndex + 1}`).trim()} />
                       ) : (
                         <div className="accessories-fallback" style={{ background: item.color || "#e5e7eb" }} />
                       )}
@@ -125,14 +125,14 @@ export default function AccessoriesCarousel({
                   ) : (
                     <a href={item.linkUrl} className="accessories-link" target="_blank" rel="noopener noreferrer">
                       {item.imageUrl ? (
-                        <img src={item.imageUrl} alt={(item.altText || item.title || `Accessoire ${slideIndex + 1}`).trim()} />
+                        <img loading="lazy" decoding="async" src={item.imageUrl} alt={(item.altText || item.title || `Accessoire ${slideIndex + 1}`).trim()} />
                       ) : (
                         <div className="accessories-fallback" style={{ background: item.color || "#e5e7eb" }} />
                       )}
                     </a>
                   )
                 ) : item.imageUrl ? (
-                  <img src={item.imageUrl} alt={(item.altText || item.title || `Accessoire ${slideIndex + 1}`).trim()} />
+                  <img loading="lazy" decoding="async" src={item.imageUrl} alt={(item.altText || item.title || `Accessoire ${slideIndex + 1}`).trim()} />
                 ) : (
                   <div className="accessories-fallback" style={{ background: item.color || "#e5e7eb" }} />
                 )}

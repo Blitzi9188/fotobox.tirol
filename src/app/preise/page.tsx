@@ -4,7 +4,7 @@ import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
 import ReferencesCarousel from "@/components/site/ReferencesCarousel";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
 const SITE_URL = "https://www.fotobox.tirol";
 
 const BLOCKED_REFERENCE_DOMAINS = ["sailer-seefeld.at"];
