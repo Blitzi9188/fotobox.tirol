@@ -269,6 +269,11 @@ export default async function FotoboxAnlaessePage() {
                     <Link href="/fotobox-hochzeit">Mehr zur Hochzeitsfotobox in Tirol →</Link>
                   </p>
                 ) : null}
+                {occasion.id === "firma" ? (
+                  <p>
+                    <Link href="/fotobox-firmenfeier">Mehr zur Fotobox für Firmenfeiern →</Link>
+                  </p>
+                ) : null}
               </div>
 
               <div className={`${styles.occasionImageWrap} ${index % 2 === 1 ? styles.imageOrderOne : ""}`}>

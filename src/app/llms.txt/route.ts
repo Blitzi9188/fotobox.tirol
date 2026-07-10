@@ -21,6 +21,7 @@ export function GET() {
     `- Fotobox mieten Tirol: ${SITE_URL}/fotobox-mieten-tirol`,
     `- Fotobox Anlässe (Übersicht): ${SITE_URL}/fotobox-anlaesse`,
     `- Hochzeitsfotobox: ${SITE_URL}/fotobox-hochzeit`,
+    `- Fotobox für Firmenfeiern: ${SITE_URL}/fotobox-firmenfeier`,
     `- KI-Fotobox: ${SITE_URL}/ki-fotobox-tirol`,
     `- Layout-Gestaltung: ${SITE_URL}/layout-gestaltung`,
     `- Technische Daten und Aufbau: ${SITE_URL}/technische-daten-aufbau`,

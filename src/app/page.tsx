@@ -104,6 +104,12 @@ export default async function HomePage() {
         : reviewsDefaults.items
   };
   const latestReviews = getSortedLatestReviews(reviews.items);
+  // Zahl aus Labels wie "Basierend auf 47 Bewertungen" ziehen (fuer AggregateRating).
+  const reviewCountNumber = (() => {
+    const match = String(reviews.reviewCountLabel || "").match(/\d+/);
+    return match ? Number(match[0]) : 0;
+  })();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -142,7 +148,47 @@ export default async function HomePage() {
             closes: "20:00"
           }
         ],
+        sameAs: (content.footer.socialLinks || []).map((link) => link.href).filter(Boolean),
+        ...(reviews.score
+          ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: String(reviews.score),
+                reviewCount: String(reviewCountNumber || (reviews.items?.length ?? 0) || 47),
+                bestRating: "5",
+                worstRating: "1"
+              }
+            }
+          : {}),
+        ...(reviews.items && reviews.items.length
+          ? {
+              review: reviews.items.slice(0, 8).map((item: { name?: string; text?: string; date?: string }) => ({
+                "@type": "Review",
+                reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+                author: { "@type": "Person", name: item.name || "Gast" },
+                reviewBody: item.text || undefined,
+                datePublished: item.date || undefined
+              }))
+            }
+          : {})
+      },
+      {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
+        name: "Fotobox Tirol",
+        url: SITE_URL,
+        logo: content.hero.imageUrl ? new URL(content.hero.imageUrl, SITE_URL).toString() : undefined,
+        email: content.contact.email,
+        telephone: content.contact.phone,
         sameAs: (content.footer.socialLinks || []).map((link) => link.href).filter(Boolean)
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: "Fotobox Tirol",
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        inLanguage: "de-AT"
       },
       {
         "@type": "Service",

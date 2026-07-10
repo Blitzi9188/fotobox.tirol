@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/ki-fotobox-tirol", priority: 0.9, changeFrequency: "monthly" },
     { path: "/fotobox-anlaesse", priority: 0.9, changeFrequency: "monthly" },
     { path: "/fotobox-hochzeit", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/fotobox-firmenfeier", priority: 0.9, changeFrequency: "monthly" },
     { path: "/preise", priority: 0.8, changeFrequency: "monthly" },
     { path: "/layout-gestaltung", priority: 0.7, changeFrequency: "monthly" },
     { path: "/technische-daten-aufbau", priority: 0.7, changeFrequency: "monthly" },
