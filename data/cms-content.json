@@ -359,13 +359,13 @@
         "price": 600,
         "featured": true,
         "items": [
-          "Ganzen Abend Mietdaür",
+          "Ganzen Abend Mietdauer",
+          "Auf- und Abbau",
           "Sofortdruck (unbegrenzt)",
           "Accessoires",
-          "Online Galerie",
           "Requisiten",
-          "Normale Fotobox",
-          "Auf- und Abbau"
+          "Online Galerie",
+          "Normale Fotobox"
         ],
         "cta": "Anfragen"
       },
@@ -374,14 +374,14 @@
         "price": 800,
         "featured": false,
         "items": [
-          "Ganzen Abend Mietdaür",
+          "Ganzen Abend Mietdauer",
+          "Auf- und Abbau",
           "Sofortdruck (unbegrenzt)",
           "Accessoires",
           "Online Galerie",
           "QR Code Upload",
           "Normal oder KI-Features Modul",
-          "Individülles Layout",
-          "Auf- und Abbau"
+          "Individuelles Layout"
         ],
         "cta": "Auswählen"
       }
