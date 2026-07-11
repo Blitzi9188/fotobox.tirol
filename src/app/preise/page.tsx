@@ -32,6 +32,7 @@ const DEFAULT_PAGE_PLANS = [
     cta: "Anfragen",
     items: [
       "Ganzen Abend Mietdauer",
+      "Auf- und Abbau",
       "Sofortdruck (unbegrenzt)",
       "Accessoires",
       "Online Galerie",
@@ -47,6 +48,7 @@ const DEFAULT_PAGE_PLANS = [
     cta: "Anfragen",
     items: [
       "Ganzen Abend Mietdauer",
+      "Auf- und Abbau",
       "Sofortdruck (unbegrenzt)",
       "Accessoires",
       "Online Galerie",
