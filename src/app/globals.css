@@ -3524,26 +3524,26 @@ p {
   right: 0;
   bottom: 0;
   z-index: 300;
-  background: #fff;
+  background: rgba(255,255,255,0.97);
   border-top: 1px solid #e5e7eb;
-  box-shadow: 0 -4px 24px rgba(15, 23, 42, 0.08);
-  padding: 0.9rem 1rem 1rem;
+  box-shadow: 0 -2px 12px rgba(15, 23, 42, 0.07);
+  padding: 0.55rem 1rem 0.6rem;
 }
 
 .ccb-inner {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 0.6rem 1.2rem;
+  gap: 0.75rem 1rem;
 }
 
 .ccb-text {
-  flex: 1 1 300px;
-  font-size: 0.88rem;
-  color: #374151;
-  line-height: 1.5;
+  flex: 1 1 0;
+  font-size: 0.8rem;
+  color: #4b5563;
+  line-height: 1.4;
   margin: 0;
 }
 
@@ -3559,26 +3559,24 @@ p {
   font-family: inherit;
 }
 
-.ccb-link:hover {
-  color: #c01a1a;
-}
+.ccb-link:hover { color: #991b1b; }
 
 .ccb-settings {
   flex: 0 0 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 1.2rem;
-  padding: 0.55rem 0 0.2rem;
+  gap: 0.4rem 1rem;
+  padding: 0.4rem 0 0.1rem;
   border-top: 1px solid #f3f4f6;
-  margin-top: 0.2rem;
+  margin-top: 0.1rem;
 }
 
 .ccb-option {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
+  gap: 0.35rem;
+  font-size: 0.8rem;
   color: #1f2937;
   min-height: 48px;
   cursor: pointer;
@@ -3586,19 +3584,17 @@ p {
 
 .ccb-option input {
   accent-color: var(--c-accent);
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
-.ccb-option-required {
-  opacity: 0.7;
-}
+.ccb-option-required { opacity: 0.65; }
 
 .ccb-btn-ghost {
   background: none;
   border: none;
   color: var(--c-accent);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -3610,29 +3606,26 @@ p {
 
 .ccb-actions {
   display: flex;
-  gap: 0.5rem;
   flex-shrink: 0;
+  gap: 0.4rem;
 }
 
-/* Beide Buttons gleich groß, gleich sichtbar – kein Dark Pattern */
 .ccb-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  min-width: 130px;
-  padding: 0 1.1rem;
+  min-height: 40px;
+  padding: 0 0.9rem;
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: background 0.18s, color 0.18s;
+  transition: background 0.15s, color 0.15s;
   white-space: nowrap;
 }
 
-/* "Alle akzeptieren" – rot, Kontrast weiß auf #c8181800 → #b91c1c (5.1:1) */
 .ccb-btn-primary {
   background: #b91c1c;
   color: #fff;
@@ -3644,7 +3637,6 @@ p {
   border-color: #991b1b;
 }
 
-/* "Nur essenzielle" – gleiche Größe, outline-Stil */
 .ccb-btn-secondary {
   background: #fff;
   color: #111827;
@@ -3658,17 +3650,20 @@ p {
 
 @media (max-width: 600px) {
   .ccb-inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.55rem;
+    flex-wrap: wrap;
+  }
+
+  .ccb-text {
+    flex: 0 0 100%;
   }
 
   .ccb-actions {
-    flex-direction: column;
+    width: 100%;
   }
 
   .ccb-btn {
-    width: 100%;
+    flex: 1;
+    min-height: 44px;
   }
 }
 
