@@ -2,41 +2,59 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  async headers() {
+    return [
+      {
+        // Statische Assets (JS, CSS, Fonts) – immutable, 1 Jahr
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        // Uploads (Bilder) – 30 Tage
+        source: "/uploads/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=2592000, stale-while-revalidate=86400"
+          }
+        ]
+      },
+      {
+        // Favicons & public-Assets
+        source: "/:file(favicon.*|apple-touch-icon.*|site.webmanifest)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400"
+          }
+        ]
+      }
+    ];
+  },
+
   async redirects() {
     return [
-      // Alte Preisseite dauerhaft auf die neue Preisseite umleiten.
       {
         source: "/preisgestaltung",
         destination: "/preise",
-        permanent: true // 301
+        permanent: true
       },
-      // Nackte Domain -> www (Absicherung auf App-Ebene).
-      // Empfehlung: zusaetzlich im Railway-Dashboard auf Domain-Ebene setzen,
-      // da das schneller greift, bevor die Anfrage den Server erreicht.
       {
         source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "fotobox.tirol"
-          }
-        ],
+        has: [{ type: "host", value: "fotobox.tirol" }],
         destination: "https://www.fotobox.tirol/:path*",
-        permanent: true // 301
+        permanent: true
       },
-      // Alte Railway-Vorschau-URL -> echte Domain.
-      // Sorgt dafuer, dass die railway.app-URL aus dem Google-Index faellt
-      // und niemand mehr auf der Vorschau-Adresse landet.
       {
         source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "fotoboxtirol-production.up.railway.app"
-          }
-        ],
+        has: [{ type: "host", value: "fotoboxtirol-production.up.railway.app" }],
         destination: "https://www.fotobox.tirol/:path*",
-        permanent: true // 301
+        permanent: true
       }
     ];
   }
