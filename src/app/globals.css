@@ -3520,132 +3520,158 @@ p {
   text-align: center;
 }
 
-.cookie-consent-wrap {
+/* ── Cookie-Consent-Balken ───────────────────────────────────── */
+.ccb-bar {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 300;
-  padding: 1rem 1rem 1.2rem;
-  pointer-events: none;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0));
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 -4px 24px rgba(15, 23, 42, 0.08);
+  padding: 0.9rem 1rem 1rem;
 }
 
-.cookie-consent-card {
-  max-width: 980px;
+.ccb-inner {
+  max-width: 900px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid #d9e1ec;
-  border-radius: 14px;
-  box-shadow: 0 24px 54px rgba(15, 23, 42, 0.18);
-  backdrop-filter: blur(8px);
-  padding: 1rem 1.15rem 1.05rem;
-  pointer-events: auto;
-  position: relative;
-}
-
-.cookie-consent-kicker {
-  margin: 0 0 0.2rem;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--c-accent);
-}
-
-.cookie-consent-close {
-  position: absolute;
-  top: 0.55rem;
-  right: 0.65rem;
-  border: none;
-  background: transparent;
-  color: #7b8799;
-  font-size: 1.2rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.cookie-consent-close:hover {
-  color: #111827;
-}
-
-.cookie-consent-card h3 {
-  font-size: 1.12rem;
-  margin-bottom: 0.45rem;
-  padding-right: 1.4rem;
-}
-
-.cookie-consent-card p {
-  margin-bottom: 0.85rem;
-  color: #5b6575;
-  font-size: 0.93rem;
-  line-height: 1.5;
-}
-
-.cookie-consent-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem 1.1rem;
-  margin-bottom: 0.85rem;
+  align-items: center;
+  gap: 0.6rem 1.2rem;
 }
 
-.cookie-option {
+.ccb-text {
+  flex: 1 1 300px;
+  font-size: 0.88rem;
+  color: #374151;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ccb-link {
+  color: var(--c-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.ccb-link:hover {
+  color: #c01a1a;
+}
+
+.ccb-settings {
+  flex: 0 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.2rem;
+  padding: 0.55rem 0 0.2rem;
+  border-top: 1px solid #f3f4f6;
+  margin-top: 0.2rem;
+}
+
+.ccb-option {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  font-size: 0.85rem;
   color: #1f2937;
-  font-size: 0.87rem;
+  min-height: 48px;
+  cursor: pointer;
 }
 
-.cookie-option input {
+.ccb-option input {
   accent-color: var(--c-accent);
+  width: 18px;
+  height: 18px;
 }
 
-.cookie-option-required {
-  opacity: 0.86;
+.ccb-option-required {
+  opacity: 0.7;
 }
 
-.cookie-consent-actions {
+.ccb-btn-ghost {
+  background: none;
+  border: none;
+  color: var(--c-accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  min-height: 48px;
+  font-family: inherit;
+}
+
+.ccb-actions {
   display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
-  align-items: center;
+  flex-shrink: 0;
 }
 
-.cookie-consent-actions .btn {
-  padding: 0.6rem 0.95rem;
-  font-size: 0.72rem;
-}
-
-.cookie-consent-btn-link {
-  text-decoration: none;
+/* Beide Buttons gleich groß, gleich sichtbar – kein Dark Pattern */
+.ccb-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--c-text);
+  min-height: 48px;
+  min-width: 130px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background 0.18s, color 0.18s;
+  white-space: nowrap;
 }
 
-.cookie-btn-primary {
-  box-shadow: 0 10px 22px rgba(234, 44, 44, 0.22);
+/* "Alle akzeptieren" – rot, Kontrast weiß auf #c8181800 → #b91c1c (5.1:1) */
+.ccb-btn-primary {
+  background: #b91c1c;
+  color: #fff;
+  border-color: #b91c1c;
 }
 
-@media (max-width: 700px) {
-  .cookie-consent-wrap {
-    padding: 0.7rem 0.6rem 0.9rem;
+.ccb-btn-primary:hover {
+  background: #991b1b;
+  border-color: #991b1b;
+}
+
+/* "Nur essenzielle" – gleiche Größe, outline-Stil */
+.ccb-btn-secondary {
+  background: #fff;
+  color: #111827;
+  border-color: #d1d5db;
+}
+
+.ccb-btn-secondary:hover {
+  border-color: #111827;
+  background: #f9fafb;
+}
+
+@media (max-width: 600px) {
+  .ccb-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
   }
 
-  .cookie-consent-card {
-    border-radius: 12px;
-    padding: 0.95rem 0.95rem 0.9rem;
+  .ccb-actions {
+    flex-direction: column;
   }
 
-  .cookie-consent-card p {
-    font-size: 0.88rem;
-  }
-
-  .cookie-consent-actions .btn {
+  .ccb-btn {
     width: 100%;
-    justify-content: center;
   }
 }
 

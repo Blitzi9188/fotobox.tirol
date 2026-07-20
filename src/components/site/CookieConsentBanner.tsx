@@ -21,9 +21,7 @@ function readConsentCookie() {
   const cookieEntry = document.cookie
     .split("; ")
     .find((entry) => entry.startsWith(`${COOKIE_NAME}=`));
-
   if (!cookieEntry) return null;
-
   try {
     return JSON.parse(decodeURIComponent(cookieEntry.split("=").slice(1).join("="))) as Partial<ConsentState>;
   } catch {
@@ -32,16 +30,12 @@ function readConsentCookie() {
 }
 
 function createConsentState(analytics: boolean, marketing: boolean): ConsentState {
-  return {
-    essential: true,
-    analytics,
-    marketing,
-    savedAt: new Date().toISOString()
-  };
+  return { essential: true, analytics, marketing, savedAt: new Date().toISOString() };
 }
 
 export default function CookieConsentBanner() {
   const [visible, setVisible] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
 
@@ -49,12 +43,7 @@ export default function CookieConsentBanner() {
     try {
       const stored = window.localStorage.getItem(STORAGE_KEY);
       const parsed = stored ? (JSON.parse(stored) as Partial<ConsentState>) : readConsentCookie();
-
-      if (!parsed) {
-        setVisible(true);
-        return;
-      }
-
+      if (!parsed) { setVisible(true); return; }
       setAnalytics(Boolean(parsed.analytics));
       setMarketing(Boolean(parsed.marketing));
       setVisible(false);
@@ -70,62 +59,62 @@ export default function CookieConsentBanner() {
   }
 
   function acceptAll() {
-    const next = createConsentState(true, true);
-    setAnalytics(true);
-    setMarketing(true);
-    persistConsent(next);
+    persistConsent(createConsentState(true, true));
+  }
+
+  function onlyEssential() {
+    persistConsent(createConsentState(false, false));
   }
 
   function confirmSelection() {
     persistConsent(createConsentState(analytics, marketing));
   }
 
-  function onlyEssential() {
-    const next = createConsentState(false, false);
-    setAnalytics(false);
-    setMarketing(false);
-    persistConsent(next);
-  }
-
   if (!visible) return null;
 
   return (
-    <div className="cookie-consent-wrap" role="dialog" aria-live="polite" aria-label="Datenschutz-Präferenz">
-      <div className="cookie-consent-card">
-        <button
-          type="button"
-          className="cookie-consent-close"
-          aria-label="Popup schließen"
-          onClick={onlyEssential}
-        >
-          ×
-        </button>
-        <p className="cookie-consent-kicker">Datenschutz</p>
-        <h3>Verwendung von Cookies</h3>
-        <p>
-          Wir verwenden Cookies, um die Funktionalität unserer Website sicherzustellen, um besser zu verstehen, wie unsere Website verwendet wird, und um unsere Werbung zu Marketingzwecken besser auf Ihre Interessen abzustimmen. Weitere Informationen zu unserer Datenverarbeitung mit Hilfe von Cookies finden Sie in der Datenschutzerklärung.
+    <div className="ccb-bar" role="dialog" aria-live="polite" aria-label="Cookie-Einstellungen">
+      <div className="ccb-inner">
+        <p className="ccb-text">
+          Wir verwenden Cookies für die Funktionalität dieser Website sowie – mit deiner Zustimmung – für Statistik und Marketing.{" "}
+          <Link href="/datenschutzerklaerung" className="ccb-link">Datenschutz</Link>
+          {!expanded && (
+            <>
+              {" · "}
+              <button type="button" className="ccb-link" onClick={() => setExpanded(true)}>
+                Einstellungen
+              </button>
+            </>
+          )}
         </p>
 
-        <div className="cookie-consent-options">
-          <label className="cookie-option cookie-option-required">
-            <input type="checkbox" checked readOnly />
-            <span>Essenzielle Cookies (immer aktiv)</span>
-          </label>
-          <label className="cookie-option">
-            <input type="checkbox" checked={analytics} onChange={(event) => setAnalytics(event.target.checked)} />
-            <span>Statistik-Cookies</span>
-          </label>
-          <label className="cookie-option">
-            <input type="checkbox" checked={marketing} onChange={(event) => setMarketing(event.target.checked)} />
-            <span>Marketing-Cookies</span>
-          </label>
-        </div>
+        {expanded && (
+          <div className="ccb-settings">
+            <label className="ccb-option ccb-option-required">
+              <input type="checkbox" checked readOnly />
+              <span>Essenzielle Cookies (immer aktiv)</span>
+            </label>
+            <label className="ccb-option">
+              <input type="checkbox" checked={analytics} onChange={(e) => setAnalytics(e.target.checked)} />
+              <span>Statistik</span>
+            </label>
+            <label className="ccb-option">
+              <input type="checkbox" checked={marketing} onChange={(e) => setMarketing(e.target.checked)} />
+              <span>Marketing</span>
+            </label>
+            <button type="button" className="ccb-btn-ghost" onClick={confirmSelection}>
+              Auswahl speichern
+            </button>
+          </div>
+        )}
 
-        <div className="cookie-consent-actions">
-          <button type="button" className="btn cookie-btn-primary" onClick={acceptAll}>Ich akzeptiere alle</button>
-          <button type="button" className="btn btn-outline" onClick={confirmSelection}>Auswahl speichern</button>
-          <button type="button" className="btn btn-outline" onClick={onlyEssential}>Nur essenzielle Cookies akzeptieren</button>
-          <Link href="/datenschutzerklaerung" className="btn btn-outline cookie-consent-btn-link">Datenschutz öffnen</Link>
+        <div className="ccb-actions">
+          <button type="button" className="ccb-btn ccb-btn-primary" onClick={acceptAll}>
+            Alle akzeptieren
+          </button>
+          <button type="button" className="ccb-btn ccb-btn-secondary" onClick={onlyEssential}>
+            Nur essenzielle
+          </button>
         </div>
       </div>
     </div>
