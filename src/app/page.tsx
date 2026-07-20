@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import NextImage from "next/image";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader, SlashHeading } from "@/components/site/SiteShell";
 import BeforeAfterSlider from "@/components/site/BeforeAfterSlider";
@@ -227,10 +228,15 @@ export default async function HomePage() {
           <section className="hero">
             {content.hero.imageUrl ? (
               <div className="hero-media">
-                <img loading="eager" decoding="async" fetchPriority="high"
+                <NextImage
                   src={content.hero.imageUrl}
                   alt="Selfie Fotobox Tirol für Hochzeiten, Firmenfeiern und Events in Tirol"
                   className="hero-bg-image"
+                  width={1920}
+                  height={500}
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1180px"
+                  style={{ objectFit: "contain", objectPosition: "center", width: "100%", height: "auto" }}
                 />
               </div>
             ) : null}

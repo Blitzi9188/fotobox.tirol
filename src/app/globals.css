@@ -721,12 +721,15 @@ main section {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* CLS: Platz reservieren bevor Bild geladen ist (1920×500 = 3.84:1) */
+  aspect-ratio: 1920 / 500;
+  contain: layout;
 }
 
 .hero-bg-image {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: auto !important;
   max-height: 62vh;
   object-fit: contain;
   object-position: center center;
