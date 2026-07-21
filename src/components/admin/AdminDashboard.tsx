@@ -33,7 +33,7 @@ type SectionId =
   | "seo";
 type HomepageBlockId = "hero" | "features" | "space" | "media" | "pricing" | "reviews" | "faq";
 
-const KI_SHARED_PREVIEW_IMAGE = "/uploads/ki-demo-grid.png";
+const KI_SHARED_PREVIEW_IMAGE = "/uploads/ki-demo-grid.jpg";
 
 const SECTION_TABS: Array<{ id: SectionId; label: string }> = [
   { id: "overview", label: "Übersicht" },

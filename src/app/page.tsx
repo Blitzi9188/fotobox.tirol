@@ -235,7 +235,8 @@ export default async function HomePage() {
                   width={1920}
                   height={500}
                   priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1180px"
+                  fetchPriority="high"
+                  sizes="(max-width: 900px) 100vw, 1180px"
                   style={{ objectFit: "contain", objectPosition: "center", width: "100%", height: "auto" }}
                 />
               </div>
