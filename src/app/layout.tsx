@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import WhatsAppButton from "@/components/site/WhatsAppButton";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.fotobox.tirol"),
@@ -46,6 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-5R4LGW7D');`}
         </Script>
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );
