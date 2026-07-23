@@ -7209,7 +7209,7 @@ footer {
 /* ── WhatsApp Float Button ───────────────────────────────────── */
 .whatsapp-float {
   position: fixed;
-  bottom: 90px;
+  bottom: 72px;
   right: 24px;
   z-index: 200;
   display: flex;
