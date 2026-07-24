@@ -13,8 +13,7 @@ const MIME_TYPES: Record<string, string> = {
   ".gif": "image/gif",
   ".avif": "image/avif",
   ".heic": "image/heic",
-  ".heif": "image/heif",
-  ".svg": "image/svg+xml"
+  ".heif": "image/heif"
 };
 
 function isSafeSegment(segment: string) {

@@ -1,10 +1,20 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { cookies } from "next/headers";
+import { verifySessionToken } from "@/lib/auth";
 import { getMailConfigStatus, formatMailConfigError } from "@/lib/mail-config";
 
 export const dynamic = "force-dynamic";
 
+function isAuthorized() {
+  const token = cookies().get("cms_admin_session")?.value;
+  return verifySessionToken(token).ok;
+}
+
 export async function GET() {
+  if (!isAuthorized()) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   const config = getMailConfigStatus();
 
   if (config.mode !== "smtp" || config.missing.length > 0) {

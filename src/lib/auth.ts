@@ -10,8 +10,14 @@ function sign(data: string, secret: string) {
   return crypto.createHmac("sha256", secret).update(data).digest("base64url");
 }
 
+function requireEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) throw new Error(`Required environment variable ${name} is not set`);
+  return value;
+}
+
 export function createSessionToken(email: string): string {
-  const secret = process.env.SESSION_SECRET || "dev-secret";
+  const secret = requireEnv("SESSION_SECRET");
   const payload = {
     email,
     exp: Math.floor(Date.now() / 1000) + SESSION_MAX_AGE_SECONDS
@@ -24,7 +30,7 @@ export function createSessionToken(email: string): string {
 export function verifySessionToken(token?: string): { ok: boolean; email?: string } {
   if (!token) return { ok: false };
 
-  const secret = process.env.SESSION_SECRET || "dev-secret";
+  const secret = requireEnv("SESSION_SECRET");
   const [payloadEncoded, signature] = token.split(".");
   if (!payloadEncoded || !signature) return { ok: false };
 
@@ -50,7 +56,7 @@ export function verifySessionToken(token?: string): { ok: boolean; email?: strin
 }
 
 export function isValidAdminLogin(email: string, password: string) {
-  const adminEmail = process.env.ADMIN_EMAIL || "admin@fotoboxtirol.at";
-  const adminPassword = process.env.ADMIN_PASSWORD || "admin1234";
+  const adminEmail = requireEnv("ADMIN_EMAIL");
+  const adminPassword = requireEnv("ADMIN_PASSWORD");
   return email === adminEmail && password === adminPassword;
 }

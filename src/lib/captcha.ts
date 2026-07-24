@@ -9,7 +9,9 @@ type CaptchaPayload = {
 };
 
 function getCaptchaSecret() {
-  return process.env.CAPTCHA_SECRET || "fotobox-tirol-local-captcha-secret";
+  const secret = process.env.CAPTCHA_SECRET;
+  if (!secret) throw new Error("Required environment variable CAPTCHA_SECRET is not set");
+  return secret;
 }
 
 function signPayload(payload: string) {
