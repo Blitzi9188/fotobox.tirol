@@ -32,18 +32,25 @@ export async function GET(_: Request, context: { params: { slug: string[] } }) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  try {
-    const fileBuffer = await fs.readFile(filePath);
-    const extension = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[extension] || "application/octet-stream";
+  const extension = path.extname(filePath).toLowerCase();
+  const contentType = MIME_TYPES[extension] || "application/octet-stream";
 
-    return new NextResponse(fileBuffer, {
-      headers: {
-        "content-type": contentType,
-        "cache-control": "public, max-age=31536000, immutable"
-      }
-    });
-  } catch {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  // Try CMS uploads dir first, then fall back to public/uploads/ for static assets in git
+  const candidates = [filePath, path.join(process.cwd(), "public", "uploads", ...slug)];
+
+  for (const candidate of candidates) {
+    try {
+      const fileBuffer = await fs.readFile(candidate);
+      return new NextResponse(fileBuffer, {
+        headers: {
+          "content-type": contentType,
+          "cache-control": "public, max-age=31536000, immutable"
+        }
+      });
+    } catch {
+      // try next candidate
+    }
   }
+
+  return NextResponse.json({ error: "Not found" }, { status: 404 });
 }
