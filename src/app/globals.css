@@ -7281,15 +7281,22 @@ footer {
 
 /* ── Nav hide on scroll (alle Bildschirmgrößen) ─────────────── */
 header {
-  transition: transform 0.3s ease;
+  transition: top 0.3s ease !important;
 }
 header.nav-hidden {
-  transform: translateY(-100%);
+  top: -120px !important;
 }
 
-/* ── Back-to-top nur auf Smartphone ─────────────────────────── */
+/* ── Back-to-top nur auf Smartphone, über WhatsApp-Button ───── */
 @media (min-width: 901px) {
   .back-to-top {
     display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .back-to-top {
+    bottom: 75px;
+    right: 16px;
   }
 }
