@@ -89,6 +89,10 @@ export default function BookingInquiryForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!turnstileToken) {
+      setStatus("Sicherheitsprüfung lädt noch – bitte einen Moment warten und erneut versuchen.");
+      return;
+    }
     const formData = new FormData(event.currentTarget);
 
     const messageRaw = String(formData.get("message") || "").trim();
