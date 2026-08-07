@@ -741,10 +741,6 @@ main section {
     padding-top: 1.5rem;
     padding-bottom: 1rem;
   }
-
-  .back-to-top {
-    display: none;
-  }
 }
 
 .hero-content {
@@ -7280,5 +7276,20 @@ footer {
   .whatsapp-float {
     bottom: 16px;
     right: 16px;
+  }
+}
+
+/* ── Nav hide on scroll (alle Bildschirmgrößen) ─────────────── */
+header {
+  transition: transform 0.3s ease;
+}
+header.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* ── Back-to-top nur auf Smartphone ─────────────────────────── */
+@media (min-width: 901px) {
+  .back-to-top {
+    display: none !important;
   }
 }
