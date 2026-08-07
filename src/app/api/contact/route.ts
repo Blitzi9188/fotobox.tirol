@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import nodemailer from "nodemailer";
 import { createLead } from "@/lib/cms";
-import { verifyCaptchaChallenge } from "@/lib/captcha";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 import { formatMailConfigError, getMailConfigStatus } from "@/lib/mail-config";
 
 const REQUEST_WINDOW_MS = 10 * 60 * 1000;
@@ -207,8 +207,7 @@ export async function POST(request: Request) {
   const message = String(body.message || "").trim();
   const website = String(body.website || "").trim();
   const startedAt = Number(body.startedAt || 0);
-  const captchaToken = String(body.captchaToken || "").trim();
-  const captchaAnswer = String(body.captchaAnswer || "").trim();
+  const turnstileToken = String(body.turnstileToken || "").trim();
   const clientIp = getClientIp(request);
   const nowMs = now.getTime();
   const mergedSummary = [
@@ -256,8 +255,9 @@ export async function POST(request: Request) {
   }
   registerRequest(emailRequestStore, emailKey, nowMs);
 
-  if (!verifyCaptchaChallenge(captchaToken, captchaAnswer)) {
-    return NextResponse.json({ error: "Die Sicherheitsrechnung war leider nicht korrekt. Bitte kurz neu versuchen." }, { status: 400 });
+  const turnstileOk = await verifyTurnstileToken(turnstileToken, clientIp);
+  if (!turnstileOk) {
+    return NextResponse.json({ error: "Sicherheitsüberprüfung fehlgeschlagen. Bitte Seite neu laden und erneut versuchen." }, { status: 400 });
   }
 
   await createLead({

@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { PricePlan } from "@/lib/types";
-import CaptchaField from "@/components/site/CaptchaField";
+import TurnstileField from "@/components/site/TurnstileField";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
 
@@ -16,9 +16,8 @@ export default function ContactForm({
   const safePlans: PackageOption[] = plans.length > 0 ? plans : [{ name: "Allgemeine Anfrage", price: 0 }];
   const [status, setStatus] = useState("");
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
-  const [captchaToken, setCaptchaToken] = useState("");
-  const [captchaAnswer, setCaptchaAnswer] = useState("");
-  const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
 
   function requiredLabel(label: string) {
     return `${label} *`;
@@ -35,8 +34,7 @@ export default function ContactForm({
       eventDate: String(formData.get("eventDate") || ""),
       packageName: String(formData.get("packageName") || ""),
       message: String(formData.get("message") || ""),
-      captchaToken: String(formData.get("captchaToken") || "").trim(),
-      captchaAnswer: String(formData.get("captchaAnswer") || "").trim()
+      turnstileToken
     };
 
     const response = await fetch("/api/contact", {
@@ -49,9 +47,8 @@ export default function ContactForm({
     if (response.ok) {
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
-      setCaptchaToken("");
-      setCaptchaAnswer("");
-      setCaptchaRefreshKey((value) => value + 1);
+      setTurnstileToken("");
+      setTurnstileResetKey((v) => v + 1);
       const params = new URLSearchParams();
       params.set("paket", submittedPackage);
       if (payload.eventDate) params.set("eventDate", payload.eventDate);
@@ -60,9 +57,8 @@ export default function ContactForm({
     }
 
     setStatus(json?.error || "Senden fehlgeschlagen.");
-    setCaptchaToken("");
-    setCaptchaAnswer("");
-    setCaptchaRefreshKey((value) => value + 1);
+    setTurnstileToken("");
+    setTurnstileResetKey((v) => v + 1);
   }
 
   return (
@@ -103,22 +99,7 @@ export default function ContactForm({
         <span>{requiredLabel("Nachricht")}</span>
         <textarea name="message" rows={5} required />
       </label>
-      <div className="inquiry-captcha-card">
-        <div className="inquiry-captcha-copy">
-          <span className="inquiry-section-title">Sicherheitsabfrage *</span>
-          <p className="inquiry-captcha-help">Bitte bestätigen, dass die Anfrage von einer echten Person gesendet wird.</p>
-        </div>
-        <label className="admin-field" style={{ marginBottom: 0 }}>
-          <span>Sicherheitsrechnung</span>
-          <CaptchaField
-            token={captchaToken}
-            answer={captchaAnswer}
-            onTokenChange={setCaptchaToken}
-            onAnswerChange={setCaptchaAnswer}
-            refreshKey={captchaRefreshKey}
-          />
-        </label>
-      </div>
+      <TurnstileField onToken={setTurnstileToken} resetKey={turnstileResetKey} />
       <button className="btn" type="submit">Absenden</button>
       {status && <p className="admin-status">{status}</p>}
     </form>
