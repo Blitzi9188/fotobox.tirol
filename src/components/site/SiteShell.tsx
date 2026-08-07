@@ -25,7 +25,20 @@ function Brand({ content }: { content: CMSContent }) {
 
 export function SiteHeader({ content }: { content: CMSContent }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    function handleNavScroll() {
+      const y = window.scrollY;
+      if (y > lastY && y > 80) setNavHidden(true);
+      else if (y < lastY) setNavHidden(false);
+      lastY = y;
+    }
+    window.addEventListener("scroll", handleNavScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleNavScroll);
+  }, []);
   const navItems = [
     { href: "/", label: "startseite" },
     { href: "/fotobox-anlaesse", label: "anlass" },
@@ -52,7 +65,7 @@ export function SiteHeader({ content }: { content: CMSContent }) {
   }, [mobileMenuOpen]);
 
   return (
-    <header>
+    <header className={navHidden ? "nav-hidden" : ""}>
       <div className="container nav-wrap">
         <Link href="/">
           <Brand content={content} />
