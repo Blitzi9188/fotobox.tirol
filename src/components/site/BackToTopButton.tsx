@@ -27,7 +27,6 @@ export default function BackToTopButton() {
       aria-label="Zurück zum Menü"
     >
       <span className="back-to-top-arrow">↑</span>
-      <span className="back-to-top-label">nach oben</span>
     </button>
   );
 }
