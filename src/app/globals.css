@@ -741,6 +741,10 @@ main section {
     padding-top: 1.5rem;
     padding-bottom: 1rem;
   }
+
+  .back-to-top {
+    display: none;
+  }
 }
 
 .hero-content {
@@ -4637,10 +4641,6 @@ footer {
     transform: translateY(-100%);
   }
 
-  .back-to-top {
-    display: none;
-  }
-
   .nav-wrap {
     flex-direction: row;
     align-items: center;
@@ -7223,9 +7223,9 @@ footer {
   z-index: 200;
   background: #fff;
   border: 1px solid #25D366;
-  padding: 5px;
-  width: 6.8em;
-  height: 2.2em;
+  padding: 6px;
+  width: 8.5em;
+  height: 2.6em;
   font-size: 14px;
   border-radius: 0.4em;
   overflow: hidden;
@@ -7239,27 +7239,27 @@ footer {
 .whatsapp-float-label {
   position: absolute;
   top: 50%;
-  left: 1.15em;
+  left: 1em;
   transform: translateY(-50%);
   margin: 0;
   padding: 0;
   transition: left 0.4s, color 0.4s;
   color: #25D366;
   white-space: nowrap;
-  font-size: 11px;
-  letter-spacing: 0.05em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   font-weight: 600;
 }
 
 .whatsapp-float-icon {
   position: absolute;
   top: 50%;
-  right: 0.5em;
+  right: 0.55em;
   transform: translateY(-50%);
   opacity: 0;
   transition: opacity 0.4s;
-  height: 1.1em;
-  width: 1.1em;
+  height: 1.3em;
+  width: 1.3em;
   fill: #fff;
 }
 
