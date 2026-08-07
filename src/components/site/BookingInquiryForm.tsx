@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { PricePlan, CMSContent } from "@/lib/types";
-import TurnstileField from "@/components/site/TurnstileField";
+import CaptchaField from "@/components/site/CaptchaField";
 
 type PackageOption = Pick<PricePlan, "name" | "price">;
 
@@ -75,8 +75,9 @@ export default function BookingInquiryForm({
   );
   const [status, setStatus] = useState("");
   const [selectedPackage, setSelectedPackage] = useState(initialPackage || safePlans[0]?.name || "");
-  const [turnstileToken, setTurnstileToken] = useState("");
-  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
+  const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0);
   const [formStartedAt] = useState(() => Date.now());
 
   function plainSectionTitle(value: string) {
@@ -89,10 +90,6 @@ export default function BookingInquiryForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!turnstileToken) {
-      setStatus("Sicherheitsprüfung lädt noch – bitte einen Moment warten und erneut versuchen.");
-      return;
-    }
     const formData = new FormData(event.currentTarget);
 
     const messageRaw = String(formData.get("message") || "").trim();
@@ -111,7 +108,8 @@ export default function BookingInquiryForm({
       message: messageRaw,
       website: String(formData.get("website") || "").trim(),
       startedAt: String(formData.get("startedAt") || "").trim(),
-      turnstileToken
+      captchaToken: String(formData.get("captchaToken") || "").trim(),
+      captchaAnswer: String(formData.get("captchaAnswer") || "").trim()
     };
 
     const response = await fetch("/api/contact", {
@@ -124,8 +122,9 @@ export default function BookingInquiryForm({
     if (response.ok) {
       const submittedPackage = payload.packageName || initialPackage || safePlans[0]?.name || "";
       setSelectedPackage(initialPackage || safePlans[0]?.name || "");
-      setTurnstileToken("");
-      setTurnstileResetKey((v) => v + 1);
+      setCaptchaToken("");
+      setCaptchaAnswer("");
+      setCaptchaRefreshKey((v) => v + 1);
       const params = new URLSearchParams();
       params.set("paket", submittedPackage);
       if (payload.eventDate) params.set("eventDate", payload.eventDate);
@@ -135,8 +134,9 @@ export default function BookingInquiryForm({
     }
 
     setStatus(json?.error || inquiry.errorText || "Senden fehlgeschlagen.");
-    setTurnstileToken("");
-    setTurnstileResetKey((v) => v + 1);
+    setCaptchaToken("");
+    setCaptchaAnswer("");
+    setCaptchaRefreshKey((v) => v + 1);
   }
 
   return (
@@ -214,7 +214,13 @@ export default function BookingInquiryForm({
         </div>
       </div>
 
-      <TurnstileField onToken={setTurnstileToken} resetKey={turnstileResetKey} />
+      <CaptchaField
+        token={captchaToken}
+        answer={captchaAnswer}
+        onTokenChange={setCaptchaToken}
+        onAnswerChange={setCaptchaAnswer}
+        refreshKey={captchaRefreshKey}
+      />
 
       <button className="inquiry-submit-btn" type="submit">{inquiry.submitText}</button>
       {status ? <p className="inquiry-status">{status}</p> : null}

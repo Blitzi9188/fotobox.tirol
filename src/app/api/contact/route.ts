@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import nodemailer from "nodemailer";
 import { createLead } from "@/lib/cms";
-import { verifyTurnstileToken } from "@/lib/turnstile";
+import { verifyCaptchaChallenge } from "@/lib/captcha";
 import { formatMailConfigError, getMailConfigStatus } from "@/lib/mail-config";
 
 const REQUEST_WINDOW_MS = 10 * 60 * 1000;
@@ -207,7 +207,8 @@ export async function POST(request: Request) {
   const message = String(body.message || "").trim();
   const website = String(body.website || "").trim();
   const startedAt = Number(body.startedAt || 0);
-  const turnstileToken = String(body.turnstileToken || "").trim();
+  const captchaToken = String(body.captchaToken || "").trim();
+  const captchaAnswer = String(body.captchaAnswer || "").trim();
   const clientIp = getClientIp(request);
   const nowMs = now.getTime();
   const mergedSummary = [
@@ -255,9 +256,8 @@ export async function POST(request: Request) {
   }
   registerRequest(emailRequestStore, emailKey, nowMs);
 
-  const turnstileOk = await verifyTurnstileToken(turnstileToken, clientIp);
-  if (!turnstileOk) {
-    return NextResponse.json({ error: "Sicherheitsüberprüfung fehlgeschlagen. Bitte Seite neu laden und erneut versuchen." }, { status: 400 });
+  if (!verifyCaptchaChallenge(captchaToken, captchaAnswer)) {
+    return NextResponse.json({ error: "Sicherheitsfrage falsch beantwortet – bitte neu versuchen." }, { status: 400 });
   }
 
   await createLead({
