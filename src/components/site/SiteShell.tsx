@@ -12,7 +12,7 @@ function Brand({ content }: { content: CMSContent }) {
   return (
     <span className="brand-wrap">
       {content.navigation.logoUrl ? (
-        <img loading="lazy" decoding="async" src={content.navigation.logoUrl} alt="Fotobox Tirol Logo" className="brand-logo" />
+        <img loading="eager" fetchPriority="high" decoding="sync" src={content.navigation.logoUrl} alt="Fotobox Tirol Logo" className="brand-logo" />
       ) : null}
       <span className="brand">
         {content.navigation.brandLeft}

@@ -7280,3 +7280,21 @@ header.nav-hidden {
     right: 16px;
   }
 }
+
+/* CLS prevention: reserve space before images load */
+.space-visual {
+  min-height: 280px;
+}
+.space-visual .cover-image {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+.space-visual-small .cover-image {
+  aspect-ratio: unset;
+  height: auto;
+  max-height: 310px;
+}
+/* Platzbedarf & layout cover images keep 4:3 space reservation */
