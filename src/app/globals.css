@@ -7259,6 +7259,11 @@ footer {
   }
 }
 
+/* Seiteninhalt nicht unter WhatsApp-Button verschwinden lassen */
+body {
+  padding-bottom: 80px;
+}
+
 /* ── Nav hide on scroll (alle Bildschirmgrößen) ─────────────── */
 header {
   transition: top 0.3s ease !important;
