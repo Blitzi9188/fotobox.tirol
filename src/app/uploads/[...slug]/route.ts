@@ -28,7 +28,7 @@ export async function GET(_: Request, context: { params: { slug: string[] } }) {
 
   const filePath = path.join(uploadsDir, ...slug);
 
-  if (!filePath.startsWith(uploadsDir)) {
+  if (!filePath.startsWith(uploadsDir + path.sep)) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 

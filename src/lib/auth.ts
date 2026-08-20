@@ -35,7 +35,7 @@ export function verifySessionToken(token?: string): { ok: boolean; email?: strin
   if (!payloadEncoded || !signature) return { ok: false };
 
   const expected = sign(payloadEncoded, secret);
-  if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))) {
+  if (!timingSafeCompare(signature, expected)) {
     return { ok: false };
   }
 
@@ -55,8 +55,15 @@ export function verifySessionToken(token?: string): { ok: boolean; email?: strin
   }
 }
 
+function timingSafeCompare(a: string, b: string): boolean {
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+}
+
 export function isValidAdminLogin(email: string, password: string) {
   const adminEmail = requireEnv("ADMIN_EMAIL");
   const adminPassword = requireEnv("ADMIN_PASSWORD");
-  return email === adminEmail && password === adminPassword;
+  return timingSafeCompare(email, adminEmail) && timingSafeCompare(password, adminPassword);
 }

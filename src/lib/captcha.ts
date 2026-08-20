@@ -40,8 +40,10 @@ export function verifyCaptchaChallenge(token: string, answer: string) {
   if (!encodedPayload || !signature) return false;
 
   const expectedSignature = signPayload(encodedPayload);
-  const signatureOk = crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature));
-  if (!signatureOk) return false;
+  const bufSig = Buffer.from(signature);
+  const bufExp = Buffer.from(expectedSignature);
+  if (bufSig.length !== bufExp.length) return false;
+  if (!crypto.timingSafeEqual(bufSig, bufExp)) return false;
 
   let payload: CaptchaPayload;
   try {
