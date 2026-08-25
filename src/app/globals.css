@@ -3216,6 +3216,7 @@ p {
 .inquiry-captcha-widget {
   display: grid;
   gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .inquiry-captcha-question {
