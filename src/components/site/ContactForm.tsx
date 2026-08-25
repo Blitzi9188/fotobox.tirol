@@ -19,6 +19,7 @@ export default function ContactForm({
   const [captchaToken, setCaptchaToken] = useState("");
   const [captchaAnswer, setCaptchaAnswer] = useState("");
   const [captchaRefreshKey, setCaptchaRefreshKey] = useState(0);
+  const [source, setSource] = useState("");
 
   function requiredLabel(label: string) {
     return `${label} *`;
@@ -35,6 +36,7 @@ export default function ContactForm({
       eventDate: String(formData.get("eventDate") || ""),
       packageName: String(formData.get("packageName") || ""),
       message: String(formData.get("message") || ""),
+      source: String(formData.get("source") || ""),
       captchaToken: String(formData.get("captchaToken") || "").trim(),
       captchaAnswer: String(formData.get("captchaAnswer") || "").trim()
     };
@@ -99,6 +101,23 @@ export default function ContactForm({
           ))}
         </select>
       </label>
+      <div className="admin-field">
+        <span>Wie habt ihr uns gefunden? (Optional)</span>
+        <div className="contact-source-options">
+          {["Instagram", "Facebook", "Weiterempfehlung", "Google", "KI Suche"].map((opt) => (
+            <label key={opt} className="contact-source-option">
+              <input
+                type="radio"
+                name="source"
+                value={opt}
+                checked={source === opt}
+                onChange={() => setSource(opt)}
+              />
+              {opt}
+            </label>
+          ))}
+        </div>
+      </div>
       <label className="admin-field">
         <span>{requiredLabel("Nachricht")}</span>
         <textarea name="message" rows={5} required />

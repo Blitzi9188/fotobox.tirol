@@ -104,6 +104,7 @@ async function sendLeadMail(params: {
   printFormat: string;
   printText: string;
   message: string;
+  source: string;
 }) {
   const optionalTextLines = [
     hasValue(params.eventType) ? `Eventart: ${params.eventType}` : null,
@@ -122,8 +123,9 @@ async function sendLeadMail(params: {
     ...optionalTextLines,
     `Ort: ${params.location || "-"}`,
     `Paket: ${params.packageName}`,
+    hasValue(params.source) ? `Gefunden über: ${params.source}` : null,
     `Zusatznachricht: ${params.message || "-"}`
-  ].join("\n");
+  ].filter(Boolean).join("\n");
 
   const htmlLines = [
     `<h2>Neue Buchungsanfrage</h2>`,
@@ -135,6 +137,7 @@ async function sendLeadMail(params: {
     hasValue(params.eventType) ? `<p><strong>Eventart:</strong> ${escapeHtml(params.eventType)}</p>` : "",
     `<p><strong>Ort:</strong> ${escapeHtml(params.location || "-")}</p>`,
     `<p><strong>Paket:</strong> ${escapeHtml(params.packageName)}</p>`,
+    hasValue(params.source) ? `<p><strong>Gefunden über:</strong> ${escapeHtml(params.source)}</p>` : "",
     hasValue(params.boxType) ? `<p><strong>Fotobox:</strong> ${escapeHtml(params.boxType)}</p>` : "",
     hasValue(params.printFormat) ? `<p><strong>Format:</strong> ${escapeHtml(params.printFormat)}</p>` : "",
     hasValue(params.printText) ? `<p><strong>Aufdruck-Wunsch:</strong> ${escapeHtml(params.printText)}</p>` : "",
@@ -205,6 +208,7 @@ export async function POST(request: Request) {
   const printFormat = String(body.printFormat || "").trim();
   const printText = String(body.printText || "").trim();
   const message = String(body.message || "").trim();
+  const source = String(body.source || "").trim();
   const website = String(body.website || "").trim();
   const startedAt = Number(body.startedAt || 0);
   const captchaToken = String(body.captchaToken || "").trim();
@@ -283,7 +287,8 @@ export async function POST(request: Request) {
       boxType,
       printFormat,
       printText,
-      message
+      message,
+      source
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "E-Mail Versand fehlgeschlagen.";
