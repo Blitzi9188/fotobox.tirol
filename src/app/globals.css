@@ -7266,6 +7266,7 @@ footer {
   flex-wrap: wrap;
   gap: 0.6rem 1.2rem;
   margin-top: 0.5rem;
+  justify-content: center;
 }
 .inquiry-source-option {
   display: flex;
