@@ -106,6 +106,7 @@ export default function BookingInquiryForm({
       printFormat: "",
       printText: "",
       message: messageRaw,
+      source: String(formData.get("source") || "").trim(),
       website: String(formData.get("website") || "").trim(),
       startedAt: String(formData.get("startedAt") || "").trim(),
       captchaToken: String(formData.get("captchaToken") || "").trim(),
@@ -210,6 +211,18 @@ export default function BookingInquiryForm({
                 {plan.price > 0 ? `${plan.price}€` : "Allgemeine Anfrage"}
               </span>
             </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="inquiry-form-section">
+        <span className="inquiry-section-title">Wie habt ihr uns gefunden?</span>
+        <div className="inquiry-source-options">
+          {["Instagram", "Facebook", "Weiterempfehlung", "Google", "KI Suche"].map((option) => (
+            <label key={option} className="inquiry-source-option">
+              <input type="radio" name="source" value={option} />
+              <span>{option}</span>
+            </label>
           ))}
         </div>
       </div>
