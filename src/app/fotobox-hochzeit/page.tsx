@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import ReferencesCarousel from "@/components/site/ReferencesCarousel";
@@ -173,11 +174,11 @@ export default async function FotoboxHochzeitPage() {
         <section className="page-hero seo-landing-hero">
           <div className="container">
             <span className="pricing-hero-badge">Seit 2013 · rund 50 Hochzeiten pro Jahr</span>
-            <h1>Fotobox Hochzeit Tirol – Hochzeitsfotobox mieten</h1>
+            <h1>Fotobox Hochzeit Tirol</h1>
+            <p className="seo-landing-subtitle">Hochzeitsfotobox mieten</p>
             <p>
-              Die Hochzeitsfotobox für den schönsten Tag in Tirol – hochwertig, kinderleicht zu bedienen und in
-              weniger als zehn Minuten einsatzbereit. Für ehrliche Momente, gelöste Stimmung und Erinnerungen zum
-              Mitnehmen.
+              Die Hochzeitsfotobox für den schönsten Tag in Tirol: hochwertig, kinderleicht zu bedienen
+              und in unter zehn Minuten startklar. Für ehrliche Momente und Erinnerungen zum Mitnehmen.
             </p>
             <div className="seo-landing-bottom-cta">
               <Link href="/kontakt" className="btn">Termin anfragen</Link>
@@ -186,93 +187,128 @@ export default async function FotoboxHochzeitPage() {
           </div>
         </section>
 
-        {/* Kern + Schnellüberblick */}
+        {/* Bild + Text: Warum */}
         <section className="seo-landing-section">
-          <div className="container seo-landing-grid">
-            <article className="admin-card">
-              <h2>Warum eine Hochzeitsfotobox in Tirol?</h2>
-              <p>
-                Unsere selbst gebaute Fotobox arbeitet mit einer echten Spiegelreflexkamera und einem hochwertigen
-                Touchscreen – für saubere, professionell ausgeleuchtete Bilder in jeder Location. Sie bringt eure
-                Gäste zusammen, lockert die Stimmung und liefert Erinnerungen, die direkt mitgenommen werden können.
-              </p>
-              <p>
-                Ob im Bergpanorama, im Festsaal oder im Freien: Die Hochzeitsfotobox wird schnell zum Treffpunkt eurer
-                Feier – vom Sektempfang bis spät in die Nacht. Seit 2013 sind wir jährlich auf rund 50 Hochzeiten in
-                ganz Tirol im Einsatz.
-              </p>
-            </article>
-
-            <aside className="admin-card">
-              <h2>Schnellüberblick</h2>
-              <ul className="seo-landing-list">
-                <li>Spiegelreflexkamera und hochwertiger Touchscreen</li>
-                <li>In unter 10 Minuten einsatzbereit</li>
-                <li>Sofortdruck – 600 bis 800 Ausdrucke inklusive</li>
-                <li>Individuelles Layout mit Namen, Datum und Farben</li>
-                <li>Requisiten und Accessoires inklusive</li>
-                <li>Optional mit KI-Effekten</li>
-                <li>Abholung oder Lieferung mit Aufbau</li>
-              </ul>
-              <Link href="/kontakt" className="btn seo-landing-cta">Jetzt anfragen</Link>
-            </aside>
+          <div className="container">
+            <div className="space-grid">
+              <div className="space-visual">
+                <Image
+                  src="/uploads/hochzeit-braut-ich-dabei.jpg"
+                  alt="Braut mit Fotobox-Requisiten bei einer Hochzeit in Tirol"
+                  className="cover-image"
+                  width={1400}
+                  height={933}
+                  sizes="(max-width: 800px) 100vw, 600px"
+                />
+              </div>
+              <div className="space-copy">
+                <h2>Der Treffpunkt eurer Feier</h2>
+                <p>
+                  Unsere selbst gebaute Fotobox arbeitet mit echter Spiegelreflexkamera und hochwertigem
+                  Touchscreen – für saubere, professionell ausgeleuchtete Bilder in jeder Location.
+                </p>
+                <p>
+                  Ob im Bergpanorama, im Festsaal oder im Freien: Die Fotobox bringt eure Gäste zusammen
+                  und liefert Erinnerungen, die direkt mitgenommen werden können – vom Sektempfang bis
+                  spät in die Nacht.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Leistungen */}
-        <section className="seo-landing-section seo-landing-alt">
-          <div className="container seo-landing-grid">
-            <article className="admin-card">
-              <h2>Sofortdruck &amp; individuelles Design</h2>
-              <p>
-                Jeder Gast nimmt seine Erinnerung direkt mit nach Hause. Je nach Layout sind zwischen 600 und 800
-                Ausdrucke inklusive, solange der Formatbereich reicht. Das Print-Layout gestalten wir vorab passend zu
-                eurer Hochzeit – mit euren Namen, dem Datum und euren Farben.
-              </p>
-              <p>
-                So passt jeder Ausdruck zum Stil eures Tages und wird zur bleibenden Erinnerung, die ihr auch ins
-                Gästebuch kleben könnt.
-              </p>
-            </article>
+        {/* Highlights als Karten */}
+        <section className="features">
+          <div className="container">
+            <h2>Das ist bei jeder Hochzeit dabei</h2>
+            <div className="grid grid-3" style={{ marginTop: "1.6rem" }}>
+              <article className="feature-item">
+                <h3>Sofortdruck inklusive</h3>
+                <p>
+                  Je nach Layout sind 600 bis 800 Ausdrucke inklusive – jeder Gast nimmt seine Erinnerung
+                  direkt mit nach Hause.
+                </p>
+              </article>
+              <article className="feature-item">
+                <h3>Euer eigenes Design</h3>
+                <p>
+                  Das Print-Layout gestalten wir vorab mit euren Namen, dem Datum und euren Farben – passend
+                  zum Stil eures Tages.
+                </p>
+              </article>
+              <article className="feature-item">
+                <h3>Requisiten &amp; KI-Effekte</h3>
+                <p>
+                  Eine liebevolle Auswahl an Requisiten sorgt für gelöste Stimmung. Auf Wunsch mit
+                  optionalen KI-Effekten als Highlight.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
 
-            <article className="admin-card">
-              <h2>Requisiten &amp; optionale KI-Effekte</h2>
-              <p>
-                Eine liebevoll ausgewählte Auswahl an Requisiten und Accessoires sorgt für gelöste Stimmung und
-                ehrliche, lustige Bilder. Auf Wunsch verwandeln optionale KI-Effekte eure Aufnahmen in besondere,
-                stilisierte Bilder.
-              </p>
-              <p>
-                Ein Highlight, über das eure Gäste noch lange sprechen – und das eure Hochzeit von einer gewöhnlichen
-                Fotobox abhebt.
-              </p>
-            </article>
+        {/* Brautpaar-Bild */}
+        <section className="seo-landing-section">
+          <div className="container">
+            <div style={{ borderRadius: "1rem", overflow: "hidden", maxHeight: "520px" }}>
+              <Image
+                src="/uploads/hochzeit-brautpaar-selfie.png"
+                alt="Lachendes Brautpaar mit Herzsonnenbrille und Champagner an der Hochzeitsfotobox in Tirol"
+                width={893}
+                height={1340}
+                style={{ width: "100%", height: "520px", objectFit: "cover", objectPosition: "top", display: "block" }}
+                sizes="(max-width: 800px) 100vw, 900px"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Bild + Text: Sofortdruck / Design (Bild rechts) */}
+        <section className="seo-landing-section seo-landing-alt">
+          <div className="container">
+            <div className="space-grid">
+              <div className="space-copy">
+                <h2>Erinnerungen zum Mitnehmen</h2>
+                <p>
+                  Jeder Ausdruck passt zum Stil eurer Hochzeit und wird zur bleibenden Erinnerung, die ihr
+                  auch ins Gästebuch kleben könnt. Solange der Formatbereich reicht, drucken wir ohne
+                  Aufpreis.
+                </p>
+                <p>
+                  So entsteht ganz nebenbei ein gemeinsames Erinnerungsstück an euren schönsten Tag.
+                </p>
+              </div>
+              <div className="space-visual">
+                <Image
+                  src="/uploads/hochzeit-braut-love.jpg"
+                  alt="Braut mit Love-Schild an der Hochzeitsfotobox in Tirol"
+                  className="cover-image"
+                  width={1400}
+                  height={933}
+                  sizes="(max-width: 800px) 100vw, 600px"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Ablauf */}
         <section className="seo-landing-section">
           <div className="container">
-            <div className="admin-card">
-              <h2>So läuft eure Hochzeit mit der Fotobox ab</h2>
-              <ul className="seo-landing-list">
-                <li>
-                  <strong>Anfrage &amp; Absprache:</strong> Ihr schildert uns euren Tag, Location und Wünsche –
-                  gemeinsam legen wir Paket und Layout fest.
-                </li>
-                <li>
-                  <strong>Design vorab gestalten:</strong> Wir gestalten euer persönliches Print-Layout mit Namen,
-                  Datum und euren Farben, rechtzeitig vor der Feier.
-                </li>
-                <li>
-                  <strong>Abholung oder Lieferung:</strong> Je nach Paket holt ihr die Fotobox bei uns ab, oder wir
-                  bringen sie vorbei, bauen sie auf und erklären kurz alles. In unter 10 Minuten ist sie startklar.
-                </li>
-                <li>
-                  <strong>Feiern &amp; Service-Hotline:</strong> Die Box ist kinderleicht zu bedienen. Sollte doch
-                  etwas sein, erreicht ihr uns jederzeit über unsere Service-Hotline.
-                </li>
-              </ul>
+            <h2>So läuft eure Hochzeit mit der Fotobox ab</h2>
+            <div className="grid grid-3" style={{ marginTop: "1.6rem" }}>
+              <article className="feature-item">
+                <h3>1 · Anfrage &amp; Absprache</h3>
+                <p>Ihr schildert uns euren Tag, Location und Wünsche – gemeinsam legen wir Paket und Layout fest.</p>
+              </article>
+              <article className="feature-item">
+                <h3>2 · Design gestalten</h3>
+                <p>Wir gestalten euer persönliches Print-Layout mit Namen, Datum und Farben, rechtzeitig vor der Feier.</p>
+              </article>
+              <article className="feature-item">
+                <h3>3 · Abholung oder Lieferung</h3>
+                <p>Je nach Paket holt ihr die Box ab oder wir liefern, bauen auf und erklären kurz alles – in unter 10 Minuten startklar.</p>
+              </article>
             </div>
           </div>
         </section>
@@ -280,17 +316,29 @@ export default async function FotoboxHochzeitPage() {
         {/* Vertrauen / Locations */}
         <section className="seo-landing-section seo-landing-alt">
           <div className="container">
-            <div className="admin-card">
-              <h2>Erprobt auf Tirols schönsten Hochzeiten</h2>
-              <p>
-                Seit 2013 sind wir jährlich auf rund 50 Hochzeiten in ganz Tirol im Einsatz – von der intimen Feier
-                bis zum großen Fest. Unter anderem waren wir bereits an diesen Locations dabei:
-              </p>
-              <ul className="seo-landing-list">
-                {WEDDING_VENUES.map((venue) => (
-                  <li key={venue}>{venue}</li>
-                ))}
-              </ul>
+            <div className="space-grid">
+              <div className="space-visual">
+                <Image
+                  src="/uploads/hochzeit-kussmund.jpg"
+                  alt="Hochzeitsgast mit Kussmund-Requisit an der Fotobox in Tirol"
+                  className="cover-image"
+                  width={1400}
+                  height={933}
+                  sizes="(max-width: 800px) 100vw, 600px"
+                />
+              </div>
+              <div className="space-copy">
+                <h2>Erprobt auf Tirols schönsten Hochzeiten</h2>
+                <p>
+                  Seit 2013 sind wir jährlich auf rund 50 Hochzeiten in ganz Tirol im Einsatz – von der
+                  intimen Feier bis zum großen Fest. Unter anderem waren wir hier dabei:
+                </p>
+                <ul className="seo-landing-list">
+                  {WEDDING_VENUES.map((venue) => (
+                    <li key={venue}>{venue}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>
