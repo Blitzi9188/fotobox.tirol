@@ -871,11 +871,13 @@ p {
   text-transform: uppercase;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
-  transition: transform 0.2s var(--ani-ease);
+  transition: transform 0.2s var(--ani-ease), box-shadow 0.2s var(--ani-ease);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
 }
 
 @keyframes heroRise {
@@ -2080,6 +2082,9 @@ p {
 
 .seo-landing-bottom-cta {
   margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .pricing-contact-block {
