@@ -43,10 +43,10 @@ export function SiteHeader({ content }: { content: CMSContent }) {
     { href: "/", label: "startseite" },
     { href: "/fotobox-anlaesse", label: "anlass" },
     { href: "/technische-daten-aufbau", label: "platz" },
-    { href: "/layout-gestaltung", label: "layout" },
     { href: "/ki-fotobox-tirol", label: "ki-magie" },
     { href: "/preise", label: "preise" },
-    { href: "/kontakt", label: "anfrage", className: "accent-link" }
+    { href: "/kontakt", label: "anfrage", className: "accent-link" },
+    { href: "/layout-gestaltung", label: "layout", liClassName: "nav-item-extra-row" as string }
   ];
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export function SiteHeader({ content }: { content: CMSContent }) {
         <nav className="site-nav">
           <ul className="nav-list-desktop">
             {navItems.map((item) => (
-              <li key={item.href}>
+              <li key={item.href} className={item.liClassName || undefined}>
                 <Link
                   href={item.href}
                   className={`${item.className || ""}${pathname === item.href ? " nav-link-active" : ""}`.trim()}

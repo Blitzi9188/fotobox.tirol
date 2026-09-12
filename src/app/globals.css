@@ -110,6 +110,12 @@ nav a:hover {
 
 .nav-list-desktop {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.nav-item-extra-row {
+  flex-basis: 100%;
+  padding-top: 0.2rem;
 }
 
 .mobile-nav-menu {
