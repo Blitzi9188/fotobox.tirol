@@ -250,15 +250,17 @@ export default async function FotoboxHochzeitPage() {
         {/* Brautpaar-Bild */}
         <section className="seo-landing-section">
           <div className="container">
-            <div style={{ borderRadius: "1rem", overflow: "hidden", maxHeight: "520px" }}>
-              <Image
-                src="/uploads/hochzeit-brautpaar-selfie.png"
-                alt="Lachendes Brautpaar mit Herzsonnenbrille und Champagner an der Hochzeitsfotobox in Tirol"
-                width={893}
-                height={1340}
-                style={{ width: "100%", height: "520px", objectFit: "cover", objectPosition: "top", display: "block" }}
-                sizes="(max-width: 800px) 100vw, 900px"
-              />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <div style={{ borderRadius: "1rem", overflow: "hidden", maxWidth: "440px", width: "100%" }}>
+                <Image
+                  src="/uploads/hochzeit-brautpaar-selfie.png"
+                  alt="Lachendes Brautpaar mit Herzsonnenbrille und Champagner an der Hochzeitsfotobox in Tirol"
+                  width={893}
+                  height={1340}
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                  sizes="(max-width: 500px) 100vw, 440px"
+                />
+              </div>
             </div>
           </div>
         </section>
