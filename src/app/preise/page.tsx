@@ -308,8 +308,9 @@ export default async function PreisgestaltungPage() {
               {pricingPackages.map((plan) => {
                 const isFeatured = Boolean(plan.featured);
                 return (
-                  <article
+                  <Link
                     key={plan.name}
+                    href={`/kontakt?paket=${encodeURIComponent(plan.name)}`}
                     className={`pricing-offer-card${isFeatured ? " is-featured" : ""}`}
                   >
                     {isFeatured ? <span className="pricing-offer-badge">Beliebteste Wahl</span> : null}
@@ -329,13 +330,10 @@ export default async function PreisgestaltungPage() {
                         </li>
                       ))}
                     </ul>
-                    <Link
-                      href={`/kontakt?paket=${encodeURIComponent(plan.name)}`}
-                      className={`pricing-offer-button${isFeatured ? " is-featured" : ""}`}
-                    >
+                    <span className={`pricing-offer-button${isFeatured ? " is-featured" : ""}`}>
                       {isFeatured ? "Auswählen" : "Jetzt anfragen"}
-                    </Link>
-                  </article>
+                    </span>
+                  </Link>
                 );
               })}
             </div>
