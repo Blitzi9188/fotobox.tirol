@@ -92,7 +92,7 @@ const DEFAULT_OCCASIONS = [
 export async function generateMetadata(): Promise<Metadata> {
   const content = await readCmsContent();
   const occasions = content.occasions;
-  const title = occasions?.seoTitle || "Fotobox für jeden Anlass in Tirol | Hochzeit, Geburtstag und Events";
+  const title = occasions?.seoTitle || "Fotobox Tirol mieten | Hochzeit, Geburtstag & Events";
   const description =
     occasions?.seoDescription ||
     "Fotobox mieten in Tirol für Hochzeit, Geburtstag, Firmenevent und weitere Anlässe. Moderne Fotobox-Lösungen mit Sofortdruck, Branding und starkem Erinnerungswert.";

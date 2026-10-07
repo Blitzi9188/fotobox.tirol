@@ -1,23 +1,29 @@
+import type { Metadata } from "next";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { DEFAULT_AGB_TEXT } from "@/lib/legalDefaults";
 
-export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
+export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "AGB | Fotobox Tirol",
+  description: "Allgemeine Geschäftsbedingungen der Fotobox Tirol für die Vermietung von Fotoboxen – gültig ab 1. Oktober 2026.",
+};
 
 function renderAgbBlock(block: string, index: number) {
   const trimmed = block.trim();
   if (trimmed.startsWith("## ")) {
     return (
-      <h2 key={`agb-${index}`} style={{ fontSize: "1.1rem", fontWeight: 700, marginTop: "2rem", marginBottom: "0.5rem" }}>
+      <h3 key={`agb-${index}`} style={{ fontSize: "1.05rem", fontWeight: 700, marginTop: "2rem", marginBottom: "0.5rem" }}>
         {trimmed.replace(/^## /, "")}
-      </h2>
+      </h3>
     );
   }
   if (trimmed.startsWith("# ")) {
     return (
-      <h1 key={`agb-${index}`} style={{ fontSize: "1.3rem", fontWeight: 700, marginBottom: "0.75rem" }}>
+      <h2 key={`agb-${index}`} style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: "0.75rem" }}>
         {trimmed.replace(/^# /, "")}
-      </h1>
+      </h2>
     );
   }
   const withBold = trimmed.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");

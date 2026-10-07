@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { DEFAULT_DATENSCHUTZ_TEXT } from "@/lib/legalDefaults";
 
-export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
+export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "Datenschutzerklärung | Fotobox Tirol",
+  description: "Datenschutzerklärung der Fotobox Tirol gemäß DSGVO – Informationen zur Verarbeitung Ihrer personenbezogenen Daten und Ihren Rechten.",
+};
 
 export default async function DatenschutzerklärungPage() {
   const content = await readCmsContent();

@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { DEFAULT_AGB_B2B_TEXT } from "@/lib/legalDefaults";
 
-export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
+export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "AGB B2B | Fotobox Tirol",
+  description: "Allgemeine Geschäftsbedingungen der Fotobox Tirol für Unternehmenskunden – B2B-Konditionen, Rechnungslegung und Sondervereinbarungen.",
+};
 
 export default async function AgbB2bPage() {
   const content = await readCmsContent();

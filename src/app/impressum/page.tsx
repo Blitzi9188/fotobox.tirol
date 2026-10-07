@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import { readCmsContent } from "@/lib/cms";
 import { SiteFooter, SiteHeader } from "@/components/site/SiteShell";
 import { DEFAULT_IMPRESSUM_TEXT } from "@/lib/legalDefaults";
 
-export const revalidate = 3600; // ISR: statisch, stuendlich aktualisiert
+export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "Impressum | Fotobox Tirol",
+  description: "Impressum der Fotobox Tirol – Angaben gemäß § 5 ECG, Kontaktdaten des Unternehmens und rechtliche Pflichtinformationen.",
+};
 
 export default async function ImpressumPage() {
   const content = await readCmsContent();

@@ -488,6 +488,11 @@ export default async function HomePage() {
                       </details>
                     ))}
                   </div>
+                  <p style={{ marginTop: "2rem", textAlign: "center" }}>
+                    <Link href="/fotobox-mieten-tirol" className="btn">
+                      Fotobox mieten in Tirol – alle Infos
+                    </Link>
+                  </p>
                 </section>
               );
             }

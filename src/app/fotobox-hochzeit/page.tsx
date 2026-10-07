@@ -65,7 +65,7 @@ const WEDDING_FAQ = [
 export const metadata: Metadata = {
   title: "Fotobox Hochzeit Tirol | Hochzeitsfotobox mieten",
   description:
-    "Hochzeitsfotobox in Tirol mieten: hochwertige Fotobox mit Spiegelreflexkamera, Sofortdruck, individuellem Layout und Requisiten. Ab 400 €. Seit 2013, rund 50 Hochzeiten pro Jahr.",
+    "Hochzeitsfotobox Tirol mieten: Sofortdruck, individuelles Layout und Requisiten inklusive. Ab 400 €, seit 2013 auf Tirols schönsten Hochzeiten.",
   alternates: { canonical: "/fotobox-hochzeit" },
   openGraph: {
     title: "Fotobox Hochzeit Tirol | Hochzeitsfotobox mieten",

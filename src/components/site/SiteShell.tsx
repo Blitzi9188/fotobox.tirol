@@ -212,6 +212,7 @@ export function SiteFooter({ content }: { content: CMSContent }) {
           </div>
           <div>
           <h4>{content.footer.infoTitle}</h4>
+          <Link href="/fotobox-mieten-tirol">Fotobox mieten Tirol</Link>
           {content.footer.infoLinks.map((link) => {
             const resolvedHref = resolveFooterHref(link.label, link.href);
             return isInternalHref(resolvedHref) ? (
