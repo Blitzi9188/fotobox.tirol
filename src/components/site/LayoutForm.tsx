@@ -9,7 +9,7 @@ const OCCASIONS = [
 ];
 
 const FORMATS = [
-  { id: "10x15-quer", label: "10 × 15 quer", hint: "Drei Fotos & Branding" },
+  { id: "10x15-quer", label: "10 × 15 quer", hint: "Drei Fotos" },
   { id: "10x15-hoch", label: "10 × 15 hoch", hint: "Ein großes Foto" },
   { id: "5x15-streifen", label: "5 × 15 Streifen", hint: "Drei Fotos untereinander" }
 ];
